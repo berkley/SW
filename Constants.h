@@ -11,8 +11,3 @@
 #define SQL_FILE @"sd.sqlite"
 
 
-@interface Constants : NSObject {
-
-}
-
-@end

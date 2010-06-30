@@ -161,6 +161,8 @@
 		7EC5467E11DAE59900A84CC4 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				7EC548BF11DB03D100A84CC4 /* ItemList.h */,
+				7EC548C011DB03D100A84CC4 /* ItemList.m */,
 				7EC5468411DAE60F00A84CC4 /* Item.h */,
 				7EC5468511DAE60F00A84CC4 /* Item.m */,
 				7EC5469F11DAE79300A84CC4 /* DBUtil.h */,
@@ -168,8 +170,6 @@
 				7EC546A211DAE86900A84CC4 /* Constants.h */,
 				7EC5481B11DAFE5D00A84CC4 /* DBTest.h */,
 				7EC5481C11DAFE5E00A84CC4 /* DBTest.m */,
-				7EC548BF11DB03D100A84CC4 /* ItemList.h */,
-				7EC548C011DB03D100A84CC4 /* ItemList.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";

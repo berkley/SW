@@ -14,7 +14,7 @@
     
 }
 
-+ (void)createEditableCopyOfDatabaseIfNeeded;
++ (void) createEditableCopyOfDatabaseIfNeeded;
 + (sqlite3*) getDatabase;
 + (NSArray*) getListIds;
 

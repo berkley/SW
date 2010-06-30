@@ -22,7 +22,6 @@
 @property (nonatomic, retain) NSNumber *sort;
 @property (nonatomic, retain) NSArray *items;
 
-- (id)initWithIdentifier:(NSNumber*)identifier;
-- (id)initWithNum:(NSInteger)num;
+- (id) initWithIdentifier:(NSNumber*) identifier;
 
 @end

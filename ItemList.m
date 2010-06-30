@@ -8,41 +8,61 @@
 
 #import "ItemList.h"
 #import "DBUtil.h"
+#import "Item.h"
 
 @implementation ItemList
 
 @synthesize identifier, name, sort, items;
 
--(id)initWithIdentifier:(NSNumber*)ident
+NSMutableArray *itemArray;
+
+- (id) initWithIdentifier:(NSNumber*) ident
 {
     if(self = [super init])
     {
+        itemArray = [[NSMutableArray alloc] init];
+        
         self.identifier = ident;
         sqlite3 *db = [DBUtil getDatabase];
-        const char *sql = "select name, sort from lists where id = ?";
+        char *sql = "select name, sort from lists where id = ?";
         sqlite3_stmt *statement;
         if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
         {
             sqlite3_bind_int(statement, 1, [identifier intValue]);
             while(sqlite3_step(statement) == SQLITE_ROW)
             {
-                char * desc = sqlite3_column_text(statement, 0);
+                char *n = sqlite3_column_text(statement, 0);
+                self.name = [NSString stringWithUTF8String:n];
                 int s = sqlite3_column_int(statement, 1);
-                self.name = [NSString stringWithUTF8String:desc];
                 self.sort = [NSNumber numberWithInt:s];
             }
         }
+        
+        const char *sql2 = "select id, description, done, sort from items where list_id = ?";
+        if(sqlite3_prepare_v2(db, sql2, -1, &statement, NULL) == SQLITE_OK)
+        {
+            sqlite3_bind_int(statement, 1, [self.identifier intValue]);
+            while(sqlite3_step(statement) == SQLITE_ROW)
+            {
+                int ident = sqlite3_column_int(statement, 0);
+                char *desc = sqlite3_column_text(statement, 1);
+                int done = sqlite3_column_int(statement, 2);
+                int srt = sqlite3_column_int(statement, 3);
+                Item *i = [[Item alloc] init];
+                i.id = [NSNumber numberWithInt:ident];
+                i.description = [NSString stringWithUTF8String:desc];
+                i.done = [NSNumber numberWithInt:done];
+                i.sort = [NSNumber numberWithInt:srt];
+                [itemArray addObject:i];
+            }
+        }
     }
-    
     return self;
 }
 
--(id)initWithNum:(NSInteger)num
+-(NSArray*)items
 {
-    if(self = [super init])
-    {
-    }
-    return self;
+    return itemArray;
 }
 
 @end

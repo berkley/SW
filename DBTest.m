@@ -20,8 +20,16 @@
     {
         NSNumber *ident = [listIds objectAtIndex:i];
         ItemList *l = [[ItemList alloc] initWithIdentifier:ident];
-        NSLog(@"list %s", l.name);
+        NSLog(@"list %@", l.name);
+        assert([l.name isEqualToString:@"Fruit"]);
+        assert([l.sort intValue] == 0);
         
+        NSArray *items = l.items;
+        assert([items count] == 3);
+        Item *i = [items objectAtIndex:1];
+        assert([i.description isEqualToString:@"Pears"]);
+        assert([i.sort intValue] == 1);
+        assert([i.done intValue] == 0);
     }
 }
 

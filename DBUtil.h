@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Constants.h"
+#import <sqlite3.h>
 
 
 @interface DBUtil : NSObject {
-
+    
 }
 
 + (void)createEditableCopyOfDatabaseIfNeeded;
-+ (void) initializeDatabase;
++ (sqlite3*) getDatabase;
 
 @end

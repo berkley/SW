@@ -7,10 +7,29 @@
 //
 
 #import "List.h"
-
+#import "DBUtil.h"
 
 @implementation List
 
-@synthesize id, name, order;
+@synthesize id, name, sort, items;
+
+- (void) initWithIdentifier:(NSNumber*) identifier
+{
+    self.id = identifier;
+    sqlite3 *db = [DBUtil getDatabase];
+    const char *sql = "select name, sort from lists where id = ?";
+    sqlite3_stmt *statement;
+    if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
+    {
+        sqlite3_bind_int(statement, 1, [identifier intValue]);
+        while(sqlite3_step(statement) == SQLITE_ROW)
+        {
+            char * desc = sqlite3_column_text(statement, 0);
+            int s = sqlite3_column_int(statement, 1);
+            self.name = [NSString stringWithUTF8String:desc];
+            self.sort = [NSNumber numberWithInt:s];
+        }
+    }
+}
 
 @end

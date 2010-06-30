@@ -11,6 +11,6 @@
 
 @implementation Item
 
-@synthesize id, order, description, done, list_id;
+@synthesize id, sort, description, done, list_id;
 
 @end

@@ -18,7 +18,21 @@
 		7EC5468311DAE5F300A84CC4 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5468211DAE5F300A84CC4 /* List.m */; };
 		7EC5468611DAE60F00A84CC4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5468511DAE60F00A84CC4 /* Item.m */; };
 		7EC546A111DAE79300A84CC4 /* DBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC546A011DAE79300A84CC4 /* DBUtil.m */; };
+		7EC546B711DAED8700A84CC4 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EC546B611DAED8700A84CC4 /* libsqlite3.0.dylib */; };
+		7EC5470411DAF87300A84CC4 /* DataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5470311DAF87300A84CC4 /* DataTest.m */; };
+		7EC547B311DAFA2F00A84CC4 /* sd.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7EC547B211DAFA2F00A84CC4 /* sd.sqlite */; };
+		7EC547B411DAFA2F00A84CC4 /* sd.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7EC547B211DAFA2F00A84CC4 /* sd.sqlite */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7EC547CD11DAFACB00A84CC4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54 /* Simply Done */;
+			remoteInfo = "Simply Done";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -40,6 +54,12 @@
 		7EC5469F11DAE79300A84CC4 /* DBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUtil.h; sourceTree = "<group>"; };
 		7EC546A011DAE79300A84CC4 /* DBUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUtil.m; sourceTree = "<group>"; };
 		7EC546A211DAE86900A84CC4 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		7EC546B611DAED8700A84CC4 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		7EC546FB11DAF73800A84CC4 /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EC546FC11DAF73800A84CC4 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
+		7EC5470211DAF87300A84CC4 /* DataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTest.h; sourceTree = "<group>"; };
+		7EC5470311DAF87300A84CC4 /* DataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTest.m; sourceTree = "<group>"; };
+		7EC547B211DAFA2F00A84CC4 /* sd.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = sd.sqlite; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Simply_Done-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Simply_Done-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,6 +71,14 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+				7EC546B711DAED8700A84CC4 /* libsqlite3.0.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EC546F811DAF73800A84CC4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Simply Done.app */,
+				7EC546FB11DAF73800A84CC4 /* Unit Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,6 +117,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				7EC5470611DAF87C00A84CC4 /* Unit Tests */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -104,6 +134,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7EC547B211DAFA2F00A84CC4 /* sd.sqlite */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Simply_Done-Info.plist */,
@@ -114,6 +145,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7EC546B611DAED8700A84CC4 /* libsqlite3.0.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
@@ -149,6 +181,16 @@
 			name = ItemView;
 			sourceTree = "<group>";
 		};
+		7EC5470611DAF87C00A84CC4 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				7EC546FC11DAF73800A84CC4 /* Unit Tests-Info.plist */,
+				7EC5470211DAF87300A84CC4 /* DataTest.h */,
+				7EC5470311DAF87300A84CC4 /* DataTest.m */,
+			);
+			name = "Unit Tests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -168,6 +210,25 @@
 			productName = "Simply Done";
 			productReference = 1D6058910D05DD3D006BFB54 /* Simply Done.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7EC546FA11DAF73800A84CC4 /* Unit Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7EC546FF11DAF73900A84CC4 /* Build configuration list for PBXNativeTarget "Unit Tests" */;
+			buildPhases = (
+				7EC546F611DAF73800A84CC4 /* Resources */,
+				7EC546F711DAF73800A84CC4 /* Sources */,
+				7EC546F811DAF73800A84CC4 /* Frameworks */,
+				7EC546F911DAF73800A84CC4 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7EC547CE11DAFACB00A84CC4 /* PBXTargetDependency */,
+			);
+			name = "Unit Tests";
+			productName = "Unit Tests";
+			productReference = 7EC546FB11DAF73800A84CC4 /* Unit Tests.octest */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -189,6 +250,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Simply Done */,
+				7EC546FA11DAF73800A84CC4 /* Unit Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -200,10 +262,35 @@
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
+				7EC547B411DAFA2F00A84CC4 /* sd.sqlite in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EC546F611DAF73800A84CC4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EC547B311DAFA2F00A84CC4 /* sd.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7EC546F911DAF73800A84CC4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -219,7 +306,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7EC546F711DAF73800A84CC4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EC5470411DAF87300A84CC4 /* DataTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7EC547CE11DAFACB00A84CC4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D6058900D05DD3D006BFB54 /* Simply Done */;
+			targetProxy = 7EC547CD11DAFACB00A84CC4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -249,6 +352,66 @@
 				INFOPLIST_FILE = "Simply_Done-Info.plist";
 				PRODUCT_NAME = "Simply Done";
 				"PROVISIONING_PROFILE[sdk=iphonesimulator*]" = "";
+			};
+			name = Release;
+		};
+		7EC546FD11DAF73900A84CC4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Simply Done.app/Simply Done";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "Unit Tests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit Tests";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Simply Done.app/Simply Done";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		7EC546FE11DAF73900A84CC4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Simply Done.app/Simply Done";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "Unit Tests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit Tests";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Simply Done.app/Simply Done";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -288,6 +451,15 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EC546FF11DAF73900A84CC4 /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EC546FD11DAF73900A84CC4 /* Debug */,
+				7EC546FE11DAF73900A84CC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -23,7 +23,6 @@
     
     // Override point for customization after app launch 
     [DBUtil createEditableCopyOfDatabaseIfNeeded];
-	[DBUtil initializeDatabase];
 	
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];

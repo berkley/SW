@@ -13,11 +13,15 @@
     
     NSNumber *id;
     NSString *name;
-    NSNumber *order;
+    NSNumber *sort;
+    NSArray *items;
 }
 
 @property (nonatomic, retain) NSNumber *id;
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSNumber *order;
+@property (nonatomic, retain) NSNumber *sort;
+@property (nonatomic, retain) NSArray *items;
+
+- (void) initWithIdentifier:(NSNumber*) identifier;
 
 @end

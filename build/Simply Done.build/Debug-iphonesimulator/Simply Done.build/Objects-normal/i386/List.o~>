@@ -1,0 +1,7 @@
+In file included from /Users/berkley/project/iphone/Simply Done/List.m:9:
+/Users/berkley/project/iphone/Simply Done/List.h:23: error: property 'order' with 'retain' attribute must be of object type
+/Users/berkley/project/iphone/Simply Done/List.h:23: error: property 'id' with 'retain' attribute must be of object type
+/Users/berkley/project/iphone/Simply Done/List.m: In function '-[List setOrder:]':
+/Users/berkley/project/iphone/Simply Done/List.m:14: warning: passing argument 4 of 'objc_setProperty' from incompatible pointer type
+/Users/berkley/project/iphone/Simply Done/List.m: In function '-[List setId:]':
+/Users/berkley/project/iphone/Simply Done/List.m:14: warning: passing argument 4 of 'objc_setProperty' from incompatible pointer type

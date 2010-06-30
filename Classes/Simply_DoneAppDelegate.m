@@ -8,7 +8,7 @@
 
 #import "Simply_DoneAppDelegate.h"
 #import "RootViewController.h"
-
+#import "DBUtil.h"
 
 @implementation Simply_DoneAppDelegate
 
@@ -21,7 +21,9 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     
-    // Override point for customization after app launch    
+    // Override point for customization after app launch 
+    [DBUtil createEditableCopyOfDatabaseIfNeeded];
+	[DBUtil initializeDatabase];
 	
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];

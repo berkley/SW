@@ -23,5 +23,8 @@
 @property (nonatomic, retain) NSNumber *done;
 @property (nonatomic, retain) NSString *description;
 
+-(id)initWithInt:(NSInteger)num;
+
+
 
 @end

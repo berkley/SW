@@ -13,4 +13,13 @@
 
 @synthesize id, sort, description, done, list_id;
 
+-(id)initWithInt:(NSInteger)num
+{
+    if(self = [super init])
+    {
+        
+    }
+    return self;
+}
+
 @end

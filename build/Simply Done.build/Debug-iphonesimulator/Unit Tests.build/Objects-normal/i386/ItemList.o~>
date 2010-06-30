@@ -1,0 +1,2 @@
+/Users/berkley/project/iphone/Simply Done/ItemList.m: In function '-[ItemList initWithIdentifier:]':
+/Users/berkley/project/iphone/Simply Done/ItemList.m:29: warning: initialization discards qualifiers from pointer target type

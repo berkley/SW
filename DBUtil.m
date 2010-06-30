@@ -11,7 +11,6 @@
 
 @implementation DBUtil
 
-
 + (void)createEditableCopyOfDatabaseIfNeeded 
 {
     //set up the db

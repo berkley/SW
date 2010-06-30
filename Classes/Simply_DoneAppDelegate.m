@@ -9,6 +9,7 @@
 #import "Simply_DoneAppDelegate.h"
 #import "RootViewController.h"
 #import "DBUtil.h"
+#import "DBTest.h"
 
 @implementation Simply_DoneAppDelegate
 
@@ -23,7 +24,8 @@
     
     // Override point for customization after app launch 
     [DBUtil createEditableCopyOfDatabaseIfNeeded];
-	
+	[DBTest runTests];
+    
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
 }

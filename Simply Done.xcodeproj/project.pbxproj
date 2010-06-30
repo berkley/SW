@@ -15,13 +15,16 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
-		7EC5468311DAE5F300A84CC4 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5468211DAE5F300A84CC4 /* List.m */; };
 		7EC5468611DAE60F00A84CC4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5468511DAE60F00A84CC4 /* Item.m */; };
 		7EC546A111DAE79300A84CC4 /* DBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC546A011DAE79300A84CC4 /* DBUtil.m */; };
 		7EC546B711DAED8700A84CC4 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EC546B611DAED8700A84CC4 /* libsqlite3.0.dylib */; };
 		7EC5470411DAF87300A84CC4 /* DataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5470311DAF87300A84CC4 /* DataTest.m */; };
 		7EC547B311DAFA2F00A84CC4 /* sd.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7EC547B211DAFA2F00A84CC4 /* sd.sqlite */; };
 		7EC547B411DAFA2F00A84CC4 /* sd.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7EC547B211DAFA2F00A84CC4 /* sd.sqlite */; };
+		7EC5481D11DAFE5E00A84CC4 /* DBTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5481C11DAFE5E00A84CC4 /* DBTest.m */; };
+		7EC5481E11DAFE5E00A84CC4 /* DBTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5481C11DAFE5E00A84CC4 /* DBTest.m */; };
+		7EC548C111DB03D100A84CC4 /* ItemList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC548C011DB03D100A84CC4 /* ItemList.m */; };
+		7EC548C211DB03D100A84CC4 /* ItemList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC548C011DB03D100A84CC4 /* ItemList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +50,6 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7EC5468111DAE5F300A84CC4 /* List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
-		7EC5468211DAE5F300A84CC4 /* List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = List.m; sourceTree = "<group>"; };
 		7EC5468411DAE60F00A84CC4 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		7EC5468511DAE60F00A84CC4 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		7EC5469F11DAE79300A84CC4 /* DBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUtil.h; sourceTree = "<group>"; };
@@ -60,6 +61,10 @@
 		7EC5470211DAF87300A84CC4 /* DataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTest.h; sourceTree = "<group>"; };
 		7EC5470311DAF87300A84CC4 /* DataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTest.m; sourceTree = "<group>"; };
 		7EC547B211DAFA2F00A84CC4 /* sd.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = sd.sqlite; sourceTree = "<group>"; };
+		7EC5481B11DAFE5D00A84CC4 /* DBTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTest.h; sourceTree = "<group>"; };
+		7EC5481C11DAFE5E00A84CC4 /* DBTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBTest.m; sourceTree = "<group>"; };
+		7EC548BF11DB03D100A84CC4 /* ItemList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemList.h; sourceTree = "<group>"; };
+		7EC548C011DB03D100A84CC4 /* ItemList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemList.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Simply_Done-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Simply_Done-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,13 +161,15 @@
 		7EC5467E11DAE59900A84CC4 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				7EC5468111DAE5F300A84CC4 /* List.h */,
-				7EC5468211DAE5F300A84CC4 /* List.m */,
 				7EC5468411DAE60F00A84CC4 /* Item.h */,
 				7EC5468511DAE60F00A84CC4 /* Item.m */,
 				7EC5469F11DAE79300A84CC4 /* DBUtil.h */,
 				7EC546A011DAE79300A84CC4 /* DBUtil.m */,
 				7EC546A211DAE86900A84CC4 /* Constants.h */,
+				7EC5481B11DAFE5D00A84CC4 /* DBTest.h */,
+				7EC5481C11DAFE5E00A84CC4 /* DBTest.m */,
+				7EC548BF11DB03D100A84CC4 /* ItemList.h */,
+				7EC548C011DB03D100A84CC4 /* ItemList.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -300,9 +307,10 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* Simply_DoneAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
-				7EC5468311DAE5F300A84CC4 /* List.m in Sources */,
 				7EC5468611DAE60F00A84CC4 /* Item.m in Sources */,
 				7EC546A111DAE79300A84CC4 /* DBUtil.m in Sources */,
+				7EC5481E11DAFE5E00A84CC4 /* DBTest.m in Sources */,
+				7EC548C211DB03D100A84CC4 /* ItemList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +319,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EC5470411DAF87300A84CC4 /* DataTest.m in Sources */,
+				7EC5481D11DAFE5E00A84CC4 /* DBTest.m in Sources */,
+				7EC548C111DB03D100A84CC4 /* ItemList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

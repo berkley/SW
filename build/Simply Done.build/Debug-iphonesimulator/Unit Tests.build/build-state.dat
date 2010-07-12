@@ -1,0 +1,157 @@
+TUnit Tests
+v7
+r1
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk
+c000000004BD236930000000000000110
+t1272067731
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/Developer/Library/Frameworks/SenTestingKit.framework/Headers/SenTestingKit.h
+c000000004BD1D4F600000000000007E1
+t1272042742
+s2017
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004BD1FF9E0000000000001355
+t1272053662
+s4949
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/sqlite3.h
+c000000004BD1FD83000000000004187F
+t1272053123
+s268415
+
+N/Users/berkley/project/iphone/Simply Done/DBTest.h
+c000000004C2AC72E00000000000000DD
+t1277871918
+s221
+i<Foundation/Foundation.h>
+
+N/Users/berkley/project/iphone/Simply Done/DBTest.m
+c000000004C2AD5E6000000000000038D
+t1277875686
+s909
+i"DBTest.h"
+i"DBUtil.h"
+i"ItemList.h"
+i"Item.h"
+
+N/Users/berkley/project/iphone/Simply Done/DBUtil.h
+c000000004C2AD1E90000000000000144
+t1277874665
+s324
+i<Foundation/Foundation.h>
+i<sqlite3.h>
+
+N/Users/berkley/project/iphone/Simply Done/DataTest.h
+c000000004C2AC599000000000000010D
+t1277871513
+s269
+i<SenTestingKit/SenTestingKit.h>
+
+N/Users/berkley/project/iphone/Simply Done/DataTest.m
+c000000004C2AC57E00000000000001CF
+t1277871486
+s463
+i"DataTest.h"
+
+N/Users/berkley/project/iphone/Simply Done/Item.h
+c000000004C2AD1E90000000000000225
+t1277874665
+s549
+i<Foundation/Foundation.h>
+
+N/Users/berkley/project/iphone/Simply Done/ItemList.h
+c000000004C2AD1E90000000000000215
+t1277874665
+s533
+i<Foundation/Foundation.h>
+
+N/Users/berkley/project/iphone/Simply Done/ItemList.m
+c000000004C2AD51A0000000000000822
+t1277875482
+s2082
+i"ItemList.h"
+i"DBUtil.h"
+i"Item.h"
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest.dSYM
+t1277872451
+s102
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest/Info.plist
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest/Unit Tests
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest/sd.sqlite
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/DBTest.o
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/DataTest.o
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/ItemList.o
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/Unit Tests.LinkFileList
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Script-7EC546F911DAF73800A84CC4.sh
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/sd.sqlite
+c000000004C2AB4820000000000001800
+t1277867138
+s6144
+
+NUnit Tests-Info.plist
+c000000004C2ABFB80000000000000281
+t1277870008
+s641
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/DBTest.o" "/Users/berkley/project/iphone/Simply Done/DBTest.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/DataTest.o" "/Users/berkley/project/iphone/Simply Done/DataTest.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/ItemList.o" "/Users/berkley/project/iphone/Simply Done/ItemList.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCpResource "build/Debug-iphonesimulator/Unit Tests.octest/sd.sqlite" sd.sqlite
+r0
+
+CGenerateDSYMFile "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest.dSYM" "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest/Unit Tests"
+r0
+
+CLd "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest/Unit Tests" normal i386
+r0
+
+CPhaseScriptExecution "Run Script" "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Script-7EC546F911DAF73800A84CC4.sh"
+r0
+
+CProcessInfoPlistFile "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest/Info.plist" "Unit Tests-Info.plist"
+r0
+
+CTouch "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest"
+r0
+

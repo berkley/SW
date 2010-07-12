@@ -32,7 +32,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1D6058900D05DD3D006BFB54 /* Simply Done */;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = "Simply Done";
 		};
 /* End PBXContainerItemProxy section */
@@ -348,6 +348,7 @@
 				INFOPLIST_FILE = "Simply_Done-Info.plist";
 				PRODUCT_NAME = "Simply Done";
 				"PROVISIONING_PROFILE[sdk=iphonesimulator*]" = "";
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -362,6 +363,7 @@
 				INFOPLIST_FILE = "Simply_Done-Info.plist";
 				PRODUCT_NAME = "Simply Done";
 				"PROVISIONING_PROFILE[sdk=iphonesimulator*]" = "";
+				SDKROOT = iphoneos3.2;
 			};
 			name = Release;
 		};
@@ -435,7 +437,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphonesimulator3.1.2]" = "";
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -449,7 +451,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphonesimulator3.1.2]" = "";
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Release;
 		};

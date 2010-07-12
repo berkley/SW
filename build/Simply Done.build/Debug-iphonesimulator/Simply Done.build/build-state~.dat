@@ -1,0 +1,525 @@
+TSimply Done
+v7
+r0
+t299566637.210154
+cCheck dependencies
+cProcessInfoPlistFile "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Info.plist" Simply_Done-Info.plist
+cCompileXIB "/Users/berkley/project/iphone/Simply Done/MainWindow.xib"
+cCompileXIB "/Users/berkley/project/iphone/Simply Done/RootViewController.xib"
+cCpResource "build/Debug-iphonesimulator/Simply Done.app/sd.sqlite" sd.sqlite
+cProcessPCH /var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch.gch Simply_Done_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/main.o" "/Users/berkley/project/iphone/Simply Done/main.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Simply_DoneAppDelegate.o" "/Users/berkley/project/iphone/Simply Done/Classes/Simply_DoneAppDelegate.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/RootViewController.o" "/Users/berkley/project/iphone/Simply Done/Classes/RootViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Item.o" "/Users/berkley/project/iphone/Simply Done/Item.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/DBUtil.o" "/Users/berkley/project/iphone/Simply Done/DBUtil.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/DBTest.o" "/Users/berkley/project/iphone/Simply Done/DBTest.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/ItemList.o" "/Users/berkley/project/iphone/Simply Done/ItemList.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Simply Done" normal i386
+cGenerateDSYMFile "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app.dSYM" "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Simply Done"
+cTouch "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app"
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk
+c000000004B2063D900000000000000EE
+t1260413913
+s238
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004ABDC853000000000026EE30
+t1253951571
+s2551344
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004ABDC952000000000027E880
+t1253951826
+s2615424
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004ABDC93F0000000000001355
+t1253951807
+s4949
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004ABDEE1D0000000000000788
+t1253961245
+s1928
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004ABDEEE200000000016721E0
+t1253961442
+s23536096
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/usr/include/Availability.h
+c000000004ABDCA4700000000000019F9
+t1253952071
+s6649
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/usr/include/sqlite3.h
+c000000004ABDC6A0000000000003D86F
+t1253951136
+s252015
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/usr/lib/libsqlite3.0.dylib
+c000000004ABDC6BF00000000000C4CF0
+t1253951167
+s806128
+
+N/Users/berkley/project/iphone/Simply Done/Classes/RootViewController.h
+c000000004C2AA8FB00000000000000C9
+t1277864187
+s201
+
+N/Users/berkley/project/iphone/Simply Done/Classes/RootViewController.m
+c000000004C2AA8FB0000000000000FF6
+t1277864187
+s4086
+i"RootViewController.h"
+
+N/Users/berkley/project/iphone/Simply Done/Classes/Simply_DoneAppDelegate.h
+c000000004C2AA8FB00000000000001B9
+t1277864187
+s441
+
+N/Users/berkley/project/iphone/Simply Done/Classes/Simply_DoneAppDelegate.m
+c000000004C2AC72E00000000000003A5
+t1277871918
+s933
+i"Simply_DoneAppDelegate.h"
+i"RootViewController.h"
+i"DBUtil.h"
+i"DBTest.h"
+
+N/Users/berkley/project/iphone/Simply Done/Constants.h
+c000000004C2AB29300000000000000EE
+t1277866643
+s238
+i<Foundation/Foundation.h>
+
+N/Users/berkley/project/iphone/Simply Done/Constants.m
+c000000004C2AB0E900000000000000B8
+t1277866217
+s184
+i"Constants.h"
+
+N/Users/berkley/project/iphone/Simply Done/DBTest.h
+c000000004C2AC72E00000000000000DD
+t1277871918
+s221
+i<Foundation/Foundation.h>
+
+N/Users/berkley/project/iphone/Simply Done/DBTest.m
+c000000004C2ACE300000000000000237
+t1277873712
+s567
+i"DBTest.h"
+i"DBUtil.h"
+i"ItemList.h"
+i"Item.h"
+
+N/Users/berkley/project/iphone/Simply Done/DBUtil.h
+c000000004C2AC8240000000000000143
+t1277872164
+s323
+i<Foundation/Foundation.h>
+i<sqlite3.h>
+
+N/Users/berkley/project/iphone/Simply Done/DBUtil.m
+c000000004C2AC72E0000000000000C37
+t1277871918
+s3127
+i"DBUtil.h"
+i"Constants.h"
+
+N/Users/berkley/project/iphone/Simply Done/Item.h
+c000000004C2ACC0A0000000000000247
+t1277873162
+s583
+i<Foundation/Foundation.h>
+
+N/Users/berkley/project/iphone/Simply Done/Item.m
+c000000004C2ACC220000000000000143
+t1277873186
+s323
+i"Item.h"
+
+N/Users/berkley/project/iphone/Simply Done/ItemList.h
+c000000004C2ACDE40000000000000235
+t1277873636
+s565
+i<Foundation/Foundation.h>
+
+N/Users/berkley/project/iphone/Simply Done/ItemList.m
+c000000004C2ACDF2000000000000045B
+t1277873650
+s1115
+i"ItemList.h"
+i"DBUtil.h"
+
+N/Users/berkley/project/iphone/Simply Done/List.h
+c000000004C2ACCE50000000000000231
+t1277873381
+s561
+i<Foundation/Foundation.h>
+
+N/Users/berkley/project/iphone/Simply Done/List.m
+c000000004C2ACCE50000000000000453
+t1277873381
+s1107
+i"List.h"
+i"DBUtil.h"
+
+N/Users/berkley/project/iphone/Simply Done/ListBroken.m
+c000000004C2ACB500000000000000457
+t1277872976
+s1111
+i"List.h"
+i"DBUtil.h"
+
+N/Users/berkley/project/iphone/Simply Done/Lists.h
+c000000004C2AB5DB00000000000000C8
+t1277867483
+s200
+i<Foundation/Foundation.h>
+
+N/Users/berkley/project/iphone/Simply Done/Lists.m
+c000000004C2AB5DB00000000000000AE
+t1277867483
+s174
+i"Lists.h"
+
+N/Users/berkley/project/iphone/Simply Done/MainWindow.xib
+c000000004C2AA8FB0000000000002C71
+t1277864187
+s11377
+
+N/Users/berkley/project/iphone/Simply Done/RootViewController.xib
+c000000004C2AA8FB0000000000004325
+t1277864187
+s17189
+
+N/Users/berkley/project/iphone/Simply Done/Simply_Done_Prefix.pch
+c000000004C2AA8FB0000000000000148
+t1277864187
+s328
+i<Availability.h>
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app
+t1277873837
+s272
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app.dSYM
+t1277873837
+s102
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Info.plist
+t1277873836
+s583
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/MainWindow.nib
+t1277873836
+s2016
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/PkgInfo
+t1277873836
+s8
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/RootViewController.nib
+t1277873836
+s1388
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Simply Done
+t1277873837
+s29056
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/sd.sqlite
+t1277873836
+s6144
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Constants.o
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/DBTest.o
+t1277873837
+s7676
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/DBUtil.o
+t1277873837
+s12004
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Item.o
+t1277873837
+s10796
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/ItemList.o
+t1277873837
+s12272
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/List.o
+t1277873382
+s12160
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/ListBroken.o
+t1277873306
+s12172
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Lists.o
+t1277867587
+s4864
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/RootViewController.o
+t1277873836
+s32324
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Simply Done.LinkFileList
+c000000004C2ACEAB00000000000003CB
+t1277873835
+s971
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Simply_DoneAppDelegate.o
+t1277873836
+s40408
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/main.o
+t1277873836
+s5964
+
+N/Users/berkley/project/iphone/Simply Done/main.m
+c000000004C2AA8FB0000000000000160
+t1277864187
+s352
+i<UIKit/UIKit.h>
+
+N/Users/berkley/project/iphone/Simply Done/sd.sqlite
+c000000004C2AB4820000000000001800
+t1277867138
+s6144
+
+N/var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch.gch
+t1277873306
+s13034960
+
+NSimply_Done-Info.plist
+c000000004C2AADD70000000000000390
+t1277865431
+s912
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies299566635#299566636#0(0"0(0#1#0"4300885448#0"0#
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Constants.o" "/Users/berkley/project/iphone/Simply Done/Constants.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/DBTest.o" "/Users/berkley/project/iphone/Simply Done/DBTest.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s299566637.031902
+e299566637.147722
+r1
+xCompileC
+xbuild/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/DBTest.o
+x/Users/berkley/project/iphone/Simply Done/DBTest.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@58"Compile /Users/berkley/project/iphone/Simply Done/DBTest.m299566637#299566637#0(0"0(0#0#50"/Users/berkley/project/iphone/Simply Done/DBTest.m4300885448#1998"    cd "/Users/berkley/project/iphone/Simply Done"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-generated-files.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-own-target-headers.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-all-target-headers.hmap" -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-project-headers.hmap" "-F/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator" "-I/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/include" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources/i386" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources" -include /var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch -c "/Users/berkley/project/iphone/Simply Done/DBTest.m" -o "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/DBTest.o"0#
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/DBUtil.o" "/Users/berkley/project/iphone/Simply Done/DBUtil.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s299566636.946859
+e299566637.054536
+r1
+xCompileC
+xbuild/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/DBUtil.o
+x/Users/berkley/project/iphone/Simply Done/DBUtil.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@58"Compile /Users/berkley/project/iphone/Simply Done/DBUtil.m299566636#299566637#0(0"0(0#0#50"/Users/berkley/project/iphone/Simply Done/DBUtil.m4300885448#1998"    cd "/Users/berkley/project/iphone/Simply Done"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-generated-files.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-own-target-headers.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-all-target-headers.hmap" -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-project-headers.hmap" "-F/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator" "-I/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/include" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources/i386" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources" -include /var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch -c "/Users/berkley/project/iphone/Simply Done/DBUtil.m" -o "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/DBUtil.o"0#
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Item.o" "/Users/berkley/project/iphone/Simply Done/Item.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s299566636.919972
+e299566637.031787
+r1
+xCompileC
+xbuild/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Item.o
+x/Users/berkley/project/iphone/Simply Done/Item.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@56"Compile /Users/berkley/project/iphone/Simply Done/Item.m299566636#299566637#0(0"0(0#0#48"/Users/berkley/project/iphone/Simply Done/Item.m4300885448#1994"    cd "/Users/berkley/project/iphone/Simply Done"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-generated-files.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-own-target-headers.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-all-target-headers.hmap" -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-project-headers.hmap" "-F/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator" "-I/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/include" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources/i386" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources" -include /var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch -c "/Users/berkley/project/iphone/Simply Done/Item.m" -o "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Item.o"0#
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/ItemList.o" "/Users/berkley/project/iphone/Simply Done/ItemList.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s299566637.054670
+e299566637.159504
+r1
+xCompileC
+xbuild/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/ItemList.o
+x/Users/berkley/project/iphone/Simply Done/ItemList.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/berkley/project/iphone/Simply Done/ItemList.m: In function '-[ItemList initWithIdentifier:]':
+o/Users/berkley/project/iphone/Simply Done/ItemList.m:29: warning: initialization discards qualifiers from pointer target type
+lSLF07#2@60"Compile /Users/berkley/project/iphone/Simply Done/ItemList.m299566637#299566637#0(227"/Users/berkley/project/iphone/Simply Done/ItemList.m: In function '-[ItemList initWithIdentifier:]':/Users/berkley/project/iphone/Simply Done/ItemList.m:29: warning: initialization discards qualifiers from pointer target type1(22@59"Initialization discards qualifiers from pointer target type299566637#101#126#0(6@52"/Users/berkley/project/iphone/Simply Done/ItemList.m299566450#29#0#29#0#0"0(0#0#52"/Users/berkley/project/iphone/Simply Done/ItemList.m4300885448#2002"    cd "/Users/berkley/project/iphone/Simply Done"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-generated-files.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-own-target-headers.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-all-target-headers.hmap" -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-project-headers.hmap" "-F/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator" "-I/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/include" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources/i386" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources" -include /var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch -c "/Users/berkley/project/iphone/Simply Done/ItemList.m" -o "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/ItemList.o"0#
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/List.o" "/Users/berkley/project/iphone/Simply Done/List.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s299566181.955392
+e299566182.105586
+r1
+xCompileC
+xbuild/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/List.o
+x/Users/berkley/project/iphone/Simply Done/List.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/berkley/project/iphone/Simply Done/List.m: In function '-[List initWithIdentifier:]':
+o/Users/berkley/project/iphone/Simply Done/List.m:29: warning: initialization discards qualifiers from pointer target type
+lSLF07#2@56"Compile /Users/berkley/project/iphone/Simply Done/List.m299566181#299566182#0(215"/Users/berkley/project/iphone/Simply Done/List.m: In function '-[List initWithIdentifier:]':/Users/berkley/project/iphone/Simply Done/List.m:29: warning: initialization discards qualifiers from pointer target type1(22@59"Initialization discards qualifiers from pointer target type299566182#93#122#0(6@48"/Users/berkley/project/iphone/Simply Done/List.m299566181#29#0#29#0#0"0(0#0#48"/Users/berkley/project/iphone/Simply Done/List.m4300885448#1994"    cd "/Users/berkley/project/iphone/Simply Done"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-generated-files.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-own-target-headers.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-all-target-headers.hmap" -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-project-headers.hmap" "-F/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator" "-I/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/include" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources/i386" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources" -include /var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch -c "/Users/berkley/project/iphone/Simply Done/List.m" -o "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/List.o"0#
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/ListBroken.o" "/Users/berkley/project/iphone/Simply Done/ListBroken.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s299566106.410078
+e299566106.527601
+r1
+xCompileC
+xbuild/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/ListBroken.o
+x/Users/berkley/project/iphone/Simply Done/ListBroken.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/berkley/project/iphone/Simply Done/ListBroken.m: In function '-[List initWithIdentifier:]':
+o/Users/berkley/project/iphone/Simply Done/ListBroken.m:29: warning: initialization discards qualifiers from pointer target type
+lSLF07#2@62"Compile /Users/berkley/project/iphone/Simply Done/ListBroken.m299566106#299566106#0(227"/Users/berkley/project/iphone/Simply Done/ListBroken.m: In function '-[List initWithIdentifier:]':/Users/berkley/project/iphone/Simply Done/ListBroken.m:29: warning: initialization discards qualifiers from pointer target type1(22@59"Initialization discards qualifiers from pointer target type299566106#99#128#0(6@54"/Users/berkley/project/iphone/Simply Done/ListBroken.m299565776#29#0#29#0#0"0(0#0#54"/Users/berkley/project/iphone/Simply Done/ListBroken.m4300885448#2006"    cd "/Users/berkley/project/iphone/Simply Done"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-generated-files.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-own-target-headers.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-all-target-headers.hmap" -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-project-headers.hmap" "-F/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator" "-I/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/include" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources/i386" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources" -include /var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch -c "/Users/berkley/project/iphone/Simply Done/ListBroken.m" -o "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/ListBroken.o"0#
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Lists.o" "/Users/berkley/project/iphone/Simply Done/Lists.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s299560387.572226
+e299560387.632123
+r1
+xCompileC
+xbuild/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Lists.o
+x/Users/berkley/project/iphone/Simply Done/Lists.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@57"Compile /Users/berkley/project/iphone/Simply Done/Lists.m299560387#299560387#0(0"0(0#0#49"/Users/berkley/project/iphone/Simply Done/Lists.m4300885448#1996"    cd "/Users/berkley/project/iphone/Simply Done"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-generated-files.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-own-target-headers.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-all-target-headers.hmap" -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-project-headers.hmap" "-F/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator" "-I/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/include" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources/i386" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources" -include /var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch -c "/Users/berkley/project/iphone/Simply Done/Lists.m" -o "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Lists.o"0#
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/RootViewController.o" "/Users/berkley/project/iphone/Simply Done/Classes/RootViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s299566636.820128
+e299566636.919853
+r1
+xCompileC
+xbuild/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/RootViewController.o
+x/Users/berkley/project/iphone/Simply Done/Classes/RootViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@78"Compile /Users/berkley/project/iphone/Simply Done/Classes/RootViewController.m299566636#299566636#0(0"0(0#0#70"/Users/berkley/project/iphone/Simply Done/Classes/RootViewController.m4300885448#2030"    cd "/Users/berkley/project/iphone/Simply Done"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-generated-files.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-own-target-headers.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-all-target-headers.hmap" -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-project-headers.hmap" "-F/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator" "-I/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/include" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources/i386" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources" -include /var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch -c "/Users/berkley/project/iphone/Simply Done/Classes/RootViewController.m" -o "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/RootViewController.o"0#
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Simply_DoneAppDelegate.o" "/Users/berkley/project/iphone/Simply Done/Classes/Simply_DoneAppDelegate.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s299566636.749237
+e299566636.946739
+r1
+xCompileC
+xbuild/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Simply_DoneAppDelegate.o
+x/Users/berkley/project/iphone/Simply Done/Classes/Simply_DoneAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@82"Compile /Users/berkley/project/iphone/Simply Done/Classes/Simply_DoneAppDelegate.m299566636#299566636#0(0"0(0#0#74"/Users/berkley/project/iphone/Simply Done/Classes/Simply_DoneAppDelegate.m4300885448#2038"    cd "/Users/berkley/project/iphone/Simply Done"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-generated-files.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-own-target-headers.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-all-target-headers.hmap" -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-project-headers.hmap" "-F/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator" "-I/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/include" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources/i386" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources" -include /var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch -c "/Users/berkley/project/iphone/Simply Done/Classes/Simply_DoneAppDelegate.m" -o "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Simply_DoneAppDelegate.o"0#
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/main.o" "/Users/berkley/project/iphone/Simply Done/main.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s299566636.747750
+e299566636.820007
+r1
+xCompileC
+xbuild/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/main.o
+x/Users/berkley/project/iphone/Simply Done/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@56"Compile /Users/berkley/project/iphone/Simply Done/main.m299566636#299566636#0(0"0(0#0#48"/Users/berkley/project/iphone/Simply Done/main.m4300885448#1994"    cd "/Users/berkley/project/iphone/Simply Done"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-generated-files.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-own-target-headers.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-all-target-headers.hmap" -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-project-headers.hmap" "-F/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator" "-I/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/include" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources/i386" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources" -include /var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch -c "/Users/berkley/project/iphone/Simply Done/main.m" -o "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/main.o"0#
+
+CCompileXIB "/Users/berkley/project/iphone/Simply Done/MainWindow.xib"
+s299566636.199780
+e299566636.747480
+r1
+xCompileXIB
+x/Users/berkley/project/iphone/Simply Done/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib299566636#299566636#0(0"0(0#0#56"/Users/berkley/project/iphone/Simply Done/MainWindow.xib4300885448#501"    cd "/Users/berkley/project/iphone/Simply Done"    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/MainWindow.nib" "/Users/berkley/project/iphone/Simply Done/MainWindow.xib"0#
+
+CCompileXIB "/Users/berkley/project/iphone/Simply Done/RootViewController.xib"
+s299566636.200864
+e299566636.676985
+r1
+xCompileXIB
+x/Users/berkley/project/iphone/Simply Done/RootViewController.xib
+lSLF07#2@33"CompileXIB RootViewController.xib299566636#299566636#0(0"0(0#0#64"/Users/berkley/project/iphone/Simply Done/RootViewController.xib4300885448#517"    cd "/Users/berkley/project/iphone/Simply Done"    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/RootViewController.nib" "/Users/berkley/project/iphone/Simply Done/RootViewController.xib"0#
+
+CCpResource "build/Debug-iphonesimulator/Simply Done.app/sd.sqlite" sd.sqlite
+s299566636.677095
+e299566636.682879
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Simply Done.app/sd.sqlite
+xsd.sqlite
+lSLF07#2@14"Copy sd.sqlite299566636#299566636#0(0"0(0#0#51"/Users/berkley/project/iphone/Simply Done/sd.sqlite4300885448#472"    cd "/Users/berkley/project/iphone/Simply Done"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/berkley/project/iphone/Simply Done/sd.sqlite" "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app"0#
+
+CGenerateDSYMFile "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app.dSYM" "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Simply Done"
+s299566637.188718
+e299566637.206900
+r1
+xGenerateDSYMFile
+x/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app.dSYM
+x/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Simply Done
+lSLF07#2@125"GenerateDSYMFile "build/Debug-iphonesimulator/Simply Done.app.dSYM" "build/Debug-iphonesimulator/Simply Done.app/Simply Done"299566637#299566637#0(0"0(0#0#97"/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Simply Done4300885448#410"    cd "/Users/berkley/project/iphone/Simply Done"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/dsymutil "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Simply Done" -o "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app.dSYM"0#
+
+CLd "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Simply Done" normal i386
+s299566637.159599
+e299566637.188611
+r1
+xLd
+x/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Simply Done
+xnormal
+xi386
+lSLF07#2@102"Link /Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Simply Done299566637#299566637#0(0"0(0#0#0"4300885448#921"    cd "/Users/berkley/project/iphone/Simply Done"    setenv MACOSX_DEPLOYMENT_TARGET 10.5    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk "-L/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator" "-F/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator" -filelist "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/Simply Done.LinkFileList" -mmacosx-version-min=10.5 -framework Foundation -framework UIKit -framework CoreGraphics -lsqlite3.0 -o "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Simply Done"0#
+
+CProcessInfoPlistFile "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Info.plist" Simply_Done-Info.plist
+s299566636.179649
+e299566636.199675
+r1
+xProcessInfoPlistFile
+x/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Info.plist
+xSimply_Done-Info.plist
+lSLF07#2@30"Process Simply_Done-Info.plist299566636#299566636#0(0"0(0#0#64"/Users/berkley/project/iphone/Simply Done/Simply_Done-Info.plist4300885448#506"    cd "/Users/berkley/project/iphone/Simply Done"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility Simply_Done-Info.plist -genpkginfo "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/PkgInfo" -expandbuildsettings -format binary -platform iphonesimulator -o "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Info.plist"0#
+
+CProcessPCH /var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch.gch Simply_Done_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s299566105.606685
+e299566106.303730
+r1
+xProcessPCH
+x/var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch.gch
+xSimply_Done_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@33"Precompile Simply_Done_Prefix.pch299566105#299566106#0(0"0(0#0#64"/Users/berkley/project/iphone/Simply Done/Simply_Done_Prefix.pch4300885448#1877"    cd "/Users/berkley/project/iphone/Simply Done"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-generated-files.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-own-target-headers.hmap" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-all-target-headers.hmap" -iquote "/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Simply Done-project-headers.hmap" "-F/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator" "-I/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/include" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources/i386" "-I/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/DerivedSources" -c "/Users/berkley/project/iphone/Simply Done/Simply_Done_Prefix.pch" -o /var/folders/Wl/Wlz-68VMENWsmvgapIH6aU+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/Simply_Done_Prefix-aemnluwsfbqsqxboouphwcseqxot/Simply_Done_Prefix.pch.gch0#
+
+CTouch "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app"
+s299566637.206996
+e299566637.210114
+r1
+xTouch
+x/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app
+lSLF07#2@91"Touch /Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app299566637#299566637#0(0"0(0#0#0"4300885448#292"    cd "/Users/berkley/project/iphone/Simply Done"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app"0#
+

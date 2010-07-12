@@ -7,47 +7,36 @@
 //
 
 #import "RootViewController.h"
-
-
+#import "DBUtil.h"
+#import "ItemList.h"
 @implementation RootViewController
 
-/*
+NSMutableArray* lists;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.title = @"Simply Done";
+    
+    lists = [[NSMutableArray alloc] init];
+    NSArray* listIds = [DBUtil getListIds];
+    for(int i=0; i<[listIds count]; i++)
+    {
+        NSNumber *listId = [listIds objectAtIndex:i];
+        [lists addObject:[[ItemList alloc] initWithIdentifier:listId]];
+        NSLog(@"adding list %@", listId);
+    }
 }
-*/
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
 
-/*
  // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	// Return YES for supported orientations.
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+	//return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
- */
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -71,7 +60,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [lists count];
 }
 
 
@@ -85,6 +74,10 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
+    ItemList *list = [lists objectAtIndex:indexPath.row];
+    cell.textLabel.text = list.name;
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    cell.imageView.image = [UIImage imageNamed:@"ListIcon.png"];
 	// Configure the cell.
 
     return cell;
@@ -127,12 +120,12 @@
 }
 */
 
-
-/*
 // Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
+{
+    
 }
-*/
+
 
 
 /*

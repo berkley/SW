@@ -27,7 +27,9 @@
 	[DBTest runTests];
     
 	[window addSubview:[navigationController view]];
-    [window makeKeyAndVisible];
+  [window makeKeyAndVisible];
+  RootViewController *rvc = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+  [navigationController pushViewController:rvc animated:NO];
 }
 
 

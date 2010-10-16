@@ -23,6 +23,10 @@
         itemArray = [[NSMutableArray alloc] init];
         
         self.identifier = ident;
+		if([self.identifier intValue] == -1)
+		{
+			return self;
+		}
         sqlite3 *db = [DBUtil getDatabase];
         char *sql = "select name, sort from lists where id = ?";
         sqlite3_stmt *statement;

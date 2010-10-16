@@ -11,10 +11,12 @@
 #import "ItemList.h"
 #import "ListViewController.h"
 #import "Session.h"
+#import "Item.h"
 
 @implementation RootViewController
 
 NSMutableArray* lists;
+UITextField *addField;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -102,13 +104,13 @@ NSMutableArray* lists;
 	if([list.identifier intValue] == -1)
 	{ //create a cell for adding content
 		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
-		UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(5, 5, 250, 75)];
+		addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 5, 250, 75)];
 		UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-		field.borderStyle = UITextBorderStyleRoundedRect;
+		addField.borderStyle = UITextBorderStyleRoundedRect;
 		button.backgroundColor = [UIColor blackColor];
 		[button setTitle:@"Done" forState:UIControlStateNormal];	
 		button.frame = CGRectMake(260, 28, 55, 30);
-		[view addSubview:field];
+		[view addSubview:addField];
 		[view addSubview:button];
 		//[button addTarget:self action:@selector(newListItem:)];
 		[cell.contentView addSubview:view];
@@ -134,6 +136,12 @@ NSMutableArray* lists;
 {
 	NSLog(@"New list item");
 	[lists removeObjectAtIndex:[lists count] - 1];
+	ItemList *item = [[ItemList alloc] initWithIdentifier:[NSNumber numberWithInt:34]];
+	
+	item.name = addField.text;
+	item.sort = [NSNumber numberWithInt: 1];
+	[self.tableView reloadData];
+	[lists addObject:item];
 	[self.tableView reloadData];
 }
 

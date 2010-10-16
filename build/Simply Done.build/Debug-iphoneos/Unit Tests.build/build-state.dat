@@ -56,6 +56,26 @@ t1277871486
 s463
 i"DataTest.h"
 
+N/Users/berkley/project/iphone/Simply Done/Graphics/CheckedBox.png
+c000000004C3B8F870000000000001015
+t1278971783
+s4117
+
+N/Users/berkley/project/iphone/Simply Done/Graphics/ListIcon.png
+c000000004C3B8D940000000000000C64
+t1278971284
+s3172
+
+N/Users/berkley/project/iphone/Simply Done/Graphics/RedX.png
+c000000004C3B90920000000000000D71
+t1278972050
+s3441
+
+N/Users/berkley/project/iphone/Simply Done/Graphics/UncheckedBox.png
+c000000004C3B8FED0000000000000291
+t1278971885
+s657
+
 N/Users/berkley/project/iphone/Simply Done/Item.h
 c000000004C2AD1E90000000000000225
 t1277874665
@@ -84,7 +104,23 @@ N/Users/berkley/project/iphone/Simply Done/build/Debug-iphoneos/Unit Tests.octes
 t2
 s0
 
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphoneos/Unit Tests.octest/CheckedBox.png
+t2
+s0
+
 N/Users/berkley/project/iphone/Simply Done/build/Debug-iphoneos/Unit Tests.octest/Info.plist
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphoneos/Unit Tests.octest/ListIcon.png
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphoneos/Unit Tests.octest/RedX.png
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphoneos/Unit Tests.octest/UncheckedBox.png
 t2
 s0
 
@@ -169,6 +205,18 @@ CCompileC "build/Simply Done.build/Debug-iphoneos/Unit Tests.build/Objects-norma
 r0
 
 CCompileC "build/Simply Done.build/Debug-iphoneos/Unit Tests.build/Objects-normal/armv7/ItemList.o" "/Users/berkley/project/iphone/Simply Done/ItemList.m" normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCopyPNGFile "/Users/berkley/project/iphone/Simply Done/build/Debug-iphoneos/Unit Tests.octest/CheckedBox.png" Graphics/CheckedBox.png
+r0
+
+CCopyPNGFile "/Users/berkley/project/iphone/Simply Done/build/Debug-iphoneos/Unit Tests.octest/ListIcon.png" Graphics/ListIcon.png
+r0
+
+CCopyPNGFile "/Users/berkley/project/iphone/Simply Done/build/Debug-iphoneos/Unit Tests.octest/RedX.png" Graphics/RedX.png
+r0
+
+CCopyPNGFile "/Users/berkley/project/iphone/Simply Done/build/Debug-iphoneos/Unit Tests.octest/UncheckedBox.png" Graphics/UncheckedBox.png
 r0
 
 CCpResource "build/Debug-iphoneos/Unit Tests.octest/sd.sqlite" sd.sqlite

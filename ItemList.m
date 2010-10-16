@@ -14,10 +14,10 @@
 
 @synthesize identifier, name, sort, items;
 
-NSMutableArray *itemArray;
-
 - (id) initWithIdentifier:(NSNumber*) ident
 {
+	NSMutableArray *itemArray;
+	
     if(self = [super init])
     {
         itemArray = [[NSMutableArray alloc] init];
@@ -53,16 +53,29 @@ NSMutableArray *itemArray;
                 i.description = [NSString stringWithUTF8String:desc];
                 i.done = [NSNumber numberWithInt:done];
                 i.sort = [NSNumber numberWithInt:srt];
+				NSLog(@"adding item %@ to list %@", i.description, self.identifier);
                 [itemArray addObject:i];
+				[i release];
             }
         }
+		self.items = itemArray;
+		[itemArray release];
     }
     return self;
 }
 
--(NSArray*)items
+- (NSNumber*) numberDone
 {
-    return itemArray;
+	int count = 0;
+	for(int i=0; i<[self.items count]; i++)
+	{
+		Item *item = [self.items objectAtIndex:i];
+		if([item.done intValue] > 0)
+		{
+			count++;
+		}
+	}
+	return [NSNumber numberWithInt:count];
 }
 
 @end

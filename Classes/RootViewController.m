@@ -9,6 +9,9 @@
 #import "RootViewController.h"
 #import "DBUtil.h"
 #import "ItemList.h"
+#import "ListViewController.h"
+#import "Session.h"
+
 @implementation RootViewController
 
 NSMutableArray* lists;
@@ -30,6 +33,11 @@ NSMutableArray* lists;
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 80.0;
+}
+
 
  // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -48,6 +56,11 @@ NSMutableArray* lists;
 - (void)viewDidUnload {
 	// Release anything that can be recreated in viewDidLoad or on demand.
 	// e.g. self.myOutlet = nil;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[self.tableView reloadData];
 }
 
 
@@ -71,42 +84,58 @@ NSMutableArray* lists;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
     ItemList *list = [lists objectAtIndex:indexPath.row];
+	
     cell.textLabel.text = list.name;
     [cell.textLabel setTextColor:[UIColor whiteColor]];
-    cell.imageView.image = [UIImage imageNamed:@"ListIcon.png"];
-	// Configure the cell.
+	[cell.detailTextLabel setTextColor:[UIColor whiteColor]];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ of %i tasks complete", [list numberDone], [list.items count]];
+    cell.imageView.image = [UIImage imageNamed:@"ListIcon-80x80-on-black.png"];
+	cell.imageView.frame = CGRectMake(0,0,30,30);
+	cell.accessoryType =  UITableViewCellAccessoryDetailDisclosureButton;
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;
 }
 
-
-
-/*
-// Override to support row selection in the table view.
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    // Navigation logic may go here -- for example, create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController animated:YES];
-	// [anotherViewController release];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+	NSLog(@"List selected");
+	ItemList *list = [lists objectAtIndex:indexPath.row];
+	ListViewController *lvc = [[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil];
+	[self.navigationController pushViewController:lvc animated:YES];
+	lvc.title = list.name;
+	NSLog(@"selected list id %@", list.identifier);
+	[Session sharedInstance].currentListId = list.identifier;
+	[Session sharedInstance].itemList = list;
+	for(int i=0; i<[list.items count]; i++)
+	{
+		NSLog(@"item: %@", [list.items objectAtIndex:i]);
+	}
+	[lvc release];
 }
-*/
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+	NSLog(@"Accessory button tapped.");
+	ItemList *list = [lists objectAtIndex:indexPath.row];
+	//TODO: put code here for showing the options for the list
+}
 
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -118,7 +147,7 @@ NSMutableArray* lists;
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }   
 }
-*/
+
 
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 

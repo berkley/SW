@@ -23,6 +23,4 @@
 @property (nonatomic, retain) NSNumber *done;
 @property (nonatomic, retain) NSString *description;
 
-
-
 @end

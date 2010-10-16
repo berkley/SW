@@ -23,5 +23,6 @@
 @property (nonatomic, retain) NSArray *items;
 
 - (id) initWithIdentifier:(NSNumber*) identifier;
+- (NSNumber*) numberDone;
 
 @end

@@ -15,6 +15,14 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		7E471B20126908BD008FBAAD /* ListIcon-80x80-on-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E471B1F126908BD008FBAAD /* ListIcon-80x80-on-black.png */; };
+		7E471B21126908BD008FBAAD /* ListIcon-80x80-on-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E471B1F126908BD008FBAAD /* ListIcon-80x80-on-black.png */; };
+		7E471B4A12690BF6008FBAAD /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */; };
+		7E471B4B12690BF6008FBAAD /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E471B4912690BF6008FBAAD /* ListViewController.xib */; };
+		7E471B4C12690BF6008FBAAD /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */; };
+		7E471B4D12690BF6008FBAAD /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E471B4912690BF6008FBAAD /* ListViewController.xib */; };
+		7E471B6C12690D82008FBAAD /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E471B6B12690D82008FBAAD /* Session.m */; };
+		7E471B6D12690D82008FBAAD /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E471B6B12690D82008FBAAD /* Session.m */; };
 		7E5410B811EBC8CA009048D8 /* CheckedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B411EBC8CA009048D8 /* CheckedBox.png */; };
 		7E5410B911EBC8CA009048D8 /* ListIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B511EBC8CA009048D8 /* ListIcon.png */; };
 		7E5410BA11EBC8CA009048D8 /* RedX.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B611EBC8CA009048D8 /* RedX.png */; };
@@ -58,6 +66,12 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RootViewController.xib; path = ../RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7E471B1F126908BD008FBAAD /* ListIcon-80x80-on-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ListIcon-80x80-on-black.png"; path = "Graphics/ListIcon-80x80-on-black.png"; sourceTree = "<group>"; };
+		7E471B4712690BF6008FBAAD /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		7E471B4812690BF6008FBAAD /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		7E471B4912690BF6008FBAAD /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
+		7E471B6A12690D82008FBAAD /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Session.h; path = ../Session.h; sourceTree = "<group>"; };
+		7E471B6B12690D82008FBAAD /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Session.m; path = ../Session.m; sourceTree = "<group>"; };
 		7E5410B411EBC8CA009048D8 /* CheckedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CheckedBox.png; path = Graphics/CheckedBox.png; sourceTree = "<group>"; };
 		7E5410B511EBC8CA009048D8 /* ListIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ListIcon.png; path = Graphics/ListIcon.png; sourceTree = "<group>"; };
 		7E5410B611EBC8CA009048D8 /* RedX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedX.png; path = Graphics/RedX.png; sourceTree = "<group>"; };
@@ -110,6 +124,8 @@
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				1D3623240D0F684500981E51 /* Simply_DoneAppDelegate.h */,
 				1D3623250D0F684500981E51 /* Simply_DoneAppDelegate.m */,
+				7E471B6A12690D82008FBAAD /* Session.h */,
+				7E471B6B12690D82008FBAAD /* Session.m */,
 			);
 			name = Main;
 			path = Classes;
@@ -127,6 +143,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				7E471B3B12690B88008FBAAD /* ListView */,
 				7EC5468011DAE5B100A84CC4 /* ItemView */,
 				7EC5467E11DAE59900A84CC4 /* Data */,
 				080E96DDFE201D6D7F000001 /* Main */,
@@ -170,9 +187,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7E471B3B12690B88008FBAAD /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				7E471B4712690BF6008FBAAD /* ListViewController.h */,
+				7E471B4812690BF6008FBAAD /* ListViewController.m */,
+				7E471B4912690BF6008FBAAD /* ListViewController.xib */,
+			);
+			name = ListView;
+			sourceTree = "<group>";
+		};
 		7E5410B211EBC89F009048D8 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				7E471B1F126908BD008FBAAD /* ListIcon-80x80-on-black.png */,
 				7E5410B411EBC8CA009048D8 /* CheckedBox.png */,
 				7E5410B511EBC8CA009048D8 /* ListIcon.png */,
 				7E5410B611EBC8CA009048D8 /* RedX.png */,
@@ -290,6 +318,8 @@
 				7E5410BD11EBC8CA009048D8 /* ListIcon.png in Resources */,
 				7E5410BE11EBC8CA009048D8 /* RedX.png in Resources */,
 				7E5410BF11EBC8CA009048D8 /* UncheckedBox.png in Resources */,
+				7E471B20126908BD008FBAAD /* ListIcon-80x80-on-black.png in Resources */,
+				7E471B4D12690BF6008FBAAD /* ListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +332,8 @@
 				7E5410B911EBC8CA009048D8 /* ListIcon.png in Resources */,
 				7E5410BA11EBC8CA009048D8 /* RedX.png in Resources */,
 				7E5410BB11EBC8CA009048D8 /* UncheckedBox.png in Resources */,
+				7E471B21126908BD008FBAAD /* ListIcon-80x80-on-black.png in Resources */,
+				7E471B4B12690BF6008FBAAD /* ListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +367,8 @@
 				7EC546A111DAE79300A84CC4 /* DBUtil.m in Sources */,
 				7EC5481E11DAFE5E00A84CC4 /* DBTest.m in Sources */,
 				7EC548C211DB03D100A84CC4 /* ItemList.m in Sources */,
+				7E471B4C12690BF6008FBAAD /* ListViewController.m in Sources */,
+				7E471B6D12690D82008FBAAD /* Session.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +379,8 @@
 				7EC5470411DAF87300A84CC4 /* DataTest.m in Sources */,
 				7EC5481D11DAFE5E00A84CC4 /* DBTest.m in Sources */,
 				7EC548C111DB03D100A84CC4 /* ItemList.m in Sources */,
+				7E471B4A12690BF6008FBAAD /* ListViewController.m in Sources */,
+				7E471B6C12690D82008FBAAD /* Session.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,9 +495,10 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphonesimulator3.1.2]" = "";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
 		};

@@ -11,7 +11,7 @@
 
 @implementation Session
 
-@synthesize currentListId, itemList;
+@synthesize currentListId, itemList, lists;
 
 static Session *sharedInstance = nil;
 

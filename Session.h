@@ -11,12 +11,17 @@
 
 @interface Session : NSObject 
 {
+	//the current id of the ItemList that is active
 	NSNumber *currentListId;
+	//the itemList that is active
 	ItemList *itemList;
+	//the array of ItemLists
+	NSMutableArray* lists;
 }
 
 @property (nonatomic, retain) NSNumber *currentListId;
 @property (nonatomic, retain) ItemList *itemList;
+@property (nonatomic, retain) NSMutableArray *lists;
 
 + (Session*)sharedInstance;
 

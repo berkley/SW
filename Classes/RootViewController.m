@@ -15,7 +15,6 @@
 
 @implementation RootViewController
 
-NSMutableArray* lists;
 UITextField *addField;
 
 - (void)viewDidLoad {
@@ -28,12 +27,16 @@ UITextField *addField;
     self.navigationItem.leftBarButtonItem = addButton;
 	[addButton release];
 	
-    lists = [[NSMutableArray alloc] init];
+	if([Session sharedInstance].lists == nil)
+	{
+		[Session sharedInstance].lists = [[NSMutableArray alloc] init];
+	}
+	
     NSArray* listIds = [DBUtil getListIds];
     for(int i=0; i<[listIds count]; i++)
     {
         NSNumber *listId = [listIds objectAtIndex:i];
-        [lists addObject:[[ItemList alloc] initWithIdentifier:listId]];
+        [[Session sharedInstance].lists addObject:[[ItemList alloc] initWithIdentifier:listId]];
         NSLog(@"adding list %@", listId);
     }
 }
@@ -41,7 +44,7 @@ UITextField *addField;
 - (void)addItem:(id)sender 
 {
 	NSLog(@"add button pushed");
-	[lists addObject:[[ItemList alloc] initWithIdentifier:[NSNumber numberWithInt:-1]]];
+	[[Session sharedInstance].lists addObject:[[ItemList alloc] initWithIdentifier:[NSNumber numberWithInt:-1]]];
 	[self.tableView reloadData];
 }
 
@@ -85,7 +88,7 @@ UITextField *addField;
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [lists count];
+    return [[Session sharedInstance].lists count];
 }
 
 
@@ -98,11 +101,21 @@ UITextField *addField;
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
+	
+	//check to see if the cell has a left over view from the create new item cell, 
+	//if it does, remove it
+	UIView *v = [cell.contentView viewWithTag:1];
+	if(v != nil)
+	{
+		[v removeFromSuperview];
+	}
+	[v release];
     
-    ItemList *list = [lists objectAtIndex:indexPath.row];
+    ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
 	
 	if([list.identifier intValue] == -1)
 	{ //create a cell for adding content
+		NSLog(@"creating new content cell");
 		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
 		addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 5, 250, 75)];
 		UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -112,12 +125,14 @@ UITextField *addField;
 		button.frame = CGRectMake(260, 28, 55, 30);
 		[view addSubview:addField];
 		[view addSubview:button];
-		//[button addTarget:self action:@selector(newListItem:)];
+		view.tag = 1;
 		[cell.contentView addSubview:view];
-		[button addTarget:self action:@selector(newListItem:) forControlEvents:UIControlEventTouchUpInside];
+		[button addTarget:self action:@selector(newListItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+		cell.accessoryType =  UITableViewCellAccessoryNone;
 	}
 	else 
 	{ //create a normal cell
+		NSLog(@"creating normal cell");
 		cell.textLabel.text = list.name;
 		[cell.textLabel setTextColor:[UIColor whiteColor]];
 		[cell.detailTextLabel setTextColor:[UIColor whiteColor]];
@@ -126,29 +141,27 @@ UITextField *addField;
 		cell.imageView.frame = CGRectMake(0,0,30,30);
 		cell.accessoryType =  UITableViewCellAccessoryDetailDisclosureButton;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		
 	}
 
     return cell;
 }
 
-- (void)newListItem:(id)sender
+- (void)newListItemButtonTouched:(id)sender
 {
 	NSLog(@"New list item");
-	[lists removeObjectAtIndex:[lists count] - 1];
-	ItemList *item = [[ItemList alloc] initWithIdentifier:[NSNumber numberWithInt:34]];
-	
-	item.name = addField.text;
-	item.sort = [NSNumber numberWithInt: 1];
-	[self.tableView reloadData];
-	[lists addObject:item];
+	[[Session sharedInstance].lists removeObjectAtIndex:[[Session sharedInstance].lists count] - 1];
+	NSMutableArray* paths = [[NSMutableArray alloc] init];
+	[paths addObject:[NSIndexPath indexPathForRow:[[Session sharedInstance].lists count] - 1 inSection:0]];
+	[self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+	ItemList *item = [[ItemList alloc] initWithName:addField.text];
+	[[Session sharedInstance].lists addObject:item];
 	[self.tableView reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
 	NSLog(@"List selected");
-	ItemList *list = [lists objectAtIndex:indexPath.row];
+	ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
 	ListViewController *lvc = [[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil];
 	[self.navigationController pushViewController:lvc animated:YES];
 	lvc.title = list.name;
@@ -165,7 +178,7 @@ UITextField *addField;
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
 	NSLog(@"Accessory button tapped.");
-	ItemList *list = [lists objectAtIndex:indexPath.row];
+	ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
 	//TODO: put code here for showing the options for the list
 }
 

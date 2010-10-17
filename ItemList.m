@@ -9,6 +9,7 @@
 #import "ItemList.h"
 #import "DBUtil.h"
 #import "Item.h"
+#import "Session.h"
 
 @implementation ItemList
 
@@ -66,6 +67,37 @@
 		[itemArray release];
     }
     return self;
+}
+
+/**
+ * create a new ItemList in the db and get a new identifier for it
+ */
+- (id) initWithName:(NSString*)name
+{
+	NSLog(@"creating new list with name: %@", name);
+	if(self = [super init])
+    {
+		self.name = name;
+		self.sort = [NSNumber numberWithInt:[[Session sharedInstance].lists count] + 1];
+		sqlite3 *db = [DBUtil getDatabase];
+		const char *sql = "insert into lists (name, sort)  values (?, ?)";
+		sqlite3_stmt *statement;
+		if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
+		{
+			sqlite3_bind_text(statement, 1, [self.name UTF8String], -1, SQLITE_TRANSIENT);
+
+			sqlite3_bind_int(statement, 2, [self.sort intValue]);
+			sqlite3_step(statement);
+			sqlite3_reset(statement);
+		}
+		else 
+		{
+			NSLog(@"Error inserting new list into the DB");
+		}
+	}
+	
+	return self;
+	
 }
 
 - (NSNumber*) numberDone

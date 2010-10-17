@@ -17,10 +17,33 @@ c000000004BD1FF9E0000000000001355
 t1272053662
 s4949
 
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004BD20412000000000000098F
+t1272054802
+s2447
+
 N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/sqlite3.h
 c000000004BD1FD83000000000004187F
 t1272053123
 s268415
+
+N/Users/berkley/project/iphone/Simply Done/CheckBoxImageView.h
+c000000004CB90BC800000000000000D9
+t1287195592
+s217
+i<UIKit/UIKit.h>
+
+N/Users/berkley/project/iphone/Simply Done/CheckBoxImageView.m
+c000000004CB90BC8000000000000044F
+t1287195592
+s1103
+i"CheckBoxImageView.h"
+
+N/Users/berkley/project/iphone/Simply Done/Classes/../Session.m
+c000000004CB8D8CF00000000000001D9
+t1287182543
+s473
+i"Session.h"
 
 N/Users/berkley/project/iphone/Simply Done/DBTest.h
 c000000004C2AC72E00000000000000DD
@@ -29,9 +52,9 @@ s221
 i<Foundation/Foundation.h>
 
 N/Users/berkley/project/iphone/Simply Done/DBTest.m
-c000000004C2AD5E6000000000000038D
-t1277875686
-s909
+c000000004CB8D3D7000000000000038E
+t1287181271
+s910
 i"DBTest.h"
 i"DBUtil.h"
 i"ItemList.h"
@@ -61,6 +84,11 @@ c000000004C3B8F870000000000001015
 t1278971783
 s4117
 
+N/Users/berkley/project/iphone/Simply Done/Graphics/ListIcon-80x80-on-black.png
+c000000004CB8D12C00000000000006DB
+t1287180588
+s1755
+
 N/Users/berkley/project/iphone/Simply Done/Graphics/ListIcon.png
 c000000004C3B8D940000000000000C64
 t1278971284
@@ -77,21 +105,21 @@ t1278971885
 s657
 
 N/Users/berkley/project/iphone/Simply Done/Item.h
-c000000004C2AD1E90000000000000225
-t1277874665
-s549
+c000000004CB8D8DC0000000000000223
+t1287182556
+s547
 i<Foundation/Foundation.h>
 
 N/Users/berkley/project/iphone/Simply Done/ItemList.h
-c000000004C2AD1E90000000000000215
-t1277874665
-s533
+c000000004CB91132000000000000022F
+t1287196978
+s559
 i<Foundation/Foundation.h>
 
 N/Users/berkley/project/iphone/Simply Done/ItemList.m
-c000000004C2AD51A0000000000000822
-t1277875482
-s2082
+c000000004CB91DEA00000000000009A7
+t1287200234
+s2471
 i"ItemList.h"
 i"DBUtil.h"
 i"Item.h"
@@ -113,6 +141,56 @@ c000000004C3B924B0000000000001D3B
 t1278972491
 s7483
 
+N/Users/berkley/project/iphone/Simply Done/ListView.h
+c000000004CB8D46500000000000000D1
+t1287181413
+s209
+i<UIKit/UIKit.h>
+
+N/Users/berkley/project/iphone/Simply Done/ListView.m
+c000000004CB8D46500000000000010FB
+t1287181413
+s4347
+i"ListView.h"
+
+N/Users/berkley/project/iphone/Simply Done/ListView.xib
+c000000004CB8D4650000000000001C63
+t1287181413
+s7267
+
+N/Users/berkley/project/iphone/Simply Done/ListViewController.h
+c000000004CB8D47600000000000000E5
+t1287181430
+s229
+i<UIKit/UIKit.h>
+
+N/Users/berkley/project/iphone/Simply Done/ListViewController.m
+c000000004CB91EE0000000000000118F
+t1287200480
+s4495
+i"ListViewController.h"
+i"Session.h"
+i"Item.h"
+i"ItemList.h"
+
+N/Users/berkley/project/iphone/Simply Done/ListViewController.xib
+c000000004CB8D4760000000000001C81
+t1287181430
+s7297
+
+N/Users/berkley/project/iphone/Simply Done/Session.h
+c000000004CB8D9CF000000000000018C
+t1287182799
+s396
+i<UIKit/UIKit.h>
+i"ItemList.h"
+
+N/Users/berkley/project/iphone/Simply Done/Session.m
+c000000004CB8D6C000000000000001CF
+t1287182016
+s463
+i"Session.h"
+
 N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest
 t2
 s0
@@ -129,11 +207,23 @@ N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Test
 t2
 s0
 
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest/ListIcon-80x80-on-black.png
+t2
+s0
+
 N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest/ListIcon.png
 t2
 s0
 
 N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest/ListTableViewController.nib
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest/ListView.nib
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Tests.octest/ListViewController.nib
 t2
 s0
 
@@ -153,6 +243,10 @@ N/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Unit Test
 t2
 s0
 
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/CheckBoxImageView.o
+t2
+s0
+
 N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/DBTest.o
 t2
 s0
@@ -169,6 +263,18 @@ N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphones
 t2
 s0
 
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/ListView.o
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/ListViewController.o
+t2
+s0
+
+N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/Session.o
+t2
+s0
+
 N/Users/berkley/project/iphone/Simply Done/build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/Unit Tests.LinkFileList
 c00000000000000000000000000000000
 t2
@@ -180,8 +286,8 @@ t2
 s0
 
 N/Users/berkley/project/iphone/Simply Done/sd.sqlite
-c000000004C2AB4820000000000001800
-t1277867138
+c000000004CB917310000000000001800
+t1287198513
 s6144
 
 N/XCode3.1.2/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk
@@ -214,6 +320,9 @@ c000000004C2ABFB80000000000000281
 t1277870008
 s641
 
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/CheckBoxImageView.o" "/Users/berkley/project/iphone/Simply Done/CheckBoxImageView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
 CCompileC "build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/DBTest.o" "/Users/berkley/project/iphone/Simply Done/DBTest.m" normal i386 objective-c com.apple.compilers.gcc.4_2
 r0
 
@@ -226,10 +335,31 @@ r0
 CCompileC "build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/ListTableViewController.o" "/Users/berkley/project/iphone/Simply Done/ListTableViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
 r0
 
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/ListView.o" "/Users/berkley/project/iphone/Simply Done/ListView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/ListViewController.o" "/Users/berkley/project/iphone/Simply Done/ListViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/Session.o" "/Users/berkley/project/iphone/Simply Done/Classes/../Session.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC "build/Simply Done.build/Debug-iphonesimulator/Unit Tests.build/Objects-normal/i386/Session.o" "/Users/berkley/project/iphone/Simply Done/Session.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
 CCompileXIB "/Users/berkley/project/iphone/Simply Done/ListTableViewController.xib"
 r0
 
+CCompileXIB "/Users/berkley/project/iphone/Simply Done/ListView.xib"
+r0
+
+CCompileXIB "/Users/berkley/project/iphone/Simply Done/ListViewController.xib"
+r0
+
 CCpResource "build/Debug-iphonesimulator/Unit Tests.octest/CheckedBox.png" Graphics/CheckedBox.png
+r0
+
+CCpResource "build/Debug-iphonesimulator/Unit Tests.octest/ListIcon-80x80-on-black.png" Graphics/ListIcon-80x80-on-black.png
 r0
 
 CCpResource "build/Debug-iphonesimulator/Unit Tests.octest/ListIcon.png" Graphics/ListIcon.png

@@ -16,6 +16,7 @@
 @implementation RootViewController
 
 UITextField *addField;
+UIBarButtonItem *addButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,7 +24,7 @@ UITextField *addField;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.title = @"Simply Done";
-	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
+	addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
     self.navigationItem.leftBarButtonItem = addButton;
 	[addButton release];
 	
@@ -44,8 +45,12 @@ UITextField *addField;
 - (void)addItem:(id)sender 
 {
 	NSLog(@"add button pushed");
+	addButton.enabled = NO;
+	self.editButtonItem.enabled = NO;
 	[[Session sharedInstance].lists addObject:[[ItemList alloc] initWithIdentifier:[NSNumber numberWithInt:-1]]];
 	[self.tableView reloadData];
+	NSIndexPath *scrollToIndexPath = [NSIndexPath indexPathForRow:[[Session sharedInstance].lists count] - 1 inSection:0];
+	[self.tableView scrollToRowAtIndexPath:scrollToIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,11 +101,13 @@ UITextField *addField;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
-    
+    /*
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }
+    }*/
+	
+	UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
 	
 	//check to see if the cell has a left over view from the create new item cell, 
 	//if it does, remove it
@@ -117,12 +124,12 @@ UITextField *addField;
 	{ //create a cell for adding content
 		NSLog(@"creating new content cell");
 		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
-		addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 5, 250, 75)];
+		addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 25, 250, 30)];
 		UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 		addField.borderStyle = UITextBorderStyleRoundedRect;
 		button.backgroundColor = [UIColor blackColor];
 		[button setTitle:@"Done" forState:UIControlStateNormal];	
-		button.frame = CGRectMake(260, 28, 55, 30);
+		button.frame = CGRectMake(260, 25, 55, 30);
 		[view addSubview:addField];
 		[view addSubview:button];
 		view.tag = 1;
@@ -148,6 +155,14 @@ UITextField *addField;
 
 - (void)newListItemButtonTouched:(id)sender
 {
+	addButton.enabled = YES;
+	self.editButtonItem.enabled = YES;
+	if(addField.text == nil || [[addField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""])
+	{ //don't add empty strings
+		[[Session sharedInstance].lists removeLastObject];
+		[self.tableView reloadData];
+		return;
+	}
 	NSLog(@"New list item");
 	[[Session sharedInstance].lists removeObjectAtIndex:[[Session sharedInstance].lists count] - 1];
 	NSMutableArray* paths = [[NSMutableArray alloc] init];
@@ -156,6 +171,8 @@ UITextField *addField;
 	ItemList *item = [[ItemList alloc] initWithName:addField.text];
 	[[Session sharedInstance].lists addObject:item];
 	[self.tableView reloadData];
+	NSIndexPath *scrollToIndexPath = [NSIndexPath indexPathForRow:[[Session sharedInstance].lists count] - 1 inSection:0];
+	[self.tableView scrollToRowAtIndexPath:scrollToIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 

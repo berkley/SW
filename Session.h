@@ -17,11 +17,13 @@
 	ItemList *itemList;
 	//the array of ItemLists
 	NSMutableArray* lists;
+	BOOL isAddingNewList;
 }
 
 @property (nonatomic, retain) NSNumber *currentListId;
 @property (nonatomic, retain) ItemList *itemList;
 @property (nonatomic, retain) NSMutableArray *lists;
+@property (nonatomic) BOOL isAddingNewList;
 
 + (Session*)sharedInstance;
 

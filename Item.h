@@ -23,4 +23,6 @@
 @property (nonatomic, retain) NSNumber *done;
 @property (nonatomic, retain) NSString *description;
 
+- (void)touched;
+
 @end

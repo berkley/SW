@@ -72,12 +72,12 @@
 /**
  * create a new ItemList in the db and get a new identifier for it
  */
-- (id) initWithName:(NSString*)name
+- (id) initWithName:(NSString*)n
 {
-	NSLog(@"creating new list with name: %@", name);
+	NSLog(@"creating new list with name: %@", n);
 	if(self = [super init])
     {
-		self.name = name;
+		self.name = n;
 		self.sort = [NSNumber numberWithInt:[[Session sharedInstance].lists count] + 1];
 		sqlite3 *db = [DBUtil getDatabase];
 		const char *sql = "insert into lists (name, sort)  values (?, ?)";
@@ -85,7 +85,6 @@
 		if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
 		{
 			sqlite3_bind_text(statement, 1, [self.name UTF8String], -1, SQLITE_TRANSIENT);
-
 			sqlite3_bind_int(statement, 2, [self.sort intValue]);
 			sqlite3_step(statement);
 			sqlite3_reset(statement);
@@ -94,10 +93,42 @@
 		{
 			NSLog(@"Error inserting new list into the DB");
 		}
+		self.identifier = [NSNumber numberWithInt: sqlite3_last_insert_rowid(db)];
+		NSLog(@"New ItemList created with id %@", self.identifier);
 	}
 	
 	return self;
-	
+}
+
+- (void) addItem:(NSString*)description
+{
+	Item *item = [[Item alloc] init];
+	item.description = description;
+	item.sort = [NSNumber numberWithInt:[self.items count] + 1];
+	sqlite3 *db = [DBUtil getDatabase];
+	const char *sql = "insert into items (list_id, description, done, sort)  values (?, ?, ?, ?)";
+	sqlite3_stmt *statement;
+	if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
+	{
+		sqlite3_bind_int(statement, 1, [self.identifier intValue]);
+		sqlite3_bind_text(statement, 2, [item.description UTF8String], -1, SQLITE_TRANSIENT);
+		sqlite3_bind_int(statement, 3, 0);
+		sqlite3_bind_int(statement, 4, item.sort);
+		sqlite3_step(statement);
+		sqlite3_reset(statement);
+		item.id = [NSNumber numberWithInt: sqlite3_last_insert_rowid(db)];
+	}
+	else 
+	{
+		NSLog(@"Error inserting new list into the DB");
+	}
+	NSLog(@"item created with id %@", item.id);
+	if(self.items == nil)
+	{
+		self.items = [[NSMutableArray alloc]init];
+	}
+	[self.items addObject:item];
+	NSLog(@"There are now %i items in the item list", [self.items count]);
 }
 
 - (NSNumber*) numberDone

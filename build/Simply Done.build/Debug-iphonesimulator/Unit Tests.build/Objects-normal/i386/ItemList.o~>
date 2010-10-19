@@ -1,6 +1,5 @@
 /Users/berkley/project/iphone/Simply Done/ItemList.m: In function '-[ItemList initWithIdentifier:]':
 /Users/berkley/project/iphone/Simply Done/ItemList.m:39: warning: initialization discards qualifiers from pointer target type
 /Users/berkley/project/iphone/Simply Done/ItemList.m:53: warning: initialization discards qualifiers from pointer target type
-/Users/berkley/project/iphone/Simply Done/ItemList.m: In function '-[ItemList initWithName:]':
-/Users/berkley/project/iphone/Simply Done/ItemList.m:77: warning: local declaration of 'name' hides instance variable
-/Users/berkley/project/iphone/Simply Done/ItemList.m:80: warning: local declaration of 'name' hides instance variable
+/Users/berkley/project/iphone/Simply Done/ItemList.m: In function '-[ItemList addItem:]':
+/Users/berkley/project/iphone/Simply Done/ItemList.m:116: warning: passing argument 3 of 'sqlite3_bind_int' makes integer from pointer without a cast

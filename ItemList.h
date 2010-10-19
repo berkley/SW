@@ -14,16 +14,17 @@
     NSNumber *identifier;
     NSString *name;
     NSNumber *sort;
-    NSArray *items;
+    NSMutableArray *items;
 }
 
 @property (nonatomic, retain) NSNumber *identifier;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSNumber *sort;
-@property (nonatomic, retain) NSArray *items;
+@property (nonatomic, retain) NSMutableArray *items;
 
 - (id) initWithIdentifier:(NSNumber*) identifier;
 - (id) initWithName:(NSString*)name;
 - (NSNumber*) numberDone;
+- (void) addItem:(NSString*)description;
 
 @end

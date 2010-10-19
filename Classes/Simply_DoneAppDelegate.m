@@ -24,12 +24,12 @@
     
     // Override point for customization after app launch 
     [DBUtil createEditableCopyOfDatabaseIfNeeded];
-	[DBTest runTests];
+	//[DBTest runTests];
     
 	[window addSubview:[navigationController view]];
-  [window makeKeyAndVisible];
-  RootViewController *rvc = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
-  [navigationController pushViewController:rvc animated:NO];
+	[window makeKeyAndVisible];
+	RootViewController *rvc = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+	[navigationController pushViewController:rvc animated:NO];
 }
 
 

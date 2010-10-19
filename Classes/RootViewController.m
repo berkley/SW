@@ -32,14 +32,8 @@ UIBarButtonItem *addButton;
 	{
 		[Session sharedInstance].lists = [[NSMutableArray alloc] init];
 	}
-	
-    NSArray* listIds = [DBUtil getListIds];
-    for(int i=0; i<[listIds count]; i++)
-    {
-        NSNumber *listId = [listIds objectAtIndex:i];
-        [[Session sharedInstance].lists addObject:[[ItemList alloc] initWithIdentifier:listId]];
-        NSLog(@"adding list %@", listId);
-    }
+		
+	[DBUtil loadLists];
 }
 
 - (void)addItem:(id)sender 

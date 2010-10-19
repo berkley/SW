@@ -10,6 +10,7 @@
 #import "Session.h"
 #import "Item.h"
 #import "ItemList.h"
+#import "DBUtil.h"
 
 @implementation ListViewController
 
@@ -137,7 +138,11 @@ UITextField *addField;
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+	if(indexPath.row >= [[Session sharedInstance].itemList.items count])
+	{
+		return NO;
+	}    
+	return YES;
 }
 
 
@@ -159,11 +164,183 @@ UITextField *addField;
 
 
 // Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
+{
+	sqlite3 *db = [DBUtil getDatabase];
+	sqlite3_stmt *statement;
+	sqlite3_stmt *update_statement;
+	int fromCellRow = fromIndexPath.row;
+	int toCellRow = toIndexPath.row;
+	int list_id = [[Session sharedInstance].itemList.identifier intValue];
+	NSLog(@"fromCell: %i, toCell: %i", fromCellRow, toCellRow);
+
+	const char *sql;
+	if(fromCellRow > toCellRow)
+	{
+		sql = "select id, sort from items where sort >= ? and sort <= ? and list_id = ?";
+	}
+	else 
+	{
+		sql = "select id, sort from items where sort <= ? and sort >= ? and list_id = ?";
+	}
+
+	if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
+	{
+		sqlite3_bind_int(statement, 1, toCellRow);
+		sqlite3_bind_int(statement, 2, fromCellRow);
+		sqlite3_bind_int(statement, 3, list_id);
+		while(sqlite3_step(statement) == SQLITE_ROW)
+		{
+			int item_id = sqlite3_column_int(statement, 0);
+			int item_sort = sqlite3_column_int(statement, 1);
+			if(fromCellRow > toCellRow)
+			{
+				item_sort++;					
+			}
+			else
+			{
+				item_sort--;
+			}
+
+			const char *update_sql = "update items set sort = ? where id = ?";
+			if(sqlite3_prepare_v2(db, update_sql, -1, &update_statement, NULL) == SQLITE_OK)
+			{
+				NSLog(@"updating item %i with sort value %i", item_id, item_sort);
+				sqlite3_bind_int(update_statement, 1, item_sort);
+				sqlite3_bind_int(update_statement, 2, item_id);
+				sqlite3_step(update_statement);
+				sqlite3_reset(update_statement);
+			}
+			else 
+			{
+				NSLog(@"Error updating sort in ListViewController.moveRowAtIndexPath");
+			}
+		}
+	}
+	else 
+	{
+		NSLog(@"Error select id and sort in ListViewController.moveRowAtIndexPath");
+	}
+	
+	//update the sort for the item that actually moved
+	const char *update_sql = "update items set sort = ? where id = ?";
+	sqlite3_stmt *update_statement2;
+	if(sqlite3_prepare_v2(db, update_sql, -1, &update_statement2, NULL) == SQLITE_OK)
+	{
+		Item *i = [[Session sharedInstance].itemList.items objectAtIndex:fromCellRow];
+		int item_id = [i.id intValue];
+		sqlite3_bind_int(update_statement2, 1, toCellRow);
+		sqlite3_bind_int(update_statement2, 2, item_id);
+		sqlite3_step(update_statement2);
+		sqlite3_reset(update_statement2);
+		NSLog(@"updated item %i with sort value %i", item_id, toCellRow);
+	}
+	else 
+	{
+		NSLog(@"Error updating moved cell.");
+	}
+
+	[DBUtil loadLists];
 }
 
-
-
+/*
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
+{
+	sqlite3_stmt *statement;
+	sqlite3_stmt *update_statement = nil;
+	ToDoAppDelegate *appDelegate = (ToDoAppDelegate *)[[UIApplication sharedApplication] delegate];
+	
+	int fromCellRow = fromIndexPath.row;
+	int toCellRow = toIndexPath.row;
+	
+	if(fromCellRow > toCellRow)
+	{
+		//now update all of the other todos and cascade the order change down
+		//the list
+		//int order = toCell.todo.order;
+		//for each cell with fromCellRow < priority > toCellRow, increment order
+		const char *sql2 = "select pk, priority, text from todo where priority >= ? and priority <= ?";
+		if(sqlite3_prepare_v2(appDelegate.database, sql2, -1, &statement, NULL) != SQLITE_OK)
+		{
+			NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(appDelegate.database));
+		}
+		sqlite3_bind_int(statement, 1, toCellRow);
+		sqlite3_bind_int(statement, 2, fromCellRow);
+		while(sqlite3_step(statement) == SQLITE_ROW)
+		{
+			int primaryKey = sqlite3_column_int(statement, 0);
+			int priority = sqlite3_column_int(statement, 1);
+			//char * c = sqlite3_column_text(statement, 2);
+			
+			priority++;
+			
+			const char *sql3 = "update todo set priority=? where pk=?;";
+			if(sqlite3_prepare_v2(appDelegate.database, sql3, -1, &update_statement, NULL) != SQLITE_OK)
+			{
+				NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(appDelegate.database));
+			}
+			
+			sqlite3_bind_int(update_statement, 1, priority);
+			sqlite3_bind_int(update_statement, 2, primaryKey);
+			sqlite3_step(update_statement);
+			sqlite3_reset(update_statement);
+			sqlite3_finalize(update_statement);
+		}
+		sqlite3_finalize(statement);
+	}
+	else //user moved an item down the list
+	{
+		//now update all of the other todos and cascade the order change down
+		//the list
+		//int order = toCell.todo.order;
+		//for each cell with priority >= toCell.order, increment order
+		const char *sql2 = "select pk, priority, text from todo where priority <= ? and priority >= ?";
+		if(sqlite3_prepare_v2(appDelegate.database, sql2, -1, &statement, NULL) != SQLITE_OK)
+		{
+			NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(appDelegate.database));
+		}
+		sqlite3_bind_int(statement, 1, toCellRow);
+		sqlite3_bind_int(statement, 2, fromCellRow);
+		while(sqlite3_step(statement) == SQLITE_ROW)
+		{
+			int primaryKey = sqlite3_column_int(statement, 0);
+			int priority = sqlite3_column_int(statement, 1);
+			//char * c = sqlite3_column_text(statement, 2);
+			
+			priority--;
+			
+			const char *sql3 = "update todo set priority=? where pk=?;";
+			if(sqlite3_prepare_v2(appDelegate.database, sql3, -1, &update_statement, NULL) != SQLITE_OK)
+			{
+				NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(appDelegate.database));
+			}
+			
+			sqlite3_bind_int(update_statement, 1, priority);
+			sqlite3_bind_int(update_statement, 2, primaryKey);
+			sqlite3_step(update_statement);
+			sqlite3_reset(update_statement);
+			sqlite3_finalize(update_statement);	
+		}
+		sqlite3_finalize(statement);	
+	}
+	
+	//now update the priority of the row that moved
+	const char *sql = "update todo set priority=? where pk=?;";
+	if(sqlite3_prepare_v2(appDelegate.database, sql, -1, &update_statement, NULL) != SQLITE_OK)
+	{
+		NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(appDelegate.database));
+	}
+	int pk = ((Todo *)[appDelegate.todos objectAtIndex:fromCellRow]).primaryKey;
+	//sqlite3_bind_int(update_statement, 1, toCell.todo.order);
+	sqlite3_bind_int(update_statement, 1, toCellRow);
+	//sqlite3_bind_int(update_statement, 2, fromCell.todo.primaryKey);
+	sqlite3_bind_int(update_statement, 2, pk);
+	sqlite3_step(update_statement);
+	sqlite3_reset(update_statement);
+	sqlite3_finalize(update_statement);
+	
+	[appDelegate updateTodos];
+}*/
 /*
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {

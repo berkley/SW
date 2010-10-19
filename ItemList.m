@@ -29,7 +29,7 @@
 			return self;
 		}
         sqlite3 *db = [DBUtil getDatabase];
-        char *sql = "select name, sort from lists where id = ?";
+        char *sql = "select name, sort from lists where id = ? order by sort";
         sqlite3_stmt *statement;
         if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
         {
@@ -43,7 +43,7 @@
             }
         }
         
-        const char *sql2 = "select id, description, done, sort from items where list_id = ?";
+        const char *sql2 = "select id, description, done, sort from items where list_id = ? order by sort";
         if(sqlite3_prepare_v2(db, sql2, -1, &statement, NULL) == SQLITE_OK)
         {
             sqlite3_bind_int(statement, 1, [self.identifier intValue]);

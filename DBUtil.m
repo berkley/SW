@@ -8,6 +8,7 @@
 
 #import "DBUtil.h"
 #import "Constants.h"
+#import "Session.h"
 
 @implementation DBUtil
 
@@ -56,7 +57,7 @@
 {
     NSMutableArray *listIds = [[NSMutableArray alloc] init];
     sqlite3 *db = [DBUtil getDatabase];
-    const char *sql = "select id from lists";
+    const char *sql = "select id from lists order by sort";
     sqlite3_stmt *statement;
     if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
     {
@@ -68,6 +69,18 @@
         }
     }
     return listIds;
+}
+
++ (void) loadLists
+{
+	NSArray* listIds = [DBUtil getListIds];
+	[Session sharedInstance].lists = [[NSMutableArray alloc] init];
+    for(int i=0; i<[listIds count]; i++)
+    {
+        NSNumber *listId = [listIds objectAtIndex:i];
+        [[Session sharedInstance].lists addObject:[[ItemList alloc] initWithIdentifier:listId]];
+        NSLog(@"adding list %@", listId);
+    }	
 }
 
 @end

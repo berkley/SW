@@ -359,7 +359,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>7E895DFF126D3CBA006369D4</string>
+										<string>7E895E04126D3D7B006369D4</string>
 										<key>history</key>
 										<array>
 											<string>7EB1E38C1204C47A00B6DF85</string>
@@ -566,7 +566,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>309148858.03476602</real>
+	<real>309149051.98417503</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -583,14 +583,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>7E895DFE126D3CA4006369D4</string>
+		<string>7E895E05126D3D7B006369D4</string>
 		<string>7E895DA5126D36D0006369D4</string>
 		<string>7E895D90126CE164006369D4</string>
 		<string>7EB1E3811204C46E00B6DF85</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C78EAAD065D492600B07095</string>
-		<string>/Users/berkley/project/iphone/Simply Done/Simply Done.xcodeproj</string>
 		<string>1CD10A99069EF8BA00B06720</string>
+		<string>/Users/berkley/project/iphone/Simply Done/Simply Done.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>454 69 1505 1349 0 0 2560 1418 </string>

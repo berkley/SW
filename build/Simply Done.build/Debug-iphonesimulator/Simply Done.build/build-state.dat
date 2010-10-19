@@ -1,7 +1,7 @@
 TSimply Done
 v7
 r0
-t309149051.687167
+t309149111.492567
 cCheck dependencies
 cProcessInfoPlistFile "/Users/berkley/project/iphone/Simply Done/build/Debug-iphonesimulator/Simply Done.app/Info.plist" Simply_Done-Info.plist
 cCompileXIB "/Users/berkley/project/iphone/Simply Done/MainWindow.xib"
@@ -603,7 +603,7 @@ s912
 
 CCheck dependencies
 r0
-lSLF07#2@18"Check dependencies309149051#309149051#0(0"0(0#1#0"8631838784#0"0#
+lSLF07#2@18"Check dependencies309149111#309149111#0(0"0(0#1#0"8633325216#0"0#
 
 CCompileC "build/Simply Done.build/Debug-iphonesimulator/Simply Done.build/Objects-normal/i386/CheckBoxImageView.o" "/Users/berkley/project/iphone/Simply Done/CheckBoxImageView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
 s308888392.762788

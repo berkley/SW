@@ -33,6 +33,8 @@
 		7E5410BD11EBC8CA009048D8 /* ListIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B511EBC8CA009048D8 /* ListIcon.png */; };
 		7E5410BE11EBC8CA009048D8 /* RedX.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B611EBC8CA009048D8 /* RedX.png */; };
 		7E5410BF11EBC8CA009048D8 /* UncheckedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B711EBC8CA009048D8 /* UncheckedBox.png */; };
+		7E895F96126E9861006369D4 /* icon-x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E895F95126E9861006369D4 /* icon-x.png */; };
+		7E895F97126E9861006369D4 /* icon-x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E895F95126E9861006369D4 /* icon-x.png */; };
 		7EC5468611DAE60F00A84CC4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5468511DAE60F00A84CC4 /* Item.m */; };
 		7EC546A111DAE79300A84CC4 /* DBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC546A011DAE79300A84CC4 /* DBUtil.m */; };
 		7EC546B711DAED8700A84CC4 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EC546B611DAED8700A84CC4 /* libsqlite3.0.dylib */; };
@@ -79,6 +81,7 @@
 		7E5410B511EBC8CA009048D8 /* ListIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ListIcon.png; path = Graphics/ListIcon.png; sourceTree = "<group>"; };
 		7E5410B611EBC8CA009048D8 /* RedX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedX.png; path = Graphics/RedX.png; sourceTree = "<group>"; };
 		7E5410B711EBC8CA009048D8 /* UncheckedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UncheckedBox.png; path = Graphics/UncheckedBox.png; sourceTree = "<group>"; };
+		7E895F95126E9861006369D4 /* icon-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-x.png"; sourceTree = "<group>"; };
 		7EC5468411DAE60F00A84CC4 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		7EC5468511DAE60F00A84CC4 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		7EC5469F11DAE79300A84CC4 /* DBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUtil.h; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 		7E5410B211EBC89F009048D8 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				7E895F95126E9861006369D4 /* icon-x.png */,
 				7E18E94B126B8C8500674445 /* ContactAdd.jpg */,
 				7E471B1F126908BD008FBAAD /* ListIcon-80x80-on-black.png */,
 				7E5410B411EBC8CA009048D8 /* CheckedBox.png */,
@@ -325,6 +329,7 @@
 				7E471B20126908BD008FBAAD /* ListIcon-80x80-on-black.png in Resources */,
 				7E471B4D12690BF6008FBAAD /* ListViewController.xib in Resources */,
 				7E18E94D126B8C8500674445 /* ContactAdd.jpg in Resources */,
+				7E895F97126E9861006369D4 /* icon-x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +345,7 @@
 				7E471B21126908BD008FBAAD /* ListIcon-80x80-on-black.png in Resources */,
 				7E471B4B12690BF6008FBAAD /* ListViewController.xib in Resources */,
 				7E18E94C126B8C8500674445 /* ContactAdd.jpg in Resources */,
+				7E895F96126E9861006369D4 /* icon-x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

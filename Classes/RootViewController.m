@@ -200,6 +200,11 @@ UIBarButtonItem *addButton;
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
+	ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
+	if([list.identifier intValue] == -1)
+	{
+		return NO;
+	}
     return YES;
 }
 
@@ -296,18 +301,6 @@ UIBarButtonItem *addButton;
 	
 	[DBUtil loadLists];
 }
-
-
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 - (void)dealloc {
     [super dealloc];

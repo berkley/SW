@@ -304,8 +304,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>18</integer>
-									<integer>16</integer>
+									<integer>38</integer>
+									<integer>35</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -340,14 +340,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>RootViewController.m</string>
+								<string>Simply_Done-Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -355,11 +353,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>RootViewController.m</string>
+										<string>Simply_Done-Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>7E895F93126E96D5006369D4</string>
+										<string>7E895FA4126E988D006369D4</string>
 										<key>history</key>
 										<array>
 											<string>7EB1E38C1204C47A00B6DF85</string>
@@ -385,7 +383,8 @@
 											<string>7E895F88126E9641006369D4</string>
 											<string>7E895F89126E9641006369D4</string>
 											<string>7E895F91126E96D5006369D4</string>
-											<string>7E895F92126E96D5006369D4</string>
+											<string>7E895F9C126E987B006369D4</string>
+											<string>7E895F9D126E987B006369D4</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -566,7 +565,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>309237461.66190797</real>
+	<real>309237901.42378497</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -583,7 +582,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>7E895F94126E96D5006369D4</string>
+		<string>7E895FA5126E988D006369D4</string>
 		<string>7E895DA5126D36D0006369D4</string>
 		<string>7E895D90126CE164006369D4</string>
 		<string>7EB1E3811204C46E00B6DF85</string>

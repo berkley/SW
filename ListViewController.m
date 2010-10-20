@@ -72,7 +72,7 @@ UITextField *addField;
     UITableViewCell	*cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     
 	if(indexPath.row == [[Session sharedInstance].itemList.items count])
-	{
+	{ //edit cell
 		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
 		
 		addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 4, 275, 31)];
@@ -90,10 +90,12 @@ UITextField *addField;
 		[cell.contentView addSubview:view];
 	}
 	else
-	{
+	{ //normal cell
 		Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];
 		NSLog(@"adding cell for item with id %@", item.id);
 		cell.textLabel.text = item.description;
+		cell.textLabel.minimumFontSize = 8;
+		[cell.textLabel adjustsFontSizeToFitWidth];
 		if([item.done intValue] > 0)
 		{
 			cell.imageView.image = [UIImage imageNamed:@"CheckedBox.png"];		
@@ -101,7 +103,7 @@ UITextField *addField;
 		else 
 		{
 			cell.imageView.image = [UIImage imageNamed:@"UncheckedBox.png"];
-		}		
+		}
 	}
 	
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;

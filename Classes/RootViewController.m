@@ -152,6 +152,7 @@ UIBarButtonItem *addButton;
 		cell.imageView.frame = CGRectMake(0,0,30,30);
 		cell.accessoryType =  UITableViewCellAccessoryDetailDisclosureButton;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		cell.textLabel.numberOfLines = 2;
 	}
 
     return cell;

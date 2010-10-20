@@ -159,9 +159,12 @@ UIBarButtonItem *addButton;
 	}
 	NSLog(@"New list item");
 	[[Session sharedInstance].lists removeObjectAtIndex:[[Session sharedInstance].lists count] - 1];
-	NSMutableArray* paths = [[NSMutableArray alloc] init];
-	[paths addObject:[NSIndexPath indexPathForRow:[[Session sharedInstance].lists count] - 1 inSection:0]];
-	[self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+	if([[Session sharedInstance].lists count] > 0)
+	{
+		NSMutableArray* paths = [[NSMutableArray alloc] init];
+		[paths addObject:[NSIndexPath indexPathForRow:[[Session sharedInstance].lists count] - 1 inSection:0]];
+		[self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+	}
 	ItemList *item = [[ItemList alloc] initWithName:addField.text];
 	[[Session sharedInstance].lists addObject:item];
 	[self.tableView reloadData];

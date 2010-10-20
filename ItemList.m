@@ -15,6 +15,7 @@
 
 @synthesize identifier, name, sort, items;
 
+//create a new ItemList with an id
 - (id) initWithIdentifier:(NSNumber*) ident
 {
 	NSMutableArray *itemArray;
@@ -69,9 +70,8 @@
     return self;
 }
 
-/**
- * create a new ItemList in the db and get a new identifier for it
- */
+
+//create a new ItemList in the db and get a new identifier for it
 - (id) initWithName:(NSString*)n
 {
 	NSLog(@"creating new list with name: %@", n);
@@ -100,6 +100,7 @@
 	return self;
 }
 
+//add an item to this list
 - (void) addItem:(NSString*)description
 {
 	Item *item = [[Item alloc] init];
@@ -113,7 +114,7 @@
 		sqlite3_bind_int(statement, 1, [self.identifier intValue]);
 		sqlite3_bind_text(statement, 2, [item.description UTF8String], -1, SQLITE_TRANSIENT);
 		sqlite3_bind_int(statement, 3, 0);
-		sqlite3_bind_int(statement, 4, item.sort);
+		sqlite3_bind_int(statement, 4, [item.sort intValue]);
 		sqlite3_step(statement);
 		sqlite3_reset(statement);
 		item.id = [NSNumber numberWithInt: sqlite3_last_insert_rowid(db)];
@@ -131,6 +132,7 @@
 	NSLog(@"There are now %i items in the item list", [self.items count]);
 }
 
+//return the number of done items in this list
 - (NSNumber*) numberDone
 {
 	int count = 0;
@@ -143,6 +145,75 @@
 		}
 	}
 	return [NSNumber numberWithInt:count];
+}
+
+//delete any item marked as done
+- (void) deleteAllDoneItems
+{
+	NSLog(@"deleting all done items in list %@", self.identifier);
+	sqlite3 *db = [DBUtil getDatabase];
+	for(int i=0; i<[self.items count]; i++)
+	{
+		Item *item = [self.items objectAtIndex:i];
+		if([item.done intValue] == 1)
+		{
+			sqlite3_stmt *statement;
+			const char *sql = "delete from items where id = ?";
+			if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
+			{
+				sqlite3_bind_int(statement, 1, [item.id intValue]);
+				sqlite3_step(statement);
+				sqlite3_reset(statement);
+			}
+			else 
+			{
+				NSLog(@"Error deleting item %@ from the DB", item.id);
+			}	
+			
+			[self.items removeObjectAtIndex:i];
+		}
+	}
+}
+
+//delete all of the items in this list
+- (void) deleteAllItems
+{
+	NSLog(@"deleting all items in list %@", self.identifier);
+	sqlite3 *db = [DBUtil getDatabase];
+	sqlite3_stmt *statement;
+	const char *sql = "delete from items where list_id = ?";
+	if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
+	{
+		sqlite3_bind_int(statement, 1, [self.identifier intValue]);
+		sqlite3_step(statement);
+		sqlite3_reset(statement);
+	}
+	else 
+	{
+		NSLog(@"Error deleting all items from the DB");
+	}	
+	self.items = [[NSMutableArray alloc] init];
+}
+
+//delete this list from the DB
+- (void) delete
+{
+	NSLog(@"deleting list %@", self.identifier);
+	sqlite3 *db = [DBUtil getDatabase];
+	const char *sql = "delete from lists where id = ?";
+	sqlite3_stmt *statement;
+	if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
+	{
+		sqlite3_bind_int(statement, 1, [self.identifier intValue]);
+		sqlite3_step(statement);
+		sqlite3_reset(statement);
+	}
+	else 
+	{
+		NSLog(@"Error deleting list %@ from the the DB", self.identifier);
+	}	
+	
+	[self deleteAllItems];
 }
 
 @end

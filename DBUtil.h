@@ -17,5 +17,6 @@
 + (void) createEditableCopyOfDatabaseIfNeeded;
 + (sqlite3*) getDatabase;
 + (NSArray*) getListIds;
++ (void) loadLists;
 
 @end

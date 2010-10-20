@@ -189,7 +189,7 @@ UIBarButtonItem *addButton;
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
 	NSLog(@"Accessory button tapped.");
-	ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
+	//ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
 	//TODO: put code here for showing the options for the list
 }
 
@@ -205,10 +205,10 @@ UIBarButtonItem *addButton;
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source.
+		ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
+		[list delete];
+		[[Session sharedInstance].lists removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }   
 }
 
@@ -216,8 +216,83 @@ UIBarButtonItem *addButton;
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
 {
-    
+	sqlite3 *db = [DBUtil getDatabase];
+	sqlite3_stmt *statement;
+	sqlite3_stmt *update_statement;
+	int fromCellRow = fromIndexPath.row;
+	int toCellRow = toIndexPath.row;
+    ItemList *list = [[Session sharedInstance].lists objectAtIndex:fromCellRow];
+	int list_id = [list.identifier intValue];
+	NSLog(@"fromCell: %i, toCell: %i", fromCellRow, toCellRow);
+	NSLog(@"moving list with id %i", list_id);
+	const char *sql;
+	if(fromCellRow > toCellRow)
+	{
+		sql = "select id, sort from lists where sort >= ? and sort <= ?";
+	}
+	else 
+	{
+		sql = "select id, sort from lists where sort <= ? and sort >= ?";
+	}
+	
+	if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
+	{
+		sqlite3_bind_int(statement, 1, toCellRow);
+		sqlite3_bind_int(statement, 2, fromCellRow);
+		while(sqlite3_step(statement) == SQLITE_ROW)
+		{
+			int l_id = sqlite3_column_int(statement, 0);
+			int item_sort = sqlite3_column_int(statement, 1);
+			if(fromCellRow > toCellRow)
+			{
+				item_sort++;					
+			}
+			else
+			{
+				item_sort--;
+			}
+			
+			const char *update_sql = "update lists set sort = ? where id = ?";
+			if(sqlite3_prepare_v2(db, update_sql, -1, &update_statement, NULL) == SQLITE_OK)
+			{
+				NSLog(@"updating list %i with sort value %i", l_id, item_sort);
+				sqlite3_bind_int(update_statement, 1, item_sort);
+				sqlite3_bind_int(update_statement, 2, l_id);
+				sqlite3_step(update_statement);
+				sqlite3_reset(update_statement);
+			}
+			else 
+			{
+				NSLog(@"Error updating sort in ListViewController.moveRowAtIndexPath");
+			}
+		}
+	}
+	else 
+	{
+		NSLog(@"Error select id and sort in ListViewController.moveRowAtIndexPath");
+	}
+	
+	//update the sort for the item that actually moved
+	const char *update_sql = "update lists set sort = ? where id = ?";
+	sqlite3_stmt *update_statement2;
+	if(sqlite3_prepare_v2(db, update_sql, -1, &update_statement2, NULL) == SQLITE_OK)
+	{
+		Item *i = [[Session sharedInstance].itemList.items objectAtIndex:fromCellRow];
+		int item_id = [i.id intValue];
+		sqlite3_bind_int(update_statement2, 1, toCellRow);
+		sqlite3_bind_int(update_statement2, 2, list_id);
+		sqlite3_step(update_statement2);
+		sqlite3_reset(update_statement2);
+		NSLog(@"updated list %i with sort value %i", item_id, toCellRow);
+	}
+	else 
+	{
+		NSLog(@"Error updating moved cell.");
+	}
+	
+	[DBUtil loadLists];
 }
+
 
 
 

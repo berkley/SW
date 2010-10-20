@@ -50,7 +50,6 @@ UITextField *addField;
 	return 40.0;
 }	
 
-
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
@@ -142,13 +141,13 @@ UITextField *addField;
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+    if (editingStyle == UITableViewCellEditingStyleDelete) 
+	{
+		Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];
+		[item deleteItem];
+		[[Session sharedInstance].itemList.items removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }     
 }
 
 // Override to support rearranging the table view.

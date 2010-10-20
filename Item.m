@@ -38,4 +38,22 @@
     }
 }
 
+//delete this item from the DB
+- (void) deleteItem
+{
+	sqlite3 *db = [DBUtil getDatabase];
+	sqlite3_stmt *statement;
+	const char *sql = "delete from items where id = ?";
+	if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
+	{
+		sqlite3_bind_int(statement, 1, [self.id intValue]);
+		sqlite3_step(statement);
+		sqlite3_reset(statement);
+	}
+	else 
+	{
+		NSLog(@"Error deleting item %@ from the DB", self.id);
+	}
+}
+
 @end

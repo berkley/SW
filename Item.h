@@ -24,5 +24,6 @@
 @property (nonatomic, retain) NSString *description;
 
 - (void)touched;
+- (void) deleteItem;
 
 @end

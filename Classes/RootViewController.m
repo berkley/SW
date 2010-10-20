@@ -173,6 +173,10 @@ UIBarButtonItem *addButton;
 {
 	NSLog(@"List selected");
 	ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
+	if([list.identifier intValue] == -1)
+	{
+		return;
+	}
 	ListViewController *lvc = [[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil];
 	[self.navigationController pushViewController:lvc animated:YES];
 	lvc.title = list.name;

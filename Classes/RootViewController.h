@@ -6,7 +6,10 @@
 //  Copyright ucsb 2010. All rights reserved.
 //
 
-@interface RootViewController : UITableViewController {
+@interface RootViewController : UITableViewController <UITextFieldDelegate>
+{
 }
+
+- (void)openkeyboard:(id)sender;
 
 @end

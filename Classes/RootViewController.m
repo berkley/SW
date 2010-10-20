@@ -36,6 +36,12 @@ UIBarButtonItem *addButton;
 	[DBUtil loadLists];
 }
 
+- (void)openkeyboard:(id)sender
+{
+	NSLog(@"opening keyboard");
+	[addField becomeFirstResponder];
+}
+
 - (void)addItem:(id)sender 
 {
 	NSLog(@"add button pushed");
@@ -44,14 +50,14 @@ UIBarButtonItem *addButton;
 	[[Session sharedInstance].lists addObject:[[ItemList alloc] initWithIdentifier:[NSNumber numberWithInt:-1]]];
 	[self.tableView reloadData];
 	NSIndexPath *scrollToIndexPath = [NSIndexPath indexPathForRow:[[Session sharedInstance].lists count] - 1 inSection:0];
-	[self.tableView scrollToRowAtIndexPath:scrollToIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+	[self.tableView scrollToRowAtIndexPath:scrollToIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+	[self performSelector:@selector(openkeyboard:) withObject:self afterDelay:.25];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return 80.0;
 }
-
 
  // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -121,6 +127,10 @@ UIBarButtonItem *addButton;
 		addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 25, 250, 30)];
 		UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 		addField.borderStyle = UITextBorderStyleRoundedRect;
+		addField.delegate = self;
+		addField.keyboardType = UIKeyboardTypeDefault;
+		addField.returnKeyType = UIReturnKeyDone;
+		//[addField becomeFirstResponder];
 		button.backgroundColor = [UIColor blackColor];
 		[button setTitle:@"Done" forState:UIControlStateNormal];	
 		button.frame = CGRectMake(260, 25, 55, 30);
@@ -147,6 +157,14 @@ UIBarButtonItem *addButton;
     return cell;
 }
 
+-(BOOL) textFieldShouldReturn:(UITextField*) textField 
+{
+	NSLog(@"done editing");
+    [textField resignFirstResponder]; 
+	[self newListItemButtonTouched:self];
+    return YES;
+}
+
 - (void)newListItemButtonTouched:(id)sender
 {
 	addButton.enabled = YES;
@@ -168,7 +186,7 @@ UIBarButtonItem *addButton;
 	ItemList *item = [[ItemList alloc] initWithName:addField.text];
 	[[Session sharedInstance].lists addObject:item];
 	[self.tableView reloadData];
-	NSIndexPath *scrollToIndexPath = [NSIndexPath indexPathForRow:[[Session sharedInstance].lists count] - 1 inSection:0];
+	NSIndexPath *scrollToIndexPath = [NSIndexPath indexPathForRow:[[Session sharedInstance].lists count] - 2 inSection:0];
 	[self.tableView scrollToRowAtIndexPath:scrollToIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
 }
 

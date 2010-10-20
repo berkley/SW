@@ -50,6 +50,14 @@ UITextField *addField;
 	return 40.0;
 }	
 
+-(BOOL) textFieldShouldReturn:(UITextField*) textField 
+{
+	NSLog(@"done editing");
+    [textField resignFirstResponder]; 
+	[self newItemButtonTouched:self];
+    return YES;
+}
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
@@ -69,6 +77,9 @@ UITextField *addField;
 		
 		addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 4, 275, 31)];
 		addField.borderStyle = UITextBorderStyleRoundedRect;
+		addField.keyboardType = UIKeyboardTypeDefault;
+		addField.returnKeyType = UIReturnKeyDone;
+		addField.delegate = self;
 		[view addSubview:addField];
 	
 		UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];

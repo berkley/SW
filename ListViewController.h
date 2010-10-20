@@ -10,7 +10,7 @@
 #import <sqlite3.h>
 
 
-@interface ListViewController : UITableViewController {
+@interface ListViewController : UITableViewController  <UITextFieldDelegate> {
 
 }
 

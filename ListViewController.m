@@ -42,7 +42,14 @@ UITextField *addField;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [[Session sharedInstance].itemList.items count] + 1;
+	if(!self.tableView.editing)
+	{
+		return [[Session sharedInstance].itemList.items count] + 1;		
+	}
+	else 
+	{
+		return [[Session sharedInstance].itemList.items count];
+	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -50,12 +57,58 @@ UITextField *addField;
 	return 40.0;
 }	
 
+- (void)reload:(id)sender
+{
+	[self.tableView reloadData];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+	[super setEditing:editing animated:animated];
+	//[self.tableView reloadData];
+	if(editing)
+	{ //going into editing mode
+		NSLog(@"editing");
+		[self.tableView reloadData];
+	}
+	else 
+	{ //no longer in editing mode
+		NSLog(@"no longer editing");
+		//make sure all change text boxes get updated
+		for(int i=0; i<[[Session sharedInstance].itemList.items count]; i++)
+		{
+			Item *item = [[Session sharedInstance].itemList.items objectAtIndex:i];
+			UITextField *field = (UITextField*)[self.view viewWithTag:[item.id intValue]];
+			if(![field.text isEqualToString:item.description])
+			{
+				NSLog(@"Updating item description");
+				[[Session sharedInstance].itemList updateItemDescription:field.text withId:[NSNumber numberWithInt:field.tag]];
+			}
+		}
+		[self.tableView reloadData];
+	}
+
+	//[DBUtil loadLists];
+
+	//[self performSelector:@selector(reload:) withObject:self afterDelay:.25];
+}
+
 -(BOOL) textFieldShouldReturn:(UITextField*) textField 
 {
-	NSLog(@"done editing");
-    [textField resignFirstResponder]; 
-	[self newItemButtonTouched:self];
-    return YES;
+	if(textField.tag == -1)
+	{
+		NSLog(@"done editing the addField");
+		[textField resignFirstResponder]; 
+		[self newItemButtonTouched:self];
+		return YES;
+	}
+	else 
+	{
+		NSLog(@"done editing with text field tag %i", textField.tag);
+		[textField resignFirstResponder]; 
+		return YES;
+	}
+
 }
 
 // Customize the appearance of table view cells.
@@ -70,32 +123,65 @@ UITextField *addField;
     }*/
 	
     UITableViewCell	*cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    
-	if(indexPath.row == [[Session sharedInstance].itemList.items count])
-	{ //edit cell
-		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-		
-		addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 4, 275, 31)];
-		addField.borderStyle = UITextBorderStyleRoundedRect;
-		addField.keyboardType = UIKeyboardTypeDefault;
-		addField.returnKeyType = UIReturnKeyDone;
-		addField.delegate = self;
-		[view addSubview:addField];
 	
-		UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
-		button.frame = CGRectMake(285, 3, 31, 31);
-		[view addSubview:button];
-		[button addTarget:self action:@selector(newItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+    if(!self.tableView.editing)
+	{ //normal cells (not editing)
+		if(indexPath.row == [[Session sharedInstance].itemList.items count])
+		{ //edit cell
+			UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+			
+			addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 4, 275, 31)];
+			addField.borderStyle = UITextBorderStyleRoundedRect;
+			addField.keyboardType = UIKeyboardTypeDefault;
+			addField.returnKeyType = UIReturnKeyDone;
+			addField.tag = -1;
+			addField.delegate = self;
+			[view addSubview:addField];
 		
-		[cell.contentView addSubview:view];
+			UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
+			button.frame = CGRectMake(285, 3, 31, 31);
+			[view addSubview:button];
+			[button addTarget:self action:@selector(newItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+			
+			[cell.contentView addSubview:view];
+		}
+		else
+		{ //normal cell
+			for(int i=0; i<[[Session sharedInstance].itemList.items count]; i++)
+			{
+				Item *it = (Item*)[[Session sharedInstance].itemList.items objectAtIndex:i];
+				NSLog(@"item id: %@ desc: %@ sort: %@", it.id, it.description, it.sort);
+			}
+			Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];
+			NSLog(@"adding cell for item %@ with id %@ and sort %@", item.description, item.id, item.sort);
+			cell.textLabel.text = item.description;
+			cell.textLabel.minimumFontSize = 8;
+			[cell.textLabel adjustsFontSizeToFitWidth];
+			if([item.done intValue] > 0)
+			{
+				cell.imageView.image = [UIImage imageNamed:@"CheckedBox.png"];		
+			}
+			else 
+			{
+				cell.imageView.image = [UIImage imageNamed:@"UncheckedBox.png"];
+			}
+		}
 	}
-	else
-	{ //normal cell
+	else 
+	{ //editing cells
 		Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];
-		NSLog(@"adding cell for item with id %@", item.id);
-		cell.textLabel.text = item.description;
-		cell.textLabel.minimumFontSize = 8;
-		[cell.textLabel adjustsFontSizeToFitWidth];
+		NSLog(@"creating editing cells");
+		NSLog(@"adding editing cell for item with id %@ with sort %@", item.id, item.sort);
+		UIView *view = [[UIView alloc]initWithFrame:CGRectMake(45, 5, 200, 35)];
+		UITextField *editField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+		editField.tag = [item.id intValue];
+		editField.text = item.description;
+		editField.borderStyle = UITextBorderStyleRoundedRect;
+		editField.returnKeyType = UIReturnKeyDone;
+		editField.delegate = self;
+		[view addSubview:editField];
+		[cell.contentView addSubview:view];
+		
 		if([item.done intValue] > 0)
 		{
 			cell.imageView.image = [UIImage imageNamed:@"CheckedBox.png"];		
@@ -133,12 +219,6 @@ UITextField *addField;
 	Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];
 	[item touched];
 	[self.tableView reloadData];
-}
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-	NSLog(@"Accessory button tapped for list item");
-	//TODO: put code here for showing the options for the list
 }
 
 // Override to support conditional editing of the table view.
@@ -205,7 +285,7 @@ UITextField *addField;
 			const char *update_sql = "update items set sort = ? where id = ?";
 			if(sqlite3_prepare_v2(db, update_sql, -1, &update_statement, NULL) == SQLITE_OK)
 			{
-				NSLog(@"updating item %i with sort value %i", item_id, item_sort);
+				NSLog(@"updating item with id %i with sort value %i", item_id, item_sort);
 				sqlite3_bind_int(update_statement, 1, item_sort);
 				sqlite3_bind_int(update_statement, 2, item_id);
 				sqlite3_step(update_statement);

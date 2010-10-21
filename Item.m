@@ -56,4 +56,23 @@
 	}
 }
 
+- (void) updateDescription:(NSString*)desc
+{
+	sqlite3 *db = [DBUtil getDatabase];
+	sqlite3_stmt *statement;
+	self.description = desc;
+	const char *sql = "update items set description = ? where id = ?";
+	if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
+	{
+		sqlite3_bind_text(statement, 1, [self.description UTF8String], -1, SQLITE_TRANSIENT);
+		sqlite3_bind_int(statement, 2, [self.id intValue]);
+		sqlite3_step(statement);
+		sqlite3_reset(statement);
+	}
+	else 
+	{
+		NSLog(@"Error deleting item %@ from the DB", self.id);
+	}
+}
+
 @end

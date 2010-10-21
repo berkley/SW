@@ -22,6 +22,7 @@
 	
     if(self = [super init])
     {
+		[self.items release];
         itemArray = [[NSMutableArray alloc] init];
         
         self.identifier = ident;
@@ -59,7 +60,7 @@
                 i.description = [NSString stringWithUTF8String:desc];
                 i.done = [NSNumber numberWithInt:done];
                 i.sort = [NSNumber numberWithInt:srt];
-				NSLog(@"adding item %@ to list %@", i.description, self.identifier);
+				NSLog(@"adding item %@ to list %@ with sort %@", i.description, self.name, i.sort);
                 [itemArray addObject:i];
 				[i release];
             }
@@ -78,7 +79,7 @@
 	if(self = [super init])
     {
 		self.name = n;
-		self.sort = [NSNumber numberWithInt:[[Session sharedInstance].lists count] + 1];
+		self.sort = [NSNumber numberWithInt:[[Session sharedInstance].lists count]];
 		sqlite3 *db = [DBUtil getDatabase];
 		const char *sql = "insert into lists (name, sort)  values (?, ?)";
 		sqlite3_stmt *statement;
@@ -105,7 +106,7 @@
 {
 	Item *item = [[Item alloc] init];
 	item.description = description;
-	item.sort = [NSNumber numberWithInt:[self.items count] + 1];
+	item.sort = [NSNumber numberWithInt:[self.items count]];
 	sqlite3 *db = [DBUtil getDatabase];
 	const char *sql = "insert into items (list_id, description, done, sort)  values (?, ?, ?, ?)";
 	sqlite3_stmt *statement;
@@ -214,6 +215,18 @@
 	}	
 	
 	[self deleteAllItems];
+}
+
+- (void) updateItemDescription:(NSString*)desc withId:(NSNumber*)id
+{
+	for(int i=0; i<[self.items count]; i++)
+	{
+		Item *item = [self.items objectAtIndex:i];
+		if([item.id intValue] == [id intValue])
+		{
+			[item updateDescription:desc];
+		}
+	}
 }
 
 @end

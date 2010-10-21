@@ -359,7 +359,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>7E896115126F9DFC006369D4</string>
+										<string>7E896236126FF5D8006369D4</string>
 										<key>history</key>
 										<array>
 											<string>7EB1E38C1204C47A00B6DF85</string>
@@ -374,19 +374,19 @@
 											<string>7E471BA5126911DD008FBAAD</string>
 											<string>7E471E75126A4678008FBAAD</string>
 											<string>7E895ED6126E4D60006369D4</string>
-											<string>7E895F39126E8CFF006369D4</string>
-											<string>7E895F3A126E8CFF006369D4</string>
-											<string>7E895F5D126E9270006369D4</string>
-											<string>7E895F71126E945A006369D4</string>
-											<string>7E895F87126E9641006369D4</string>
-											<string>7E895F88126E9641006369D4</string>
-											<string>7E895F89126E9641006369D4</string>
 											<string>7E895FE4126F8D72006369D4</string>
-											<string>7E89608C126F96D0006369D4</string>
-											<string>7E89608D126F96D0006369D4</string>
 											<string>7E8960A6126F98AA006369D4</string>
-											<string>7E896113126F9DFC006369D4</string>
-											<string>7E896114126F9DFC006369D4</string>
+											<string>7E896133126FDC01006369D4</string>
+											<string>7E896187126FE586006369D4</string>
+											<string>7E8961E9126FEE09006369D4</string>
+											<string>7E8961EB126FEE09006369D4</string>
+											<string>7E896204126FF28F006369D4</string>
+											<string>7E896206126FF28F006369D4</string>
+											<string>7E896207126FF28F006369D4</string>
+											<string>7E896212126FF2D4006369D4</string>
+											<string>7E896220126FF3A3006369D4</string>
+											<string>7E896228126FF494006369D4</string>
+											<string>7E896229126FF494006369D4</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -567,7 +567,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>309304828.30120599</real>
+	<real>309327320.53831601</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -584,7 +584,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>7E896116126F9DFC006369D4</string>
+		<string>7E896237126FF5D8006369D4</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>7E895DA5126D36D0006369D4</string>
 		<string>7E895D90126CE164006369D4</string>
@@ -610,12 +610,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ListViewController.h</string>
+								<string>ListViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -632,8 +634,6 @@
 							<string>579pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -810,7 +810,7 @@
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

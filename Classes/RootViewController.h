@@ -11,5 +11,6 @@
 }
 
 - (void)openkeyboard:(id)sender;
+- (void)newListItemButtonTouched:(id)sender;
 
 @end

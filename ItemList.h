@@ -29,5 +29,6 @@
 - (void) delete;
 - (void) deleteAllItems;
 - (void) deleteAllDoneItems;
+- (void) updateItemDescription:(NSString*)desc withId:(NSNumber*)id;
 
 @end

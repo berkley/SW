@@ -73,12 +73,19 @@
 
 + (void) loadLists
 {
+	NSLog(@"!!!!!!!!!!Loading lists!");
 	NSArray* listIds = [DBUtil getListIds];
+	[[Session sharedInstance].lists release];
 	[Session sharedInstance].lists = [[NSMutableArray alloc] init];
     for(int i=0; i<[listIds count]; i++)
     {
         NSNumber *listId = [listIds objectAtIndex:i];
-        [[Session sharedInstance].lists addObject:[[ItemList alloc] initWithIdentifier:listId]];
+		ItemList *list = [[ItemList alloc] initWithIdentifier:listId];
+		if([listId intValue] == [[Session sharedInstance].currentListId intValue])
+		{
+			[Session sharedInstance].itemList = list;
+		}
+        [[Session sharedInstance].lists addObject:list];
         NSLog(@"adding list %@", listId);
     }	
 }

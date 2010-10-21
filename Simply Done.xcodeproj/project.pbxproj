@@ -150,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				7E471B3B12690B88008FBAAD /* ListView */,
-				7EC5468011DAE5B100A84CC4 /* ItemView */,
 				7EC5467E11DAE59900A84CC4 /* Data */,
 				080E96DDFE201D6D7F000001 /* Main */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -231,13 +230,6 @@
 				7EC5481C11DAFE5E00A84CC4 /* DBTest.m */,
 			);
 			name = Data;
-			sourceTree = "<group>";
-		};
-		7EC5468011DAE5B100A84CC4 /* ItemView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = ItemView;
 			sourceTree = "<group>";
 		};
 		7EC5470611DAF87C00A84CC4 /* Unit Tests */ = {

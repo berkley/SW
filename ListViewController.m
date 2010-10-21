@@ -78,19 +78,28 @@ UITextField *addField;
 		for(int i=0; i<[[Session sharedInstance].itemList.items count]; i++)
 		{
 			Item *item = [[Session sharedInstance].itemList.items objectAtIndex:i];
-			UITextField *field = (UITextField*)[self.view viewWithTag:[item.id intValue]];
-			if(![field.text isEqualToString:item.description])
+			NSObject *obj = [self.view viewWithTag:[item.id intValue] + 99];
+			if([obj isKindOfClass:[UITextField class]])
 			{
-				NSLog(@"Updating item description");
-				[[Session sharedInstance].itemList updateItemDescription:field.text withId:[NSNumber numberWithInt:field.tag]];
+				UITextField *field = (UITextField*)obj;
+				NSString *fieldText = field.text;
+				
+				NSString *descText = item.description;
+				NSLog(@"fieldText: %@ descText: %@", fieldText, descText);
+				if(![fieldText isEqualToString:descText])
+				{
+					NSLog(@"Updating item description");
+					[[Session sharedInstance].itemList updateItemDescription:fieldText withId:item.id];
+				}
 			}
+			else 
+			{
+				NSLog(@"ERROR: field not updated because the textField is not of class UITextField");
+			}
+
 		}
 		[self.tableView reloadData];
 	}
-
-	//[DBUtil loadLists];
-
-	//[self performSelector:@selector(reload:) withObject:self afterDelay:.25];
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField*) textField 
@@ -174,7 +183,7 @@ UITextField *addField;
 		NSLog(@"adding editing cell for item with id %@ with sort %@", item.id, item.sort);
 		UIView *view = [[UIView alloc]initWithFrame:CGRectMake(45, 5, 200, 35)];
 		UITextField *editField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
-		editField.tag = [item.id intValue];
+		editField.tag = [item.id intValue] + 99;
 		editField.text = item.description;
 		editField.borderStyle = UITextBorderStyleRoundedRect;
 		editField.returnKeyType = UIReturnKeyDone;

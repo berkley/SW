@@ -14,4 +14,6 @@
 
 }
 
+-(void)newItemButtonTouched:(id)sender;
+
 @end

@@ -229,5 +229,18 @@
 	}
 }
 
+- (NSString*) createEmailText
+{
+	NSString *txt = @"";
+	for(int i=0; i<[self.items count]; i++)
+	{
+		Item *item = [self.items objectAtIndex:i];
+		txt = [txt stringByAppendingString:[item toString]];
+		txt = [txt stringByAppendingString:@"\n"];
+	}
+	txt = [txt stringByAppendingString:@"\nCreated with Simply Done\n"];
+	return txt;
+}
+
 @end
 

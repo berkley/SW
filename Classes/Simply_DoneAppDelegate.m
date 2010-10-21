@@ -32,6 +32,12 @@
 	[navigationController pushViewController:rvc animated:NO];
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+	//[viewController handleURL:url];
+	NSLog(@"handling url %@", url);
+	return YES;
+}
+
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	// Save data if appropriate

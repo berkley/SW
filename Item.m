@@ -75,4 +75,15 @@
 	}
 }
 
+- (NSString*)toString
+{
+	NSString *d = @"X ";
+	if([self.done intValue] == 0)
+	{
+		d = @"";
+	}
+	NSString *txt = [NSString stringWithFormat:@"%@%@", d, self.description];
+	return txt;
+}
+
 @end

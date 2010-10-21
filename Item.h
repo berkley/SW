@@ -26,5 +26,6 @@
 - (void)touched;
 - (void) deleteItem;
 - (void) updateDescription:(NSString*)desc;
+- (NSString*)toString;
 
 @end

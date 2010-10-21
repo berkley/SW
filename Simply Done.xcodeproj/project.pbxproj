@@ -35,6 +35,11 @@
 		7E5410BF11EBC8CA009048D8 /* UncheckedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B711EBC8CA009048D8 /* UncheckedBox.png */; };
 		7E895F96126E9861006369D4 /* icon-x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E895F95126E9861006369D4 /* icon-x.png */; };
 		7E895F97126E9861006369D4 /* icon-x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E895F95126E9861006369D4 /* icon-x.png */; };
+		7E8962D21270CD49006369D4 /* ListOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8962D01270CD49006369D4 /* ListOptionsViewController.m */; };
+		7E8962D31270CD49006369D4 /* ListOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E8962D11270CD49006369D4 /* ListOptionsViewController.xib */; };
+		7E8962D41270CD49006369D4 /* ListOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8962D01270CD49006369D4 /* ListOptionsViewController.m */; };
+		7E8962D51270CD49006369D4 /* ListOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E8962D11270CD49006369D4 /* ListOptionsViewController.xib */; };
+		7E8964DD1270F740006369D4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E8964DC1270F740006369D4 /* MessageUI.framework */; };
 		7EC5468611DAE60F00A84CC4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5468511DAE60F00A84CC4 /* Item.m */; };
 		7EC546A111DAE79300A84CC4 /* DBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC546A011DAE79300A84CC4 /* DBUtil.m */; };
 		7EC546B711DAED8700A84CC4 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EC546B611DAED8700A84CC4 /* libsqlite3.0.dylib */; };
@@ -82,6 +87,10 @@
 		7E5410B611EBC8CA009048D8 /* RedX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedX.png; path = Graphics/RedX.png; sourceTree = "<group>"; };
 		7E5410B711EBC8CA009048D8 /* UncheckedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UncheckedBox.png; path = Graphics/UncheckedBox.png; sourceTree = "<group>"; };
 		7E895F95126E9861006369D4 /* icon-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-x.png"; sourceTree = "<group>"; };
+		7E8962CF1270CD49006369D4 /* ListOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOptionsViewController.h; sourceTree = "<group>"; };
+		7E8962D01270CD49006369D4 /* ListOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOptionsViewController.m; sourceTree = "<group>"; };
+		7E8962D11270CD49006369D4 /* ListOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListOptionsViewController.xib; sourceTree = "<group>"; };
+		7E8964DC1270F740006369D4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7EC5468411DAE60F00A84CC4 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		7EC5468511DAE60F00A84CC4 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		7EC5469F11DAE79300A84CC4 /* DBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUtil.h; sourceTree = "<group>"; };
@@ -109,6 +118,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				7EC546B711DAED8700A84CC4 /* libsqlite3.0.dylib in Frameworks */,
+				7E8964DD1270F740006369D4 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +138,9 @@
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
+				7E8962CF1270CD49006369D4 /* ListOptionsViewController.h */,
+				7E8962D01270CD49006369D4 /* ListOptionsViewController.m */,
+				7E8962D11270CD49006369D4 /* ListOptionsViewController.xib */,
 				1D3623240D0F684500981E51 /* Simply_DoneAppDelegate.h */,
 				1D3623250D0F684500981E51 /* Simply_DoneAppDelegate.m */,
 				7E471B6A12690D82008FBAAD /* Session.h */,
@@ -184,6 +197,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E8964DC1270F740006369D4 /* MessageUI.framework */,
 				7EC546B611DAED8700A84CC4 /* libsqlite3.0.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -322,6 +336,7 @@
 				7E471B4D12690BF6008FBAAD /* ListViewController.xib in Resources */,
 				7E18E94D126B8C8500674445 /* ContactAdd.jpg in Resources */,
 				7E895F97126E9861006369D4 /* icon-x.png in Resources */,
+				7E8962D51270CD49006369D4 /* ListOptionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +353,7 @@
 				7E471B4B12690BF6008FBAAD /* ListViewController.xib in Resources */,
 				7E18E94C126B8C8500674445 /* ContactAdd.jpg in Resources */,
 				7E895F96126E9861006369D4 /* icon-x.png in Resources */,
+				7E8962D31270CD49006369D4 /* ListOptionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +389,7 @@
 				7EC548C211DB03D100A84CC4 /* ItemList.m in Sources */,
 				7E471B4C12690BF6008FBAAD /* ListViewController.m in Sources */,
 				7E471B6D12690D82008FBAAD /* Session.m in Sources */,
+				7E8962D41270CD49006369D4 /* ListOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +402,7 @@
 				7EC548C111DB03D100A84CC4 /* ItemList.m in Sources */,
 				7E471B4A12690BF6008FBAAD /* ListViewController.m in Sources */,
 				7E471B6C12690D82008FBAAD /* Session.m in Sources */,
+				7E8962D21270CD49006369D4 /* ListOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

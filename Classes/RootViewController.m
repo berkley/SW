@@ -12,6 +12,7 @@
 #import "ListViewController.h"
 #import "Session.h"
 #import "Item.h"
+#import "ListOptionsViewController.h"
 
 @implementation RootViewController
 
@@ -215,8 +216,11 @@ UIBarButtonItem *addButton;
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
 	NSLog(@"Accessory button tapped.");
-	//ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
-	//TODO: put code here for showing the options for the list
+	ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
+	ListOptionsViewController *lovc = [[ListOptionsViewController alloc]initWithNibName:@"ListOptionsViewController" bundle:nil];
+	[Session sharedInstance].itemList = list;
+	[Session sharedInstance].currentListId = list.identifier;
+	[self.navigationController pushViewController:lovc animated:YES];
 }
 
 // Override to support conditional editing of the table view.
@@ -229,7 +233,6 @@ UIBarButtonItem *addButton;
 	}
     return YES;
 }
-
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

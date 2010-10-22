@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 
-@interface ListOptionsViewController : UITableViewController <UIAlertViewDelegate, UITextFieldDelegate, MFMailComposeViewControllerDelegate> {
+@interface ListOptionsViewController : UIViewController <UIAlertViewDelegate, UITextFieldDelegate, MFMailComposeViewControllerDelegate> {
 
 }
+- (IBAction)emaillist:(id)sender;
+- (IBAction)deleteAllDone:(id)sender;
+- (IBAction)deleteList:(id)sender;
 
 @end

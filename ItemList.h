@@ -31,5 +31,6 @@
 - (void) deleteAllDoneItems;
 - (void) updateItemDescription:(NSString*)desc withId:(NSNumber*)id;
 - (NSString*) createEmailText;
+- (void)initItemsFromDB;
 
 @end

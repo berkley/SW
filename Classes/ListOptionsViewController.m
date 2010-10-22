@@ -23,8 +23,7 @@ UITextField *emailTextField;
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-*/
+}*/
 
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -51,7 +50,7 @@ UITextField *emailTextField;
 	}
 	else 
 	{
-		return 2;
+		return 1;
 	}
 }
 
@@ -99,27 +98,11 @@ UITextField *emailTextField;
 	}
 	else if(indexPath.section == 1)
 	{
-		if(indexPath.row == 0)
-		{
-			UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10,10,100,20)];
-			label.text = @"Address";
-			emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(80, 7, 200, 30)];
-			emailTextField.returnKeyType = UIReturnKeySend;
-			emailTextField.keyboardType = UIKeyboardTypeEmailAddress;
-			emailTextField.borderStyle = UITextBorderStyleRoundedRect;
-			emailTextField.delegate = self;
-			[cell.contentView addSubview:label];
-			[cell.contentView addSubview:emailTextField];
-		}
-		else 
-		{
-			UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-			[button setTitle:@"Send" forState:UIControlStateNormal];
-			button.frame = CGRectMake(55, 8, 200, 30);
-			[button addTarget:self action:@selector(emaillist:) forControlEvents:UIControlEventTouchUpInside];
-			[cell.contentView addSubview:button];
-		}
-
+		UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+		[button setTitle:@"Send" forState:UIControlStateNormal];
+		button.frame = CGRectMake(55, 8, 200, 30);
+		[button addTarget:self action:@selector(emaillist:) forControlEvents:UIControlEventTouchUpInside];
+		[cell.contentView addSubview:button];
 	}
 	
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -127,7 +110,7 @@ UITextField *emailTextField;
     return cell;
 }
 
-- (void)emaillist:(id)sender
+- (IBAction)emaillist:(id)sender
 {
 	NSLog(@"emailing list");
 	//[[Session sharedInstance].itemList emailList:emailTextField.text];
@@ -149,29 +132,23 @@ UITextField *emailTextField;
 {
 	if (result == MFMailComposeResultSent) 
 	{
-		NSString *msg = [NSString stringWithFormat:@"Your list was sent to %@", emailTextField.text];
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email Sent" message:msg  
-													   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
+		//NSString *msg = [NSString stringWithFormat:@"Your list was sent to %@", emailTextField.text];
+		//UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email Sent" message:msg  
+		//											   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		//[alert show];
 	}
 	else 
 	{
-		NSString *msg = [NSString stringWithFormat:@"Sorry, an error occured and your email was not sent."];
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email Failed" message:msg  
-													   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
+		//NSString *msg = [NSString stringWithFormat:@"Sorry, an error occured and your email was not sent."];
+		//UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email Failed" message:msg  
+		//											   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		//[alert show];
 	}
 
 	[self dismissModalViewControllerAnimated:YES];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField*) textField 
-{
-	[textField resignFirstResponder]; 
-	return YES;
-}
-
-- (void)deleteAllDone:(id)sender
+- (IBAction)deleteAllDone:(id)sender
 {
 	NSLog(@"deleteing all done items");
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete List Items" message:@"Are you sure you want to delete all of the finished list items?" 
@@ -187,6 +164,8 @@ UITextField *emailTextField;
 		NSLog(@"button index: %i", buttonIndex);
 		if(buttonIndex == 1)
 		{  //NO is 0, YES is 1
+			NSLog(@"number done to be removed: %@ of %i", 
+				  [[Session sharedInstance].itemList numberDone], [[Session sharedInstance].itemList.items count]);
 			[[Session sharedInstance].itemList deleteAllDoneItems];
 		}
 	}
@@ -199,7 +178,7 @@ UITextField *emailTextField;
 	}
 }
 
-- (void)deleteList:(id)sender
+- (IBAction)deleteList:(id)sender
 {
 	NSLog(@"deleting all items");
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete List Items" message:@"Are you sure you want to delete all of the list items?" 

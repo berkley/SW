@@ -45,32 +45,38 @@
             }
         }
         
-        const char *sql2 = "select id, description, done, sort from items where list_id = ? order by sort";
-        if(sqlite3_prepare_v2(db, sql2, -1, &statement, NULL) == SQLITE_OK)
-        {
-            sqlite3_bind_int(statement, 1, [self.identifier intValue]);
-            while(sqlite3_step(statement) == SQLITE_ROW)
-            {
-                int ident = sqlite3_column_int(statement, 0);
-                char *desc = sqlite3_column_text(statement, 1);
-                int done = sqlite3_column_int(statement, 2);
-                int srt = sqlite3_column_int(statement, 3);
-                Item *i = [[Item alloc] init];
-                i.id = [NSNumber numberWithInt:ident];
-                i.description = [NSString stringWithUTF8String:desc];
-                i.done = [NSNumber numberWithInt:done];
-                i.sort = [NSNumber numberWithInt:srt];
-				NSLog(@"adding item %@ to list %@ with sort %@", i.description, self.name, i.sort);
-                [itemArray addObject:i];
-				[i release];
-            }
-        }
-		self.items = itemArray;
-		[itemArray release];
+        [self initItemsFromDB];
     }
     return self;
 }
 
+- (void)initItemsFromDB
+{
+	[self.items release];
+	self.items = [[NSMutableArray alloc] init];
+	sqlite3 *db = [DBUtil getDatabase];
+	sqlite3_stmt *statement;
+	const char *sql2 = "select id, description, done, sort from items where list_id = ? order by sort";
+	if(sqlite3_prepare_v2(db, sql2, -1, &statement, NULL) == SQLITE_OK)
+	{
+		sqlite3_bind_int(statement, 1, [self.identifier intValue]);
+		while(sqlite3_step(statement) == SQLITE_ROW)
+		{
+			int ident = sqlite3_column_int(statement, 0);
+			char *desc = sqlite3_column_text(statement, 1);
+			int done = sqlite3_column_int(statement, 2);
+			int srt = sqlite3_column_int(statement, 3);
+			Item *i = [[Item alloc] init];
+			i.id = [NSNumber numberWithInt:ident];
+			i.description = [NSString stringWithUTF8String:desc];
+			i.done = [NSNumber numberWithInt:done];
+			i.sort = [NSNumber numberWithInt:srt];
+			NSLog(@"adding item %@ to list %@ with sort %@", i.description, self.name, i.sort);
+			[self.items addObject:i];
+			[i release];
+		}
+	}
+}
 
 //create a new ItemList in the db and get a new identifier for it
 - (id) initWithName:(NSString*)n
@@ -153,11 +159,16 @@
 {
 	NSLog(@"deleting all done items in list %@", self.identifier);
 	sqlite3 *db = [DBUtil getDatabase];
+	NSMutableArray *removeArr = [[NSMutableArray alloc] init];
 	for(int i=0; i<[self.items count]; i++)
 	{
 		Item *item = [self.items objectAtIndex:i];
+		NSLog(@"might remove item %@ with done value %@", item.description, item.done);
 		if([item.done intValue] == 1)
 		{
+			[removeArr addObject:[NSNumber numberWithInt:i]];
+			NSLog(@"removing item %@", item.description);
+			
 			sqlite3_stmt *statement;
 			const char *sql = "delete from items where id = ?";
 			if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
@@ -170,10 +181,10 @@
 			{
 				NSLog(@"Error deleting item %@ from the DB", item.id);
 			}	
-			
-			[self.items removeObjectAtIndex:i];
 		}
 	}
+	
+	[self initItemsFromDB];
 }
 
 //delete all of the items in this list

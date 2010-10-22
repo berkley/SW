@@ -220,6 +220,7 @@ UIBarButtonItem *addButton;
 	ListOptionsViewController *lovc = [[ListOptionsViewController alloc]initWithNibName:@"ListOptionsViewController" bundle:nil];
 	[Session sharedInstance].itemList = list;
 	[Session sharedInstance].currentListId = list.identifier;
+	lovc.navigationItem.title = list.name;
 	[self.navigationController pushViewController:lovc animated:YES];
 }
 

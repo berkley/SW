@@ -150,7 +150,6 @@ UITextField *addField;
 			button.frame = CGRectMake(285, 3, 31, 31);
 			[view addSubview:button];
 			[button addTarget:self action:@selector(newItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
-			
 			[cell.contentView addSubview:view];
 		}
 		else
@@ -173,6 +172,7 @@ UITextField *addField;
 			{
 				cell.imageView.image = [UIImage imageNamed:@"UncheckedBox.png"];
 			}
+			[cell.textLabel setTextColor:[UIColor whiteColor]];
 		}
 	}
 	else 

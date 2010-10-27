@@ -10,7 +10,7 @@
 
 @interface RootViewController : UITableViewController <UITextFieldDelegate>
 {
-	ListViewController *lvc;
+
 }
 
 - (void)openkeyboard:(id)sender;

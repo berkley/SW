@@ -52,7 +52,7 @@
 		[Session sharedInstance].lists = [[NSMutableArray alloc] init];
 	}
 	
-	[DBUtil loadLists];
+	//[DBUtil loadLists];
 	
 	NSLog(@"opening url %@", [url absoluteURL]);
 	//get a file handle

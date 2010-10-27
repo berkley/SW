@@ -18,6 +18,7 @@
 
 UITextField *addField;
 UIBarButtonItem *addButton;
+ListViewController *lvc;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -101,62 +102,66 @@ UIBarButtonItem *addButton;
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
-    /*
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }*/
+    static NSString *NormalCellIdentifier = @"Cell";
+	static NSString *EditCellIdentifier = @"EditCell";
+	ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
 	
-	UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+	UITableViewCell *cell = nil;
 	
-	//check to see if the cell has a left over view from the create new item cell, 
-	//if it does, remove it
-	UIView *v = [cell.contentView viewWithTag:1];
-	if(v != nil)
+	if(cell == nil)
 	{
-		[v removeFromSuperview];
-	}
-	[v release];
-    
-    ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
-	
-	if([list.identifier intValue] == -1)
-	{ //create a cell for adding content
-		NSLog(@"creating new content cell");
-		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
-		addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 25, 250, 30)];
-		UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-		addField.borderStyle = UITextBorderStyleRoundedRect;
-		addField.delegate = self;
-		addField.keyboardType = UIKeyboardTypeDefault;
-		addField.returnKeyType = UIReturnKeyDone;
-		//[addField becomeFirstResponder];
-		button.backgroundColor = [UIColor blackColor];
-		[button setTitle:@"Done" forState:UIControlStateNormal];	
-		button.frame = CGRectMake(260, 25, 55, 30);
-		[view addSubview:addField];
-		[view addSubview:button];
-		view.tag = 1;
-		[cell.contentView addSubview:view];
-		[button addTarget:self action:@selector(newListItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
-		cell.accessoryType =  UITableViewCellAccessoryNone;
+		if([list.identifier intValue] == -1)
+		{ //edit cell
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:EditCellIdentifier] autorelease];
+			NSLog(@"creating new content cell");
+			UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
+			addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 25, 250, 30)];
+			UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+			addField.borderStyle = UITextBorderStyleRoundedRect;
+			addField.delegate = self;
+			addField.keyboardType = UIKeyboardTypeDefault;
+			addField.returnKeyType = UIReturnKeyDone;
+			//[addField becomeFirstResponder];
+			button.backgroundColor = [UIColor blackColor];
+			[button setTitle:@"Done" forState:UIControlStateNormal];	
+			button.frame = CGRectMake(260, 25, 55, 30);
+			[view addSubview:addField];
+			[view addSubview:button];
+			view.tag = 1;
+			[cell.contentView addSubview:view];
+			[button addTarget:self action:@selector(newListItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+			cell.accessoryType =  UITableViewCellAccessoryNone;
+		}
+		else 
+		{ //normal cell
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:NormalCellIdentifier] autorelease];
+			NSLog(@"creating normal cell");
+			cell.textLabel.text = list.name;
+			[cell.textLabel setTextColor:[UIColor whiteColor]];
+			[cell.detailTextLabel setTextColor:[UIColor whiteColor]];
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ of %i tasks complete", [list numberDone], [list.items count]];
+			cell.imageView.image = [UIImage imageNamed:@"ListIcon-80x80-on-black.png"];
+			cell.imageView.frame = CGRectMake(0,0,30,30);
+			cell.accessoryType =  UITableViewCellAccessoryDetailDisclosureButton;
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+			cell.textLabel.numberOfLines = 2;
+			
+		}
 	}
 	else 
-	{ //create a normal cell
-		NSLog(@"creating normal cell");
-		cell.textLabel.text = list.name;
-		[cell.textLabel setTextColor:[UIColor whiteColor]];
-		[cell.detailTextLabel setTextColor:[UIColor whiteColor]];
-		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ of %i tasks complete", [list numberDone], [list.items count]];
-		cell.imageView.image = [UIImage imageNamed:@"ListIcon-80x80-on-black.png"];
-		cell.imageView.frame = CGRectMake(0,0,30,30);
-		cell.accessoryType =  UITableViewCellAccessoryDetailDisclosureButton;
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		cell.textLabel.numberOfLines = 2;
+	{
+		if([list.identifier intValue] == -1)
+		{ //don't need to do anything here
+			
+		}
+		else 
+		{
+			cell.textLabel.text = list.name;
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ of %i tasks complete", [list numberDone], [list.items count]];
+		}
 	}
-
-    return cell;
+	
+	return cell;
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField*) textField 
@@ -210,7 +215,6 @@ UIBarButtonItem *addButton;
 	{
 		NSLog(@"item: %@", [list.items objectAtIndex:i]);
 	}
-	[lvc release];
 }
 
 - (void)reloadListViewController

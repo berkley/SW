@@ -123,47 +123,100 @@ UITextField *addField;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
 	NSLog(@"loading data for cells.  There are %i items in the items array", [[Session sharedInstance].itemList.items count]);
-    static NSString *CellIdentifier = @"Cell";
-    
+    static NSString *NormalCellIdentifier = @"Cell";
+	static NSString *EditCellIdentifier = @"EditCell";
+	static NSString *ChangeCellIdentifier = @"ChangeCell";
+    UITableViewCell *cell = nil;
+	
     /*UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }*/
 	
-    UITableViewCell	*cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    //UITableViewCell	*cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	
     if(!self.tableView.editing)
 	{ //normal cells (not editing)
 		if(indexPath.row == [[Session sharedInstance].itemList.items count])
 		{ //edit cell
-			UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-			
-			addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 4, 275, 31)];
-			addField.borderStyle = UITextBorderStyleRoundedRect;
-			addField.keyboardType = UIKeyboardTypeDefault;
-			addField.returnKeyType = UIReturnKeyDone;
-			addField.tag = -1;
-			addField.delegate = self;
-			[view addSubview:addField];
-		
-			UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
-			button.frame = CGRectMake(285, 3, 31, 31);
-			[view addSubview:button];
-			[button addTarget:self action:@selector(newItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
-			[cell.contentView addSubview:view];
+			cell = [tableView dequeueReusableCellWithIdentifier:ChangeCellIdentifier];
+			if(cell == nil)
+			{
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ChangeCellIdentifier] autorelease];
+				NSLog(@"creating ChangeCell");
+				UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+				
+				addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 4, 275, 31)];
+				addField.borderStyle = UITextBorderStyleRoundedRect;
+				addField.keyboardType = UIKeyboardTypeDefault;
+				addField.returnKeyType = UIReturnKeyDone;
+				addField.tag = -1;
+				addField.delegate = self;
+				[view addSubview:addField];
+				
+				UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
+				button.frame = CGRectMake(285, 3, 31, 31);
+				[view addSubview:button];
+				[button addTarget:self action:@selector(newItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+				[cell.contentView addSubview:view];
+			}
 		}
 		else
 		{ //normal cell
-			for(int i=0; i<[[Session sharedInstance].itemList.items count]; i++)
-			{
-				Item *it = (Item*)[[Session sharedInstance].itemList.items objectAtIndex:i];
-				NSLog(@"item id: %@ desc: %@ sort: %@", it.id, it.description, it.sort);
-			}
+			cell = [tableView dequeueReusableCellWithIdentifier:NormalCellIdentifier];
 			Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];
-			NSLog(@"adding cell for item %@ with id %@ and sort %@", item.description, item.id, item.sort);
-			cell.textLabel.text = item.description;
-			cell.textLabel.minimumFontSize = 8;
-			[cell.textLabel adjustsFontSizeToFitWidth];
+			if(cell == nil)
+			{
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NormalCellIdentifier] autorelease];
+				NSLog(@"creating NormalCell");	
+				NSLog(@"adding cell for item %@ with id %@ and sort %@", item.description, item.id, item.sort);
+				cell.textLabel.text = item.description;
+				cell.textLabel.minimumFontSize = 8;
+				[cell.textLabel adjustsFontSizeToFitWidth];
+				if([item.done intValue] > 0)
+				{
+					cell.imageView.image = [UIImage imageNamed:@"CheckedBox.png"];		
+				}
+				else 
+				{
+					cell.imageView.image = [UIImage imageNamed:@"UncheckedBox.png"];
+				}
+				[cell.textLabel setTextColor:[UIColor whiteColor]];
+			}
+			else 
+			{
+				NSLog(@"reusing NormalCell");
+				cell.textLabel.text = item.description;
+				if([item.done intValue] > 0)
+				{
+					cell.imageView.image = [UIImage imageNamed:@"CheckedBox.png"];		
+				}
+				else 
+				{
+					cell.imageView.image = [UIImage imageNamed:@"UncheckedBox.png"];
+				}
+			}
+		}
+	}
+	else 
+	{ //editing cells
+		cell = [tableView dequeueReusableCellWithIdentifier:EditCellIdentifier];
+		Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];
+		if(cell == nil)
+		{
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:EditCellIdentifier] autorelease];
+			NSLog(@"creating EditCell");
+			NSLog(@"adding editing cell for item with id %@ with sort %@", item.id, item.sort);
+			UIView *view = [[UIView alloc]initWithFrame:CGRectMake(45, 5, 200, 35)];
+			UITextField *editField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+			editField.tag = [item.id intValue] + 99;
+			editField.text = item.description;
+			editField.borderStyle = UITextBorderStyleRoundedRect;
+			editField.returnKeyType = UIReturnKeyDone;
+			editField.delegate = self;
+			[view addSubview:editField];
+			[cell.contentView addSubview:view];
+			
 			if([item.done intValue] > 0)
 			{
 				cell.imageView.image = [UIImage imageNamed:@"CheckedBox.png"];		
@@ -172,37 +225,26 @@ UITextField *addField;
 			{
 				cell.imageView.image = [UIImage imageNamed:@"UncheckedBox.png"];
 			}
-			[cell.textLabel setTextColor:[UIColor whiteColor]];
-		}
-	}
-	else 
-	{ //editing cells
-		Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];
-		NSLog(@"creating editing cells");
-		NSLog(@"adding editing cell for item with id %@ with sort %@", item.id, item.sort);
-		UIView *view = [[UIView alloc]initWithFrame:CGRectMake(45, 5, 200, 35)];
-		UITextField *editField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
-		editField.tag = [item.id intValue] + 99;
-		editField.text = item.description;
-		editField.borderStyle = UITextBorderStyleRoundedRect;
-		editField.returnKeyType = UIReturnKeyDone;
-		editField.delegate = self;
-		[view addSubview:editField];
-		[cell.contentView addSubview:view];
-		
-		if([item.done intValue] > 0)
-		{
-			cell.imageView.image = [UIImage imageNamed:@"CheckedBox.png"];		
 		}
 		else 
 		{
-			cell.imageView.image = [UIImage imageNamed:@"UncheckedBox.png"];
+			NSLog(@"reusing EditCell");
+			UITextField *editField = (UITextField*)[self.view viewWithTag:[item.id intValue] + 99];
+			editField.tag = [item.id intValue] + 99;
+			editField.text = item.description;
+			if([item.done intValue] > 0)
+			{
+				cell.imageView.image = [UIImage imageNamed:@"CheckedBox.png"];		
+			}
+			else 
+			{
+				cell.imageView.image = [UIImage imageNamed:@"UncheckedBox.png"];
+			}
 		}
 	}
 	
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
-	//cell.accessoryType =  UITableViewCellAccessoryDetailDisclosureButton;
-
+	NSLog(@"returning cell");
     return cell;
 }
 

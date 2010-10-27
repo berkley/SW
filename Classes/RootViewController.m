@@ -215,9 +215,15 @@ UIBarButtonItem *addButton;
 
 - (void)reloadListViewController
 {
+	NSLog(@"reloading list view controller");
 	if(lvc != nil)
 	{
-		[lvc.tableView reloadData];
+		NSLog(@"lvc is not null...reloading");
+		if(lvc.tableView != nil)
+		{
+			[lvc.tableView reloadData];
+		}
+		NSLog(@"done reloading lvc");
 	}
 }
 

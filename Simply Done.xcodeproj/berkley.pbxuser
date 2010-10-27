@@ -40,7 +40,7 @@
 		activeArchitecturePreference = armv7;
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 7E9F5C0811DAE07B00CB9177 /* Simply Done */;
-		activeSDKPreference = iphoneos3.2;
+		activeSDKPreference = iphoneos4.1;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Simply Done */;
 		addToTargets = (
 			7EC546FA11DAF73800A84CC4 /* Unit Tests */,
@@ -138,6 +138,14 @@
 			7EE7EA1E1277EC6E005B968A /* PBXTextBookmark */ = 7EE7EA1E1277EC6E005B968A /* PBXTextBookmark */;
 			7EE7EA1F1277EC6E005B968A /* PBXTextBookmark */ = 7EE7EA1F1277EC6E005B968A /* PBXTextBookmark */;
 			7EE7EA201277EC6E005B968A /* PBXTextBookmark */ = 7EE7EA201277EC6E005B968A /* PBXTextBookmark */;
+			7EE7EA2F1277F260005B968A /* PBXTextBookmark */ = 7EE7EA2F1277F260005B968A /* PBXTextBookmark */;
+			7EE7EA301277F260005B968A /* PBXTextBookmark */ = 7EE7EA301277F260005B968A /* PBXTextBookmark */;
+			7EE7EA311277F260005B968A /* PBXTextBookmark */ = 7EE7EA311277F260005B968A /* PBXTextBookmark */;
+			7EE7EA321277F260005B968A /* PBXTextBookmark */ = 7EE7EA321277F260005B968A /* PBXTextBookmark */;
+			7EE7EA331277F260005B968A /* PBXTextBookmark */ = 7EE7EA331277F260005B968A /* PBXTextBookmark */;
+			7EE7EA341277F260005B968A /* PBXTextBookmark */ = 7EE7EA341277F260005B968A /* PBXTextBookmark */;
+			7EE7EA351277F260005B968A /* PBXTextBookmark */ = 7EE7EA351277F260005B968A /* PBXTextBookmark */;
+			7EE7EA361277F260005B968A /* PBXTextBookmark */ = 7EE7EA361277F260005B968A /* PBXTextBookmark */;
 		};
 		sourceControlManager = 7E9F5C1911DAE08200CB9177 /* Source Control */;
 		userBuildSettings = {
@@ -208,9 +216,9 @@
 	};
 	7E8962D01270CD49006369D4 /* ListOptionsViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1269, 2834}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1269, 2821}}";
 			sepNavSelRange = "{4454, 0}";
-			sepNavVisRange = "{3028, 1924}";
+			sepNavVisRange = "{3255, 2105}";
 		};
 	};
 	7E9F5C0811DAE07B00CB9177 /* Simply Done */ = {
@@ -686,6 +694,86 @@
 		rType = 0;
 		vrLen = 1644;
 		vrLoc = 2424;
+	};
+	7EE7EA2F1277F260005B968A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7EC548BF11DB03D100A84CC4 /* ItemList.h */;
+		name = "ItemList.h: 36";
+		rLen = 33;
+		rLoc = 895;
+		rType = 0;
+		vrLen = 935;
+		vrLoc = 0;
+	};
+	7EE7EA301277F260005B968A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7EC5468511DAE60F00A84CC4 /* Item.m */;
+		name = "Item.m: 89";
+		rLen = 19;
+		rLoc = 1964;
+		rType = 0;
+		vrLen = 924;
+		vrLoc = 1230;
+	};
+	7EE7EA311277F260005B968A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7EC5468411DAE60F00A84CC4 /* Item.h */;
+		name = "Item.h: 30";
+		rLen = 0;
+		rLoc = 667;
+		rType = 0;
+		vrLen = 674;
+		vrLoc = 0;
+	};
+	7EE7EA321277F260005B968A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* Simply_DoneAppDelegate.m */;
+		name = "Simply_DoneAppDelegate.m: 54";
+		rLen = 0;
+		rLoc = 1577;
+		rType = 0;
+		vrLen = 1268;
+		vrLoc = 794;
+	};
+	7EE7EA331277F260005B968A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7EC546A011DAE79300A84CC4 /* DBUtil.m */;
+		name = "DBUtil.m: 176";
+		rLen = 0;
+		rLoc = 5271;
+		rType = 0;
+		vrLen = 1480;
+		vrLoc = 2777;
+	};
+	7EE7EA341277F260005B968A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7EC548C011DB03D100A84CC4 /* ItemList.m */;
+		name = "ItemList.m: 281";
+		rLen = 0;
+		rLoc = 7955;
+		rType = 0;
+		vrLen = 1254;
+		vrLoc = 6710;
+	};
+	7EE7EA351277F260005B968A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7E8962D01270CD49006369D4 /* ListOptionsViewController.m */;
+		name = "ListOptionsViewController.m: 136";
+		rLen = 0;
+		rLoc = 4454;
+		rType = 0;
+		vrLen = 1924;
+		vrLoc = 3028;
+	};
+	7EE7EA361277F260005B968A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7E8962D01270CD49006369D4 /* ListOptionsViewController.m */;
+		name = "ListOptionsViewController.m: 136";
+		rLen = 0;
+		rLoc = 4454;
+		rType = 0;
+		vrLen = 2105;
+		vrLoc = 3255;
 	};
 	8D1107310486CEB800E47090 /* Simply_Done-Info.plist */ = {
 		uiCtxt = {

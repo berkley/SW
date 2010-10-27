@@ -432,7 +432,7 @@
 				INFOPLIST_FILE = "Simply_Done-Info.plist";
 				PRODUCT_NAME = "Simply Done";
 				"PROVISIONING_PROFILE[sdk=iphonesimulator*]" = "";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos4.1;
 				VALID_ARCHS = armv7;
 			};
 			name = Debug;

@@ -200,7 +200,7 @@ UIBarButtonItem *addButton;
 	{
 		return;
 	}
-	ListViewController *lvc = [[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil];
+	lvc = [[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil];
 	[self.navigationController pushViewController:lvc animated:YES];
 	lvc.title = list.name;
 	NSLog(@"selected list id %@", list.identifier);
@@ -211,6 +211,14 @@ UIBarButtonItem *addButton;
 		NSLog(@"item: %@", [list.items objectAtIndex:i]);
 	}
 	[lvc release];
+}
+
+- (void)reloadListViewController
+{
+	if(lvc != nil)
+	{
+		[lvc.tableView reloadData];
+	}
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath

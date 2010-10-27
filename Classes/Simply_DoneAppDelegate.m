@@ -35,6 +35,14 @@
 	[navigationController pushViewController:rvc animated:NO];
 }
 
+/*- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+	NSLog(@"didBecomeActive");
+	[DBUtil loadLists];
+	[self refreshRootViewController];
+
+}*/
+
 //open simply done by selecting a url or file
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
 	//[viewController handleURL:url];
@@ -56,12 +64,21 @@
 	[dataToWrite writeToFile:path atomically:YES];
 	//import the parse into the DB
 	[[[DBUtil alloc ] init] importListFile:path];
+	
+	[DBUtil loadLists];
+	[self refreshRootViewController];
+
+	
 	return YES;
 }
 
 - (void)refreshRootViewController
 {
-	[rvc.tableView reloadData];
+	if(rvc != nil)
+	{
+		[rvc.tableView reloadData];
+		[rvc reloadListViewController];
+	}
 }
 
 

@@ -26,6 +26,7 @@
 - (id) initWithName:(NSString*)name;
 - (NSNumber*) numberDone;
 - (void) addItem:(NSString*)description;
+- (void) addItem:(NSString*)description done:(BOOL)d;
 - (void) delete;
 - (void) deleteAllItems;
 - (void) deleteAllDoneItems;

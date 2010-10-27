@@ -18,12 +18,16 @@
 	//the array of ItemLists
 	NSMutableArray* lists;
 	BOOL isAddingNewList;
+	NSString* path;
+	NSString* listName;
 }
 
 @property (nonatomic, retain) NSNumber *currentListId;
 @property (nonatomic, retain) ItemList *itemList;
 @property (nonatomic, retain) NSMutableArray *lists;
 @property (nonatomic) BOOL isAddingNewList;
+@property (nonatomic, retain) NSString* path;
+@property (nonatomic, retain) NSString* listName;
 
 + (Session*)sharedInstance;
 

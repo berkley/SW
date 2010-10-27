@@ -10,7 +10,7 @@
 #import <sqlite3.h>
 
 
-@interface DBUtil : NSObject {
+@interface DBUtil : NSObject <UIAlertViewDelegate> {
     
 }
 
@@ -18,5 +18,9 @@
 + (sqlite3*) getDatabase;
 + (NSArray*) getListIds;
 + (void) loadLists;
+- (void) importListFile:(NSString*)filePath;
+- (void) importListFileWithListId:(NSNumber*)listId filePath:(NSString*)filePath;
++ (BOOL) listWithNameExists:(NSString*)name;
+
 
 @end

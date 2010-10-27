@@ -10,6 +10,7 @@
 #import "RootViewController.h"
 #import "DBUtil.h"
 #import "DBTest.h"
+#import "Session.h"
 
 @implementation Simply_DoneAppDelegate
 
@@ -20,6 +21,8 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
+
+
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     
     // Override point for customization after app launch 
@@ -28,21 +31,43 @@
     
 	[window addSubview:[navigationController view]];
 	[window makeKeyAndVisible];
-	RootViewController *rvc = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+	rvc = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
 	[navigationController pushViewController:rvc animated:NO];
 }
 
+//open simply done by selecting a url or file
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
 	//[viewController handleURL:url];
-	NSLog(@"handling url %@", url);
+	NSLog(@"Handling open url call for url %@", [url absoluteURL]);
+	if([Session sharedInstance].lists == nil)
+	{
+		[Session sharedInstance].lists = [[NSMutableArray alloc] init];
+	}
+	
+	[DBUtil loadLists];
+	
+	NSLog(@"opening url %@", [url absoluteURL]);
+	//get a file handle
+	NSData *dataToWrite = [NSData dataWithContentsOfURL:url];
+	NSString *docsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	NSString *path = [docsDirectory stringByAppendingPathComponent:@"import.txt"];
+	NSLog(@"writing url to path %@", path);
+	// Write the file
+	[dataToWrite writeToFile:path atomically:YES];
+	//import the parse into the DB
+	[[[DBUtil alloc ] init] importListFile:path];
 	return YES;
 }
 
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-	// Save data if appropriate
+- (void)refreshRootViewController
+{
+	[rvc.tableView reloadData];
 }
 
+
+//- (void)applicationWillTerminate:(UIApplication *)application {
+	// Save data if appropriate
+//}
 
 #pragma mark -
 #pragma mark Memory management

@@ -9,6 +9,7 @@
 #import "DBUtil.h"
 #import "Constants.h"
 #import "Session.h"
+#import "Simply_DoneAppDelegate.h"
 
 @implementation DBUtil
 
@@ -88,6 +89,143 @@
         [[Session sharedInstance].lists addObject:list];
         NSLog(@"adding list %@", listId);
     }	
+}
+
+//make sure the lists are loaded into the session before calling htis
++ (BOOL) listWithNameExists:(NSString*)name
+{
+	for(int i=0; i<[[Session sharedInstance].lists count]; i++)
+	{
+		ItemList *list = [[Session sharedInstance].lists objectAtIndex:i];
+		if([name isEqualToString:list.name])
+		{
+			return YES;
+		}
+	}
+	return NO;
+}
+
+- (void) importListFileWithListId:(NSNumber*)listId filePath:(NSString*)filePath;
+{
+	NSLog(@"importing list with id %@ from path %@", listId, filePath);
+	NSError *error;
+	NSString *fileStr = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+	NSArray *listItems = [fileStr componentsSeparatedByString:@"\n"];
+	NSString *name = [listItems objectAtIndex:0];
+	NSLog(@"list name: %@", name);
+	if(listId == nil)
+	{
+		NSLog(@"adding new list");
+		ItemList *list = [[ItemList alloc] initWithName:name];
+		[[Session sharedInstance].lists addObject:list];
+		for(int i=1; i<[listItems count]; i++)
+		{
+			NSString *line = [listItems objectAtIndex:i];
+			if([[line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""])
+			{
+				continue;
+			}
+			NSLog(@"line: %@", line);
+			NSArray *fields = [line componentsSeparatedByString:@","];
+			NSString *doneStr = (NSString*)[fields objectAtIndex:0];
+			NSString *desc = (NSString*)[fields objectAtIndex:1];
+			BOOL d = NO;
+			if([doneStr isEqualToString:@"1"])
+			{
+				d = YES;
+			}
+			[list addItem:desc done:d];
+		}
+	}
+	else 
+	{
+		for(int i=0; i<[[Session sharedInstance].lists count]; i++)
+		{
+			NSLog(@"importing into current list");
+			ItemList *list = [[Session sharedInstance].lists objectAtIndex:i];
+			if([list.identifier intValue] == [listId intValue])
+			{//add the items to this list
+				for(int j=1; j<[listItems count]; j++)
+				{
+					NSString *line = [listItems objectAtIndex:j];
+					NSLog(@"line: %@", line);
+					if([[line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""])
+					{
+						continue;
+					}
+					NSArray *fields = [line componentsSeparatedByString:@","];
+					NSString *doneStr = (NSString*)[fields objectAtIndex:0];
+					NSString *desc = (NSString*)[fields objectAtIndex:1];
+					BOOL d = NO;
+					if([doneStr isEqualToString:@"1"])
+					{
+						d = YES;
+					}
+					[list addItem:desc done:d];
+				}
+				break;
+			}
+		}
+	}
+}
+
+- (void) importListFile:(NSString*)filePath
+{
+	NSLog(@"importing list file");
+	NSError *error;
+	NSString *fileStr = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+	NSArray *listItems = [fileStr componentsSeparatedByString:@"\n"];
+	[Session sharedInstance].listName = [listItems objectAtIndex:0];
+	//check to see if the list name already exists.  if it does as the user if they would like to merge or create
+	//a new list
+
+	[Session sharedInstance].path = filePath;
+	
+	if([DBUtil listWithNameExists:[Session sharedInstance].listName])
+	{
+		NSString* msg = [NSString stringWithFormat:@"A list named %@ already exists.  You can merge these lists or create a new list with the same name.", [Session sharedInstance].listName];
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Merge?" message:msg delegate:self cancelButtonTitle:@"New List" otherButtonTitles:@"Merge", nil];
+		[alert show];
+	}
+	else
+	{
+		[self importListFileWithListId:nil filePath:filePath];
+	}
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	NSLog(@"handling user input via alertView");
+	NSString *path = [Session sharedInstance].path;
+	if(buttonIndex == 0)
+	{ //new list
+		NSLog(@"button 0 clicked");
+		NSLog(@"calling imporListFileWithListId:nil filePath:%@", path);
+		[self importListFileWithListId:nil filePath:path];
+		[DBUtil loadLists];
+		Simply_DoneAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+		[delegate refreshRootViewController];
+	}
+	else 
+	{ //merge
+		NSLog(@"button 1 clicked");
+		NSNumber *listId = nil;
+		for(int i=0; i<[[Session sharedInstance].lists count]; i++)
+		{
+			ItemList *list = [[Session sharedInstance].lists objectAtIndex:i];
+			if([[Session sharedInstance].listName isEqualToString:list.name])
+			{
+				listId = list.identifier;
+				break;
+			}
+		}
+		NSLog(@"calling imporListFileWithListId:%@ filePath:%@", listId, path);
+		[self importListFileWithListId:listId filePath:path];
+		[DBUtil loadLists];
+		Simply_DoneAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+		[delegate refreshRootViewController];
+	}
+
 }
 
 @end

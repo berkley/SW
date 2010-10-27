@@ -107,8 +107,13 @@
 	return self;
 }
 
+- (void) addItem:(NSString *)description
+{
+	return [self addItem:description done:NO];
+}
+
 //add an item to this list
-- (void) addItem:(NSString*)description
+- (void) addItem:(NSString*)description done:(BOOL)d
 {
 	Item *item = [[Item alloc] init];
 	item.description = description;
@@ -120,7 +125,14 @@
 	{
 		sqlite3_bind_int(statement, 1, [self.identifier intValue]);
 		sqlite3_bind_text(statement, 2, [item.description UTF8String], -1, SQLITE_TRANSIENT);
-		sqlite3_bind_int(statement, 3, 0);
+		if(d)
+		{
+			sqlite3_bind_int(statement, 3, 1);
+		}
+		else 
+		{
+			sqlite3_bind_int(statement, 3, 0);
+		}
 		sqlite3_bind_int(statement, 4, [item.sort intValue]);
 		sqlite3_step(statement);
 		sqlite3_reset(statement);

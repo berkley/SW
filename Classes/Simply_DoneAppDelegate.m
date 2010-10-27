@@ -51,9 +51,7 @@
 	{
 		[Session sharedInstance].lists = [[NSMutableArray alloc] init];
 	}
-	
-	//[DBUtil loadLists];
-	
+		
 	NSLog(@"opening url %@", [url absoluteURL]);
 	//get a file handle
 	NSData *dataToWrite = [NSData dataWithContentsOfURL:url];
@@ -88,6 +86,7 @@
 - (void)dealloc {
 	[navigationController release];
 	[window release];
+	[rvc release];
 	[super dealloc];
 }
 

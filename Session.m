@@ -15,10 +15,6 @@
 
 static Session *sharedInstance = nil;
 
-- (void)dealloc {
-    [super dealloc];
-}
-
 + (Session*)sharedInstance
 {
     @synchronized(self)
@@ -29,5 +25,14 @@ static Session *sharedInstance = nil;
     return sharedInstance;
 }
 
+- (void)dealloc 
+{
+	[currentListId release];
+	[itemList release];
+	[lists release];
+	[path release];
+	[listName release];
+	[super dealloc];
+}
 
 @end

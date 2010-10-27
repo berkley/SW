@@ -160,6 +160,8 @@ UITextField *addField;
 				[button addTarget:self action:@selector(newItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
 				[cell.contentView addSubview:view];
 			}
+			UITextField *addField = (UITextField*)[self.view viewWithTag:-1];
+			addField.text = @"";
 		}
 		else
 		{ //normal cell
@@ -257,6 +259,8 @@ UITextField *addField;
 	NSLog(@"Add button pushed. text: %@", addField.text);
 	[[Session sharedInstance].itemList addItem:addField.text];
 	NSLog(@"There are now %i items in the shared item list", [[Session sharedInstance].itemList.items count]);
+	UITextField *field = (UITextField*)[self.view viewWithTag:-1];
+	field.text = @"";
 	[self.tableView reloadData];
 }
 

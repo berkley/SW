@@ -98,4 +98,14 @@
 	return txt;
 }
 
+- (void)dealloc 
+{
+	[self.id release];
+	[description release];
+	[sort release];
+	[done release];
+	[list_id release];
+	[super dealloc];
+}
+
 @end

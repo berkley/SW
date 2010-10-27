@@ -280,5 +280,15 @@
 	//[txt writeToFile:path atomically:YES];
 	return [txt dataUsingEncoding:NSUTF8StringEncoding];
 }
+
+- (void)dealloc 
+{
+	[identifier release];
+	[name release];
+	[sort release];
+	[items release];
+	[super dealloc];
+}
+
 @end
 

@@ -357,24 +357,26 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>7EE7EACA1278E09A005B968A</string>
+										<string>7EE7EB121278E67B005B968A</string>
 										<key>history</key>
 										<array>
-											<string>7EE7E9D91277E0E6005B968A</string>
 											<string>7EE7EA061277E9AB005B968A</string>
-											<string>7EE7EA071277E9AB005B968A</string>
-											<string>7EE7EA1E1277EC6E005B968A</string>
-											<string>7EE7EA2F1277F260005B968A</string>
 											<string>7EE7EA301277F260005B968A</string>
-											<string>7EE7EA311277F260005B968A</string>
-											<string>7EE7EA331277F260005B968A</string>
 											<string>7EE7EA341277F260005B968A</string>
 											<string>7EE7EA3B1277F560005B968A</string>
-											<string>7EE7EA621277FA8F005B968A</string>
-											<string>7EE7EA631277FA8F005B968A</string>
-											<string>7EE7EA6F1277FB1C005B968A</string>
-											<string>7EE7EA8E1278DE40005B968A</string>
-											<string>7EE7EAC91278E09A005B968A</string>
+											<string>7EE7EADD1278E326005B968A</string>
+											<string>7EE7EADE1278E326005B968A</string>
+											<string>7EE7EAFE1278E4D1005B968A</string>
+											<string>7EE7EAFF1278E4D1005B968A</string>
+											<string>7EE7EB001278E4D1005B968A</string>
+											<string>7EE7EB011278E4D1005B968A</string>
+											<string>7EE7EB021278E4D1005B968A</string>
+											<string>7EE7EB031278E4D1005B968A</string>
+											<string>7EE7EB041278E4D1005B968A</string>
+											<string>7EE7EB051278E4D1005B968A</string>
+											<string>7EE7EB0F1278E67B005B968A</string>
+											<string>7EE7EB101278E67B005B968A</string>
+											<string>7EE7EB111278E67B005B968A</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -429,7 +431,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1330, 262}}</string>
+										<string>{{10, 27}, {1203, 262}}</string>
 									</dict>
 									<key>Module</key>
 									<string>PBXProjectFindModule</string>
@@ -673,7 +675,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>309911706.27981299</real>
+	<real>309913211.15366101</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -690,7 +692,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>7EE7EACB1278E09A005B968A</string>
+		<string>7EE7EB131278E67B005B968A</string>
 		<string>7EE7E9701277CC94005B968A</string>
 		<string>7EE7E9721277CC94005B968A</string>
 		<string>/Users/berkley/project/iphone/Simply Done/Simply Done.xcodeproj</string>

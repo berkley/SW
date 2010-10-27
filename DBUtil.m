@@ -91,7 +91,7 @@
     }	
 }
 
-//make sure the lists are loaded into the session before calling htis
+//make sure the lists are loaded into the session before calling this
 + (BOOL) listWithNameExists:(NSString*)name
 {
 	for(int i=0; i<[[Session sharedInstance].lists count]; i++)
@@ -114,7 +114,7 @@
 	NSString *name = [listItems objectAtIndex:0];
 	NSLog(@"list name: %@", name);
 	if(listId == nil)
-	{
+	{ //create a new list
 		NSLog(@"adding new list");
 		ItemList *list = [[ItemList alloc] initWithName:name];
 		[[Session sharedInstance].lists addObject:list];
@@ -138,7 +138,7 @@
 		}
 	}
 	else 
-	{
+	{ //import into an existing list
 		for(int i=0; i<[[Session sharedInstance].lists count]; i++)
 		{
 			NSLog(@"importing into current list");

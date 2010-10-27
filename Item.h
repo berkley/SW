@@ -27,5 +27,6 @@
 - (void) deleteItem;
 - (void) updateDescription:(NSString*)desc;
 - (NSString*)toString;
+- (NSString*)export;
 
 @end

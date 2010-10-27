@@ -86,4 +86,16 @@
 	return txt;
 }
 
+- (NSString*)export
+{
+	NSString *d = @"1";
+	if([self.done intValue] == 0)
+	{
+		d = @"0";
+	}
+
+	NSString *txt = [NSString stringWithFormat:@"%@,%@", d, self.description];
+	return txt;
+}
+
 @end

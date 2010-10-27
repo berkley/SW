@@ -12,8 +12,6 @@
 
 @implementation ListOptionsViewController
 
-UITextField *emailTextField;
-
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -112,16 +110,30 @@ UITextField *emailTextField;
 
 - (IBAction)emaillist:(id)sender
 {
-	NSLog(@"emailing list");
+	NSLog(@"emailing plain text list");
 	//[[Session sharedInstance].itemList emailList:emailTextField.text];
 	
 	MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
 	controller.mailComposeDelegate = self;
-	NSMutableArray *toArr = [NSMutableArray arrayWithObjects:emailTextField.text, nil];
-	[controller setToRecipients:toArr];
 	NSString *subject = [NSString stringWithFormat:@"Todo List: %@", [Session sharedInstance].itemList.name];
 	[controller setSubject:subject];
 	[controller setMessageBody:[[Session sharedInstance].itemList createEmailText] isHTML:NO]; 
+	[self presentModalViewController:controller animated:YES];
+	[controller release];
+}
+
+- (IBAction)emailSDlist:(id)sender
+{
+	NSLog(@"emailing SD list");
+	//[[Session sharedInstance].itemList emailList:emailTextField.text];
+	
+	MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+	controller.mailComposeDelegate = self;
+	NSString *subject = [NSString stringWithFormat:@"Todo List: %@", [Session sharedInstance].itemList.name];
+	[controller setSubject:subject];
+	[controller setMessageBody:[[Session sharedInstance].itemList createEmailText] isHTML:NO]; 
+	NSString *filename = [NSString stringWithFormat:@"%@.simplydone", [Session sharedInstance].itemList.name];
+	[controller addAttachmentData:[[Session sharedInstance].itemList createEmailAttachment] mimeType:@"application/simplydone" fileName:filename];
 	[self presentModalViewController:controller animated:YES];
 	[controller release];
 }

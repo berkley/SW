@@ -265,5 +265,20 @@
 	return txt;
 }
 
+- (NSData*)createEmailAttachment
+{
+	NSString *txt = [NSString stringWithFormat:@"%@", self.name];
+	txt = [txt stringByAppendingString:@"\n"];
+	for(int i=0; i<[self.items count]; i++)
+	{
+		Item *item = [self.items objectAtIndex:i];
+		txt = [txt stringByAppendingString:[item export]];
+		txt = [txt stringByAppendingString:@"\n"];
+	}
+	//NSString *docsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	//NSString *path = [docsDirectory stringByAppendingPathComponent:@"export.txt"];
+	//[txt writeToFile:path atomically:YES];
+	return [txt dataUsingEncoding:NSUTF8StringEncoding];
+}
 @end
 

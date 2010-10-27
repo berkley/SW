@@ -33,5 +33,6 @@
 - (void) updateItemDescription:(NSString*)desc withId:(NSNumber*)id;
 - (NSString*) createEmailText;
 - (void)initItemsFromDB;
+- (NSData*)createEmailAttachment;
 
 @end

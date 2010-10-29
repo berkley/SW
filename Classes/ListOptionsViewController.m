@@ -131,7 +131,7 @@
 	controller.mailComposeDelegate = self;
 	NSString *subject = [NSString stringWithFormat:@"Todo List: %@", [Session sharedInstance].itemList.name];
 	[controller setSubject:subject];
-	[controller setMessageBody:[[Session sharedInstance].itemList createEmailText] isHTML:NO]; 
+	//[controller setMessageBody:[[Session sharedInstance].itemList createEmailText] isHTML:NO]; 
 	NSString *filename = [NSString stringWithFormat:@"%@.simplydone", [Session sharedInstance].itemList.name];
 	[controller addAttachmentData:[[Session sharedInstance].itemList createEmailAttachment] mimeType:@"application/simplydone" fileName:filename];
 	[self presentModalViewController:controller animated:YES];

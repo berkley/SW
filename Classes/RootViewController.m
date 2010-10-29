@@ -219,7 +219,11 @@ ListViewController *lvc;
 	ItemList *item = [[ItemList alloc] initWithName:addField.text];
 	[[Session sharedInstance].lists addObject:item];
 	[self.tableView reloadData];
-	NSIndexPath *scrollToIndexPath = [NSIndexPath indexPathForRow:[[Session sharedInstance].lists count] - 2 inSection:0];
+    NSInteger row = [[Session sharedInstance].lists count] - 2;
+    if (row < 0) {
+        row = 0;
+    }
+	NSIndexPath *scrollToIndexPath = [NSIndexPath indexPathForRow:row inSection:0];
 	[self.tableView scrollToRowAtIndexPath:scrollToIndexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
 }
 

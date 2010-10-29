@@ -14,7 +14,7 @@
 				<string>simplydone</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>icon-x.png</string>
+			<string>Icon_22x29.png</string>
 			<key>CFBundleTypeName</key>
 			<string>Simply Done</string>
 			<key>CFBundleTypeRole</key>
@@ -33,8 +33,10 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>icon-x.png</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon_57x57.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.bordertownlabs.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -82,5 +84,9 @@
 			</dict>
 		</dict>
 	</array>
+	<key>UILaunchImageFile</key>
+	<string>LaunchImage_640x960.png</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
 </dict>
 </plist>

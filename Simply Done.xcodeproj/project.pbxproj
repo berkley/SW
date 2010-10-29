@@ -17,29 +17,33 @@
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		7E18E94C126B8C8500674445 /* ContactAdd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E18E94B126B8C8500674445 /* ContactAdd.jpg */; };
 		7E18E94D126B8C8500674445 /* ContactAdd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E18E94B126B8C8500674445 /* ContactAdd.jpg */; };
-		7E471B20126908BD008FBAAD /* ListIcon-80x80-on-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E471B1F126908BD008FBAAD /* ListIcon-80x80-on-black.png */; };
-		7E471B21126908BD008FBAAD /* ListIcon-80x80-on-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E471B1F126908BD008FBAAD /* ListIcon-80x80-on-black.png */; };
 		7E471B4A12690BF6008FBAAD /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */; };
 		7E471B4B12690BF6008FBAAD /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E471B4912690BF6008FBAAD /* ListViewController.xib */; };
 		7E471B4C12690BF6008FBAAD /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */; };
 		7E471B4D12690BF6008FBAAD /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E471B4912690BF6008FBAAD /* ListViewController.xib */; };
 		7E471B6C12690D82008FBAAD /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E471B6B12690D82008FBAAD /* Session.m */; };
 		7E471B6D12690D82008FBAAD /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E471B6B12690D82008FBAAD /* Session.m */; };
-		7E5410B811EBC8CA009048D8 /* CheckedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B411EBC8CA009048D8 /* CheckedBox.png */; };
-		7E5410B911EBC8CA009048D8 /* ListIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B511EBC8CA009048D8 /* ListIcon.png */; };
-		7E5410BA11EBC8CA009048D8 /* RedX.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B611EBC8CA009048D8 /* RedX.png */; };
-		7E5410BB11EBC8CA009048D8 /* UncheckedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B711EBC8CA009048D8 /* UncheckedBox.png */; };
-		7E5410BC11EBC8CA009048D8 /* CheckedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B411EBC8CA009048D8 /* CheckedBox.png */; };
-		7E5410BD11EBC8CA009048D8 /* ListIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B511EBC8CA009048D8 /* ListIcon.png */; };
-		7E5410BE11EBC8CA009048D8 /* RedX.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B611EBC8CA009048D8 /* RedX.png */; };
-		7E5410BF11EBC8CA009048D8 /* UncheckedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5410B711EBC8CA009048D8 /* UncheckedBox.png */; };
-		7E895F96126E9861006369D4 /* icon-x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E895F95126E9861006369D4 /* icon-x.png */; };
-		7E895F97126E9861006369D4 /* icon-x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E895F95126E9861006369D4 /* icon-x.png */; };
 		7E8962D21270CD49006369D4 /* ListOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8962D01270CD49006369D4 /* ListOptionsViewController.m */; };
 		7E8962D31270CD49006369D4 /* ListOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E8962D11270CD49006369D4 /* ListOptionsViewController.xib */; };
 		7E8962D41270CD49006369D4 /* ListOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8962D01270CD49006369D4 /* ListOptionsViewController.m */; };
 		7E8962D51270CD49006369D4 /* ListOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E8962D11270CD49006369D4 /* ListOptionsViewController.xib */; };
 		7E8964DD1270F740006369D4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E8964DC1270F740006369D4 /* MessageUI.framework */; };
+		7EAAB508127A641C000C84FA /* Icon_22x29.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB505127A641C000C84FA /* Icon_22x29.png */; };
+		7EAAB509127A641C000C84FA /* Icon_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB506127A641C000C84FA /* Icon_57x57.png */; };
+		7EAAB50A127A641C000C84FA /* Icon_512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB507127A641C000C84FA /* Icon_512x512.png */; };
+		7EAAB50B127A641C000C84FA /* Icon_22x29.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB505127A641C000C84FA /* Icon_22x29.png */; };
+		7EAAB50C127A641C000C84FA /* Icon_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB506127A641C000C84FA /* Icon_57x57.png */; };
+		7EAAB50D127A641C000C84FA /* Icon_512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB507127A641C000C84FA /* Icon_512x512.png */; };
+		7EAAB51F127A747D000C84FA /* ListIcon_80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB51E127A747D000C84FA /* ListIcon_80x80.png */; };
+		7EAAB520127A747D000C84FA /* ListIcon_80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB51E127A747D000C84FA /* ListIcon_80x80.png */; };
+		7EAAB59D127A7E03000C84FA /* LaunchImage_640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB59C127A7E03000C84FA /* LaunchImage_640x960.png */; };
+		7EAAB59E127A7E03000C84FA /* LaunchImage_640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB59C127A7E03000C84FA /* LaunchImage_640x960.png */; };
+		7EAAB5BA127A8479000C84FA /* UnCheckedBox_40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB5B8127A8479000C84FA /* UnCheckedBox_40x40.png */; };
+		7EAAB5BB127A8479000C84FA /* CheckedBox_40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB5B9127A8479000C84FA /* CheckedBox_40x40.png */; };
+		7EAAB5BC127A8479000C84FA /* UnCheckedBox_40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB5B8127A8479000C84FA /* UnCheckedBox_40x40.png */; };
+		7EAAB5BD127A8479000C84FA /* CheckedBox_40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB5B9127A8479000C84FA /* CheckedBox_40x40.png */; };
+		7EAAB5C2127A86DF000C84FA /* OrangeX_40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB5C1127A86DF000C84FA /* OrangeX_40x40.png */; };
+		7EAAB5C3127A86DF000C84FA /* OrangeX_40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB5C1127A86DF000C84FA /* OrangeX_40x40.png */; };
 		7EC5468611DAE60F00A84CC4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5468511DAE60F00A84CC4 /* Item.m */; };
 		7EC546A111DAE79300A84CC4 /* DBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC546A011DAE79300A84CC4 /* DBUtil.m */; };
 		7EC546B711DAED8700A84CC4 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EC546B611DAED8700A84CC4 /* libsqlite3.0.dylib */; };
@@ -76,21 +80,23 @@
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RootViewController.xib; path = ../RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7E18E94B126B8C8500674445 /* ContactAdd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ContactAdd.jpg; path = Graphics/ContactAdd.jpg; sourceTree = "<group>"; };
-		7E471B1F126908BD008FBAAD /* ListIcon-80x80-on-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ListIcon-80x80-on-black.png"; path = "Graphics/ListIcon-80x80-on-black.png"; sourceTree = "<group>"; };
 		7E471B4712690BF6008FBAAD /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		7E471B4812690BF6008FBAAD /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		7E471B4912690BF6008FBAAD /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
 		7E471B6A12690D82008FBAAD /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Session.h; path = ../Session.h; sourceTree = "<group>"; };
 		7E471B6B12690D82008FBAAD /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Session.m; path = ../Session.m; sourceTree = "<group>"; };
-		7E5410B411EBC8CA009048D8 /* CheckedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CheckedBox.png; path = Graphics/CheckedBox.png; sourceTree = "<group>"; };
-		7E5410B511EBC8CA009048D8 /* ListIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ListIcon.png; path = Graphics/ListIcon.png; sourceTree = "<group>"; };
-		7E5410B611EBC8CA009048D8 /* RedX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedX.png; path = Graphics/RedX.png; sourceTree = "<group>"; };
-		7E5410B711EBC8CA009048D8 /* UncheckedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UncheckedBox.png; path = Graphics/UncheckedBox.png; sourceTree = "<group>"; };
-		7E895F95126E9861006369D4 /* icon-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-x.png"; sourceTree = "<group>"; };
 		7E8962CF1270CD49006369D4 /* ListOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOptionsViewController.h; sourceTree = "<group>"; };
 		7E8962D01270CD49006369D4 /* ListOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOptionsViewController.m; sourceTree = "<group>"; };
 		7E8962D11270CD49006369D4 /* ListOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListOptionsViewController.xib; sourceTree = "<group>"; };
 		7E8964DC1270F740006369D4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		7EAAB505127A641C000C84FA /* Icon_22x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon_22x29.png; path = Graphics/Raster/Icon_22x29.png; sourceTree = "<group>"; };
+		7EAAB506127A641C000C84FA /* Icon_57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon_57x57.png; path = Graphics/Raster/Icon_57x57.png; sourceTree = "<group>"; };
+		7EAAB507127A641C000C84FA /* Icon_512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon_512x512.png; path = Graphics/Raster/Icon_512x512.png; sourceTree = "<group>"; };
+		7EAAB51E127A747D000C84FA /* ListIcon_80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ListIcon_80x80.png; path = Graphics/Raster/ListIcon_80x80.png; sourceTree = "<group>"; };
+		7EAAB59C127A7E03000C84FA /* LaunchImage_640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchImage_640x960.png; path = Graphics/Raster/LaunchImage_640x960.png; sourceTree = "<group>"; };
+		7EAAB5B8127A8479000C84FA /* UnCheckedBox_40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UnCheckedBox_40x40.png; path = Graphics/Raster/UnCheckedBox_40x40.png; sourceTree = "<group>"; };
+		7EAAB5B9127A8479000C84FA /* CheckedBox_40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CheckedBox_40x40.png; path = Graphics/Raster/CheckedBox_40x40.png; sourceTree = "<group>"; };
+		7EAAB5C1127A86DF000C84FA /* OrangeX_40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = OrangeX_40x40.png; path = Graphics/Raster/OrangeX_40x40.png; sourceTree = "<group>"; };
 		7EC5468411DAE60F00A84CC4 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		7EC5468511DAE60F00A84CC4 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		7EC5469F11DAE79300A84CC4 /* DBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUtil.h; sourceTree = "<group>"; };
@@ -219,13 +225,15 @@
 		7E5410B211EBC89F009048D8 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
-				7E895F95126E9861006369D4 /* icon-x.png */,
+				7EAAB5C1127A86DF000C84FA /* OrangeX_40x40.png */,
+				7EAAB5B8127A8479000C84FA /* UnCheckedBox_40x40.png */,
+				7EAAB5B9127A8479000C84FA /* CheckedBox_40x40.png */,
+				7EAAB59C127A7E03000C84FA /* LaunchImage_640x960.png */,
+				7EAAB51E127A747D000C84FA /* ListIcon_80x80.png */,
+				7EAAB505127A641C000C84FA /* Icon_22x29.png */,
+				7EAAB506127A641C000C84FA /* Icon_57x57.png */,
+				7EAAB507127A641C000C84FA /* Icon_512x512.png */,
 				7E18E94B126B8C8500674445 /* ContactAdd.jpg */,
-				7E471B1F126908BD008FBAAD /* ListIcon-80x80-on-black.png */,
-				7E5410B411EBC8CA009048D8 /* CheckedBox.png */,
-				7E5410B511EBC8CA009048D8 /* ListIcon.png */,
-				7E5410B611EBC8CA009048D8 /* RedX.png */,
-				7E5410B711EBC8CA009048D8 /* UncheckedBox.png */,
 			);
 			name = Graphics;
 			sourceTree = "<group>";
@@ -329,15 +337,17 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
 				7EC547B411DAFA2F00A84CC4 /* sd.sqlite in Resources */,
-				7E5410BC11EBC8CA009048D8 /* CheckedBox.png in Resources */,
-				7E5410BD11EBC8CA009048D8 /* ListIcon.png in Resources */,
-				7E5410BE11EBC8CA009048D8 /* RedX.png in Resources */,
-				7E5410BF11EBC8CA009048D8 /* UncheckedBox.png in Resources */,
-				7E471B20126908BD008FBAAD /* ListIcon-80x80-on-black.png in Resources */,
 				7E471B4D12690BF6008FBAAD /* ListViewController.xib in Resources */,
 				7E18E94D126B8C8500674445 /* ContactAdd.jpg in Resources */,
-				7E895F97126E9861006369D4 /* icon-x.png in Resources */,
 				7E8962D51270CD49006369D4 /* ListOptionsViewController.xib in Resources */,
+				7EAAB50B127A641C000C84FA /* Icon_22x29.png in Resources */,
+				7EAAB50C127A641C000C84FA /* Icon_57x57.png in Resources */,
+				7EAAB50D127A641C000C84FA /* Icon_512x512.png in Resources */,
+				7EAAB520127A747D000C84FA /* ListIcon_80x80.png in Resources */,
+				7EAAB59E127A7E03000C84FA /* LaunchImage_640x960.png in Resources */,
+				7EAAB5BC127A8479000C84FA /* UnCheckedBox_40x40.png in Resources */,
+				7EAAB5BD127A8479000C84FA /* CheckedBox_40x40.png in Resources */,
+				7EAAB5C3127A86DF000C84FA /* OrangeX_40x40.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,15 +356,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EC547B311DAFA2F00A84CC4 /* sd.sqlite in Resources */,
-				7E5410B811EBC8CA009048D8 /* CheckedBox.png in Resources */,
-				7E5410B911EBC8CA009048D8 /* ListIcon.png in Resources */,
-				7E5410BA11EBC8CA009048D8 /* RedX.png in Resources */,
-				7E5410BB11EBC8CA009048D8 /* UncheckedBox.png in Resources */,
-				7E471B21126908BD008FBAAD /* ListIcon-80x80-on-black.png in Resources */,
 				7E471B4B12690BF6008FBAAD /* ListViewController.xib in Resources */,
 				7E18E94C126B8C8500674445 /* ContactAdd.jpg in Resources */,
-				7E895F96126E9861006369D4 /* icon-x.png in Resources */,
 				7E8962D31270CD49006369D4 /* ListOptionsViewController.xib in Resources */,
+				7EAAB508127A641C000C84FA /* Icon_22x29.png in Resources */,
+				7EAAB509127A641C000C84FA /* Icon_57x57.png in Resources */,
+				7EAAB50A127A641C000C84FA /* Icon_512x512.png in Resources */,
+				7EAAB51F127A747D000C84FA /* ListIcon_80x80.png in Resources */,
+				7EAAB59D127A7E03000C84FA /* LaunchImage_640x960.png in Resources */,
+				7EAAB5BA127A8479000C84FA /* UnCheckedBox_40x40.png in Resources */,
+				7EAAB5BB127A8479000C84FA /* CheckedBox_40x40.png in Resources */,
+				7EAAB5C2127A86DF000C84FA /* OrangeX_40x40.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

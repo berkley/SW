@@ -175,27 +175,45 @@ UITextField *addField;
 				cell.textLabel.text = item.description;
 				cell.textLabel.minimumFontSize = 8;
 				[cell.textLabel adjustsFontSizeToFitWidth];
+				[cell.textLabel setTextColor:[UIColor whiteColor]];
+				cell.imageView.image = [UIImage imageNamed:@"UnCheckedBox_40x40.png"];
+				UIImageView *xView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"OrangeX_40x40.png"]];
+				xView.tag = [item.id intValue] + 1000;
+				[cell.imageView addSubview:xView];
 				if([item.done intValue] > 0)
 				{
-					cell.imageView.image = [UIImage imageNamed:@"CheckedBox.png"];		
+					xView.alpha = 1;
 				}
 				else 
 				{
-					cell.imageView.image = [UIImage imageNamed:@"UncheckedBox.png"];
+					xView.alpha = 0;
 				}
-				[cell.textLabel setTextColor:[UIColor whiteColor]];
 			}
 			else 
 			{
 				NSLog(@"reusing NormalCell");
+				NSLog(@"reusing cell for item %@ with id %@ and sort %@ and done %@", item.description, item.id, item.sort, item.done);
 				cell.textLabel.text = item.description;
+				NSArray* subviews = [cell.imageView subviews];
+				for(int i=0; i<[subviews count]; i++)
+				{
+					UIView *view = [subviews objectAtIndex:i];
+					if([view isKindOfClass:[UIImageView class]])
+					{
+						[view removeFromSuperview];
+					}
+					[view release];
+				}
+				UIImageView *xView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"OrangeX_40x40.png"]];
+				xView.tag = [item.id intValue] + 1000;
+				[cell.imageView addSubview:xView];
 				if([item.done intValue] > 0)
 				{
-					cell.imageView.image = [UIImage imageNamed:@"CheckedBox.png"];		
+					xView.alpha = 1;
 				}
 				else 
 				{
-					cell.imageView.image = [UIImage imageNamed:@"UncheckedBox.png"];
+					xView.alpha = 0;
 				}
 			}
 		}
@@ -221,11 +239,11 @@ UITextField *addField;
 			
 			if([item.done intValue] > 0)
 			{
-				cell.imageView.image = [UIImage imageNamed:@"CheckedBox.png"];		
+				cell.imageView.image = [UIImage imageNamed:@"CheckedBox_40x40.png"];		
 			}
 			else 
 			{
-				cell.imageView.image = [UIImage imageNamed:@"UncheckedBox.png"];
+				cell.imageView.image = [UIImage imageNamed:@"UnCheckedBox_40x40.png"];
 			}
 		}
 		else 
@@ -236,11 +254,11 @@ UITextField *addField;
 			editField.text = item.description;
 			if([item.done intValue] > 0)
 			{
-				cell.imageView.image = [UIImage imageNamed:@"CheckedBox.png"];		
+				cell.imageView.image = [UIImage imageNamed:@"CheckedBox_40x40.png"];		
 			}
 			else 
 			{
-				cell.imageView.image = [UIImage imageNamed:@"UncheckedBox.png"];
+				cell.imageView.image = [UIImage imageNamed:@"UnCheckedBox_40x40.png"];
 			}
 		}
 	}
@@ -262,6 +280,9 @@ UITextField *addField;
 	UITextField *field = (UITextField*)[self.view viewWithTag:-1];
 	field.text = @"";
 	[self.tableView reloadData];
+	//NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[Session sharedInstance].itemList.items count] inSection:0];
+	//NSArray *arr = [NSArray arrayWithObject:indexPath];
+	//[self.tableView insertRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
@@ -272,7 +293,23 @@ UITextField *addField;
 	}
 	Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];
 	[item touched];
-	[self.tableView reloadData];
+	NSLog(@"item %@ touched with id %@ and sort %@ and done %@", item.description, item.id, item.sort, item.done);
+	int tag = [item.id intValue] + 1000;
+	
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+	[UIView setAnimationDuration:.25];
+	//cell.imageView.alpha = 1;
+	if([item.done intValue] > 0)
+	{
+		[self.view viewWithTag:tag].alpha = 1;		
+	}
+	else 
+	{
+		[self.view viewWithTag:tag].alpha = 0;
+	}
+
+	[UIView commitAnimations];
 }
 
 // Override to support conditional editing of the table view.

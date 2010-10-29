@@ -140,12 +140,37 @@ ListViewController *lvc;
 			[cell.textLabel setTextColor:[UIColor whiteColor]];
 			[cell.detailTextLabel setTextColor:[UIColor whiteColor]];
 			cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ of %i tasks complete", [list numberDone], [list.items count]];
-			cell.imageView.image = [UIImage imageNamed:@"ListIcon-80x80-on-black.png"];
+			cell.imageView.image = [UIImage imageNamed:@"ListIcon_80x80.png"];
 			cell.imageView.frame = CGRectMake(0,0,30,30);
 			cell.accessoryType =  UITableViewCellAccessoryDetailDisclosureButton;
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 			cell.textLabel.numberOfLines = 2;
 			
+			//label for number of undone items
+			UILabel *notDoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 12, 25, 20)];
+			notDoneLabel.alpha = 0;
+			int notDone = [list.items count] - [[list numberDone] intValue];
+			notDoneLabel.text = [NSString stringWithFormat:@"%i", notDone];
+			notDoneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
+			notDoneLabel.textColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
+			[cell.contentView addSubview:notDoneLabel];
+			
+			//label for number of done items
+			UILabel *doneLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 44, 25, 20)];
+			doneLabel.alpha = 0;
+			doneLabel.text = [NSString stringWithFormat:@"%i", [[list numberDone] intValue]];
+			doneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
+			doneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
+			[cell.contentView addSubview:doneLabel];
+			
+			[UIView beginAnimations:nil context:nil];
+			[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+			[UIView setAnimationDuration:.5];
+			doneLabel.alpha = 1;
+			notDoneLabel.alpha = 1;
+			doneLabel.textColor = [UIColor blackColor];
+			notDoneLabel.textColor = [UIColor blackColor];
+			[UIView commitAnimations];
 		}
 	}
 	else 

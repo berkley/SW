@@ -14,7 +14,7 @@
 				<string>simplydone</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>Icon_22x29.png</string>
+			<string>Icon_44x58.png</string>
 			<key>CFBundleTypeName</key>
 			<string>Simply Done</string>
 			<key>CFBundleTypeRole</key>
@@ -35,6 +35,7 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
+		<string>Icon_114x114.png</string>
 		<string>Icon_57x57.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>

@@ -44,6 +44,10 @@
 		7EAAB5BD127A8479000C84FA /* CheckedBox_40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB5B9127A8479000C84FA /* CheckedBox_40x40.png */; };
 		7EAAB5C2127A86DF000C84FA /* OrangeX_40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB5C1127A86DF000C84FA /* OrangeX_40x40.png */; };
 		7EAAB5C3127A86DF000C84FA /* OrangeX_40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB5C1127A86DF000C84FA /* OrangeX_40x40.png */; };
+		7EAAB622127A9AF7000C84FA /* Icon_44x58.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB621127A9AF7000C84FA /* Icon_44x58.png */; };
+		7EAAB623127A9AF7000C84FA /* Icon_44x58.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB621127A9AF7000C84FA /* Icon_44x58.png */; };
+		7EAAB62B127A9D45000C84FA /* Icon_114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB62A127A9D45000C84FA /* Icon_114x114.png */; };
+		7EAAB62C127A9D45000C84FA /* Icon_114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAAB62A127A9D45000C84FA /* Icon_114x114.png */; };
 		7EC5468611DAE60F00A84CC4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5468511DAE60F00A84CC4 /* Item.m */; };
 		7EC546A111DAE79300A84CC4 /* DBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC546A011DAE79300A84CC4 /* DBUtil.m */; };
 		7EC546B711DAED8700A84CC4 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EC546B611DAED8700A84CC4 /* libsqlite3.0.dylib */; };
@@ -97,6 +101,8 @@
 		7EAAB5B8127A8479000C84FA /* UnCheckedBox_40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UnCheckedBox_40x40.png; path = Graphics/Raster/UnCheckedBox_40x40.png; sourceTree = "<group>"; };
 		7EAAB5B9127A8479000C84FA /* CheckedBox_40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CheckedBox_40x40.png; path = Graphics/Raster/CheckedBox_40x40.png; sourceTree = "<group>"; };
 		7EAAB5C1127A86DF000C84FA /* OrangeX_40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = OrangeX_40x40.png; path = Graphics/Raster/OrangeX_40x40.png; sourceTree = "<group>"; };
+		7EAAB621127A9AF7000C84FA /* Icon_44x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon_44x58.png; path = Graphics/Raster/Icon_44x58.png; sourceTree = "<group>"; };
+		7EAAB62A127A9D45000C84FA /* Icon_114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon_114x114.png; path = Graphics/Raster/Icon_114x114.png; sourceTree = "<group>"; };
 		7EC5468411DAE60F00A84CC4 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		7EC5468511DAE60F00A84CC4 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		7EC5469F11DAE79300A84CC4 /* DBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUtil.h; sourceTree = "<group>"; };
@@ -225,6 +231,8 @@
 		7E5410B211EBC89F009048D8 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				7EAAB62A127A9D45000C84FA /* Icon_114x114.png */,
+				7EAAB621127A9AF7000C84FA /* Icon_44x58.png */,
 				7EAAB5C1127A86DF000C84FA /* OrangeX_40x40.png */,
 				7EAAB5B8127A8479000C84FA /* UnCheckedBox_40x40.png */,
 				7EAAB5B9127A8479000C84FA /* CheckedBox_40x40.png */,
@@ -348,6 +356,8 @@
 				7EAAB5BC127A8479000C84FA /* UnCheckedBox_40x40.png in Resources */,
 				7EAAB5BD127A8479000C84FA /* CheckedBox_40x40.png in Resources */,
 				7EAAB5C3127A86DF000C84FA /* OrangeX_40x40.png in Resources */,
+				7EAAB623127A9AF7000C84FA /* Icon_44x58.png in Resources */,
+				7EAAB62C127A9D45000C84FA /* Icon_114x114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +377,8 @@
 				7EAAB5BA127A8479000C84FA /* UnCheckedBox_40x40.png in Resources */,
 				7EAAB5BB127A8479000C84FA /* CheckedBox_40x40.png in Resources */,
 				7EAAB5C2127A86DF000C84FA /* OrangeX_40x40.png in Resources */,
+				7EAAB622127A9AF7000C84FA /* Icon_44x58.png in Resources */,
+				7EAAB62B127A9D45000C84FA /* Icon_114x114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

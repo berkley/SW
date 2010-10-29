@@ -26,6 +26,7 @@ ListViewController *lvc;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.title = @"Simply Done";
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
     self.navigationItem.leftBarButtonItem = addButton;
 	[addButton release];
@@ -231,6 +232,7 @@ ListViewController *lvc;
 		return;
 	}
 	lvc = [[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil];
+	lvc.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	[self.navigationController pushViewController:lvc animated:YES];
 	lvc.title = list.name;
 	NSLog(@"selected list id %@", list.identifier);
@@ -261,6 +263,7 @@ ListViewController *lvc;
 	NSLog(@"Accessory button tapped.");
 	ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
 	ListOptionsViewController *lovc = [[ListOptionsViewController alloc]initWithNibName:@"ListOptionsViewController" bundle:nil];
+	lovc.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	[Session sharedInstance].itemList = list;
 	[Session sharedInstance].currentListId = list.identifier;
 	lovc.navigationItem.title = list.name;
@@ -355,13 +358,11 @@ ListViewController *lvc;
 	sqlite3_stmt *update_statement2;
 	if(sqlite3_prepare_v2(db, update_sql, -1, &update_statement2, NULL) == SQLITE_OK)
 	{
-		Item *i = [[Session sharedInstance].itemList.items objectAtIndex:fromCellRow];
-		int item_id = [i.id intValue];
 		sqlite3_bind_int(update_statement2, 1, toCellRow);
 		sqlite3_bind_int(update_statement2, 2, list_id);
 		sqlite3_step(update_statement2);
 		sqlite3_reset(update_statement2);
-		NSLog(@"updated list %i with sort value %i", item_id, toCellRow);
+		NSLog(@"updated list %i with sort value %i", list_id, toCellRow);
 	}
 	else 
 	{

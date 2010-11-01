@@ -357,7 +357,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>7E20D04E127F36F5005477A5</string>
+										<string>7E20D151127F6ABF005477A5</string>
 										<key>history</key>
 										<array>
 											<string>7EAAB5D1127A8AAC000C84FA</string>
@@ -366,9 +366,13 @@
 											<string>7EAAB5D4127A8AAC000C84FA</string>
 											<string>7EAAB5E6127A8DA9000C84FA</string>
 											<string>7EAAB638127AA174000C84FA</string>
-											<string>7EAAB641127B518B000C84FA</string>
-											<string>7E20D015127F2AA7005477A5</string>
-											<string>7E20D049127F36D1005477A5</string>
+											<string>7E20D07B127F3DDB005477A5</string>
+											<string>7E20D07C127F3DDB005477A5</string>
+											<string>7E20D0F2127F535D005477A5</string>
+											<string>7E20D116127F589A005477A5</string>
+											<string>7E20D12B127F6476005477A5</string>
+											<string>7E20D14F127F6ABF005477A5</string>
+											<string>7E20D150127F6ABF005477A5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -549,7 +553,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>310327029.76767498</real>
+	<real>310340287.56900102</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -566,7 +570,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>7E20D04F127F36F5005477A5</string>
+		<string>7E20D152127F6ABF005477A5</string>
 		<string>7E20D019127F2AA7005477A5</string>
 		<string>7E20D001127F2761005477A5</string>
 		<string>7EB1E3811204C46E00B6DF85</string>
@@ -591,12 +595,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>ListViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -696,8 +702,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {462, 458}}</string>
-											<string>{{462, 0}, {547, 458}}</string>
+											<string>{{0, 0}, {447, 276}}</string>
+											<string>{{447, 0}, {562, 276}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -712,8 +718,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {1009, 458}}</string>
-											<string>{{0, 458}, {1009, 406}}</string>
+											<string>{{0, 0}, {1009, 276}}</string>
+											<string>{{0, 276}, {1009, 588}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -743,15 +749,15 @@
 										<string>Value</string>
 										<real>85</real>
 										<string>Summary</string>
-										<real>253</real>
+										<real>268</real>
 									</array>
 									<key>Frame</key>
-									<string>{{462, 0}, {547, 458}}</string>
+									<string>{{447, 0}, {562, 276}}</string>
 									<key>RubberWindowFrame</key>
-									<string>433 109 1009 905 0 0 1680 1028 </string>
+									<string>657 117 1009 905 0 0 1680 1028 </string>
 								</dict>
 								<key>RubberWindowFrame</key>
-								<string>433 109 1009 905 0 0 1680 1028 </string>
+								<string>657 117 1009 905 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugSessionModule</string>
@@ -785,7 +791,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
 			<key>WindowString</key>
-			<string>433 109 1009 905 0 0 1680 1028 </string>
+			<string>657 117 1009 905 0 0 1680 1028 </string>
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>

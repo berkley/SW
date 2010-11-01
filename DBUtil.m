@@ -23,6 +23,7 @@
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:SQL_FILE];
 	success = [fileManager fileExistsAtPath:writableDBPath];
+	NSLog(@"db file: %@", writableDBPath); 
 	if(success) 
     {
         return;        

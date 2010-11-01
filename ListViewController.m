@@ -20,11 +20,35 @@
 
 UITextField *addField;
 BOOL doneButtonTouched;
+UIBarButtonItem *editButton;
+int cellCountAdder;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPushed:)];
+    self.navigationItem.rightBarButtonItem = editButton;
+	[editButton release];
+	cellCountAdder = 1;
 	doneButtonTouched = YES;
+}
+
+- (void)editButtonPushed:(id)sender
+{
+	if(self.editing)
+	{
+		cellCountAdder = 1;
+		[self setEditing:NO animated:YES];
+		[editButton setStyle:UIBarButtonItemStylePlain];
+	}
+	else 
+	{
+		cellCountAdder = 0;
+		[self setEditing:YES animated:YES];
+		[editButton setStyle:UIBarButtonItemStyleDone];
+	}
+	[DBUtil loadLists];
+	[self.tableView reloadData];
 }
 
 // Override to allow orientations other than the default portrait orientation.
@@ -44,14 +68,8 @@ BOOL doneButtonTouched;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-	if(!self.tableView.editing)
-	{
-		return [[Session sharedInstance].itemList.items count] + 1;		
-	}
-	else 
-	{
-		return [[Session sharedInstance].itemList.items count];
-	}
+	NSLog(@"%i cells being rendered", [[Session sharedInstance].itemList.items count] + cellCountAdder);
+	return [[Session sharedInstance].itemList.items count] + cellCountAdder;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,20 +85,20 @@ BOOL doneButtonTouched;
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
 	[super setEditing:editing animated:animated];
-	//[self.tableView reloadData];
 	if(editing)
 	{ //going into editing mode
 		NSLog(@"editing");
-		[self.tableView reloadData];
+		//[self.tableView reloadData];
 	}
 	else 
 	{ //no longer in editing mode
 		NSLog(@"no longer editing");
 		//make sure all change text boxes get updated
-		for(int i=0; i<[[Session sharedInstance].itemList.items count]; i++)
+		/*for(int i=0; i<[[Session sharedInstance].itemList.items count]; i++)
 		{
 			Item *item = [[Session sharedInstance].itemList.items objectAtIndex:i];
 			NSObject *obj = [self.view viewWithTag:[item.id intValue] + 99];
+			NSLog(@"updating item %@ after editing with text %@", item.id, item.description);
 			if([obj isKindOfClass:[UITextField class]])
 			{
 				UITextField *field = (UITextField*)obj;
@@ -99,8 +117,30 @@ BOOL doneButtonTouched;
 				NSLog(@"ERROR: field not updated because the textField is not of class UITextField");
 			}
 
+		}*/
+		//[self.tableView reloadData];
+	}
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+	NSLog(@"text field with text %@ finished editing", textField.text);
+	int id = textField.tag - 99;
+	for(int i=0; i<[[Session sharedInstance].itemList.items count]; i++)
+	{
+		Item *item = [[Session sharedInstance].itemList.items objectAtIndex:i];
+		if([item.id intValue] == id)
+		{
+			NSString *fieldText = textField.text;
+			NSString *descText = item.description;
+			NSLog(@"fieldText: %@ descText: %@", fieldText, descText);
+			if(![fieldText isEqualToString:descText])
+			{
+				NSLog(@"Updating item description");
+				[[Session sharedInstance].itemList updateItemDescription:fieldText withId:item.id];
+			}
+			break;
 		}
-		[self.tableView reloadData];
 	}
 }
 
@@ -243,7 +283,7 @@ BOOL doneButtonTouched;
 	{ //editing cells
 		cell = [tableView dequeueReusableCellWithIdentifier:EditCellIdentifier];
 		Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];
-		if(cell == nil)
+		//if(cell == nil)
 		{
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:EditCellIdentifier] autorelease];
 			NSLog(@"creating EditCell");
@@ -252,9 +292,11 @@ BOOL doneButtonTouched;
 			UITextField *editField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
 			editField.tag = [item.id intValue] + 99;
 			editField.text = item.description;
-			editField.borderStyle = UITextBorderStyleRoundedRect;
+			editField.borderStyle = UITextBorderStyleNone;
+			editField.textColor = [UIColor whiteColor];
 			editField.returnKeyType = UIReturnKeyDone;
 			editField.delegate = self;
+			//[editField retain];
 			[view addSubview:editField];
 			[cell.contentView addSubview:view];
 			
@@ -267,10 +309,25 @@ BOOL doneButtonTouched;
 				cell.imageView.image = [UIImage imageNamed:@"UnCheckedBox_40x40.png"];
 			}
 		}
-		else 
+		/*else 
 		{
-			NSLog(@"reusing EditCell");
-			UITextField *editField = (UITextField*)[self.view viewWithTag:[item.id intValue] + 99];
+			NSLog(@"reusing EditCell for item: %@", item.description);
+			//UITextField *editField = (UITextField*)[self.view viewWithTag:[item.id intValue] + 99];
+			UITextField *editField;
+			for(int i=0; i<[cell.contentView.subviews count]; i++)
+			{
+				NSLog(@"looking for editField");
+				NSObject *obj = [cell.contentView.subviews objectAtIndex:i];
+				if([obj isKindOfClass:[UITextField class]])
+				{
+					editField = (UITextField*)obj;
+					break;
+				}
+			}
+			if(editField == nil)
+			{
+				NSLog(@"ERROR!  EditField is nil");
+			}
 			editField.tag = [item.id intValue] + 99;
 			editField.text = item.description;
 			if([item.done intValue] > 0)
@@ -281,7 +338,7 @@ BOOL doneButtonTouched;
 			{
 				cell.imageView.image = [UIImage imageNamed:@"UnCheckedBox_40x40.png"];
 			}
-		}
+		}*/
 	}
 	
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -333,8 +390,9 @@ BOOL doneButtonTouched;
 }
 
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    NSLog(@"deleting row at indexPath %i", indexPath.row);
     if (editingStyle == UITableViewCellEditingStyleDelete) 
 	{
 		Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];

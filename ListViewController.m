@@ -40,14 +40,21 @@ int cellCountAdder;
 		cellCountAdder = 1;
 		[self setEditing:NO animated:YES];
 		[editButton setStyle:UIBarButtonItemStylePlain];
+		//[self.tableView reloadData];
+		NSIndexPath *ip = [NSIndexPath indexPathForRow:[[Session sharedInstance].itemList.items count] inSection:0];
+		NSArray *arr = [NSArray arrayWithObjects:ip, nil];
+		[self.tableView insertRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationFade];
 	}
 	else 
 	{
 		cellCountAdder = 0;
 		[self setEditing:YES animated:YES];
 		[editButton setStyle:UIBarButtonItemStyleDone];
+		NSIndexPath *ip = [NSIndexPath indexPathForRow:[[Session sharedInstance].itemList.items count] inSection:0];
+		NSArray *arr = [NSArray arrayWithObjects:ip, nil];
+		[self.tableView deleteRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationFade];
 	}
-	[DBUtil loadLists];
+	//[DBUtil loadLists];
 	[self.tableView reloadData];
 }
 
@@ -296,6 +303,7 @@ int cellCountAdder;
 			editField.textColor = [UIColor whiteColor];
 			editField.returnKeyType = UIReturnKeyDone;
 			editField.delegate = self;
+			cell.tag = [item.id intValue];
 			//[editField retain];
 			[view addSubview:editField];
 			[cell.contentView addSubview:view];
@@ -396,8 +404,8 @@ int cellCountAdder;
     if (editingStyle == UITableViewCellEditingStyleDelete) 
 	{
 		Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];
-		[item deleteItem];
-		[[Session sharedInstance].itemList.items removeObjectAtIndex:indexPath.row];
+		[[Session sharedInstance].itemList deleteItem:item.id]; 
+		//[[Session sharedInstance].itemList.items removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
     }     
 }
@@ -480,6 +488,12 @@ int cellCountAdder;
 	}
 
 	[DBUtil loadLists];
+/*	for(int i=0; i<[self.tableView numberOfRowsInSection:0]; i++)
+	{
+		NSIndexPath *ip = [NSIndexPath indexPathForRow:i inSection:0];
+		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:ip];
+		NSLog(@"item with id %i is now sorted to row %i", cell.tag, i);
+	}*/
 }
 
 #pragma mark -

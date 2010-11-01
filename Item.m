@@ -38,6 +38,22 @@
     }
 }
 
+- (void)setSort:(NSNumber*)num
+{
+	sort = num;
+	
+	sqlite3 *db = [DBUtil getDatabase];
+    const char *sql = "update items set sort = ? where id = ?";
+    sqlite3_stmt *statement;
+    if(sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
+    {
+		sqlite3_bind_int(statement, 1, [self.sort intValue]);
+		sqlite3_bind_int(statement, 2, [self.id intValue]);
+		sqlite3_step(statement);
+		sqlite3_reset(statement);
+    }
+}
+
 //delete this item from the DB
 - (void) deleteItem
 {

@@ -75,6 +75,10 @@
 	}
 }
 
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+	NSLog(@"!!!!!!!!!!!!MEMORY WARNING!!!!!!");
+}
 
 //- (void)applicationWillTerminate:(UIApplication *)application {
 	// Save data if appropriate

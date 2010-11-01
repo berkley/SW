@@ -39,6 +39,12 @@ ListViewController *lvc;
 	[DBUtil loadLists];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+	addButton.enabled = YES;
+	self.editButtonItem.enabled = YES;
+}
+
 - (void)openkeyboard:(id)sender
 {
 	NSLog(@"opening keyboard");
@@ -230,6 +236,10 @@ ListViewController *lvc;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
 	NSLog(@"List selected");
+	if(!addButton.enabled)
+	{
+		return;
+	}
 	ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
 	if([list.identifier intValue] == -1)
 	{
@@ -265,6 +275,10 @@ ListViewController *lvc;
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
 	NSLog(@"Accessory button tapped.");
+	if(!addButton.enabled)
+	{
+		return;
+	}
 	ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
 	ListOptionsViewController *lovc = [[ListOptionsViewController alloc]initWithNibName:@"ListOptionsViewController" bundle:nil];
 	lovc.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;

@@ -302,8 +302,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>3</integer>
-									<integer>1</integer>
+									<integer>7</integer>
+									<integer>5</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -345,7 +345,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ListViewController.m</string>
+								<string>ItemList.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -353,26 +353,28 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ListViewController.m</string>
+										<string>ItemList.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>7E20D151127F6ABF005477A5</string>
+										<string>7E20D202127F82BE005477A5</string>
 										<key>history</key>
 										<array>
 											<string>7EAAB5D1127A8AAC000C84FA</string>
 											<string>7EAAB5D2127A8AAC000C84FA</string>
 											<string>7EAAB5D3127A8AAC000C84FA</string>
 											<string>7EAAB5D4127A8AAC000C84FA</string>
-											<string>7EAAB5E6127A8DA9000C84FA</string>
 											<string>7EAAB638127AA174000C84FA</string>
 											<string>7E20D07B127F3DDB005477A5</string>
-											<string>7E20D07C127F3DDB005477A5</string>
 											<string>7E20D0F2127F535D005477A5</string>
 											<string>7E20D116127F589A005477A5</string>
-											<string>7E20D12B127F6476005477A5</string>
 											<string>7E20D14F127F6ABF005477A5</string>
-											<string>7E20D150127F6ABF005477A5</string>
+											<string>7E20D15F127F6CA2005477A5</string>
+											<string>7E20D1A0127F70F1005477A5</string>
+											<string>7E20D1F8127F82A1005477A5</string>
+											<string>7E20D1F9127F82A1005477A5</string>
+											<string>7E20D1FA127F82A1005477A5</string>
+											<string>7E20D1FB127F82A1005477A5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -553,7 +555,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>310340287.56900102</real>
+	<real>310346430.30067301</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -570,13 +572,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>7E20D152127F6ABF005477A5</string>
+		<string>7E20D203127F82BE005477A5</string>
 		<string>7E20D019127F2AA7005477A5</string>
 		<string>7E20D001127F2761005477A5</string>
 		<string>7EB1E3811204C46E00B6DF85</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/berkley/project/iphone/Simply Done/Simply Done.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 	</array>
 	<key>WindowString</key>
 	<string>101 59 1485 969 0 0 1680 1028 </string>
@@ -595,8 +597,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -619,6 +619,8 @@
 							<string>579pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

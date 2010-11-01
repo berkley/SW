@@ -126,13 +126,39 @@
 	return highest;
 }
 
+- (void) deleteItem:(NSNumber*)id
+{
+	//delete the items
+	//update the sort values for each item in the list
+	
+	BOOL reorder = NO;
+	int remIndex = -1;
+	for(int i=0; i<[self.items count]; i++)
+	{
+		Item *item = [self.items objectAtIndex:i];
+		if([item.id intValue]  == [id intValue])
+		{
+			[item deleteItem];
+			reorder = YES;
+			remIndex = i;
+		}
+		
+		if(reorder)
+		{
+			item.sort = [NSNumber numberWithInt:i - 1];
+		}
+	}
+	
+	[self.items removeObjectAtIndex:remIndex];
+}
+
 //add an item to this list
 - (void) addItem:(NSString*)description done:(BOOL)d
 {
 	Item *item = [[Item alloc] init];
 	item.description = description;
-	//item.sort = [NSNumber numberWithInt:[self.items count]];
-	item.sort = [NSNumber numberWithInt:[self getHighestSortValue]];
+	item.sort = [NSNumber numberWithInt:[self.items count]];
+	//item.sort = [NSNumber numberWithInt:[self getHighestSortValue]];
 	sqlite3 *db = [DBUtil getDatabase];
 	const char *sql = "insert into items (list_id, description, done, sort)  values (?, ?, ?, ?)";
 	sqlite3_stmt *statement;

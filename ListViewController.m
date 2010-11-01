@@ -19,10 +19,12 @@
 #pragma mark View lifecycle
 
 UITextField *addField;
+BOOL doneButtonTouched;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	doneButtonTouched = YES;
 }
 
 // Override to allow orientations other than the default portrait orientation.
@@ -102,13 +104,28 @@ UITextField *addField;
 	}
 }
 
+-(void) addNewCell
+{
+	if(addField.text == nil || [[addField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""])
+	{
+		return;
+	}
+	NSLog(@"Add button pushed. text: %@", addField.text);
+	[[Session sharedInstance].itemList addItem:addField.text];
+	NSLog(@"There are now %i items in the shared item list", [[Session sharedInstance].itemList.items count]);
+	UITextField *field = (UITextField*)[self.view viewWithTag:-1];
+	field.text = @"";
+	[self.tableView reloadData];
+}
+
 -(BOOL) textFieldShouldReturn:(UITextField*) textField 
 {
+	doneButtonTouched = YES;
 	if(textField.tag == -1)
 	{
 		NSLog(@"done editing the addField");
 		[textField resignFirstResponder]; 
-		[self newItemButtonTouched:self];
+		[self addNewCell];
 		return YES;
 	}
 	else 
@@ -116,6 +133,16 @@ UITextField *addField;
 		NSLog(@"done editing with text field tag %i", textField.tag);
 		[textField resignFirstResponder]; 
 		return YES;
+	}
+	doneButtonTouched = YES;
+}
+
+- (void) makeEditCellFirstResponder:(id)responder
+{
+	if(!doneButtonTouched)
+	{
+		UITextField *field = (UITextField*)[self.view viewWithTag:-1];
+		[field becomeFirstResponder];
 	}
 }
 
@@ -127,13 +154,6 @@ UITextField *addField;
 	static NSString *EditCellIdentifier = @"EditCell";
 	static NSString *ChangeCellIdentifier = @"ChangeCell";
     UITableViewCell *cell = nil;
-	
-    /*UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }*/
-	
-    //UITableViewCell	*cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	
     if(!self.tableView.editing)
 	{ //normal cells (not editing)
@@ -162,6 +182,7 @@ UITextField *addField;
 			}
 			UITextField *addField = (UITextField*)[self.view viewWithTag:-1];
 			addField.text = @"";
+			[self performSelector:@selector(makeEditCellFirstResponder:) withObject:self afterDelay:.5];
 		}
 		else
 		{ //normal cell
@@ -270,19 +291,8 @@ UITextField *addField;
 
 -(void)newItemButtonTouched:(id)sender
 {
-	if(addField.text == nil || [[addField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""])
-	{
-		return;
-	}
-	NSLog(@"Add button pushed. text: %@", addField.text);
-	[[Session sharedInstance].itemList addItem:addField.text];
-	NSLog(@"There are now %i items in the shared item list", [[Session sharedInstance].itemList.items count]);
-	UITextField *field = (UITextField*)[self.view viewWithTag:-1];
-	field.text = @"";
-	[self.tableView reloadData];
-	//NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[Session sharedInstance].itemList.items count] inSection:0];
-	//NSArray *arr = [NSArray arrayWithObject:indexPath];
-	//[self.tableView insertRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationFade];
+	doneButtonTouched = NO;
+	[self addNewCell];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 

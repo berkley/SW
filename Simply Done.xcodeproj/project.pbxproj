@@ -17,6 +17,8 @@
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		7E18E94C126B8C8500674445 /* ContactAdd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E18E94B126B8C8500674445 /* ContactAdd.jpg */; };
 		7E18E94D126B8C8500674445 /* ContactAdd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E18E94B126B8C8500674445 /* ContactAdd.jpg */; };
+		7E20D36C128066CD005477A5 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 7E20D36B128066CD005477A5 /* iTunesArtwork */; };
+		7E20D36D128066CD005477A5 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 7E20D36B128066CD005477A5 /* iTunesArtwork */; };
 		7E471B4A12690BF6008FBAAD /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */; };
 		7E471B4B12690BF6008FBAAD /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E471B4912690BF6008FBAAD /* ListViewController.xib */; };
 		7E471B4C12690BF6008FBAAD /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */; };
@@ -84,6 +86,7 @@
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RootViewController.xib; path = ../RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7E18E94B126B8C8500674445 /* ContactAdd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ContactAdd.jpg; path = Graphics/ContactAdd.jpg; sourceTree = "<group>"; };
+		7E20D36B128066CD005477A5 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		7E471B4712690BF6008FBAAD /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		7E471B4812690BF6008FBAAD /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		7E471B4912690BF6008FBAAD /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
@@ -231,6 +234,7 @@
 		7E5410B211EBC89F009048D8 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				7E20D36B128066CD005477A5 /* iTunesArtwork */,
 				7EAAB62A127A9D45000C84FA /* Icon_114x114.png */,
 				7EAAB621127A9AF7000C84FA /* Icon_44x58.png */,
 				7EAAB5C1127A86DF000C84FA /* OrangeX_40x40.png */,
@@ -358,6 +362,7 @@
 				7EAAB5C3127A86DF000C84FA /* OrangeX_40x40.png in Resources */,
 				7EAAB623127A9AF7000C84FA /* Icon_44x58.png in Resources */,
 				7EAAB62C127A9D45000C84FA /* Icon_114x114.png in Resources */,
+				7E20D36D128066CD005477A5 /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +384,7 @@
 				7EAAB5C2127A86DF000C84FA /* OrangeX_40x40.png in Resources */,
 				7EAAB622127A9AF7000C84FA /* Icon_44x58.png in Resources */,
 				7EAAB62B127A9D45000C84FA /* Icon_114x114.png in Resources */,
+				7E20D36C128066CD005477A5 /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -58,7 +58,6 @@ ListViewController *lvc;
 	self.editButtonItem.enabled = NO;
 	ItemList *list = [[ItemList alloc] initWithIdentifier:[NSNumber numberWithInt:-1]];
 	[[Session sharedInstance].lists addObject:list];
-	[list release];
 	[self.tableView reloadData];
 	NSIndexPath *scrollToIndexPath = [NSIndexPath indexPathForRow:[[Session sharedInstance].lists count] - 1 inSection:0];
 	[self.tableView scrollToRowAtIndexPath:scrollToIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -138,7 +137,6 @@ ListViewController *lvc;
 			[view addSubview:button];
 			view.tag = 1;
 			[cell.contentView addSubview:view];
-			[view release];
 			[button addTarget:self action:@selector(newListItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
 			cell.accessoryType =  UITableViewCellAccessoryNone;
 		}
@@ -230,7 +228,6 @@ ListViewController *lvc;
 	}
 	ItemList *item = [[ItemList alloc] initWithName:addField.text];
 	[[Session sharedInstance].lists addObject:item];
-	[item release];
 	[self.tableView reloadData];
     NSInteger row = [[Session sharedInstance].lists count] - 2;
     if (row < 0) {

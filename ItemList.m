@@ -17,13 +17,10 @@
 
 //create a new ItemList with an id
 - (id) initWithIdentifier:(NSNumber*) ident
-{
-	NSMutableArray *itemArray;
-	
+{	
     if(self = [super init])
     {
 		[self.items release];
-        itemArray = [[NSMutableArray alloc] init];
         
         self.identifier = ident;
 		if([self.identifier intValue] == -1)
@@ -193,6 +190,7 @@
 		self.items = [[NSMutableArray alloc]init];
 	}
 	[self.items addObject:item];
+	[item release];
 	NSLog(@"There are now %i items in the item list", [self.items count]);
 }
 
@@ -229,14 +227,12 @@
 {
 	NSLog(@"deleting all done items in list %@", self.identifier);
 	sqlite3 *db = [DBUtil getDatabase];
-	NSMutableArray *removeArr = [[NSMutableArray alloc] init];
 	for(int i=0; i<[self.items count]; i++)
 	{
 		Item *item = [self.items objectAtIndex:i];
 		NSLog(@"might remove item %@ with done value %@", item.description, item.done);
 		if([item.done intValue] == 1)
 		{
-			[removeArr addObject:[NSNumber numberWithInt:i]];
 			NSLog(@"removing item %@", item.description);
 			
 			sqlite3_stmt *statement;

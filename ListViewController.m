@@ -230,6 +230,7 @@ int cellCountAdder;
 				[view addSubview:button];
 				[button addTarget:self action:@selector(newItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
 				[cell.contentView addSubview:view];
+				[view release];
 			}
 			UITextField *addField = (UITextField*)[self.view viewWithTag:-1];
 			addField.text = @"";
@@ -279,7 +280,7 @@ int cellCountAdder;
 					{
 						[view removeFromSuperview];
 					}
-					[view release];
+					//[view release];
 				}
 				UIImageView *xView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"OrangeX_40x40.png"]];
 				xView.tag = [item.id intValue] + 1000;
@@ -314,7 +315,9 @@ int cellCountAdder;
 			editField.delegate = self;
 			cell.tag = [item.id intValue];
 			[view addSubview:editField];
+			[editField release];
 			[cell.contentView addSubview:view];
+			[view release];
 			
 			if([item.done intValue] > 0)
 			{

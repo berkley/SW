@@ -102,6 +102,7 @@ static DBUtil *sharedInstance;
 			[Session sharedInstance].itemList = list;
 		}
         [[Session sharedInstance].lists addObject:list];
+		[list release];
         NSLog(@"adding list %@", listId);
     }	
 }

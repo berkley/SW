@@ -28,5 +28,6 @@
 - (void) updateDescription:(NSString*)desc;
 - (NSString*)toString;
 - (NSString*)export;
+- (void)updateSort:(NSNumber*)num;
 
 @end

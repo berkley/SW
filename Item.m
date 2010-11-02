@@ -38,9 +38,9 @@
     }
 }
 
-- (void)setSort:(NSNumber*)num
+- (void)updateSort:(NSNumber*)num
 {
-	sort = num;
+	self.sort = [NSNumber numberWithInt:[num intValue]];
 	
 	sqlite3 *db = [DBUtil getDatabase];
     const char *sql = "update items set sort = ? where id = ?";

@@ -20,7 +20,9 @@ static Session *sharedInstance = nil;
     @synchronized(self)
     {
         if (sharedInstance == nil)
+		{
 			sharedInstance = [[Session alloc] init];
+		}		
     }
     return sharedInstance;
 }

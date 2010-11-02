@@ -157,7 +157,7 @@
 {
 	Item *item = [[Item alloc] init];
 	item.description = description;
-	item.sort = [NSNumber numberWithInt:[self.items count]];
+	[item updateSort:[NSNumber numberWithInt:[self.items count]]];
 	//item.sort = [NSNumber numberWithInt:[self getHighestSortValue]];
 	sqlite3 *db = [DBUtil getDatabase];
 	const char *sql = "insert into items (list_id, description, done, sort)  values (?, ?, ?, ?)";

@@ -234,6 +234,11 @@ int cellCountAdder;
 		else
 		{ //normal cell
 			cell = [tableView dequeueReusableCellWithIdentifier:NormalCellIdentifier];
+			/*for(int i=0; i<[[Session sharedInstance].itemList.items count]; i++)
+			{
+				Item *it = [[Session sharedInstance].itemList.items objectAtIndex:i];
+				NSLog(@"item id: %@ desc: %@ list_id: %@", it.id, it.description, it.list_id);
+			}*/
 			Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];
 			if(cell == nil)
 			{
@@ -260,7 +265,7 @@ int cellCountAdder;
 			else 
 			{
 				NSLog(@"reusing NormalCell");
-				NSLog(@"reusing cell for item %@ with id %@ and sort %@ and done %@", item.description, item.id, item.sort, item.done);
+				//NSLog(@"reusing cell for item %@ with id %@ and sort %@ and done %@", item.description, item.id, item.sort, item.done);
 				cell.textLabel.text = item.description;
 				NSArray* subviews = [cell.imageView subviews];
 				for(int i=0; i<[subviews count]; i++)
@@ -304,7 +309,6 @@ int cellCountAdder;
 			editField.returnKeyType = UIReturnKeyDone;
 			editField.delegate = self;
 			cell.tag = [item.id intValue];
-			//[editField retain];
 			[view addSubview:editField];
 			[cell.contentView addSubview:view];
 			

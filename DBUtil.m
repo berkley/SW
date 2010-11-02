@@ -13,6 +13,20 @@
 
 @implementation DBUtil
 
+static DBUtil *sharedInstance;
+
++ (DBUtil*)sharedInstance
+{
+    @synchronized(self)
+    {
+        if (sharedInstance == nil)
+		{
+			sharedInstance = [[DBUtil alloc] init];
+		}		
+    }
+    return sharedInstance;
+}
+
 + (void)createEditableCopyOfDatabaseIfNeeded 
 {
     //set up the db

@@ -56,7 +56,9 @@ ListViewController *lvc;
 	NSLog(@"add button pushed");
 	addButton.enabled = NO;
 	self.editButtonItem.enabled = NO;
-	[[Session sharedInstance].lists addObject:[[ItemList alloc] initWithIdentifier:[NSNumber numberWithInt:-1]]];
+	ItemList *list = [[ItemList alloc] initWithIdentifier:[NSNumber numberWithInt:-1]];
+	[[Session sharedInstance].lists addObject:list];
+	[list release];
 	[self.tableView reloadData];
 	NSIndexPath *scrollToIndexPath = [NSIndexPath indexPathForRow:[[Session sharedInstance].lists count] - 1 inSection:0];
 	[self.tableView scrollToRowAtIndexPath:scrollToIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -136,6 +138,7 @@ ListViewController *lvc;
 			[view addSubview:button];
 			view.tag = 1;
 			[cell.contentView addSubview:view];
+			[view release];
 			[button addTarget:self action:@selector(newListItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
 			cell.accessoryType =  UITableViewCellAccessoryNone;
 		}
@@ -161,6 +164,7 @@ ListViewController *lvc;
 			notDoneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
 			notDoneLabel.textColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
 			[cell.contentView addSubview:notDoneLabel];
+			[notDoneLabel release];
 			
 			//label for number of done items
 			UILabel *doneLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 44, 25, 20)];
@@ -169,6 +173,7 @@ ListViewController *lvc;
 			doneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
 			doneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
 			[cell.contentView addSubview:doneLabel];
+			[doneLabel release];
 			
 			[UIView beginAnimations:nil context:nil];
 			[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
@@ -221,9 +226,11 @@ ListViewController *lvc;
 		NSMutableArray* paths = [[NSMutableArray alloc] init];
 		[paths addObject:[NSIndexPath indexPathForRow:[[Session sharedInstance].lists count] - 1 inSection:0]];
 		[self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+		[paths release];
 	}
 	ItemList *item = [[ItemList alloc] initWithName:addField.text];
 	[[Session sharedInstance].lists addObject:item];
+	[item release];
 	[self.tableView reloadData];
     NSInteger row = [[Session sharedInstance].lists count] - 2;
     if (row < 0) {
@@ -286,6 +293,7 @@ ListViewController *lvc;
 	[Session sharedInstance].currentListId = list.identifier;
 	lovc.navigationItem.title = list.name;
 	[self.navigationController pushViewController:lovc animated:YES];
+	[lovc release];
 }
 
 // Override to support conditional editing of the table view.

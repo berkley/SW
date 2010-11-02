@@ -61,8 +61,7 @@
 	// Write the file
 	[dataToWrite writeToFile:path atomically:YES];
 	//import the parse into the DB
-	[[[DBUtil alloc ] init] importListFile:path];
-	
+	[[DBUtil sharedInstance] importListFile:path];
 	return YES;
 }
 

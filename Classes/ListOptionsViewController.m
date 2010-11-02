@@ -188,6 +188,14 @@
 			[[Session sharedInstance].itemList deleteAllItems];
 		}
 	}
+	else if(alertView.tag == 1002)
+	{
+		if(buttonIndex == 1)
+		{
+			[[Session sharedInstance].itemList resetAllItems];
+		}
+	}
+
 }
 
 - (IBAction)deleteList:(id)sender
@@ -196,6 +204,16 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete List Items" message:@"Are you sure you want to delete all of the list items?" 
 												   delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
 	alert.tag = 1001;
+	[alert show];
+}
+
+- (IBAction)resetAllItems:(id)sender
+{
+	//reset all items to not done
+	NSLog(@"deleting all items");
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reset List Items" message:@"Are you sure you want to reset all list items to 'not done'?" 
+												   delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+	alert.tag = 1002;
 	[alert show];
 }
 

@@ -136,9 +136,11 @@
 	for(int i=0; i<[self.items count]; i++)
 	{
 		Item *item = [self.items objectAtIndex:i];
+		NSLog(@"item.id: %@ item.sort:%@", item.id, item.sort);
 		if([item.id intValue]  == [id intValue])
 		{
 			[item deleteItem];
+			NSLog(@"deleted item %@ with sort %@", item.id, item.sort);
 			reorder = YES;
 			remIndex = i;
 		}
@@ -146,6 +148,8 @@
 		if(reorder)
 		{
 			item.sort = [NSNumber numberWithInt:i - 1];
+			[item updateSort:[NSNumber numberWithInt:i - 1]];
+			NSLog(@"updated item %@ to sort %@", item.id, item.sort);
 		}
 	}
 	
@@ -205,6 +209,19 @@
 		}
 	}
 	return [NSNumber numberWithInt:count];
+}
+
+- (void)resetAllItems
+{
+	NSLog(@"reseting all items to 'not done'");
+	for(int i=0; i<[self.items count]; i++)
+	{
+		Item *item = [self.items objectAtIndex:i];
+		if([item.done intValue] == 1)
+		{
+			[item touched];
+		}
+	}
 }
 
 //delete any item marked as done

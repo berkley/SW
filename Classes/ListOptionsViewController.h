@@ -16,5 +16,6 @@
 - (IBAction)emailSDlist:(id)sender;
 - (IBAction)deleteAllDone:(id)sender;
 - (IBAction)deleteList:(id)sender;
+- (IBAction)resetAllItems:(id)sender;
 
 @end

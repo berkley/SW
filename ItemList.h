@@ -35,5 +35,6 @@
 - (void)initItemsFromDB;
 - (NSData*)createEmailAttachment;
 - (void)deleteItem:(NSNumber*)id;
+- (void)resetAllItems;
 
 @end

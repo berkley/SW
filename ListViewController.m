@@ -20,13 +20,12 @@
 
 UITextField *addField;
 BOOL doneButtonTouched;
-UIBarButtonItem *editButton;
 int cellCountAdder;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPushed:)];
+	UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPushed:)];
     self.navigationItem.rightBarButtonItem = editButton;
 	[editButton release];
 	cellCountAdder = 1;
@@ -39,8 +38,10 @@ int cellCountAdder;
 	{
 		cellCountAdder = 1;
 		[self setEditing:NO animated:YES];
-		[editButton setStyle:UIBarButtonItemStylePlain];
-		//[self.tableView reloadData];
+		UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPushed:)];
+		self.navigationItem.rightBarButtonItem = editButton;
+		[editButton release];
+
 		NSIndexPath *ip = [NSIndexPath indexPathForRow:[[Session sharedInstance].itemList.items count] inSection:0];
 		NSArray *arr = [NSArray arrayWithObjects:ip, nil];
 		[self.tableView insertRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationFade];
@@ -49,7 +50,10 @@ int cellCountAdder;
 	{
 		cellCountAdder = 0;
 		[self setEditing:YES animated:YES];
-		[editButton setStyle:UIBarButtonItemStyleDone];
+		UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editButtonPushed:)];
+		self.navigationItem.rightBarButtonItem = editButton;
+		[editButton release];
+		
 		NSIndexPath *ip = [NSIndexPath indexPathForRow:[[Session sharedInstance].itemList.items count] inSection:0];
 		NSArray *arr = [NSArray arrayWithObjects:ip, nil];
 		[self.tableView deleteRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationFade];
@@ -409,7 +413,6 @@ int cellCountAdder;
 	{
 		Item *item = [[Session sharedInstance].itemList.items objectAtIndex:indexPath.row];
 		[[Session sharedInstance].itemList deleteItem:item.id]; 
-		//[[Session sharedInstance].itemList.items removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
     }     
 }

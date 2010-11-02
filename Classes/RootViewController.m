@@ -25,7 +25,7 @@ ListViewController *lvc;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.title = @"Simply Done";
+    self.navigationItem.title = @"Lists";
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
     self.navigationItem.leftBarButtonItem = addButton;

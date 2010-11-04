@@ -304,7 +304,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>17</integer>
+									<integer>25</integer>
 									<integer>15</integer>
 									<integer>0</integer>
 								</array>
@@ -327,7 +327,7 @@
 							<real>328</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>6 59 1618 969 0 0 1680 1028 </string>
+						<string>0 59 1679 969 0 0 1680 1028 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -338,12 +338,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>7E9F5C1311DAE08200CB9177</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>RootViewController.m</string>
+								<string>Session.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -351,15 +353,18 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>7E9F5C1411DAE08200CB9177</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>RootViewController.m</string>
+										<string>Session.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>7E20D36712806515005477A5</string>
+										<string>7E20D83212821056005477A5</string>
 										<key>history</key>
 										<array>
-											<string>7E20D35912806461005477A5</string>
-											<string>7E20D3661280650D005477A5</string>
+											<string>7E20D82D12821056005477A5</string>
+											<string>7E20D82E12821056005477A5</string>
+											<string>7E20D82F12821056005477A5</string>
+											<string>7E20D83012821056005477A5</string>
+											<string>7E20D83112821056005477A5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -373,9 +378,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1268, 715}}</string>
+								<string>{{0, 0}, {1329, 715}}</string>
 								<key>RubberWindowFrame</key>
-								<string>6 59 1618 969 0 0 1680 1028 </string>
+								<string>0 59 1679 969 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -398,9 +403,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1268, 181}}</string>
-										<key>RubberWindowFrame</key>
-										<string>6 59 1618 969 0 0 1680 1028 </string>
+										<string>{{10, 27}, {1329, 181}}</string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -416,7 +419,9 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1203, 262}}</string>
+										<string>{{10, 27}, {1329, 181}}</string>
+										<key>RubberWindowFrame</key>
+										<string>0 59 1679 969 0 0 1680 1028 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXProjectFindModule</string>
@@ -463,7 +468,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>1268pt</string>
+					<string>1329pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -658,7 +663,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>310404373.33133602</real>
+	<real>310513750.83448398</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -675,13 +680,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>7E20D364128064EA005477A5</string>
 		<string>7E20D35112806416005477A5</string>
 		<string>7E20D35212806416005477A5</string>
-		<string>/Users/berkley/project/iphone/Simply Done/Simply Done.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>6 59 1618 969 0 0 1680 1028 </string>
+	<string>0 59 1679 969 0 0 1680 1028 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

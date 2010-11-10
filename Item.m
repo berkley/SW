@@ -114,6 +114,11 @@
 	return txt;
 }
 
+- (NSComparisonResult)compareByAlpha:(Item*)otherObject 
+{
+	return [self.description compare:otherObject.description];
+}
+
 - (NSComparisonResult)compare:(Item*)otherObject 
 {
 	NSLog(@"comparing items");

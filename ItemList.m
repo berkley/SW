@@ -345,7 +345,12 @@ NSComparisonResult compare(Item *item, Item *secondItem, void *context)
 
 - (void)sortItemsByAlpha
 {
-	
+	NSArray *sortedItems = [self.items sortedArrayUsingSelector:@selector(compareByAlpha:)];
+	for(int i=0; i<[sortedItems count]; i++)
+	{
+		Item *item = [sortedItems objectAtIndex:i];
+		[item updateSort:[NSNumber numberWithInt:i]];
+	}
 }
 
 //sort all of the items by done status.  If doneFirst, done items should be first in the list

@@ -30,5 +30,6 @@
 - (NSString*)export;
 - (void)updateSort:(NSNumber*)num;
 - (NSComparisonResult)compare:(Item*)otherObject;
+- (NSComparisonResult)compareByAlpha:(Item*)otherObject;
 
 @end

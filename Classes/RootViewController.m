@@ -91,6 +91,7 @@ ListViewController *lvc;
 - (void)viewDidAppear:(BOOL)animated
 {
 	[self.tableView reloadData];
+	[self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 

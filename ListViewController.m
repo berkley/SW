@@ -21,15 +21,127 @@
 UITextField *addField;
 BOOL doneButtonTouched;
 int cellCountAdder;
+UIToolbar *toolBar;
+
+- (NSArray*)createToolbarButtonArray
+{
+	
+	UIBarButtonItem *fixedSpacebutton = [[UIBarButtonItem alloc]
+										 initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+	
+	UIBarButtonItem *resetDoneItem = [[UIBarButtonItem alloc] 
+									  initWithBarButtonSystemItem:UIBarButtonSystemItemAction 
+									  target:self action:@selector(resetButtonItemTouched:)];
+	resetDoneItem.title = @"Reset";
+	
+	UIBarButtonItem *sortByDoneItem = [[UIBarButtonItem alloc] 
+									   initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize 
+									   target:self action:@selector(sortByDoneItemTouched:)];
+	sortByDoneItem.title = @"Sort";
+	
+	UIBarButtonItem *emailItem = [[UIBarButtonItem alloc] 
+								  initWithBarButtonSystemItem:UIBarButtonSystemItemCompose 
+								  target:self action:@selector(emailItemTouched:)];
+	emailItem.title = @"Email";
+	
+	UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] 
+								   initWithBarButtonSystemItem:UIBarButtonSystemItemTrash 
+								   target:self action:@selector(deleteItemTouched:)];
+	deleteItem.title = @"Delete";
+		
+	if([UIDevice currentDevice].orientation == UIInterfaceOrientationPortrait ||
+	   [UIDevice currentDevice].orientation == UIInterfaceOrientationPortraitUpsideDown)
+	{
+		fixedSpacebutton.width = 63;
+		NSArray *arr = [NSArray arrayWithObjects:resetDoneItem, fixedSpacebutton, 
+						sortByDoneItem, fixedSpacebutton,
+						emailItem, fixedSpacebutton,
+						deleteItem,
+						nil];
+		[fixedSpacebutton release];
+		[resetDoneItem release];
+		[sortByDoneItem release];
+		[emailItem release];
+		[deleteItem release];
+		return arr;
+	}
+	else 
+	{
+		fixedSpacebutton.width = 67;
+		NSArray *arr = [NSArray arrayWithObjects:fixedSpacebutton, resetDoneItem, fixedSpacebutton, 
+						sortByDoneItem, fixedSpacebutton,
+						emailItem, fixedSpacebutton,
+						deleteItem,
+						nil];
+		[fixedSpacebutton release];
+		[resetDoneItem release];
+		[sortByDoneItem release];
+		[emailItem release];
+		[deleteItem release];
+		return arr;
+	}
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPushed:)];
+	UIBarButtonItem *editButton = [[UIBarButtonItem alloc] 
+								   initWithBarButtonSystemItem:UIBarButtonSystemItemEdit 
+								   target:self action:@selector(editButtonPushed:)];
     self.navigationItem.rightBarButtonItem = editButton;
 	[editButton release];
 	cellCountAdder = 1;
 	doneButtonTouched = YES;
+	
+	NSArray *toolBarArray = [self createToolbarButtonArray];
+	[self setToolbarItems:toolBarArray animated:YES];
+	[self.navigationController setToolbarHidden:NO animated:YES];
+	self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+}
+
+- (void)resetButtonItemTouched:(id)sender
+{
+	NSLog(@"resetButtonItemTouched button touched.");
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirmation" 
+													message:@"Are you sure you want to reset all of your done items?" 
+												   delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+	alert.tag = 900;
+	[alert show];
+}
+
+- (void)sortByDoneItemTouched:(id)sender
+{
+	NSLog(@"sortByDoneItemTouched button touched.");
+}
+
+- (void)emailItemTouched:(id)sender
+{
+	NSLog(@"emailItemTouched button touched.");
+}
+
+- (void)deleteItemTouched:(id)sender
+{
+	NSLog(@"deleteItemTouched button touched.");
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if(alertView.tag == 900)
+	{
+		NSLog(@"button index: %i", buttonIndex);
+		if(buttonIndex == 1)
+		{  //NO is 0, YES is 1
+			for(int i=0; i<[[Session sharedInstance].itemList.items count]; i++)
+			{
+				Item *item = [[Session sharedInstance].itemList.items objectAtIndex:i];
+				if([item.done intValue] == 1)
+				{
+					NSIndexPath *ip = [NSIndexPath indexPathForRow:i inSection:0];
+					[self tableView:self.tableView didSelectRowAtIndexPath:ip];					
+				}
+			}
+		}
+	}
 }
 
 - (void)editButtonPushed:(id)sender
@@ -38,7 +150,9 @@ int cellCountAdder;
 	{
 		cellCountAdder = 1;
 		[self setEditing:NO animated:YES];
-		UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPushed:)];
+		UIBarButtonItem *editButton = [[UIBarButtonItem alloc] 
+									   initWithBarButtonSystemItem:UIBarButtonSystemItemEdit 
+									   target:self action:@selector(editButtonPushed:)];
 		self.navigationItem.rightBarButtonItem = editButton;
 		[editButton release];
 
@@ -50,7 +164,9 @@ int cellCountAdder;
 	{
 		cellCountAdder = 0;
 		[self setEditing:YES animated:YES];
-		UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editButtonPushed:)];
+		UIBarButtonItem *editButton = [[UIBarButtonItem alloc] 
+									   initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
+									   target:self action:@selector(editButtonPushed:)];
 		self.navigationItem.rightBarButtonItem = editButton;
 		[editButton release];
 		
@@ -62,22 +178,28 @@ int cellCountAdder;
 	[self.tableView reloadData];
 }
 
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return YES;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
+{
+	return YES;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+	NSArray *buttonArray = [self createToolbarButtonArray];
+	[self.navigationController.toolbar setItems:buttonArray animated:YES];
 }
 
 #pragma mark -
 #pragma mark Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
+{
     return 1;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
+{
     // Return the number of rows in the section.
 	NSLog(@"%i cells being rendered", [[Session sharedInstance].itemList.items count] + cellCountAdder);
 	return [[Session sharedInstance].itemList.items count] + cellCountAdder;
@@ -519,8 +641,13 @@ int cellCountAdder;
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+	[self.navigationController setToolbarHidden:YES animated:YES];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[self.navigationController setToolbarHidden:YES animated:YES];
+}
 
 - (void)dealloc {
     [super dealloc];

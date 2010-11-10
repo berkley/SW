@@ -40,7 +40,7 @@
 		activeArchitecturePreference = armv7;
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 7E9F5C0811DAE07B00CB9177 /* Simply Done */;
-		activeSDKPreference = iphonesimulator4.1;
+		activeSDKPreference = iphoneos4.1;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Simply Done */;
 		addToTargets = (
 			7EC546FA11DAF73800A84CC4 /* Unit Tests */,
@@ -251,7 +251,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 386";
 		rLen = 91;
-		rLoc = 20002;
+		rLoc = 20017;
 		rType = 0;
 		vrLen = 1438;
 		vrLoc = 11772;
@@ -334,7 +334,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 550";
 		rLen = 0;
-		rLoc = 24425;
+		rLoc = 24440;
 		rType = 0;
 		vrLen = 2571;
 		vrLoc = 15408;
@@ -344,7 +344,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 545";
 		rLen = 0;
-		rLoc = 24425;
+		rLoc = 24440;
 		rType = 0;
 		vrLen = 2571;
 		vrLoc = 15465;
@@ -354,7 +354,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 545";
 		rLen = 0;
-		rLoc = 24425;
+		rLoc = 24440;
 		rType = 0;
 		vrLen = 2362;
 		vrLoc = 15705;
@@ -374,7 +374,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 550";
 		rLen = 63;
-		rLoc = 24476;
+		rLoc = 24491;
 		rType = 0;
 		vrLen = 2362;
 		vrLoc = 15705;
@@ -384,7 +384,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 77";
 		rLen = 0;
-		rLoc = 4584;
+		rLoc = 4599;
 		rType = 0;
 		vrLen = 2655;
 		vrLoc = 88;
@@ -504,7 +504,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 107";
 		rLen = 0;
-		rLoc = 3516;
+		rLoc = 3521;
 		rType = 0;
 		vrLen = 2917;
 		vrLoc = 2028;
@@ -514,7 +514,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 139";
 		rLen = 0;
-		rLoc = 7654;
+		rLoc = 7669;
 		rType = 0;
 		vrLen = 2833;
 		vrLoc = 2437;
@@ -524,7 +524,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 109";
 		rLen = 0;
-		rLoc = 3516;
+		rLoc = 3521;
 		rType = 0;
 		vrLen = 2825;
 		vrLoc = 2460;
@@ -544,7 +544,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 118";
 		rLen = 0;
-		rLoc = 4045;
+		rLoc = 4060;
 		rType = 0;
 		vrLen = 2613;
 		vrLoc = 2460;
@@ -554,7 +554,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 118";
 		rLen = 0;
-		rLoc = 4021;
+		rLoc = 4036;
 		rType = 0;
 		vrLen = 2544;
 		vrLoc = 2553;
@@ -564,7 +564,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 175";
 		rLen = 0;
-		rLoc = 5928;
+		rLoc = 5943;
 		rType = 0;
 		vrLen = 2213;
 		vrLoc = 4086;
@@ -704,7 +704,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 200";
 		rLen = 0;
-		rLoc = 7129;
+		rLoc = 7144;
 		rType = 0;
 		vrLen = 2430;
 		vrLoc = 4041;
@@ -714,7 +714,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 200";
 		rLen = 0;
-		rLoc = 7129;
+		rLoc = 7144;
 		rType = 0;
 		vrLen = 2441;
 		vrLoc = 4168;
@@ -724,7 +724,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 205";
 		rLen = 0;
-		rLoc = 7127;
+		rLoc = 7142;
 		rType = 0;
 		vrLen = 2104;
 		vrLoc = 4977;
@@ -744,7 +744,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 191";
 		rLen = 0;
-		rLoc = 6473;
+		rLoc = 6488;
 		rType = 0;
 		vrLen = 2170;
 		vrLoc = 4644;
@@ -754,7 +754,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 192";
 		rLen = 0;
-		rLoc = 6473;
+		rLoc = 6488;
 		rType = 0;
 		vrLen = 2222;
 		vrLoc = 4733;
@@ -764,7 +764,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 251";
 		rLen = 0;
-		rLoc = 8026;
+		rLoc = 8041;
 		rType = 0;
 		vrLen = 2502;
 		vrLoc = 5502;
@@ -774,7 +774,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 205";
 		rLen = 0;
-		rLoc = 6821;
+		rLoc = 6836;
 		rType = 0;
 		vrLen = 2493;
 		vrLoc = 5600;
@@ -784,7 +784,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 202";
 		rLen = 0;
-		rLoc = 6670;
+		rLoc = 6685;
 		rType = 0;
 		vrLen = 2486;
 		vrLoc = 5600;
@@ -794,7 +794,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 239";
 		rLen = 0;
-		rLoc = 7730;
+		rLoc = 7745;
 		rType = 0;
 		vrLen = 2932;
 		vrLoc = 3563;
@@ -844,7 +844,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 165";
 		rLen = 0;
-		rLoc = 5436;
+		rLoc = 5451;
 		rType = 0;
 		vrLen = 2739;
 		vrLoc = 4046;
@@ -904,7 +904,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 165";
 		rLen = 0;
-		rLoc = 5436;
+		rLoc = 5451;
 		rType = 0;
 		vrLen = 2716;
 		vrLoc = 4022;
@@ -1114,7 +1114,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 165";
 		rLen = 0;
-		rLoc = 5436;
+		rLoc = 5451;
 		rType = 0;
 		vrLen = 2716;
 		vrLoc = 4022;
@@ -1124,7 +1124,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 166";
 		rLen = 0;
-		rLoc = 5436;
+		rLoc = 5451;
 		rType = 0;
 		vrLen = 2771;
 		vrLoc = 4046;
@@ -1134,7 +1134,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 166";
 		rLen = 0;
-		rLoc = 5436;
+		rLoc = 5451;
 		rType = 0;
 		vrLen = 2771;
 		vrLoc = 4046;
@@ -1174,7 +1174,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 166";
 		rLen = 0;
-		rLoc = 5404;
+		rLoc = 5419;
 		rType = 0;
 		vrLen = 2792;
 		vrLoc = 4048;
@@ -1184,7 +1184,7 @@
 		fRef = 7E471B4812690BF6008FBAAD /* ListViewController.m */;
 		name = "ListViewController.m: 177";
 		rLen = 0;
-		rLoc = 5699;
+		rLoc = 5714;
 		rType = 0;
 		vrLen = 2830;
 		vrLoc = 4048;
@@ -1404,9 +1404,9 @@
 	};
 	7EC548C011DB03D100A84CC4 /* ItemList.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {985, 5590}}";
-			sepNavSelRange = "{9298, 0}";
-			sepNavVisRange = "{8616, 2874}";
+			sepNavIntBoundsRect = "{{0, 0}, {985, 5616}}";
+			sepNavSelRange = "{9474, 0}";
+			sepNavVisRange = "{7801, 2303}";
 			sepNavWindowFrame = "{{15, 465}, {750, 558}}";
 		};
 	};

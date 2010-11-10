@@ -108,7 +108,7 @@ UIToolbar *toolBar;
 {
 	NSLog(@"resetButtonItemTouched button touched.");
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirmation" 
-													message:@"Are you sure you want to reset all of your done items?" 
+													message:@"Are you sure you want to reset all of your completed items?" 
 												   delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
 	alert.tag = 900;
 	[alert show];
@@ -121,7 +121,7 @@ UIToolbar *toolBar;
 															 delegate:self 
 													cancelButtonTitle:@"Cancel" 
 											   destructiveButtonTitle:nil 
-													otherButtonTitles:@"Done First", @"Done Last", @"Alphabetical", nil];
+													otherButtonTitles:@"Completed First", @"Completed Last", @"Alphabetical", nil];
 	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 	actionSheet.tag = 901;
 	[actionSheet showInView:self.view];

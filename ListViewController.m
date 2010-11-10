@@ -82,6 +82,14 @@ UIToolbar *toolBar;
 	}
 }
 
+- (void)addToolbar
+{
+	NSArray *toolBarArray = [self createToolbarButtonArray];
+	[self setToolbarItems:toolBarArray animated:YES];
+	[self.navigationController setToolbarHidden:NO animated:YES];
+	self.navigationController.toolbar.barStyle = UIBarStyleBlack;	
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -92,11 +100,8 @@ UIToolbar *toolBar;
 	[editButton release];
 	cellCountAdder = 1;
 	doneButtonTouched = YES;
-	
-	NSArray *toolBarArray = [self createToolbarButtonArray];
-	[self setToolbarItems:toolBarArray animated:YES];
-	[self.navigationController setToolbarHidden:NO animated:YES];
-	self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+		
+	[self addToolbar];
 }
 
 - (void)resetButtonItemTouched:(id)sender
@@ -112,16 +117,104 @@ UIToolbar *toolBar;
 - (void)sortByDoneItemTouched:(id)sender
 {
 	NSLog(@"sortByDoneItemTouched button touched.");
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Sort List Items" 
+															 delegate:self 
+													cancelButtonTitle:@"Cancel" 
+											   destructiveButtonTitle:nil 
+													otherButtonTitles:@"Done First", @"Done Last", @"Alphabetical", nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+	actionSheet.tag = 901;
+	[actionSheet showInView:self.view];
+	[actionSheet release];
 }
 
 - (void)emailItemTouched:(id)sender
 {
 	NSLog(@"emailItemTouched button touched.");
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Email List" 
+															 delegate:self 
+													cancelButtonTitle:@"Cancel" 
+											   destructiveButtonTitle:nil 
+													otherButtonTitles:@"Email Plain Text", @"Email Attachment", nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+	actionSheet.tag = 902;
+	[actionSheet showInView:self.view];
+	[actionSheet release];
 }
 
 - (void)deleteItemTouched:(id)sender
 {
 	NSLog(@"deleteItemTouched button touched.");
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Delete List Items" 
+															 delegate:self cancelButtonTitle:@"Cancel" 
+											   destructiveButtonTitle:nil 
+													otherButtonTitles:@"Delete All Items", @"Delete Completed Items", nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+	actionSheet.tag = 903;
+	[actionSheet showInView:self.view];
+	[actionSheet release];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	NSLog(@"Touched button %i of action sheet %i", buttonIndex, actionSheet.tag);
+	if(actionSheet.tag == 901)
+	{ //sort
+		if(buttonIndex == 0)
+		{ //done first
+			
+		}
+		else if(buttonIndex == 1)
+		{ //done last
+			
+		}		
+		else if(buttonIndex == 2)
+		{ //alpha
+			
+		}
+	}
+	else if(actionSheet.tag == 902)
+	{ //email
+		if(buttonIndex == 0)
+		{ //email plain text
+			[[Session sharedInstance] emailPlainTextList:self viewController:self];
+		}
+		else if(buttonIndex == 1)
+		{ //simply done file
+			[[Session sharedInstance] emailSDList:self viewController:self];
+		}
+	}
+	else if(actionSheet.tag	== 903)
+	{ //delete
+		if(buttonIndex == 0)
+		{ //delete all
+			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirmation" 
+																message:@"Are you sure you want to delete all items from the list?" 
+															   delegate:self 
+													  cancelButtonTitle:@"No" 
+													  otherButtonTitles:@"Yes", nil];
+			alertView.tag = 904;
+			[alertView show];
+		}
+		else if(buttonIndex == 1)
+		{ //delete done only
+			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirmation" 
+																message:@"Are you sure you want to delete all completed items from the list?" 
+															   delegate:self 
+													  cancelButtonTitle:@"No" 
+													  otherButtonTitles:@"Yes", nil];
+			alertView.tag = 905;
+			[alertView show];
+		}
+	}
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller  
+          didFinishWithResult:(MFMailComposeResult)result 
+                        error:(NSError*)error;
+{
+	[self dismissModalViewControllerAnimated:YES];
+	[self addToolbar];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -142,6 +235,23 @@ UIToolbar *toolBar;
 			}
 		}
 	}
+	else if(alertView.tag == 904)
+	{
+		if(buttonIndex == 1)
+		{
+			[[Session sharedInstance].itemList deleteAllItems];
+			[self.tableView reloadData];			
+		}
+	}
+	else if(alertView.tag == 905)
+	{
+		if(buttonIndex == 1)
+		{
+			[[Session sharedInstance].itemList deleteAllDoneItems];
+			[self.tableView reloadData];
+		}
+	}
+	[alertView release];
 }
 
 - (void)editButtonPushed:(id)sender

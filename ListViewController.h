@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
+#import <MessageUI/MessageUI.h>
 
 
-@interface ListViewController : UITableViewController  <UITextFieldDelegate> {
+@interface ListViewController : UITableViewController  <UITextFieldDelegate, 
+  UIActionSheetDelegate, MFMailComposeViewControllerDelegate> 
+{
 
 }
 

@@ -111,52 +111,19 @@
 - (IBAction)emaillist:(id)sender
 {
 	NSLog(@"emailing plain text list");
-	//[[Session sharedInstance].itemList emailList:emailTextField.text];
-	
-	MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
-	controller.mailComposeDelegate = self;
-	NSString *subject = [NSString stringWithFormat:@"Todo List: %@", [Session sharedInstance].itemList.name];
-	[controller setSubject:subject];
-	[controller setMessageBody:[[Session sharedInstance].itemList createEmailText] isHTML:NO]; 
-	[self presentModalViewController:controller animated:YES];
-	[controller release];
+	[[Session sharedInstance] emailPlainTextList:self viewController:self];
 }
 
 - (IBAction)emailSDlist:(id)sender
 {
 	NSLog(@"emailing SD list");
-	//[[Session sharedInstance].itemList emailList:emailTextField.text];
-	
-	MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
-	controller.mailComposeDelegate = self;
-	NSString *subject = [NSString stringWithFormat:@"Todo List: %@", [Session sharedInstance].itemList.name];
-	[controller setSubject:subject];
-	//[controller setMessageBody:[[Session sharedInstance].itemList createEmailText] isHTML:NO]; 
-	NSString *filename = [NSString stringWithFormat:@"%@.simplydone", [Session sharedInstance].itemList.name];
-	[controller addAttachmentData:[[Session sharedInstance].itemList createEmailAttachment] mimeType:@"application/simplydone" fileName:filename];
-	[self presentModalViewController:controller animated:YES];
-	[controller release];
+	[[Session sharedInstance] emailSDList:self viewController:self];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller  
           didFinishWithResult:(MFMailComposeResult)result 
                         error:(NSError*)error;
 {
-	if (result == MFMailComposeResultSent) 
-	{
-		//NSString *msg = [NSString stringWithFormat:@"Your list was sent to %@", emailTextField.text];
-		//UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email Sent" message:msg  
-		//											   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		//[alert show];
-	}
-	else 
-	{
-		//NSString *msg = [NSString stringWithFormat:@"Sorry, an error occured and your email was not sent."];
-		//UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email Failed" message:msg  
-		//											   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		//[alert show];
-	}
-
 	[self dismissModalViewControllerAnimated:YES];
 }
 

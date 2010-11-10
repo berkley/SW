@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ItemList.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
 @interface Session : NSObject 
 {
@@ -30,5 +32,7 @@
 @property (nonatomic, retain) NSString* listName;
 
 + (Session*)sharedInstance;
+- (void)emailSDList:(id<MFMailComposeViewControllerDelegate>)delegate viewController:(UIViewController*)viewController;
+- (void)emailPlainTextList:(id<MFMailComposeViewControllerDelegate>)delegate viewController:(UIViewController*)viewController;
 
 @end

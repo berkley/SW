@@ -151,7 +151,7 @@ ListViewController *lvc;
 			cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ of %i tasks complete", [list numberDone], [list.items count]];
 			cell.imageView.image = [UIImage imageNamed:@"ListIcon_80x80.png"];
 			cell.imageView.frame = CGRectMake(0,0,30,30);
-			cell.accessoryType =  UITableViewCellAccessoryDetailDisclosureButton;
+			//cell.accessoryType =  UITableViewCellAccessoryDetailDisclosureButton;
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 			cell.textLabel.numberOfLines = 2;
 			

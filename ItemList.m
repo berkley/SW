@@ -329,10 +329,87 @@
 		txt = [txt stringByAppendingString:[item export]];
 		txt = [txt stringByAppendingString:@"\n"];
 	}
-	//NSString *docsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	//NSString *path = [docsDirectory stringByAppendingPathComponent:@"export.txt"];
-	//[txt writeToFile:path atomically:YES];
 	return [txt dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+NSComparisonResult compare(Item *item, Item *secondItem, void *context) 
+{
+	NSLog(@"comparing items");
+	if (item.sort < secondItem.sort)
+		return NSOrderedAscending;
+	else if (item.sort > secondItem.sort)
+		return NSOrderedDescending;
+	else 
+		return NSOrderedSame;
+}
+
+- (void)sortItemsByAlpha
+{
+	
+}
+
+//sort all of the items by done status.  If doneFirst, done items should be first in the list
+- (void)sortItemsByDone:(BOOL)doneFirst
+{
+	NSLog(@"Sorting items by done");
+	NSMutableArray *doneItems = [[NSMutableArray alloc] init];
+	NSMutableArray *unDoneItems = [[NSMutableArray alloc] init];
+	for(int i=0; i<[self.items count]; i++)
+	{ //sort into done and undone
+		Item *item = [self.items objectAtIndex:i];
+		if([item.done intValue] == 1)
+		{
+			[doneItems addObject:item];
+		}
+		else 
+		{
+			[unDoneItems addObject:item];
+		}
+	}
+	
+	//reset sort values based on what array the item is in and whether doneFirst is YES
+	if(doneFirst)
+	{
+		NSLog(@"sorting done items first");
+		NSArray *doneSort = [doneItems sortedArrayUsingSelector:@selector(compare:)];
+		for(int i=0; i<[doneSort count]; i++)
+		{
+			Item *item = [doneSort objectAtIndex:i];
+			NSLog(@"1sorted items: %@  sort: %@", item.description, item.sort);
+			NSLog(@"1updating sort to %i from %@", i, item.sort);
+			[item updateSort:[NSNumber numberWithInt:i]];
+		}
+		
+		NSArray *undoneSort = [unDoneItems sortedArrayUsingSelector:@selector(compare:)];
+		for(int i=0; i<[undoneSort count]; i++)
+		{
+			Item *item = [unDoneItems objectAtIndex:i];
+			NSLog(@"2sorted items: %@  sort: %@", item.description, item.sort);
+			NSLog(@"2updating sort to %i from %@", i, item.sort);
+			[item updateSort:[NSNumber numberWithInt:(i + [doneSort count])]];
+		}
+	}
+	else 
+	{
+		NSLog(@"sorting done items last");
+		NSArray *undoneSort = [unDoneItems sortedArrayUsingSelector:@selector(compare:)];
+		for(int i=0; i<[undoneSort count]; i++)
+		{
+			Item *item = [unDoneItems objectAtIndex:i];
+			NSLog(@"2sorted items: %@  sort: %@", item.description, item.sort);
+			NSLog(@"2updating sort to %i from %@", i, item.sort);
+			[item updateSort:[NSNumber numberWithInt:i]];
+		}
+		
+		NSArray *doneSort = [doneItems sortedArrayUsingSelector:@selector(compare:)];
+		for(int i=0; i<[doneSort count]; i++)
+		{
+			Item *item = [doneSort objectAtIndex:i];
+			NSLog(@"1sorted items: %@  sort: %@", item.description, item.sort);
+			NSLog(@"1updating sort to %i from %@", i, item.sort);
+			[item updateSort:[NSNumber numberWithInt:(i + [undoneSort count])]];
+		}
+	}
 }
 
 - (void)dealloc 

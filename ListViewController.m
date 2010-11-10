@@ -162,15 +162,21 @@ UIToolbar *toolBar;
 	{ //sort
 		if(buttonIndex == 0)
 		{ //done first
-			
+			[[Session sharedInstance].itemList sortItemsByDone:YES];
+			[DBUtil loadLists];
+			[self.tableView reloadData];
 		}
 		else if(buttonIndex == 1)
 		{ //done last
-			
+			[[Session sharedInstance].itemList sortItemsByDone:NO];
+			[DBUtil loadLists];
+			[self.tableView reloadData];
 		}		
 		else if(buttonIndex == 2)
 		{ //alpha
-			
+			[[Session sharedInstance].itemList sortItemsByAlpha];
+			[DBUtil loadLists];
+			[self.tableView reloadData];
 		}
 	}
 	else if(actionSheet.tag == 902)
@@ -220,10 +226,9 @@ UIToolbar *toolBar;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	if(alertView.tag == 900)
-	{
-		NSLog(@"button index: %i", buttonIndex);
+	{ //deselect all X items
 		if(buttonIndex == 1)
-		{  //NO is 0, YES is 1
+		{  //NO (cancel) is 0, YES is 1
 			for(int i=0; i<[[Session sharedInstance].itemList.items count]; i++)
 			{
 				Item *item = [[Session sharedInstance].itemList.items objectAtIndex:i];
@@ -236,7 +241,7 @@ UIToolbar *toolBar;
 		}
 	}
 	else if(alertView.tag == 904)
-	{
+	{ //delete all items
 		if(buttonIndex == 1)
 		{
 			[[Session sharedInstance].itemList deleteAllItems];
@@ -244,7 +249,7 @@ UIToolbar *toolBar;
 		}
 	}
 	else if(alertView.tag == 905)
-	{
+	{ //delete done items
 		if(buttonIndex == 1)
 		{
 			[[Session sharedInstance].itemList deleteAllDoneItems];

@@ -29,5 +29,6 @@
 - (NSString*)toString;
 - (NSString*)export;
 - (void)updateSort:(NSNumber*)num;
+- (NSComparisonResult)compare:(Item*)otherObject;
 
 @end

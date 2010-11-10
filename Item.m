@@ -114,6 +114,17 @@
 	return txt;
 }
 
+- (NSComparisonResult)compare:(Item*)otherObject 
+{
+	NSLog(@"comparing items");
+	if ([self.sort intValue] < [otherObject.sort intValue])
+		return NSOrderedAscending;
+	else if ([self.sort intValue] > [otherObject.sort intValue])
+		return NSOrderedDescending;
+	else 
+		return NSOrderedSame;
+}
+
 - (void)dealloc 
 {
 	[self.id release];

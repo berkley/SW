@@ -36,5 +36,7 @@
 - (NSData*)createEmailAttachment;
 - (void)deleteItem:(NSNumber*)id;
 - (void)resetAllItems;
+- (void)sortItemsByDone:(BOOL)doneFirst;
+- (void)sortItemsByAlpha;
 
 @end

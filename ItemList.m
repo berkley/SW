@@ -209,6 +209,25 @@
 	return [NSNumber numberWithInt:count];
 }
 
+- (void)duplicate:(NSString*)n
+{
+	if(n == nil)
+	{
+		n = self.name;
+	}
+	ItemList *newList = [[ItemList alloc] initWithName:n];
+	for(int i=0; i<[self.items count]; i++)
+	{
+		Item *item = [self.items objectAtIndex:i];
+		BOOL dn = YES;
+		if([item.done intValue] == 0)
+		{
+			dn = NO;
+		}
+		[newList addItem:item.description done:dn];
+	}
+}
+
 - (void)resetAllItems
 {
 	NSLog(@"reseting all items to 'not done'");

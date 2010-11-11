@@ -50,7 +50,9 @@ UIToolbar *toolBar;
 	deleteItem.title = @"Delete";
 		
 	if([UIDevice currentDevice].orientation == UIInterfaceOrientationPortrait ||
-	   [UIDevice currentDevice].orientation == UIInterfaceOrientationPortraitUpsideDown)
+	   [UIDevice currentDevice].orientation == UIInterfaceOrientationPortraitUpsideDown ||
+	   [UIDevice currentDevice].orientation == UIDeviceOrientationFaceUp ||
+	   [UIDevice currentDevice].orientation == UIDeviceOrientationFaceDown)
 	{
 		fixedSpacebutton.width = 63;
 		NSArray *arr = [NSArray arrayWithObjects:resetDoneItem, fixedSpacebutton, 
@@ -106,16 +108,22 @@ UIToolbar *toolBar;
 
 - (void)resetButtonItemTouched:(id)sender
 {
+	[self.navigationController setToolbarHidden:YES animated:YES];
 	NSLog(@"resetButtonItemTouched button touched.");
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirmation" 
-													message:@"Are you sure you want to reset all of your completed items?" 
-												   delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-	alert.tag = 900;
-	[alert show];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"List Options" 
+															 delegate:self 
+													cancelButtonTitle:@"Cancel" 
+											   destructiveButtonTitle:nil 
+													otherButtonTitles:@"Reset Completed Items", @"Duplicate List", nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+	actionSheet.tag = 900;
+	[actionSheet showInView:self.view];
+	[actionSheet release];
 }
 
 - (void)sortByDoneItemTouched:(id)sender
 {
+	[self.navigationController setToolbarHidden:YES animated:YES];
 	NSLog(@"sortByDoneItemTouched button touched.");
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Sort List Items" 
 															 delegate:self 
@@ -130,6 +138,7 @@ UIToolbar *toolBar;
 
 - (void)emailItemTouched:(id)sender
 {
+	[self.navigationController setToolbarHidden:YES animated:YES];
 	NSLog(@"emailItemTouched button touched.");
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Email List" 
 															 delegate:self 
@@ -144,6 +153,7 @@ UIToolbar *toolBar;
 
 - (void)deleteItemTouched:(id)sender
 {
+	[self.navigationController setToolbarHidden:YES animated:YES];
 	NSLog(@"deleteItemTouched button touched.");
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Delete List Items" 
 															 delegate:self cancelButtonTitle:@"Cancel" 
@@ -158,7 +168,26 @@ UIToolbar *toolBar;
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	NSLog(@"Touched button %i of action sheet %i", buttonIndex, actionSheet.tag);
-	if(actionSheet.tag == 901)
+	if(actionSheet.tag == 900)
+	{
+		if(buttonIndex == 0)
+		{ //reset completed items
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirmation" 
+															message:@"Are you sure you want to reset all of your completed items?" 
+														   delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+			alert.tag = 906;
+			[alert show];
+		}
+		else if(buttonIndex == 1)
+		{ //duplicate list
+			NSString *name = [[Session sharedInstance].itemList.name stringByAppendingString:@" Copy"];
+			NSLog(@"copying list to name %@", name);
+			[[Session sharedInstance].itemList duplicate:name];
+			[DBUtil loadLists];
+			[self.navigationController popViewControllerAnimated:YES];
+		}
+	}
+	else if(actionSheet.tag == 901)
 	{ //sort
 		if(buttonIndex == 0)
 		{ //done first
@@ -213,6 +242,8 @@ UIToolbar *toolBar;
 			[alertView show];
 		}
 	}
+	
+	[self.navigationController setToolbarHidden:NO animated:YES];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller  
@@ -225,7 +256,7 @@ UIToolbar *toolBar;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	if(alertView.tag == 900)
+	if(alertView.tag == 906)
 	{ //deselect all X items
 		if(buttonIndex == 1)
 		{  //NO (cancel) is 0, YES is 1

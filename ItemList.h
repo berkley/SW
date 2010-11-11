@@ -38,5 +38,5 @@
 - (void)resetAllItems;
 - (void)sortItemsByDone:(BOOL)doneFirst;
 - (void)sortItemsByAlpha;
-
+- (void)duplicate:(NSString*)n;
 @end

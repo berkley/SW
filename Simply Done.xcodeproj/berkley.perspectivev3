@@ -304,8 +304,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>17</integer>
-									<integer>15</integer>
+									<integer>45</integer>
+									<integer>42</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -338,14 +338,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>7E9F5C1311DAE08200CB9177</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>RootViewController.m</string>
+								<string>Simply_Done-Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -353,11 +351,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>7E9F5C1411DAE08200CB9177</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>RootViewController.m</string>
+										<string>Simply_Done-Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>7E82CAD8128C6BB8006F90D4</string>
+										<string>7E82CAE5128C7209006F90D4</string>
 										<key>history</key>
 										<array>
 											<string>7E82C9CB128BAAE8006F90D4</string>
@@ -367,7 +365,8 @@
 											<string>7E82CAA2128C67E1006F90D4</string>
 											<string>7E82CAA3128C67E1006F90D4</string>
 											<string>7E82CAA4128C67E1006F90D4</string>
-											<string>7E82CAD7128C6BB4006F90D4</string>
+											<string>7E82CAE3128C7209006F90D4</string>
+											<string>7E82CAE4128C7209006F90D4</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -666,7 +665,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>311192504.852117</real>
+	<real>311194121.22188097</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -683,6 +682,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>7E82CAE6128C7209006F90D4</string>
 		<string>7E82CA0B128BB222006F90D4</string>
 		<string>7E82CA0C128BB222006F90D4</string>
 		<string>/Users/berkley/project/iphone/Simply Done/Simply Done.xcodeproj</string>

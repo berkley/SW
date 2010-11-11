@@ -55,6 +55,7 @@ NSString *textFieldText;
 	[addField becomeFirstResponder];
 }
 
+//add an item, this is called when the add itme button is pushed
 - (void)addItem:(id)sender 
 {
 	NSLog(@"add button pushed");
@@ -125,6 +126,7 @@ NSString *textFieldText;
 	return -1;
 }
 
+//change teh name of a list with a given id
 - (void)changeName:(NSString*)name id:(int)id
 {
 	for(int i=0; i<[[Session sharedInstance].lists count]; i++)
@@ -139,7 +141,6 @@ NSString *textFieldText;
 			}
 		}
 	}
-	
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

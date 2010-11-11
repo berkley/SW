@@ -367,37 +367,10 @@ UIToolbar *toolBar;
 	if(editing)
 	{ //going into editing mode
 		NSLog(@"editing");
-		//[self.tableView reloadData];
 	}
 	else 
 	{ //no longer in editing mode
 		NSLog(@"no longer editing");
-		//make sure all change text boxes get updated
-		/*for(int i=0; i<[[Session sharedInstance].itemList.items count]; i++)
-		{
-			Item *item = [[Session sharedInstance].itemList.items objectAtIndex:i];
-			NSObject *obj = [self.view viewWithTag:[item.id intValue] + 99];
-			NSLog(@"updating item %@ after editing with text %@", item.id, item.description);
-			if([obj isKindOfClass:[UITextField class]])
-			{
-				UITextField *field = (UITextField*)obj;
-				NSString *fieldText = field.text;
-				
-				NSString *descText = item.description;
-				NSLog(@"fieldText: %@ descText: %@", fieldText, descText);
-				if(![fieldText isEqualToString:descText])
-				{
-					NSLog(@"Updating item description");
-					[[Session sharedInstance].itemList updateItemDescription:fieldText withId:item.id];
-				}
-			}
-			else 
-			{
-				NSLog(@"ERROR: field not updated because the textField is not of class UITextField");
-			}
-
-		}*/
-		//[self.tableView reloadData];
 	}
 }
 
@@ -577,8 +550,8 @@ UIToolbar *toolBar;
 			UITextField *editField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
 			editField.tag = [item.id intValue] + 99;
 			editField.text = item.description;
-			editField.borderStyle = UITextBorderStyleNone;
-			editField.textColor = [UIColor whiteColor];
+			editField.borderStyle = UITextBorderStyleRoundedRect;
+//			editField.textColor = [UIColor whiteColor];
 			editField.returnKeyType = UIReturnKeyDone;
 			editField.delegate = self;
 			cell.tag = [item.id intValue];
@@ -589,43 +562,15 @@ UIToolbar *toolBar;
 			
 			if([item.done intValue] > 0)
 			{
-				cell.imageView.image = [UIImage imageNamed:@"CheckedBox_40x40.png"];		
+				UIImage *image = [UIImage imageNamed:@"CheckedBox_40x40.png"];
+				cell.imageView.image = image;
 			}
 			else 
 			{
-				cell.imageView.image = [UIImage imageNamed:@"UnCheckedBox_40x40.png"];
+				UIImage *image = [UIImage imageNamed:@"UnCheckedBox_40x40.png"];
+				cell.imageView.image = image;
 			}
 		}
-		/*else 
-		{
-			NSLog(@"reusing EditCell for item: %@", item.description);
-			//UITextField *editField = (UITextField*)[self.view viewWithTag:[item.id intValue] + 99];
-			UITextField *editField;
-			for(int i=0; i<[cell.contentView.subviews count]; i++)
-			{
-				NSLog(@"looking for editField");
-				NSObject *obj = [cell.contentView.subviews objectAtIndex:i];
-				if([obj isKindOfClass:[UITextField class]])
-				{
-					editField = (UITextField*)obj;
-					break;
-				}
-			}
-			if(editField == nil)
-			{
-				NSLog(@"ERROR!  EditField is nil");
-			}
-			editField.tag = [item.id intValue] + 99;
-			editField.text = item.description;
-			if([item.done intValue] > 0)
-			{
-				cell.imageView.image = [UIImage imageNamed:@"CheckedBox_40x40.png"];		
-			}
-			else 
-			{
-				cell.imageView.image = [UIImage imageNamed:@"UnCheckedBox_40x40.png"];
-			}
-		}*/
 	}
 	
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;

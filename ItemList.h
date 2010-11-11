@@ -39,4 +39,6 @@
 - (void)sortItemsByDone:(BOOL)doneFirst;
 - (void)sortItemsByAlpha;
 - (void)duplicate:(NSString*)n;
+- (void) updateListName:(NSString*)newName;
+
 @end

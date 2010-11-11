@@ -19,12 +19,16 @@
 UITextField *addField;
 UIBarButtonItem *addButton;
 ListViewController *lvc;
+NSString *textFieldText;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	UIBarButtonItem *editButton = [[UIBarButtonItem alloc] 
+								   initWithBarButtonSystemItem:UIBarButtonSystemItemEdit 
+								   target:self action:@selector(editButtonPushed:)];
+    self.navigationItem.rightBarButtonItem = editButton;
+	[editButton release];
     self.navigationItem.title = @"Lists";
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
@@ -107,104 +111,278 @@ ListViewController *lvc;
     return [[Session sharedInstance].lists count];
 }
 
+//returns the index of the list with the same name or -1 if none exist with the same name
+- (NSInteger) checkForDuplicateListName:(NSString*)name
+{
+	for(int i=0; i<[[Session sharedInstance].lists count]; i++)
+	{
+		ItemList *list = [[Session sharedInstance].lists objectAtIndex:i];
+		if([list.name isEqualToString:name])
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+- (void)changeName:(NSString*)name id:(int)id
+{
+	for(int i=0; i<[[Session sharedInstance].lists count]; i++)
+	{
+		ItemList *list = [[Session sharedInstance].lists objectAtIndex:i];
+		if([list.identifier intValue] == id)
+		{
+			NSString *listName = list.name;
+			if(![name isEqualToString:listName])
+			{
+				[list updateListName:name];
+			}
+		}
+	}
+	
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if(alertView.tag > 50000)
+	{
+		int id = alertView.tag - 50000;
+		if(buttonIndex == 0)
+		{ //cancel
+			
+		}
+		else if(buttonIndex == 1)
+		{ //merge
+			
+		}
+		else if(buttonIndex == 2)
+		{ //new list
+			[self changeName:textFieldText id:id];
+		}
+		[self.tableView reloadData];
+	}
+}
+
+- (void)updateListName:(UITextField*)textField
+{
+	int id = textField.tag - 20000;
+	textFieldText = textField.text;
+	
+	/*if([self checkForDuplicateListName:textField.text] != -1)
+	{
+		//ask if the user wants to merge the lists or create one with the same name
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Merge?" 
+														message:@"You have chosen a name that already exists.  Would you like to merge the two lists or create a new one with the same name?" 
+													   delegate:self 
+											  cancelButtonTitle:@"Cancel" 
+											  otherButtonTitles:@"Merge Lists", @"New List", nil];
+		alert.tag = id + 50000;
+		[alert show];
+	}
+	else 
+	{*/
+		[self changeName:textFieldText id:id];
+	//}
+
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+	NSLog(@"text field with text %@ finished editing", textField.text);
+	[self updateListName:textField];
+}
+
+- (void)editButtonPushed:(id)sender
+{
+	if(self.editing)
+	{
+		[self setEditing:NO animated:YES];
+		UIBarButtonItem *editButton = [[UIBarButtonItem alloc] 
+									   initWithBarButtonSystemItem:UIBarButtonSystemItemEdit 
+									   target:self action:@selector(editButtonPushed:)];
+		self.navigationItem.rightBarButtonItem = editButton;
+		[editButton release];
+		addButton.enabled = YES;
+	}
+	else 
+	{
+		[self setEditing:YES animated:YES];
+		UIBarButtonItem *editButton = [[UIBarButtonItem alloc] 
+									   initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
+									   target:self action:@selector(editButtonPushed:)];
+		self.navigationItem.rightBarButtonItem = editButton;
+		[editButton release];
+		if(!addButton.enabled)
+		{
+			NSMutableArray* paths = [[NSMutableArray alloc] init];
+			[paths addObject:[NSIndexPath indexPathForRow:[[Session sharedInstance].lists count] - 1 inSection:0]];
+			[[Session sharedInstance].lists removeLastObject];
+			[self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+			[paths release];
+		}
+		addButton.enabled = NO;
+	}
+	
+	[self.tableView reloadData];
+}
+
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *NormalCellIdentifier = @"Cell";
-	static NSString *EditCellIdentifier = @"EditCell";
-	ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
-	
 	UITableViewCell *cell = nil;
 	
-	if(cell == nil)
+	if(self.tableView.editing)
 	{
-		if([list.identifier intValue] == -1)
-		{ //edit cell
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:EditCellIdentifier] autorelease];
-			NSLog(@"creating new content cell");
-			UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
-			addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 25, 250, 30)];
-			UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-			addField.borderStyle = UITextBorderStyleRoundedRect;
-			addField.delegate = self;
-			addField.keyboardType = UIKeyboardTypeDefault;
-			addField.returnKeyType = UIReturnKeyDone;
-			//[addField becomeFirstResponder];
-			button.backgroundColor = [UIColor blackColor];
-			[button setTitle:@"Done" forState:UIControlStateNormal];	
-			button.frame = CGRectMake(260, 25, 55, 30);
-			[view addSubview:addField];
-			[view addSubview:button];
-			view.tag = 1;
-			[cell.contentView addSubview:view];
-			[button addTarget:self action:@selector(newListItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
-			cell.accessoryType =  UITableViewCellAccessoryNone;
-		}
-		else 
-		{ //normal cell
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:NormalCellIdentifier] autorelease];
-			NSLog(@"creating normal cell");
-			cell.textLabel.text = list.name;
-			[cell.textLabel setTextColor:[UIColor whiteColor]];
-			[cell.detailTextLabel setTextColor:[UIColor whiteColor]];
-			cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ of %i tasks complete", [list numberDone], [list.items count]];
-			cell.imageView.image = [UIImage imageNamed:@"ListIcon_80x80.png"];
-			cell.imageView.frame = CGRectMake(0,0,30,30);
-			//cell.accessoryType =  UITableViewCellAccessoryDetailDisclosureButton;
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			cell.textLabel.numberOfLines = 2;
-			
-			//label for number of undone items
-			UILabel *notDoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 12, 25, 20)];
-			notDoneLabel.alpha = 0;
-			int notDone = [list.items count] - [[list numberDone] intValue];
-			notDoneLabel.text = [NSString stringWithFormat:@"%i", notDone];
-			notDoneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
-			notDoneLabel.textColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
-			[cell.contentView addSubview:notDoneLabel];
-			[notDoneLabel release];
-			
-			//label for number of done items
-			UILabel *doneLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 44, 25, 20)];
-			doneLabel.alpha = 0;
-			doneLabel.text = [NSString stringWithFormat:@"%i", [[list numberDone] intValue]];
-			doneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
-			doneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
-			[cell.contentView addSubview:doneLabel];
-			[doneLabel release];
-			
-			[UIView beginAnimations:nil context:nil];
-			[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-			[UIView setAnimationDuration:.5];
-			doneLabel.alpha = 1;
-			notDoneLabel.alpha = 1;
-			doneLabel.textColor = [UIColor blackColor];
-			notDoneLabel.textColor = [UIColor blackColor];
-			[UIView commitAnimations];
-		}
+		ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
+		static NSString *EditingCellIdentifier = @"Cell";
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:EditingCellIdentifier] autorelease];
+		NSLog(@"creating editing cell");
+		[cell.textLabel setTextColor:[UIColor whiteColor]];
+		[cell.detailTextLabel setTextColor:[UIColor whiteColor]];
+		cell.imageView.image = [UIImage imageNamed:@"ListIcon_80x80.png"];
+		cell.imageView.frame = CGRectMake(0,0,30,30);
+		//cell.accessoryType =  UITableViewCellAccessoryDetailDisclosureButton;
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		//cell.textLabel.numberOfLines = 2;
+		UITextField *editField = [[UITextField alloc] initWithFrame:CGRectMake(88, 25, 150, 30)];
+		editField.tag = [list.identifier intValue] + 20000;
+		editField.text = list.name;
+		editField.borderStyle = UITextBorderStyleRoundedRect;
+		//editField.textColor = [UIColor whiteColor];
+		editField.returnKeyType = UIReturnKeyDone;
+		editField.delegate = self;
+
+		[cell.contentView addSubview:editField];
+		[editField release];
+		
+		//label for number of undone items
+		UILabel *notDoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 12, 25, 20)];
+		notDoneLabel.alpha = 0;
+		int notDone = [list.items count] - [[list numberDone] intValue];
+		notDoneLabel.text = [NSString stringWithFormat:@"%i", notDone];
+		notDoneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
+		notDoneLabel.textColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
+		[cell.contentView addSubview:notDoneLabel];
+		[notDoneLabel release];
+		
+		//label for number of done items
+		UILabel *doneLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 44, 25, 20)];
+		doneLabel.alpha = 0;
+		doneLabel.text = [NSString stringWithFormat:@"%i", [[list numberDone] intValue]];
+		doneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
+		doneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
+		[cell.contentView addSubview:doneLabel];
+		[doneLabel release];
+		
+		doneLabel.alpha = 1;
+		notDoneLabel.alpha = 1;
+		doneLabel.textColor = [UIColor blackColor];
+		notDoneLabel.textColor = [UIColor blackColor];
+		return cell;
 	}
 	else 
 	{
-		if([list.identifier intValue] == -1)
-		{ //don't need to do anything here
-			
+		static NSString *NormalCellIdentifier = @"Cell";
+		static NSString *EditCellIdentifier = @"EditCell";
+		ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
+		
+		if(cell == nil)
+		{
+			if([list.identifier intValue] == -1)
+			{ //edit cell
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:EditCellIdentifier] autorelease];
+				NSLog(@"creating new content cell");
+				UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
+				addField = [[UITextField alloc] initWithFrame:CGRectMake(5, 25, 250, 30)];
+				UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+				addField.borderStyle = UITextBorderStyleRoundedRect;
+				addField.delegate = self;
+				addField.keyboardType = UIKeyboardTypeDefault;
+				addField.returnKeyType = UIReturnKeyDone;
+				//[addField becomeFirstResponder];
+				button.backgroundColor = [UIColor blackColor];
+				[button setTitle:@"Done" forState:UIControlStateNormal];	
+				button.frame = CGRectMake(260, 25, 55, 30);
+				[view addSubview:addField];
+				[view addSubview:button];
+				view.tag = 1;
+				[cell.contentView addSubview:view];
+				[button addTarget:self action:@selector(newListItemButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+				cell.accessoryType =  UITableViewCellAccessoryNone;
+			}
+			else 
+			{ //normal cell
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:NormalCellIdentifier] autorelease];
+				NSLog(@"creating normal cell");
+				cell.textLabel.text = list.name;
+				[cell.textLabel setTextColor:[UIColor whiteColor]];
+				[cell.detailTextLabel setTextColor:[UIColor whiteColor]];
+				cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ of %i tasks complete", [list numberDone], [list.items count]];
+				cell.imageView.image = [UIImage imageNamed:@"ListIcon_80x80.png"];
+				cell.imageView.frame = CGRectMake(0,0,30,30);
+				//cell.accessoryType =  UITableViewCellAccessoryDetailDisclosureButton;
+				cell.selectionStyle = UITableViewCellSelectionStyleNone;
+				cell.textLabel.numberOfLines = 2;
+				
+				//label for number of undone items
+				UILabel *notDoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 12, 25, 20)];
+				notDoneLabel.alpha = 0;
+				int notDone = [list.items count] - [[list numberDone] intValue];
+				notDoneLabel.text = [NSString stringWithFormat:@"%i", notDone];
+				notDoneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
+				notDoneLabel.textColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
+				[cell.contentView addSubview:notDoneLabel];
+				[notDoneLabel release];
+				
+				//label for number of done items
+				UILabel *doneLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 44, 25, 20)];
+				doneLabel.alpha = 0;
+				doneLabel.text = [NSString stringWithFormat:@"%i", [[list numberDone] intValue]];
+				doneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
+				doneLabel.backgroundColor = [UIColor colorWithRed:0.980 green:0.643 blue:0.219 alpha:1.0];
+				[cell.contentView addSubview:doneLabel];
+				[doneLabel release];
+				
+				[UIView beginAnimations:nil context:nil];
+				[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+				[UIView setAnimationDuration:.5];
+				doneLabel.alpha = 1;
+				notDoneLabel.alpha = 1;
+				doneLabel.textColor = [UIColor blackColor];
+				notDoneLabel.textColor = [UIColor blackColor];
+				[UIView commitAnimations];
+			}
 		}
 		else 
 		{
-			cell.textLabel.text = list.name;
-			cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ of %i tasks complete", [list numberDone], [list.items count]];
+			if([list.identifier intValue] == -1)
+			{ //don't need to do anything here
+				
+			}
+			else 
+			{
+				cell.textLabel.text = list.name;
+				cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ of %i tasks complete", [list numberDone], [list.items count]];
+			}
 		}
+		
+		return cell;
 	}
-	
-	return cell;
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField*) textField 
 {
 	NSLog(@"done editing");
     [textField resignFirstResponder]; 
-	[self newListItemButtonTouched:self];
+	if(textField.tag > 20000)
+	{
+		[self updateListName:textField];
+	}
+	else 
+	{
+		[self newListItemButtonTouched:self];
+	}
     return YES;
 }
 

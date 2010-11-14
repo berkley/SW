@@ -21,7 +21,6 @@
 UITextField *addField;
 BOOL doneButtonTouched;
 int cellCountAdder;
-UIToolbar *toolBar;
 
 - (NSArray*)createToolbarButtonArray
 {

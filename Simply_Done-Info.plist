@@ -63,6 +63,8 @@
 	<string>2.04b</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>CFBundleShortVersionString</key>
+	<string></string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>UTExportedTypeDeclarations</key>
@@ -89,5 +91,7 @@
 	<string>LaunchImage_640x960.png</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackOpaque</string>
+	<key>UILaunchImageFile~ipad</key>
+	<string>LaunchImage_640x960.png</string>
 </dict>
 </plist>

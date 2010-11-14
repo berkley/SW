@@ -40,7 +40,6 @@
 	NSLog(@"didBecomeActive");
 	[DBUtil loadLists];
 	[self refreshRootViewController];
-
 }
 
 //open simply done by selecting a url or file

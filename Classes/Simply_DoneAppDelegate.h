@@ -13,6 +13,7 @@
     UIWindow *window;
     UINavigationController *navigationController;
 	RootViewController *rvc;
+	ListViewController *lvc;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

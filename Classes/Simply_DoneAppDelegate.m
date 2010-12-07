@@ -9,7 +9,6 @@
 #import "Simply_DoneAppDelegate.h"
 #import "RootViewController.h"
 #import "DBUtil.h"
-#import "DBTest.h"
 #import "Session.h"
 
 @implementation Simply_DoneAppDelegate
@@ -31,8 +30,30 @@
     
 	[window addSubview:[navigationController view]];
 	[window makeKeyAndVisible];
-	rvc = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
-	[navigationController pushViewController:rvc animated:NO];
+	if([Session sharedInstance].useSingleListInterface)
+	{
+		if([Session sharedInstance].lists == nil)
+		{
+			[Session sharedInstance].lists = [[NSMutableArray alloc] init];
+		}
+				
+		[DBUtil loadLists];
+		
+		ItemList *list = [[Session sharedInstance].lists objectAtIndex:0];
+		lvc = [[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil];
+		lvc.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+		navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+		[navigationController pushViewController:lvc animated:NO];
+		lvc.title = list.name;
+		NSLog(@"displayed list id %@", list.identifier);
+		[Session sharedInstance].currentListId = list.identifier;
+		[Session sharedInstance].itemList = list;
+	}
+	else 
+	{
+		rvc = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+		[navigationController pushViewController:rvc animated:NO];
+	}
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -40,6 +61,7 @@
 	NSLog(@"didBecomeActive");
 	[DBUtil loadLists];
 	[self refreshRootViewController];
+	
 }
 
 //open simply done by selecting a url or file
@@ -50,7 +72,7 @@
 	{
 		[Session sharedInstance].lists = [[NSMutableArray alloc] init];
 	}
-		
+	
 	NSLog(@"opening url %@", [url absoluteURL]);
 	//get a file handle
 	NSData *dataToWrite = [NSData dataWithContentsOfURL:url];
@@ -79,7 +101,7 @@
 }
 
 //- (void)applicationWillTerminate:(UIApplication *)application {
-	// Save data if appropriate
+// Save data if appropriate
 //}
 
 #pragma mark -

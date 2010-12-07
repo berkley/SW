@@ -36,10 +36,11 @@
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon_114x114.png</string>
+		<string>Icon_72x72.png</string>
 		<string>Icon_57x57.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.bordertownlabs.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.bordertownlabs.Simply-Done</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -60,13 +61,17 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2.04b</string>
+	<string>2.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>UILaunchImageFile~ipad</key>
+	<string>Default-iPad.png</string>
+	<key>UILaunchImageFile~iphone</key>
+	<string>Default-iPhone.png</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -87,11 +92,5 @@
 			</dict>
 		</dict>
 	</array>
-	<key>UILaunchImageFile</key>
-	<string>LaunchImage_640x960.png</string>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleBlackOpaque</string>
-	<key>UILaunchImageFile~ipad</key>
-	<string>LaunchImage_640x960.png</string>
 </dict>
 </plist>

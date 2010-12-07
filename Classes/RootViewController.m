@@ -12,14 +12,36 @@
 #import "ListViewController.h"
 #import "Session.h"
 #import "Item.h"
-#import "ListOptionsViewController.h"
+#import "InfoWindowViewController.h"
 
 @implementation RootViewController
+
+@synthesize infoButton;
 
 UITextField *addField;
 UIBarButtonItem *addButton;
 ListViewController *lvc;
 NSString *textFieldText;
+
+- (void)loadInfoButton
+{
+	if(self.infoButton == nil)
+	{
+		self.infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];		
+		[self.infoButton addTarget:self action:@selector(infoButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+		self.infoButton.alpha = 0.6;
+	}
+	else 
+	{
+		[self.infoButton removeFromSuperview];
+	}
+
+	NSInteger x = [Session getScreenWidth] - 30;
+	NSInteger y = [Session getScreenHeight] - 30;
+	NSLog(@"adding info button at %i, %i", x, y);
+	self.infoButton.frame = CGRectMake(x, y, 30, 30);
+	[self.navigationController.view addSubview:self.infoButton];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,8 +61,23 @@ NSString *textFieldText;
 	{
 		[Session sharedInstance].lists = [[NSMutableArray alloc] init];
 	}
-		
+	
+	[self loadInfoButton];
+	
 	[DBUtil loadLists];
+}
+
+- (void)infoButtonTouched:(id)sender
+{
+	NSLog(@"info button touched");
+	InfoWindowViewController *infoWindowController = [[InfoWindowViewController alloc] init];
+	[self.navigationController pushViewController:infoWindowController animated:YES];
+	[self.infoButton removeFromSuperview];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[self loadInfoButton];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -74,7 +111,7 @@ NSString *textFieldText;
 	return 80.0;
 }
 
- // Override to allow orientations other than the default portrait orientation.
+// Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	// Return YES for supported orientations.
 	//return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -170,21 +207,21 @@ NSString *textFieldText;
 	textFieldText = textField.text;
 	
 	/*if([self checkForDuplicateListName:textField.text] != -1)
-	{
-		//ask if the user wants to merge the lists or create one with the same name
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Merge?" 
-														message:@"You have chosen a name that already exists.  Would you like to merge the two lists or create a new one with the same name?" 
-													   delegate:self 
-											  cancelButtonTitle:@"Cancel" 
-											  otherButtonTitles:@"Merge Lists", @"New List", nil];
-		alert.tag = id + 50000;
-		[alert show];
-	}
-	else 
-	{*/
-		[self changeName:textFieldText id:id];
+	 {
+	 //ask if the user wants to merge the lists or create one with the same name
+	 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Merge?" 
+	 message:@"You have chosen a name that already exists.  Would you like to merge the two lists or create a new one with the same name?" 
+	 delegate:self 
+	 cancelButtonTitle:@"Cancel" 
+	 otherButtonTitles:@"Merge Lists", @"New List", nil];
+	 alert.tag = id + 50000;
+	 [alert show];
+	 }
+	 else 
+	 {*/
+	[self changeName:textFieldText id:id];
 	//}
-
+	
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -253,7 +290,7 @@ NSString *textFieldText;
 		//editField.textColor = [UIColor whiteColor];
 		editField.returnKeyType = UIReturnKeyDone;
 		editField.delegate = self;
-
+		
 		[cell.contentView addSubview:editField];
 		[editField release];
 		
@@ -436,10 +473,10 @@ NSString *textFieldText;
 	NSLog(@"selected list id %@", list.identifier);
 	[Session sharedInstance].currentListId = list.identifier;
 	[Session sharedInstance].itemList = list;
-	for(int i=0; i<[list.items count]; i++)
+	/*for(int i=0; i<[list.items count]; i++)
 	{
 		NSLog(@"item: %@", [list.items objectAtIndex:i]);
-	}
+	}*/
 }
 
 - (void)reloadListViewController
@@ -454,23 +491,6 @@ NSString *textFieldText;
 		}
 		NSLog(@"done reloading lvc");
 	}
-}
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-	NSLog(@"Accessory button tapped.");
-	if(!addButton.enabled)
-	{
-		return;
-	}
-	ItemList *list = [[Session sharedInstance].lists objectAtIndex:indexPath.row];
-	ListOptionsViewController *lovc = [[ListOptionsViewController alloc]initWithNibName:@"ListOptionsViewController" bundle:nil];
-	lovc.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-	[Session sharedInstance].itemList = list;
-	[Session sharedInstance].currentListId = list.identifier;
-	lovc.navigationItem.title = list.name;
-	[self.navigationController pushViewController:lovc animated:YES];
-	[lovc release];
 }
 
 // Override to support conditional editing of the table view.
@@ -573,6 +593,11 @@ NSString *textFieldText;
 	}
 	
 	[DBUtil loadLists];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+	[self loadInfoButton];
 }
 
 - (void)dealloc {

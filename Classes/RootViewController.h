@@ -10,8 +10,10 @@
 
 @interface RootViewController : UITableViewController <UITextFieldDelegate>
 {
-
+	UIButton *infoButton;
 }
+
+@property (nonatomic, retain) UIButton *infoButton;
 
 - (void)openkeyboard:(id)sender;
 - (void)newListItemButtonTouched:(id)sender;

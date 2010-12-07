@@ -2,8 +2,8 @@
 //  main.m
 //  Simply Done
 //
-//  Created by Chad Berkley on 6/29/10.
-//  Copyright ucsb 2010. All rights reserved.
+//  Created by Chad Berkley on 11/13/10.
+//  Copyright 2010 UCSB. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -12,9 +12,11 @@
 @implementation Session
 
 @synthesize currentListId, itemList, lists, isAddingNewList, path, listName, useSingleListInterface;
+@synthesize database;
 
 static NSString *useSingleListInterfaceKey = @"simplyDone.useSingleList";
 static Session *sharedInstance = nil;
+
 
 + (Session*)sharedInstance
 {
@@ -32,11 +34,12 @@ static Session *sharedInstance = nil;
 {
 	if(self = [super init])
 	{
+		self.database = [DBUtil initializeDatabase];
 		self.useSingleListInterface = NO;
 		BOOL usli = [[NSUserDefaults standardUserDefaults] boolForKey:useSingleListInterfaceKey];
 		if(usli)
 		{
-			self.useSingleListInterface = YES;				
+			self.useSingleListInterface = YES;		
 		}
 	}
 	return self;

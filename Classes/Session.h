@@ -10,6 +10,7 @@
 #import "ItemList.h"
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import "DBUtil.h"
 
 @interface Session : NSObject 
 {
@@ -23,6 +24,7 @@
 	NSString* path;
 	NSString* listName;
 	BOOL useSingleListInterface;
+	sqlite3 *database;
 }
 
 @property (nonatomic, retain) NSNumber *currentListId;
@@ -32,6 +34,7 @@
 @property (nonatomic, retain) NSString* path;
 @property (nonatomic, retain) NSString* listName;
 @property (nonatomic, assign) BOOL useSingleListInterface;
+@property (nonatomic, assign) sqlite3 *database;
 
 + (Session*)sharedInstance;
 - (void)emailSDList:(id<MFMailComposeViewControllerDelegate>)delegate viewController:(UIViewController*)viewController;

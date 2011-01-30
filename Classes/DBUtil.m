@@ -54,6 +54,11 @@ static DBUtil *sharedInstance;
 
 + (sqlite3*) getDatabase
 {
+	return [Session sharedInstance].database;
+}
+
++ (sqlite3*) initializeDatabase
+{
     sqlite3 *database;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];

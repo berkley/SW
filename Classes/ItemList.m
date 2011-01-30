@@ -35,8 +35,7 @@
             sqlite3_bind_int(statement, 1, [identifier intValue]);
             while(sqlite3_step(statement) == SQLITE_ROW)
             {
-                char *n = sqlite3_column_text(statement, 0);
-                self.name = [NSString stringWithUTF8String:n];
+                self.name = [NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 0)];
                 int s = sqlite3_column_int(statement, 1);
                 self.sort = [NSNumber numberWithInt:s];
             }
@@ -59,13 +58,12 @@
 		sqlite3_bind_int(statement, 1, [self.identifier intValue]);
 		while(sqlite3_step(statement) == SQLITE_ROW)
 		{
+			Item *i = [[Item alloc] init];
 			int ident = sqlite3_column_int(statement, 0);
-			char *desc = sqlite3_column_text(statement, 1);
+			i.description = [NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 1)];
 			int done = sqlite3_column_int(statement, 2);
 			int srt = sqlite3_column_int(statement, 3);
-			Item *i = [[Item alloc] init];
 			i.id = [NSNumber numberWithInt:ident];
-			i.description = [NSString stringWithUTF8String:desc];
 			i.done = [NSNumber numberWithInt:done];
 			i.sort = [NSNumber numberWithInt:srt];
 			NSLog(@"adding item %@ to list %@ with sort %@", i.description, self.name, i.sort);

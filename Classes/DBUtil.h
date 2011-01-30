@@ -22,6 +22,6 @@
 - (void) importListFile:(NSString*)filePath;
 - (void) importListFileWithListId:(NSNumber*)listId filePath:(NSString*)filePath;
 + (BOOL) listWithNameExists:(NSString*)name;
-
++ (sqlite3*) initializeDatabase;
 
 @end

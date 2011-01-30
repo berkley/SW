@@ -24,6 +24,7 @@ UITextField *addField;
 BOOL doneButtonTouched;
 int cellCountAdder;
 UIToolbar *toolBar;
+UITextField	*editingTextField;
 
 - (void)loadInfoButton
 {
@@ -148,6 +149,8 @@ UIToolbar *toolBar;
 	{
 		[self loadInfoButton];		
 	}
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)resetButtonItemTouched:(id)sender
@@ -418,6 +421,34 @@ UIToolbar *toolBar;
 	}
 }
 
+- (void)scrollToIndexPath:(NSIndexPath*)indexPath
+{
+	[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+	editingTextField = textField;
+}
+
+- (void)scrollToActiveTextField
+{
+	NSIndexPath *indexPath;
+	if(editingTextField.tag == -1)
+	{ //addField text field
+		int index = [self.tableView numberOfRowsInSection:0] - 1;
+		indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+	}
+	else 
+	{ //field editor text fields
+		//indexPath = [self.tableView indexPathForRowAtPoint:editingTextField.frame.origin];
+		UITableViewCell *cell = (UITableViewCell*)editingTextField.superview.superview.superview;
+		indexPath = [self.tableView indexPathForCell:cell];
+	}
+		 
+	[self performSelector:@selector(scrollToIndexPath:) withObject:indexPath afterDelay:.5];
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
 	NSLog(@"text field with text %@ finished editing", textField.text);
@@ -438,6 +469,7 @@ UIToolbar *toolBar;
 			break;
 		}
 	}
+	[self scrollToActiveTextField];
 }
 
 -(void) addNewCell
@@ -472,6 +504,33 @@ UIToolbar *toolBar;
 	}
 	doneButtonTouched = YES;
 }
+
+- (void) moveTextViewForKeyboard:(NSNotification*)aNotification up: (BOOL) up
+{
+	NSLog(@"changing frame size for keyboard");
+	NSDictionary* userInfo = [aNotification userInfo];
+	CGRect keyboardEndFrame;
+	[[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
+	CGRect newFrame = self.view.frame;
+	CGRect keyboardFrame = [self.view convertRect:keyboardEndFrame toView:nil];
+	newFrame.size.height -= (keyboardFrame.size.height - self.navigationController.navigationBar.frame.size.height) * (up? 1 : -1);
+	self.view.frame = newFrame;
+}	
+
+
+- (void)keyboardWillShow:(NSNotification *)aNotification 
+{
+    [self moveTextViewForKeyboard:aNotification up:YES];
+	[self scrollToActiveTextField];
+
+}
+
+- (void)keyboardWillHide:(NSNotification *)aNotification 
+{
+	[self moveTextViewForKeyboard:aNotification up:NO]; 
+	[self scrollToActiveTextField];
+}
+
 
 - (void) makeEditCellFirstResponder:(id)responder
 {

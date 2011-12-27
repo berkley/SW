@@ -1,9 +1,9 @@
 //
 //  SGAppDelegate.m
-//  Spider GPS
+//  SimpleGPS
 //
-//  Created by Chad Berkley on 12/27/11.
-//  Copyright (c) 2011 ucsb. All rights reserved.
+//  Created by Chad Berkley on 11/28/11.
+//  Copyright (c) 2011 UCSB. All rights reserved.
 //
 
 #import "SGAppDelegate.h"
@@ -26,6 +26,15 @@
     }
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    
+    locationManager = [[CLLocationManager alloc] init];
+    if([CLLocationManager locationServicesEnabled] )
+    {
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationManager.delegate = self;
+        [self performSelector:@selector(startLocationServices) withObject:nil afterDelay:1];
+    }
+
     return YES;
 }
 
@@ -39,6 +48,10 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    NSLog(@"application entered background");
+//    [locationManager stopUpdatingHeading];
+//    [locationManager stopUpdatingLocation];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STOP_LOCATION_SERVICES object:nil userInfo:nil];
     /*
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -66,6 +79,32 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    NSLog(@"application will terminate");
+    [locationManager stopUpdatingHeading];
+    [locationManager stopUpdatingLocation];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STOP_LOCATION_SERVICES object:nil userInfo:nil];
 }
 
+#pragma mark - CLLocationManager delegate
+
+- (void)startLocationServices
+{        
+    NSLog(@"starting location services");
+    [locationManager startUpdatingLocation];
+    [locationManager startUpdatingHeading];
+}
+
+- (void)locationManager:(CLLocationManager *)manager 
+    didUpdateToLocation:(CLLocation *)newLocation 
+           fromLocation:(CLLocation *)oldLocation
+{
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:newLocation, @"newLocation", oldLocation, @"oldLocation", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATION_UPDATED object:nil userInfo:userInfo];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:newHeading, @"newHeading", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_HEADING_UPDATED object:nil userInfo:userInfo];
+}
 @end

@@ -1,0 +1,108 @@
+//
+//  SGTrack.m
+//  SimpleGPS
+//
+//  Created by Chad Berkley on 12/9/11.
+//  Copyright (c) 2011 UCSB. All rights reserved.
+//
+
+#import "SGTrack.h"
+
+@implementation SGTrack
+@synthesize name, distance, avgSpeed, lowSpeed, topSpeed, topAlitude, 
+lowAltidude, locations, totalTime;
+
+- (id)copy
+{
+    SGTrack *t = [[SGTrack alloc] init];
+    t.locations = [locations copy];
+    t.distance = [distance copy];
+    t.avgSpeed = [avgSpeed copy];
+    t.topSpeed = [avgSpeed copy];
+    t.lowSpeed = [lowSpeed copy];
+    t.topAlitude = [topAlitude copy];
+    t.lowAltidude = [lowAltidude copy];
+    t.totalTime = [totalTime copy];
+    t.name = [name copy];
+    return t;
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if(self)
+    {
+        locations = [decoder decodeObjectForKey:LOCATION_KEY];
+        distance = [decoder decodeObjectForKey:DISTANCE_KEY];
+        avgSpeed = [decoder decodeObjectForKey:AVG_SPEED_KEY];
+        topSpeed = [decoder decodeObjectForKey:TOP_SPEED_KEY];
+        lowSpeed = [decoder decodeObjectForKey:LOW_SPEED_KEY];
+        topAlitude = [decoder decodeObjectForKey:TOP_ALTITUDE_KEY];
+        lowAltidude = [decoder decodeObjectForKey:LOW_ALTITUDE_KEY];
+        totalSpeed = [decoder decodeObjectForKey:TOTAL_SPEED_KEY];
+        totalTime = [decoder decodeObjectForKey:TOTAL_TIME_KEY];
+        name = [decoder decodeObjectForKey:NAME_KEY];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:locations forKey:LOCATION_KEY];
+    [coder encodeObject:distance forKey:DISTANCE_KEY];
+    [coder encodeObject:avgSpeed forKey:AVG_SPEED_KEY];
+    [coder encodeObject:topSpeed forKey:TOP_SPEED_KEY];
+    [coder encodeObject:lowSpeed forKey:LOW_SPEED_KEY];
+    [coder encodeObject:topAlitude forKey:TOP_ALTITUDE_KEY];
+    [coder encodeObject:lowAltidude forKey:LOW_ALTITUDE_KEY];
+    [coder encodeObject:totalSpeed forKey:TOTAL_SPEED_KEY];
+    [coder encodeObject:totalTime forKey:TOTAL_TIME_KEY];
+    [coder encodeObject:name forKey:NAME_KEY];
+}
+
+- (id)init
+{
+    self = [super init];
+    if(self)
+    {
+        locations = [[NSMutableArray alloc] init];
+        distance = [NSNumber numberWithDouble:0.0];
+        avgSpeed = [NSNumber numberWithDouble:0.0];
+        topSpeed = [NSNumber numberWithDouble:0.0];
+        lowSpeed = [NSNumber numberWithDouble:99999.0];
+        topAlitude = [NSNumber numberWithDouble:0.0];
+        lowAltidude = [NSNumber numberWithDouble:99999.0];
+        totalSpeed = [NSNumber numberWithDouble:0.0];
+        totalTime = [NSNumber numberWithDouble:0.0];
+        name = nil;
+    }
+    return self;
+}
+
+- (void)addDataWithLocation:(CLLocation*)location distance:(double)dist
+{
+    double altitude = location.altitude;
+    double speed = location.speed;
+    if(speed < 0)
+        speed = 0;
+    
+    [locations addObject:location];
+    distance = [NSNumber numberWithDouble:dist];
+    if(speed > [topSpeed doubleValue])
+        topSpeed = [NSNumber numberWithDouble:speed];
+    if(speed < [lowSpeed doubleValue])
+        lowSpeed = [NSNumber numberWithDouble:speed];
+    if(altitude > [topAlitude doubleValue])
+        topAlitude = [NSNumber numberWithDouble:altitude];
+    if(altitude < [lowAltidude doubleValue])
+        lowAltidude = [NSNumber numberWithDouble:altitude];
+    totalSpeed = [NSNumber numberWithDouble:[totalSpeed doubleValue] + speed];
+    avgSpeed = [NSNumber numberWithDouble:[totalSpeed doubleValue] / [locations count]];
+    
+    
+//    NSLog(@"topSpeed: %.1f lowSpeed: %.1f topAlt: %.1f lowAlt: %.1f avgSpeed: %.1f", 
+//          [topSpeed doubleValue], [lowSpeed doubleValue], [topAlitude doubleValue],
+//          [lowAltidude doubleValue], [avgSpeed doubleValue]);
+}
+
+@end

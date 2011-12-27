@@ -16,6 +16,16 @@
 		7E97AF9E14AA81D9002404A5 /* SGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AF9D14AA81D9002404A5 /* SGViewController.m */; };
 		7E97AFA114AA81D9002404A5 /* SGViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AF9F14AA81D9002404A5 /* SGViewController_iPhone.xib */; };
 		7E97AFA414AA81D9002404A5 /* SGViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFA214AA81D9002404A5 /* SGViewController_iPad.xib */; };
+		7E97AFBD14AA8316002404A5 /* SGSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AFAF14AA8316002404A5 /* SGSession.m */; };
+		7E97AFBE14AA8316002404A5 /* SGTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AFB214AA8316002404A5 /* SGTrack.m */; };
+		7E97AFBF14AA8316002404A5 /* SGDefaultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AFB414AA8316002404A5 /* SGDefaultsManager.m */; };
+		7E97AFC014AA8316002404A5 /* SGTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AFB614AA8316002404A5 /* SGTrackViewController.m */; };
+		7E97AFC114AA8316002404A5 /* SGTrackDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AFB814AA8316002404A5 /* SGTrackDetailViewController.m */; };
+		7E97AFC214AA8316002404A5 /* SGTrackDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFB914AA8316002404A5 /* SGTrackDetailViewController.xib */; };
+		7E97AFC314AA8316002404A5 /* SGFieldSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AFBB14AA8316002404A5 /* SGFieldSelectionViewController.m */; };
+		7E97AFC414AA8316002404A5 /* SGFieldSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFBC14AA8316002404A5 /* SGFieldSelectionViewController.xib */; };
+		7E97AFC714AA832E002404A5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E97AFC614AA832E002404A5 /* MapKit.framework */; };
+		7E97AFC914AA833C002404A5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E97AFC814AA833C002404A5 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,16 +33,33 @@
 		7E97AF8A14AA81D8002404A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7E97AF8C14AA81D8002404A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7E97AF8E14AA81D8002404A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		7E97AF9214AA81D8002404A5 /* Spider GPS-Info.plist */ = {isa = PBXFileReference; path = "Spider GPS-Info.plist"; sourceTree = "<group>"; };
+		7E97AF9214AA81D8002404A5 /* Spider GPS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Spider GPS-Info.plist"; sourceTree = "<group>"; };
 		7E97AF9414AA81D8002404A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7E97AF9614AA81D8002404A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7E97AF9814AA81D8002404A5 /* Spider GPS-Prefix.pch */ = {isa = PBXFileReference; path = "Spider GPS-Prefix.pch"; sourceTree = "<group>"; };
-		7E97AF9914AA81D8002404A5 /* SGAppDelegate.h */ = {isa = PBXFileReference; path = SGAppDelegate.h; sourceTree = "<group>"; };
+		7E97AF9814AA81D8002404A5 /* Spider GPS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spider GPS-Prefix.pch"; sourceTree = "<group>"; };
+		7E97AF9914AA81D8002404A5 /* SGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGAppDelegate.h; sourceTree = "<group>"; };
 		7E97AF9A14AA81D8002404A5 /* SGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SGAppDelegate.m; sourceTree = "<group>"; };
-		7E97AF9C14AA81D8002404A5 /* SGViewController.h */ = {isa = PBXFileReference; path = SGViewController.h; sourceTree = "<group>"; };
+		7E97AF9C14AA81D8002404A5 /* SGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGViewController.h; sourceTree = "<group>"; };
 		7E97AF9D14AA81D9002404A5 /* SGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SGViewController.m; sourceTree = "<group>"; };
 		7E97AFA014AA81D9002404A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SGViewController_iPhone.xib; sourceTree = "<group>"; };
 		7E97AFA314AA81D9002404A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SGViewController_iPad.xib; sourceTree = "<group>"; };
+		7E97AFAE14AA8316002404A5 /* SGSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSession.h; sourceTree = "<group>"; };
+		7E97AFAF14AA8316002404A5 /* SGSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSession.m; sourceTree = "<group>"; };
+		7E97AFB014AA8316002404A5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		7E97AFB114AA8316002404A5 /* SGTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTrack.h; sourceTree = "<group>"; };
+		7E97AFB214AA8316002404A5 /* SGTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTrack.m; sourceTree = "<group>"; };
+		7E97AFB314AA8316002404A5 /* SGDefaultsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDefaultsManager.h; sourceTree = "<group>"; };
+		7E97AFB414AA8316002404A5 /* SGDefaultsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGDefaultsManager.m; sourceTree = "<group>"; };
+		7E97AFB514AA8316002404A5 /* SGTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTrackViewController.h; sourceTree = "<group>"; };
+		7E97AFB614AA8316002404A5 /* SGTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTrackViewController.m; sourceTree = "<group>"; };
+		7E97AFB714AA8316002404A5 /* SGTrackDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTrackDetailViewController.h; sourceTree = "<group>"; };
+		7E97AFB814AA8316002404A5 /* SGTrackDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTrackDetailViewController.m; sourceTree = "<group>"; };
+		7E97AFB914AA8316002404A5 /* SGTrackDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SGTrackDetailViewController.xib; sourceTree = "<group>"; };
+		7E97AFBA14AA8316002404A5 /* SGFieldSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFieldSelectionViewController.h; sourceTree = "<group>"; };
+		7E97AFBB14AA8316002404A5 /* SGFieldSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFieldSelectionViewController.m; sourceTree = "<group>"; };
+		7E97AFBC14AA8316002404A5 /* SGFieldSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SGFieldSelectionViewController.xib; sourceTree = "<group>"; };
+		7E97AFC614AA832E002404A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7E97AFC814AA833C002404A5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E97AFC914AA833C002404A5 /* CoreLocation.framework in Frameworks */,
+				7E97AFC714AA832E002404A5 /* MapKit.framework in Frameworks */,
 				7E97AF8B14AA81D8002404A5 /* UIKit.framework in Frameworks */,
 				7E97AF8D14AA81D8002404A5 /* Foundation.framework in Frameworks */,
 				7E97AF8F14AA81D8002404A5 /* CoreGraphics.framework in Frameworks */,
@@ -69,6 +98,8 @@
 		7E97AF8914AA81D8002404A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E97AFC814AA833C002404A5 /* CoreLocation.framework */,
+				7E97AFC614AA832E002404A5 /* MapKit.framework */,
 				7E97AF8A14AA81D8002404A5 /* UIKit.framework */,
 				7E97AF8C14AA81D8002404A5 /* Foundation.framework */,
 				7E97AF8E14AA81D8002404A5 /* CoreGraphics.framework */,
@@ -85,6 +116,21 @@
 				7E97AF9D14AA81D9002404A5 /* SGViewController.m */,
 				7E97AF9F14AA81D9002404A5 /* SGViewController_iPhone.xib */,
 				7E97AFA214AA81D9002404A5 /* SGViewController_iPad.xib */,
+				7E97AFAE14AA8316002404A5 /* SGSession.h */,
+				7E97AFAF14AA8316002404A5 /* SGSession.m */,
+				7E97AFB014AA8316002404A5 /* Constants.h */,
+				7E97AFB114AA8316002404A5 /* SGTrack.h */,
+				7E97AFB214AA8316002404A5 /* SGTrack.m */,
+				7E97AFB314AA8316002404A5 /* SGDefaultsManager.h */,
+				7E97AFB414AA8316002404A5 /* SGDefaultsManager.m */,
+				7E97AFB514AA8316002404A5 /* SGTrackViewController.h */,
+				7E97AFB614AA8316002404A5 /* SGTrackViewController.m */,
+				7E97AFB714AA8316002404A5 /* SGTrackDetailViewController.h */,
+				7E97AFB814AA8316002404A5 /* SGTrackDetailViewController.m */,
+				7E97AFB914AA8316002404A5 /* SGTrackDetailViewController.xib */,
+				7E97AFBA14AA8316002404A5 /* SGFieldSelectionViewController.h */,
+				7E97AFBB14AA8316002404A5 /* SGFieldSelectionViewController.m */,
+				7E97AFBC14AA8316002404A5 /* SGFieldSelectionViewController.xib */,
 				7E97AF9114AA81D8002404A5 /* Supporting Files */,
 			);
 			path = "Spider GPS";
@@ -155,6 +201,8 @@
 				7E97AF9514AA81D8002404A5 /* InfoPlist.strings in Resources */,
 				7E97AFA114AA81D9002404A5 /* SGViewController_iPhone.xib in Resources */,
 				7E97AFA414AA81D9002404A5 /* SGViewController_iPad.xib in Resources */,
+				7E97AFC214AA8316002404A5 /* SGTrackDetailViewController.xib in Resources */,
+				7E97AFC414AA8316002404A5 /* SGFieldSelectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +216,12 @@
 				7E97AF9714AA81D8002404A5 /* main.m in Sources */,
 				7E97AF9B14AA81D8002404A5 /* SGAppDelegate.m in Sources */,
 				7E97AF9E14AA81D9002404A5 /* SGViewController.m in Sources */,
+				7E97AFBD14AA8316002404A5 /* SGSession.m in Sources */,
+				7E97AFBE14AA8316002404A5 /* SGTrack.m in Sources */,
+				7E97AFBF14AA8316002404A5 /* SGDefaultsManager.m in Sources */,
+				7E97AFC014AA8316002404A5 /* SGTrackViewController.m in Sources */,
+				7E97AFC114AA8316002404A5 /* SGTrackDetailViewController.m in Sources */,
+				7E97AFC314AA8316002404A5 /* SGFieldSelectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +343,7 @@
 				7E97AFA914AA81D9002404A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

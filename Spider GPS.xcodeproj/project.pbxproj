@@ -1,0 +1,296 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7E97AF8B14AA81D8002404A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E97AF8A14AA81D8002404A5 /* UIKit.framework */; };
+		7E97AF8D14AA81D8002404A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E97AF8C14AA81D8002404A5 /* Foundation.framework */; };
+		7E97AF8F14AA81D8002404A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E97AF8E14AA81D8002404A5 /* CoreGraphics.framework */; };
+		7E97AF9514AA81D8002404A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AF9314AA81D8002404A5 /* InfoPlist.strings */; };
+		7E97AF9714AA81D8002404A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AF9614AA81D8002404A5 /* main.m */; };
+		7E97AF9B14AA81D8002404A5 /* SGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AF9A14AA81D8002404A5 /* SGAppDelegate.m */; };
+		7E97AF9E14AA81D9002404A5 /* SGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AF9D14AA81D9002404A5 /* SGViewController.m */; };
+		7E97AFA114AA81D9002404A5 /* SGViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AF9F14AA81D9002404A5 /* SGViewController_iPhone.xib */; };
+		7E97AFA414AA81D9002404A5 /* SGViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFA214AA81D9002404A5 /* SGViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7E97AF8614AA81D8002404A5 /* Spider GPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spider GPS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E97AF8A14AA81D8002404A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7E97AF8C14AA81D8002404A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7E97AF8E14AA81D8002404A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7E97AF9214AA81D8002404A5 /* Spider GPS-Info.plist */ = {isa = PBXFileReference; path = "Spider GPS-Info.plist"; sourceTree = "<group>"; };
+		7E97AF9414AA81D8002404A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7E97AF9614AA81D8002404A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7E97AF9814AA81D8002404A5 /* Spider GPS-Prefix.pch */ = {isa = PBXFileReference; path = "Spider GPS-Prefix.pch"; sourceTree = "<group>"; };
+		7E97AF9914AA81D8002404A5 /* SGAppDelegate.h */ = {isa = PBXFileReference; path = SGAppDelegate.h; sourceTree = "<group>"; };
+		7E97AF9A14AA81D8002404A5 /* SGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SGAppDelegate.m; sourceTree = "<group>"; };
+		7E97AF9C14AA81D8002404A5 /* SGViewController.h */ = {isa = PBXFileReference; path = SGViewController.h; sourceTree = "<group>"; };
+		7E97AF9D14AA81D9002404A5 /* SGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SGViewController.m; sourceTree = "<group>"; };
+		7E97AFA014AA81D9002404A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SGViewController_iPhone.xib; sourceTree = "<group>"; };
+		7E97AFA314AA81D9002404A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SGViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7E97AF8314AA81D8002404A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E97AF8B14AA81D8002404A5 /* UIKit.framework in Frameworks */,
+				7E97AF8D14AA81D8002404A5 /* Foundation.framework in Frameworks */,
+				7E97AF8F14AA81D8002404A5 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7E97AF7B14AA81D8002404A5 = {
+			isa = PBXGroup;
+			children = (
+				7E97AF9014AA81D8002404A5 /* Spider GPS */,
+				7E97AF8914AA81D8002404A5 /* Frameworks */,
+				7E97AF8714AA81D8002404A5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7E97AF8714AA81D8002404A5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7E97AF8614AA81D8002404A5 /* Spider GPS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7E97AF8914AA81D8002404A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E97AF8A14AA81D8002404A5 /* UIKit.framework */,
+				7E97AF8C14AA81D8002404A5 /* Foundation.framework */,
+				7E97AF8E14AA81D8002404A5 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7E97AF9014AA81D8002404A5 /* Spider GPS */ = {
+			isa = PBXGroup;
+			children = (
+				7E97AF9914AA81D8002404A5 /* SGAppDelegate.h */,
+				7E97AF9A14AA81D8002404A5 /* SGAppDelegate.m */,
+				7E97AF9C14AA81D8002404A5 /* SGViewController.h */,
+				7E97AF9D14AA81D9002404A5 /* SGViewController.m */,
+				7E97AF9F14AA81D9002404A5 /* SGViewController_iPhone.xib */,
+				7E97AFA214AA81D9002404A5 /* SGViewController_iPad.xib */,
+				7E97AF9114AA81D8002404A5 /* Supporting Files */,
+			);
+			path = "Spider GPS";
+			sourceTree = "<group>";
+		};
+		7E97AF9114AA81D8002404A5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7E97AF9214AA81D8002404A5 /* Spider GPS-Info.plist */,
+				7E97AF9314AA81D8002404A5 /* InfoPlist.strings */,
+				7E97AF9614AA81D8002404A5 /* main.m */,
+				7E97AF9814AA81D8002404A5 /* Spider GPS-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7E97AF8514AA81D8002404A5 /* Spider GPS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E97AFA714AA81D9002404A5 /* Build configuration list for PBXNativeTarget "Spider GPS" */;
+			buildPhases = (
+				7E97AF8214AA81D8002404A5 /* Sources */,
+				7E97AF8314AA81D8002404A5 /* Frameworks */,
+				7E97AF8414AA81D8002404A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Spider GPS";
+			productName = "Spider GPS";
+			productReference = 7E97AF8614AA81D8002404A5 /* Spider GPS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7E97AF7D14AA81D8002404A5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = ucsb;
+			};
+			buildConfigurationList = 7E97AF8014AA81D8002404A5 /* Build configuration list for PBXProject "Spider GPS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7E97AF7B14AA81D8002404A5;
+			productRefGroup = 7E97AF8714AA81D8002404A5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7E97AF8514AA81D8002404A5 /* Spider GPS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7E97AF8414AA81D8002404A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E97AF9514AA81D8002404A5 /* InfoPlist.strings in Resources */,
+				7E97AFA114AA81D9002404A5 /* SGViewController_iPhone.xib in Resources */,
+				7E97AFA414AA81D9002404A5 /* SGViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7E97AF8214AA81D8002404A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E97AF9714AA81D8002404A5 /* main.m in Sources */,
+				7E97AF9B14AA81D8002404A5 /* SGAppDelegate.m in Sources */,
+				7E97AF9E14AA81D9002404A5 /* SGViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7E97AF9314AA81D8002404A5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E97AF9414AA81D8002404A5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7E97AF9F14AA81D9002404A5 /* SGViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E97AFA014AA81D9002404A5 /* en */,
+			);
+			name = SGViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		7E97AFA214AA81D9002404A5 /* SGViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E97AFA314AA81D9002404A5 /* en */,
+			);
+			name = SGViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7E97AFA514AA81D9002404A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7E97AFA614AA81D9002404A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7E97AFA814AA81D9002404A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Spider GPS/Spider GPS-Prefix.pch";
+				INFOPLIST_FILE = "Spider GPS/Spider GPS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7E97AFA914AA81D9002404A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Spider GPS/Spider GPS-Prefix.pch";
+				INFOPLIST_FILE = "Spider GPS/Spider GPS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7E97AF8014AA81D8002404A5 /* Build configuration list for PBXProject "Spider GPS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E97AFA514AA81D9002404A5 /* Debug */,
+				7E97AFA614AA81D9002404A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E97AFA714AA81D9002404A5 /* Build configuration list for PBXNativeTarget "Spider GPS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E97AFA814AA81D9002404A5 /* Debug */,
+				7E97AFA914AA81D9002404A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7E97AF7D14AA81D8002404A5 /* Project object */;
+}

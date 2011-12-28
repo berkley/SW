@@ -351,7 +351,7 @@
     [SGSession instance].currentTrack.totalTime = [NSNumber numberWithDouble:[endTime timeIntervalSinceDate:startTime]];
     timeLabel.text = [SGSession formattedElapsedTime:startTime date2:endTime];
     totalSpeed += newLocation.speed;
-    averageSpeedLabel.text = [NSString stringWithFormat:@"%@", [NSNumber numberWithDouble:totalSpeed / [[SGSession instance].currentTrack.locations count]]];
+    averageSpeedLabel.text = [NSString stringWithFormat:@"%.1f", [[NSNumber numberWithDouble:totalSpeed / [[SGSession instance].currentTrack.locations count]] floatValue]];
     
     if(newLocation.speed < 0)
         speedLabel.text = @"0";
@@ -537,17 +537,17 @@
 
 - (IBAction)locationButtonTouched:(id)sender 
 {
-    if(mapView.userTrackingMode == MKUserTrackingModeNone)
+    if(mapView.userTrackingMode == MKUserTrackingModeFollowWithHeading)
     {
         mapView.userTrackingMode = MKUserTrackingModeFollow;
         mapView.showsUserLocation = YES;
-        locationButton.image = [UIImage imageNamed:@"location-arrow.png"];
+        locationButton.image = [UIImage imageNamed:@"compass.png"];
     }
     else if(mapView.userTrackingMode == MKUserTrackingModeFollow)
     {
         mapView.userTrackingMode = MKUserTrackingModeFollowWithHeading;
         mapView.showsUserLocation = YES;
-        locationButton.image = [UIImage imageNamed:@"compass.png"];
+        locationButton.image = [UIImage imageNamed:@"location-arrow.png"];
     }
 //    else
 //    {

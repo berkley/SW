@@ -59,8 +59,6 @@
     BOOL drawerOpen;
     __weak IBOutlet UISegmentedControl *unitSegmentedControl;
     __weak IBOutlet UISegmentedControl *compassSegmentedControl;
-    BOOL useTrueHeading;
-    BOOL useMPH;
     double distance;
     double avgSpeed;
     double topSpeed;
@@ -74,6 +72,7 @@
     UINavigationController *fieldsNavCon;
     NSDate *startTime;
     NSDate *endTime;
+    __weak IBOutlet UIBarButtonItem *locationButton;
 }
 
 - (void)setFields;

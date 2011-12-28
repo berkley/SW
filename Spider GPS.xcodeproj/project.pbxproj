@@ -26,6 +26,13 @@
 		7E97AFC414AA8316002404A5 /* SGFieldSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFBC14AA8316002404A5 /* SGFieldSelectionViewController.xib */; };
 		7E97AFC714AA832E002404A5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E97AFC614AA832E002404A5 /* MapKit.framework */; };
 		7E97AFC914AA833C002404A5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E97AFC814AA833C002404A5 /* CoreLocation.framework */; };
+		7E97AFCB14AA90E5002404A5 /* preferences.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFCA14AA90E5002404A5 /* preferences.png */; };
+		7E97AFCE14AA9407002404A5 /* location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFCD14AA9407002404A5 /* location-arrow.png */; };
+		7E97AFD014AA9543002404A5 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFCF14AA9542002404A5 /* gear.png */; };
+		7E97AFD414AA9629002404A5 /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFD314AA9629002404A5 /* compass.png */; };
+		7E97AFD614AA963D002404A5 /* location-target.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFD514AA963D002404A5 /* location-target.png */; };
+		7E97AFD814AA9652002404A5 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFD714AA9652002404A5 /* map.png */; };
+		7E97AFDA14AA9675002404A5 /* redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFD914AA9675002404A5 /* redo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +67,13 @@
 		7E97AFBC14AA8316002404A5 /* SGFieldSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SGFieldSelectionViewController.xib; sourceTree = "<group>"; };
 		7E97AFC614AA832E002404A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7E97AFC814AA833C002404A5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7E97AFCA14AA90E5002404A5 /* preferences.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferences.png; sourceTree = "<group>"; };
+		7E97AFCD14AA9407002404A5 /* location-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-arrow.png"; sourceTree = "<group>"; };
+		7E97AFCF14AA9542002404A5 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
+		7E97AFD314AA9629002404A5 /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
+		7E97AFD514AA963D002404A5 /* location-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-target.png"; sourceTree = "<group>"; };
+		7E97AFD714AA9652002404A5 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		7E97AFD914AA9675002404A5 /* redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +124,7 @@
 		7E97AF9014AA81D8002404A5 /* Spider GPS */ = {
 			isa = PBXGroup;
 			children = (
+				7E97AFCC14AA90E8002404A5 /* assets */,
 				7E97AF9914AA81D8002404A5 /* SGAppDelegate.h */,
 				7E97AF9A14AA81D8002404A5 /* SGAppDelegate.m */,
 				7E97AF9C14AA81D8002404A5 /* SGViewController.h */,
@@ -145,6 +160,20 @@
 				7E97AF9814AA81D8002404A5 /* Spider GPS-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7E97AFCC14AA90E8002404A5 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				7E97AFD914AA9675002404A5 /* redo.png */,
+				7E97AFD714AA9652002404A5 /* map.png */,
+				7E97AFD514AA963D002404A5 /* location-target.png */,
+				7E97AFD314AA9629002404A5 /* compass.png */,
+				7E97AFCF14AA9542002404A5 /* gear.png */,
+				7E97AFCD14AA9407002404A5 /* location-arrow.png */,
+				7E97AFCA14AA90E5002404A5 /* preferences.png */,
+			);
+			name = assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +232,13 @@
 				7E97AFA414AA81D9002404A5 /* SGViewController_iPad.xib in Resources */,
 				7E97AFC214AA8316002404A5 /* SGTrackDetailViewController.xib in Resources */,
 				7E97AFC414AA8316002404A5 /* SGFieldSelectionViewController.xib in Resources */,
+				7E97AFCB14AA90E5002404A5 /* preferences.png in Resources */,
+				7E97AFCE14AA9407002404A5 /* location-arrow.png in Resources */,
+				7E97AFD014AA9543002404A5 /* gear.png in Resources */,
+				7E97AFD414AA9629002404A5 /* compass.png in Resources */,
+				7E97AFD614AA963D002404A5 /* location-target.png in Resources */,
+				7E97AFD814AA9652002404A5 /* map.png in Resources */,
+				7E97AFDA14AA9675002404A5 /* redo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

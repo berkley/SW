@@ -83,11 +83,9 @@
     
     mapView.delegate = self;
     drawerOpen = NO;
-    useTrueHeading = [SGSession instance].useTrueHeading;
-    useMPH = [SGSession instance].useMPH;
-    if(!useMPH)
+    if(![SGSession instance].useMPH)
         unitSegmentedControl.selectedSegmentIndex = 1;
-    if(!useTrueHeading)
+    if(![SGSession instance].useTrueHeading)
         compassSegmentedControl.selectedSegmentIndex = 1;
     
     distance = 0.0;
@@ -136,6 +134,7 @@
     highAltView = nil;
     lowAltView = nil;
     lonView = nil;
+    locationButton = nil;
     [super viewDidUnload];
 }
 
@@ -325,7 +324,7 @@
     if(newLocation.altitude < lowAltidude && newLocation.altitude >= 0)
         lowAltidude = newLocation.altitude;
     
-    if(useMPH)
+    if([SGSession instance].useMPH)
     {
         speedLabel.text = [NSString stringWithFormat:@"%.0f mph", newLocation.speed * METERS_TO_MPH];
         altitudeLabel.text = [NSString stringWithFormat:@"%.0f ft", newLocation.altitude * METERS_TO_FT];
@@ -351,6 +350,7 @@
     endTime = [NSDate date];
     [SGSession instance].currentTrack.totalTime = [NSNumber numberWithDouble:[endTime timeIntervalSinceDate:startTime]];
     timeLabel.text = [SGSession formattedElapsedTime:startTime date2:endTime];
+    totalSpeed += newLocation.speed;
     averageSpeedLabel.text = [NSString stringWithFormat:@"%@", [NSNumber numberWithDouble:totalSpeed / [[SGSession instance].currentTrack.locations count]]];
     
     if(newLocation.speed < 0)
@@ -376,7 +376,7 @@
     [mapView removeOverlays:oldOverlays];
     
     distance = distance + [newLocation distanceFromLocation:oldLocation]; //calc distance in meters
-    if(useMPH)
+    if([SGSession instance].useMPH)
     {
         distanceLabel.text = [NSString stringWithFormat:@"%.2f mi", distance * METERS_TO_MILES];
     }
@@ -397,7 +397,7 @@
 
 - (void)didUpdateHeading:(CLHeading *)newHeading
 {
-    if(useTrueHeading)
+    if([SGSession instance].useTrueHeading)
         headingLabel.text = [NSString stringWithFormat:@"%.0f\u00b0 (T)", newHeading.trueHeading];
     else
         headingLabel.text = [NSString stringWithFormat:@"%.0f\u00b0 (M)", newHeading.magneticHeading];
@@ -432,37 +432,6 @@
         mapDirectionFollowingSwitch.on = YES;
     else
         mapDirectionFollowingSwitch.on = NO;
-}
-
-- (IBAction)resetBreadcrumbButtonTouched:(id)sender 
-{
-    free(pointArr);
-    pointArr = malloc(sizeof(CLLocationCoordinate2D) * 1);
-    pointCount = 0;
-    [mapView removeOverlays:mapView.overlays];
-    distance = 0.0;
-    [[SGSession instance] createNewTrack];
-    startTime = [NSDate date];
-}
-
-- (IBAction)saveTracksButtonTouched:(id)sender 
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Track Name" 
-                                                    message:@"Please name your track." 
-                                                   delegate:self cancelButtonTitle:@"Cancel" 
-                                          otherButtonTitles:@"Save", nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alert show];
-}
-
-- (IBAction)showTracksButtonTouched:(id)sender 
-{
-    [self presentModalViewController:navcon animated:YES];
-}
-
-- (IBAction)setFieldsButtonTouched:(id)sender 
-{
-    [self presentModalViewController:fieldsNavCon animated:YES];
 }
 
 - (IBAction)mapDirectionFollowingValueChanged:(id)sender 
@@ -517,19 +486,17 @@
 - (IBAction)unitsSegmentValueChanged:(id)sender 
 {
     if(unitSegmentedControl.selectedSegmentIndex == 0)
-        useMPH = YES;
+        [SGSession instance].useMPH = YES;
     else
-        useMPH = NO;
-    [SGSession instance].useMPH = useMPH;
+        [SGSession instance].useMPH = NO;
 }
 
 - (IBAction)compassSegmentValueChanged:(id)sender 
 {
     if(compassSegmentedControl.selectedSegmentIndex == 0)
-        useTrueHeading = YES;
+        [SGSession instance].useTrueHeading = YES;
     else
-        useTrueHeading = NO;
-    [SGSession instance].useTrueHeading = useTrueHeading;
+        [SGSession instance].useTrueHeading = NO;
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -551,5 +518,59 @@
         }
     }
 }
+
+- (IBAction)gearMenuTouched:(id)sender 
+{
+    [self presentModalViewController:fieldsNavCon animated:YES];
+}
+
+- (IBAction)resetTrackButtonTouched:(id)sender 
+{
+    free(pointArr);
+    pointArr = malloc(sizeof(CLLocationCoordinate2D) * 1);
+    pointCount = 0;
+    [mapView removeOverlays:mapView.overlays];
+    distance = 0.0;
+    [[SGSession instance] createNewTrack];
+    startTime = [NSDate date];
+}
+
+- (IBAction)locationButtonTouched:(id)sender 
+{
+    if(mapView.userTrackingMode == MKUserTrackingModeNone)
+    {
+        mapView.userTrackingMode = MKUserTrackingModeFollow;
+        mapView.showsUserLocation = YES;
+        locationButton.image = [UIImage imageNamed:@"location-arrow.png"];
+    }
+    else if(mapView.userTrackingMode == MKUserTrackingModeFollow)
+    {
+        mapView.userTrackingMode = MKUserTrackingModeFollowWithHeading;
+        mapView.showsUserLocation = YES;
+        locationButton.image = [UIImage imageNamed:@"compass.png"];
+    }
+//    else
+//    {
+//        mapView.userTrackingMode = MKUserTrackingModeNone;
+//        mapView.showsUserLocation = NO;
+//        locationButton.image = [UIImage imageNamed:@"location-target.png"];
+//    }
+}
+
+- (IBAction)tracksButtonTouched:(id)sender 
+{
+    [self presentModalViewController:navcon animated:YES];
+}
+
+- (IBAction)saveButtonTouched:(id)sender 
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Track Name" 
+                                                    message:@"Please name your track." 
+                                                   delegate:self cancelButtonTitle:@"Cancel" 
+                                          otherButtonTitles:@"Save", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+}
+
 
 @end

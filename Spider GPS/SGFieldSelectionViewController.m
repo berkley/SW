@@ -43,6 +43,20 @@
 
 - (void)viewDidUnload
 {
+    latLonView = nil;
+    headingView = nil;
+    screenOnView = nil;
+    trueHeadingView = nil;
+    lowAltitudeView = nil;
+    highAltitudeView = nil;
+    currentAltitudeView = nil;
+    lowSpeedView = nil;
+    topSpeedView = nil;
+    avgSpeedView = nil;
+    currentSpeedView = nil;
+    totalDistanceView = nil;
+    totalTimeView = nil;
+    unitsView = nil;
     [super viewDidUnload];
 }
 
@@ -112,6 +126,8 @@
     }
 }
 
+#pragma mark - switch value changes
+
 - (IBAction)totalTimeChanged:(id)sender {
     [self switchChanged:(UISwitch*)sender];
 }
@@ -158,6 +174,66 @@
 
 - (IBAction)headingChanged:(id)sender {
     [self switchChanged:(UISwitch*)sender];
+}
+
+#pragma mark - table del/datasource methods
+
+- (UITableViewCell*)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    for(UIView *v in cell.contentView.subviews)
+        [v removeFromSuperview];
+    
+    if(indexPath.section == 0)
+    {
+        switch (indexPath.row) 
+        {
+            case 0:
+                [cell.contentView addSubview:unitsView];
+                break;
+            case 1:
+                [cell.contentView addSubview:trueHeadingView];
+                break;
+            case 2:
+                [cell.contentView addSubview:screenOnView];
+                break;
+            default:
+                break;
+        }
+    }
+    else
+    {
+        
+    }
+
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if(section == 0)
+        return 3;
+    else //if(section == 1)
+        return 11;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if(section == 0)
+        return @"Settings";
+    else //if(section == 1)
+        return @"Field Selection";
 }
 
 @end

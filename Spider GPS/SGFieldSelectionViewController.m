@@ -209,7 +209,44 @@
     }
     else
     {
-        
+        switch (indexPath.row) 
+        {
+            case 0:
+                [cell.contentView addSubview:latLonView];
+                break;
+            case 1:
+                [cell.contentView addSubview:headingView];
+                break;
+            case 2:
+                [cell.contentView addSubview:lowAltitudeView];
+                break;
+            case 3:
+                [cell.contentView addSubview:highAltitudeView];
+                break;
+            case 4:
+                [cell.contentView addSubview:currentAltitudeView];
+                break;
+            case 5:
+                [cell.contentView addSubview:currentSpeedView];
+                break;
+            case 6:
+                [cell.contentView addSubview:topSpeedView];
+                break;
+            case 7:
+                [cell.contentView addSubview:lowSpeedView];
+                break;
+            case 8:
+                [cell.contentView addSubview:avgSpeedView];
+                break;
+            case 9:
+                [cell.contentView addSubview:totalTimeView];
+                break;
+            case 10:
+                [cell.contentView addSubview:totalDistanceView];
+                break;
+            default:
+                break;
+        }
     }
 
     return cell;

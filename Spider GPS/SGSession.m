@@ -9,7 +9,7 @@
 #import "SGSession.h"
 
 @implementation SGSession
-@synthesize currentTrack, defaultsManager, tracks, useMPH, fields;
+@synthesize currentTrack, defaultsManager, tracks, useMPH, fields, screenAlwaysOn;
 
 static SGSession *instance = nil; 
 
@@ -51,6 +51,8 @@ static SGSession *instance = nil;
             tracks = [[NSMutableDictionary alloc] init];
         [self createNewTrack];
         [self setFieldVals];
+        if(self.screenAlwaysOn)
+            [UIApplication sharedApplication].idleTimerDisabled = YES;
     }
     return self;
 }
@@ -175,6 +177,29 @@ static SGSession *instance = nil;
         return NO;
     else
         return YES;
+}
+
+- (void)setScreenAlwaysOn:(BOOL)sao
+{
+    if(sao)
+    {
+        [UIApplication sharedApplication].idleTimerDisabled = YES;
+        [defaultsManager setObject:@"true" withName:@"screenAlwaysOn"];
+    }
+    else
+    {
+        [UIApplication sharedApplication].idleTimerDisabled = NO;
+        [defaultsManager setObject:@"false" withName:@"screenAlwaysOn"];
+    }
+}
+
+- (BOOL)screenAlwaysOn
+{
+    NSString *sao = (NSString*)[defaultsManager getObjectWithName:@"screenAlwaysOn"];
+    if(sao != nil && [sao isEqualToString:@"true"])
+        return YES;
+    else
+        return NO;
 }
 
 + (NSString*)formattedElapsedTime:(NSDate*)date1 date2:(NSDate*)date2

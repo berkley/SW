@@ -57,6 +57,9 @@
     totalDistanceView = nil;
     totalTimeView = nil;
     unitsView = nil;
+    metricUnitsSwitch = nil;
+    trueHeadingSwitch = nil;
+    screenAlwaysOnSwitch = nil;
     [super viewDidUnload];
 }
 
@@ -72,6 +75,10 @@
         else
             s.on = NO;
     }
+    
+    metricUnitsSwitch.on = ![SGSession instance].useMPH;
+    trueHeadingSwitch.on = [SGSession instance].useTrueHeading;
+    screenAlwaysOnSwitch.on = [SGSession instance].screenAlwaysOn;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -174,6 +181,21 @@
 
 - (IBAction)headingChanged:(id)sender {
     [self switchChanged:(UISwitch*)sender];
+}
+
+- (IBAction)metricUnitsChanged:(id)sender 
+{
+    [SGSession instance].useMPH = !metricUnitsSwitch.on;
+}
+
+- (IBAction)trueHeadingChanged:(id)sender 
+{
+    [SGSession instance].useTrueHeading = trueHeadingSwitch.on;
+}
+
+- (IBAction)screenAlwaysOnChanged:(id)sender 
+{
+    [SGSession instance].screenAlwaysOn = screenAlwaysOnSwitch.on;
 }
 
 #pragma mark - table del/datasource methods

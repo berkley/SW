@@ -28,6 +28,7 @@
 @property (nonatomic, retain) NSMutableDictionary *tracks;
 @property (nonatomic, assign) BOOL useMPH;
 @property (nonatomic, assign) BOOL useTrueHeading;
+@property (nonatomic, assign) BOOL screenAlwaysOn;
 @property (nonatomic, retain) NSArray *fields;
 
 - (BOOL)orientationIsPortrait;

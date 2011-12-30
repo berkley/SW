@@ -29,6 +29,9 @@
     IBOutlet UIView *totalDistanceView;
     IBOutlet UIView *totalTimeView;
     
+    __weak IBOutlet UISwitch *metricUnitsSwitch;
+    __weak IBOutlet UISwitch *trueHeadingSwitch;
+    __weak IBOutlet UISwitch *screenAlwaysOnSwitch;
 }
 
 @end

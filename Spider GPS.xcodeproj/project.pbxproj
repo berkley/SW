@@ -124,7 +124,6 @@
 		7E97AF9014AA81D8002404A5 /* Spider GPS */ = {
 			isa = PBXGroup;
 			children = (
-				7E97AFCC14AA90E8002404A5 /* assets */,
 				7E97AF9914AA81D8002404A5 /* SGAppDelegate.h */,
 				7E97AF9A14AA81D8002404A5 /* SGAppDelegate.m */,
 				7E97AF9C14AA81D8002404A5 /* SGViewController.h */,
@@ -146,6 +145,7 @@
 				7E97AFBA14AA8316002404A5 /* SGFieldSelectionViewController.h */,
 				7E97AFBB14AA8316002404A5 /* SGFieldSelectionViewController.m */,
 				7E97AFBC14AA8316002404A5 /* SGFieldSelectionViewController.xib */,
+				7E97AFCC14AA90E8002404A5 /* assets */,
 				7E97AF9114AA81D8002404A5 /* Supporting Files */,
 			);
 			path = "Spider GPS";

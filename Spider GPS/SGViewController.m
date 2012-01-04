@@ -33,24 +33,7 @@
 
 - (void)setupForCurrentOrientation
 {
-//    if([[SGSession instance] orientationIsPortrait])
-//    {
-//        speedHeadingView.frame = CGRectMake(0, 460-90, 320, 90);
-//        settingsView.frame = CGRectMake(0, 
-//                                        speedHeadingView.frame.origin.y, 
-//                                        settingsView.frame.size.width, 
-//                                        0);
-//    }
-//    else
-//    {
-//        speedHeadingView.frame = CGRectMake(0, 320-90-20, 460, 90);
-//        settingsView.frame = CGRectMake(0, 
-//                                        speedHeadingView.frame.origin.y, 
-//                                        settingsView.frame.size.width, 
-//                                        0);
-//    }
     [self setFields];
-    settingsView.alpha = 0.0;
 }
 
 #pragma mark - View lifecycle
@@ -76,13 +59,7 @@
                                                  name:NOTIFICATION_STOP_LOCATION_SERVICES 
                                                object:nil];   
     
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self                                                                                    action:@selector(speedHeadingViewTapped:)];
-    tapRecognizer.numberOfTapsRequired = 1;
-    tapRecognizer.numberOfTouchesRequired = 1;
-    [speedHeadingView addGestureRecognizer:tapRecognizer];
-    
     mapView.delegate = self;
-    drawerOpen = NO;
     if(![SGSession instance].useMPH)
         unitSegmentedControl.selectedSegmentIndex = 1;
     if(![SGSession instance].useTrueHeading)
@@ -93,13 +70,47 @@
     trackViewController = [[SGTrackViewController alloc] init];
     fieldsViewController = [[SGFieldSelectionViewController alloc] initWithNibName:@"SGFieldSelectionViewController" bundle:nil];
     navcon = [[UINavigationController alloc] initWithRootViewController:trackViewController];
+    navcon.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     fieldsNavCon = [[UINavigationController alloc] initWithRootViewController:fieldsViewController];
+    fieldsNavCon.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     startTime = [NSDate date];
     lowSpeed = 99999999.99999;
     topAltitude = 0;
     lowAltidude = 99999999.9999;
     topSpeed = 0;
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self 
+                                                                                    action:@selector(mapTapped:)];
+    tapRecognizer.numberOfTapsRequired = 1;
+    tapRecognizer.numberOfTouchesRequired = 1;
+    [mapView addGestureRecognizer:tapRecognizer];
 }
+
+- (void)hideInfoView
+{
+    speedHeadingView.hidden = YES;
+}
+
+- (void)mapTapped:(id)sender
+{
+    [UIView beginAnimations:@"hideSpeedHeadingView" context:nil];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:.5];
+    if(speedHeadingView.hidden)
+    {
+        speedHeadingView.hidden = NO;
+        speedHeadingView.alpha = 0.8;
+        toolbar.alpha = 1.0;
+    }
+    else
+    {
+        speedHeadingView.alpha = 0.0;
+        toolbar.alpha = 0.0;
+        [self performSelector:@selector(hideInfoView) withObject:nil afterDelay:1.0];
+    }
+    [UIView commitAnimations];
+}
+
 
 - (void)viewDidUnload
 {
@@ -109,8 +120,6 @@
     headingLabel = nil;
     longitudeLabel = nil;
     latitudeLabel = nil;
-    drawerButton = nil;
-    settingsView = nil;
     unitSegmentedControl = nil;
     compassSegmentedControl = nil;
     altitudeLabel = nil;
@@ -166,6 +175,7 @@
     [self removeSubviews];
     int fieldCount = -1;
     int heightCount = 0;
+    int fieldViewHeight = 20;
     NSMutableArray *fieldViews = [[NSMutableArray alloc] init];
     for(NSString *field in [SGSession instance].fields)
     {
@@ -227,11 +237,9 @@
     float height = (heightCount / 2.0);
     if(abs(height) != height)
         height = abs(height) + 1;
-    height = height * 33;
-    if([[SGSession instance] orientationIsPortrait])
-        speedHeadingView.frame = CGRectMake(0, 460 - height, 320, height);
-    else
-        speedHeadingView.frame = CGRectMake(0, 320-height-20, 460, height);
+    height = height * fieldViewHeight + 10;
+    
+    speedHeadingView.frame = CGRectMake(0, 480-height-20, 320, height);
     
     int m = 0;
     int v = -1;
@@ -253,8 +261,8 @@
             if(j == 1)
                 x = 180.0;
             
-            float y = m * 33 + 5;
-            view.frame = CGRectMake(x, y, 160, 33);
+            float y = m * fieldViewHeight + 5;
+            view.frame = CGRectMake(x, y, 160, fieldViewHeight);
             [speedHeadingView addSubview:view];
         }
         m++;
@@ -270,7 +278,6 @@
         mapDirectionFollowingSwitch.on = NO;
     [self.view addSubview:speedHeadingView];
     routeArray = [[NSMutableArray alloc] init];
-    [self.view addSubview:settingsView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -281,11 +288,6 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
 }
 
 - (void)orientationDidChange:(NSNotification*)notification
@@ -324,6 +326,9 @@
     if(newLocation.altitude < lowAltidude && newLocation.altitude >= 0)
         lowAltidude = newLocation.altitude;
     
+    endTime = [NSDate date];    
+    avgSpeed = [SGTrack calculateAvgSpeedForDistance:distance fromDate:startTime toDate:endTime];
+    
     if([SGSession instance].useMPH)
     {
         speedLabel.text = [NSString stringWithFormat:@"%.0f mph", newLocation.speed * METERS_TO_MPH];
@@ -334,6 +339,7 @@
         topSpeedLabel.text = [NSString stringWithFormat:@"%.0f mph", topSpeed * METERS_TO_MPH];
         lowAltitudeLabel.text = [NSString stringWithFormat:@"%.0f ft", lowAltidude * METERS_TO_FT];
         highAltitudeLabel.text = [NSString stringWithFormat:@"%.0f ft", topAltitude * METERS_TO_FT];
+        averageSpeedLabel.text = [NSString stringWithFormat:@"%.1f mph", avgSpeed * METERS_TO_MPH];
     }
     else
     {
@@ -345,13 +351,12 @@
         topSpeedLabel.text = [NSString stringWithFormat:@"%.0f kph", topSpeed * METERS_TO_KPH];
         lowAltitudeLabel.text = [NSString stringWithFormat:@"%.0f m", lowAltidude];
         highAltitudeLabel.text = [NSString stringWithFormat:@"%.0f m", topAltitude];
+        averageSpeedLabel.text = [NSString stringWithFormat:@"%.1f kph", avgSpeed * METERS_TO_KPH];
     }
     
-    endTime = [NSDate date];
+
     [SGSession instance].currentTrack.totalTime = [NSNumber numberWithDouble:[endTime timeIntervalSinceDate:startTime]];
     timeLabel.text = [SGSession formattedElapsedTime:startTime date2:endTime];
-    totalSpeed += newLocation.speed;
-    averageSpeedLabel.text = [NSString stringWithFormat:@"%.1f", [[NSNumber numberWithDouble:totalSpeed / [[SGSession instance].currentTrack.locations count]] floatValue]];
     
     if(newLocation.speed < 0)
         speedLabel.text = @"0";
@@ -376,6 +381,8 @@
     [mapView removeOverlays:oldOverlays];
     
     distance = distance + [newLocation distanceFromLocation:oldLocation]; //calc distance in meters
+    if(distance < 0)
+        distance = 0;
     if([SGSession instance].useMPH)
     {
         distanceLabel.text = [NSString stringWithFormat:@"%.2f mi", distance * METERS_TO_MILES];
@@ -385,7 +392,7 @@
         distanceLabel.text = [NSString stringWithFormat:@"%.2f km", distance / METERS_TO_KM];
     }
     
-    [[SGSession instance].currentTrack addDataWithLocation:newLocation distance:distance];
+    [[SGSession instance].currentTrack addDataWithLocation:newLocation distance:distance startTime:startTime stopTime:endTime];
 }
 
 - (void)locationUpdated:(NSNotification*)notification
@@ -426,12 +433,20 @@
     return overlayView;
 }
 
-- (void)mapView:(MKMapView *)mapView didChangeUserTrackingMode:(MKUserTrackingMode)mode animated:(BOOL)animated
+- (void)mapView:(MKMapView *)mv didChangeUserTrackingMode:(MKUserTrackingMode)mode animated:(BOOL)animated
 {
-    if(mode == MKUserTrackingModeFollowWithHeading)
-        mapDirectionFollowingSwitch.on = YES;
+    if(mapView.userTrackingMode == MKUserTrackingModeFollowWithHeading)
+    {
+        locationButton.image = [UIImage imageNamed:@"compass.png"];
+    }
+    else if(mapView.userTrackingMode == MKUserTrackingModeFollow)
+    {
+        locationButton.image = [UIImage imageNamed:@"location-arrow.png"];
+    }
     else
-        mapDirectionFollowingSwitch.on = NO;
+    {
+        locationButton.image = [UIImage imageNamed:@"location-target.png"];
+    }
 }
 
 - (IBAction)mapDirectionFollowingValueChanged:(id)sender 
@@ -439,64 +454,6 @@
     [mapView setUserTrackingMode:MKUserTrackingModeFollow];
     if(mapDirectionFollowingSwitch.on)
         [mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
-}
-
-- (IBAction)drawerButtonTouched:(id)sender 
-{
-    drawerOpen = !drawerOpen;
-    [UIView beginAnimations:@"animateDrawer" context:nil];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:1];
-    if(drawerOpen)
-    {
-        if([[SGSession instance] orientationIsPortrait])
-            settingsView.frame = CGRectMake(0, 
-                                            speedHeadingView.frame.origin.y - SETTINGS_HEIGHT, 
-                                            settingsView.frame.size.width, 
-                                            SETTINGS_HEIGHT);
-        else
-            settingsView.frame = CGRectMake(0, 
-                                            speedHeadingView.frame.origin.y - SETTINGS_HEIGHT, 
-                                            settingsView.frame.size.width, 
-                                            SETTINGS_HEIGHT);
-        settingsView.alpha = .8;
-    }
-    else
-    {
-        if([[SGSession instance] orientationIsPortrait])
-            settingsView.frame = CGRectMake(0, 
-                                            speedHeadingView.frame.origin.y, 
-                                            settingsView.frame.size.width, 
-                                            0);
-        else
-            settingsView.frame = CGRectMake(0, 
-                                            speedHeadingView.frame.origin.y, 
-                                            settingsView.frame.size.width, 
-                                            0);
-        settingsView.alpha = 0.0;
-    }
-    [UIView commitAnimations];
-}
-
-- (void)speedHeadingViewTapped:(id)sender
-{
-    [self drawerButtonTouched:sender];
-}
-
-- (IBAction)unitsSegmentValueChanged:(id)sender 
-{
-    if(unitSegmentedControl.selectedSegmentIndex == 0)
-        [SGSession instance].useMPH = YES;
-    else
-        [SGSession instance].useMPH = NO;
-}
-
-- (IBAction)compassSegmentValueChanged:(id)sender 
-{
-    if(compassSegmentedControl.selectedSegmentIndex == 0)
-        [SGSession instance].useTrueHeading = YES;
-    else
-        [SGSession instance].useTrueHeading = NO;
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -531,6 +488,12 @@
     pointCount = 0;
     [mapView removeOverlays:mapView.overlays];
     distance = 0.0;
+    avgSpeed = 0.0;
+    topSpeed = 0;
+    lowSpeed = 9999999;
+    topAltitude = 0.0;
+    lowAltidude = 9999999;
+    totalSpeed = 0.0;
     [[SGSession instance] createNewTrack];
     startTime = [NSDate date];
 }
@@ -540,21 +503,15 @@
     if(mapView.userTrackingMode == MKUserTrackingModeFollowWithHeading)
     {
         mapView.userTrackingMode = MKUserTrackingModeFollow;
-        mapView.showsUserLocation = YES;
-        locationButton.image = [UIImage imageNamed:@"compass.png"];
     }
     else if(mapView.userTrackingMode == MKUserTrackingModeFollow)
     {
         mapView.userTrackingMode = MKUserTrackingModeFollowWithHeading;
-        mapView.showsUserLocation = YES;
-        locationButton.image = [UIImage imageNamed:@"location-arrow.png"];
     }
-//    else
-//    {
-//        mapView.userTrackingMode = MKUserTrackingModeNone;
-//        mapView.showsUserLocation = NO;
-//        locationButton.image = [UIImage imageNamed:@"location-target.png"];
-//    }
+    else
+    {
+        mapView.userTrackingMode = MKUserTrackingModeFollow;
+    }
 }
 
 - (IBAction)tracksButtonTouched:(id)sender 

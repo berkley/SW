@@ -15,6 +15,7 @@
     if (self) 
     {
         track = [[SGSession instance].tracks objectForKey:trackName];
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     }
     return self;
 }
@@ -75,6 +76,34 @@
     [mapView removeOverlays:mapView.overlays];
     [mapView addOverlay:routeLine];
     [SGSession zoomToFitLocations:track.locations padding:1 mapView:mapView];
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapTapped:)];
+    tapRecognizer.numberOfTapsRequired = 1;
+    tapRecognizer.numberOfTouchesRequired = 1;
+    [mapView addGestureRecognizer:tapRecognizer];
+}
+
+- (void)hideInfoView
+{
+    infoView.hidden = YES;
+}
+
+- (void)mapTapped:(id)sender
+{
+    [UIView beginAnimations:@"hideInfoBar" context:nil];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:.5];
+    if(infoView.hidden)
+    {
+        infoView.hidden = NO;
+        infoView.alpha = 0.8;
+    }
+    else
+    {
+        infoView.alpha = 0.0;
+        [self performSelector:@selector(hideInfoView) withObject:nil afterDelay:1.0];
+    }
+    [UIView commitAnimations];
 }
 
 - (void)viewDidUnload

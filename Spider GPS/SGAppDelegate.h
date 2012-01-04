@@ -11,23 +11,11 @@
 
 /* TODO:
  - add alt gain/loss
- - add tab bar (map, tracks, settings)
- - add direction following button on map
- - add "go to current location" button on map
- - add "reset track" button on map
- - add view controller for settings
-   - screen never dims
-   - units
-   - compass (T/M)
- 
- - buttons
-   - tracks
-   - settings
-   - current loc
-   - direction following (could be same button as current loc)
-   - reset track
-   - save track (could be in the tracks MVC)
- */
+ - fix bugs with heads up data
+ - avg speed = dist/time
+ - drop a pin button
+ - add activity monitor for save
+*/
 
 @class SGViewController;
 

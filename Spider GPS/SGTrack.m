@@ -18,7 +18,7 @@ lowAltidude, locations, totalTime;
     t.locations = [locations copy];
     t.distance = [distance copy];
     t.avgSpeed = [avgSpeed copy];
-    t.topSpeed = [avgSpeed copy];
+    t.topSpeed = [topSpeed copy];
     t.lowSpeed = [lowSpeed copy];
     t.topAlitude = [topAlitude copy];
     t.lowAltidude = [lowAltidude copy];
@@ -39,7 +39,6 @@ lowAltidude, locations, totalTime;
         lowSpeed = [decoder decodeObjectForKey:LOW_SPEED_KEY];
         topAlitude = [decoder decodeObjectForKey:TOP_ALTITUDE_KEY];
         lowAltidude = [decoder decodeObjectForKey:LOW_ALTITUDE_KEY];
-        totalSpeed = [decoder decodeObjectForKey:TOTAL_SPEED_KEY];
         totalTime = [decoder decodeObjectForKey:TOTAL_TIME_KEY];
         name = [decoder decodeObjectForKey:NAME_KEY];
     }
@@ -55,7 +54,6 @@ lowAltidude, locations, totalTime;
     [coder encodeObject:lowSpeed forKey:LOW_SPEED_KEY];
     [coder encodeObject:topAlitude forKey:TOP_ALTITUDE_KEY];
     [coder encodeObject:lowAltidude forKey:LOW_ALTITUDE_KEY];
-    [coder encodeObject:totalSpeed forKey:TOTAL_SPEED_KEY];
     [coder encodeObject:totalTime forKey:TOTAL_TIME_KEY];
     [coder encodeObject:name forKey:NAME_KEY];
 }
@@ -72,14 +70,16 @@ lowAltidude, locations, totalTime;
         lowSpeed = [NSNumber numberWithDouble:99999.0];
         topAlitude = [NSNumber numberWithDouble:0.0];
         lowAltidude = [NSNumber numberWithDouble:99999.0];
-        totalSpeed = [NSNumber numberWithDouble:0.0];
         totalTime = [NSNumber numberWithDouble:0.0];
         name = nil;
     }
     return self;
 }
 
-- (void)addDataWithLocation:(CLLocation*)location distance:(double)dist
+- (void)addDataWithLocation:(CLLocation*)location 
+                   distance:(double)dist 
+                  startTime:(NSDate*)date1 
+                   stopTime:(NSDate*)date2
 {
     double altitude = location.altitude;
     double speed = location.speed;
@@ -96,13 +96,23 @@ lowAltidude, locations, totalTime;
         topAlitude = [NSNumber numberWithDouble:altitude];
     if(altitude < [lowAltidude doubleValue])
         lowAltidude = [NSNumber numberWithDouble:altitude];
-    totalSpeed = [NSNumber numberWithDouble:[totalSpeed doubleValue] + speed];
-    avgSpeed = [NSNumber numberWithDouble:[totalSpeed doubleValue] / [locations count]];
+    avgSpeed = [NSNumber numberWithDouble:[SGTrack calculateAvgSpeedForDistance:dist fromDate:date1 toDate:date2]]; 
     
     
 //    NSLog(@"topSpeed: %.1f lowSpeed: %.1f topAlt: %.1f lowAlt: %.1f avgSpeed: %.1f", 
 //          [topSpeed doubleValue], [lowSpeed doubleValue], [topAlitude doubleValue],
 //          [lowAltidude doubleValue], [avgSpeed doubleValue]);
+}
+                
+//returns avg speed between the two dates for the given distance in meters/second.
+//distance must be in meters!
++ (double)calculateAvgSpeedForDistance:(NSInteger)distance fromDate:(NSDate*)date1 toDate:(NSDate*)date2
+{
+    unsigned int unitFlags = NSSecondCalendarUnit;
+    NSCalendar *sysCalendar = [NSCalendar currentCalendar];
+    NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:date1  toDate:date2  options:0];
+    NSInteger seconds = [conversionInfo second];
+    return distance / seconds;
 }
 
 @end

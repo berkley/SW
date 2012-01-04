@@ -21,6 +21,7 @@
     __weak IBOutlet UILabel *lowestAltitudeLabel;
     __weak IBOutlet UILabel *totalTimeLabel;
     __weak IBOutlet MKMapView *mapView;
+    __weak IBOutlet UIView *infoView;
     SGTrack *track;
     MKPolyline *routeLine;
     MKPolylineView *routeLineView;

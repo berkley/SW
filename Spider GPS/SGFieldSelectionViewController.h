@@ -32,6 +32,20 @@
     __weak IBOutlet UISwitch *metricUnitsSwitch;
     __weak IBOutlet UISwitch *trueHeadingSwitch;
     __weak IBOutlet UISwitch *screenAlwaysOnSwitch;
+    
+    //tagged switches
+    __weak IBOutlet UISwitch *totalTimeSwitch;
+    __weak IBOutlet UISwitch *highAltitudeSwitch;
+    __weak IBOutlet UISwitch *currentSpeedSwitch;
+    __weak IBOutlet UISwitch *averageSpeedSwitch;
+    __weak IBOutlet UISwitch *topSpeedSwitch;
+    __weak IBOutlet UISwitch *lowSpeedSwitch;
+    __weak IBOutlet UISwitch *currentAltitudeSwitch;
+    __weak IBOutlet UISwitch *latLonSwitch;
+    __weak IBOutlet UISwitch *headingSwitch;
+    __weak IBOutlet UISwitch *totalDistanceSwitch;
+    __weak IBOutlet UISwitch *lowAltitudeSwitch;
+    
 }
 
 @end

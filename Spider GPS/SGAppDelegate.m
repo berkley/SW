@@ -34,6 +34,7 @@
         locationManager.delegate = self;
         [self performSelector:@selector(startLocationServices) withObject:nil afterDelay:1];
     }
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:NO];
 
     return YES;
 }

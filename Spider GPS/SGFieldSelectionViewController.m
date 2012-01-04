@@ -13,8 +13,9 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if (self) 
+    {
+        
     }
     return self;
 }
@@ -34,6 +35,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    totalTimeSwitch.tag = 100;
+    totalDistanceSwitch.tag = 101;
+    currentSpeedSwitch.tag = 102;
+    averageSpeedSwitch.tag = 103;
+    topSpeedSwitch.tag = 104;
+    lowSpeedSwitch.tag = 105;
+    currentAltitudeSwitch.tag = 106;
+    highAltitudeSwitch.tag = 107;
+    latLonSwitch.tag = 109;
+    headingSwitch.tag = 111;
+    
     self.navigationItem.title = @"Fields";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" 
                                                                              style:UIBarButtonItemStylePlain 
@@ -60,16 +73,66 @@
     metricUnitsSwitch = nil;
     trueHeadingSwitch = nil;
     screenAlwaysOnSwitch = nil;
+    totalTimeSwitch = nil;
+    highAltitudeSwitch = nil;
+    currentSpeedSwitch = nil;
+    averageSpeedSwitch = nil;
+    topSpeedSwitch = nil;
+    lowSpeedSwitch = nil;
+    currentAltitudeSwitch = nil;
+    highAltitudeSwitch = nil;
+    latLonSwitch = nil;
+    headingSwitch = nil;
+    totalDistanceSwitch = nil;
+    lowAltitudeSwitch = nil;
     [super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)setSwitches
 {
-    [super viewWillAppear:animated];
+    NSLog(@"fields: %@", [SGSession instance].fields);
     for(int i=0; i<[[SGSession instance].fields count]; i++)
     {
         NSString *fieldVal = [[SGSession instance].fields objectAtIndex:i];
-        UISwitch *s = (UISwitch*)[self.view viewWithTag:100 + i];
+        UISwitch *s;
+        switch (i) {
+            case 0:
+                s = totalTimeSwitch;
+                break;
+            case 1:
+                s = totalDistanceSwitch;
+                break;
+            case 2:
+                s = currentSpeedSwitch;
+                break;
+            case 3:
+                s = averageSpeedSwitch;
+                break;
+            case 4:
+                s = topSpeedSwitch;
+                break;
+            case 5:
+                s = lowSpeedSwitch;
+                break;
+            case 6:
+                s = currentAltitudeSwitch;
+                break;
+            case 7:
+                s = highAltitudeSwitch;
+                break;
+            case 8:
+                s = lowAltitudeSwitch;
+                break;
+            case 9:
+                s = latLonSwitch;
+                break;
+            case 11:
+                s = headingSwitch;
+                break;
+            default:
+                break;
+        }
+        
         if([fieldVal isEqualToString:@"on"])
             s.on = YES;
         else
@@ -79,6 +142,12 @@
     metricUnitsSwitch.on = ![SGSession instance].useMPH;
     trueHeadingSwitch.on = [SGSession instance].useTrueHeading;
     screenAlwaysOnSwitch.on = [SGSession instance].screenAlwaysOn;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setSwitches];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

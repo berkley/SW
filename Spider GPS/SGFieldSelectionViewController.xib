@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10J869</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.35</string>
+		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -213,7 +213,6 @@
 						<string key="NSFrame">{{206, 6}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="471632580"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">103</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -258,7 +257,6 @@
 						<string key="NSFrame">{{206, 6}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="719584905"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">104</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -303,7 +301,6 @@
 						<string key="NSFrame">{{206, 6}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="599518347"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">105</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -348,7 +345,6 @@
 						<string key="NSFrame">{{206, 6}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="886027684"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">106</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -394,7 +390,6 @@
 						<string key="NSFrame">{{206, 6}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="903334722"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">107</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -439,7 +434,6 @@
 						<string key="NSFrame">{{206, 6}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="945722395"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">109</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -485,7 +479,6 @@
 						<string key="NSFrame">{{206, 6}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="163428477"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">111</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -531,7 +524,6 @@
 						<string key="NSFrame">{{206, 6}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="635633515"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">111</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -577,7 +569,6 @@
 						<string key="NSFrame">{{206, 6}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="797079624"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">108</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -622,7 +613,6 @@
 						<string key="NSFrame">{{206, 6}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="524762136"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">111</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -668,7 +658,6 @@
 						<string key="NSFrame">{{206, 6}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="1049663513"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">111</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -685,12 +674,9 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableView" id="448987263">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<string key="NSFrame">{{0, 64}, {320, 416}}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">10</int>
 					<object class="NSImage" key="NSImage">
@@ -908,6 +894,94 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<reference key="destination" ref="299595820"/>
 					</object>
 					<int key="connectionID">129</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">totalTimeSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="431925163"/>
+					</object>
+					<int key="connectionID">130</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">currentSpeedSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="38237967"/>
+					</object>
+					<int key="connectionID">132</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">averageSpeedSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="200696875"/>
+					</object>
+					<int key="connectionID">133</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">topSpeedSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="158436151"/>
+					</object>
+					<int key="connectionID">134</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lowSpeedSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="998641453"/>
+					</object>
+					<int key="connectionID">135</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">currentAltitudeSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="319183315"/>
+					</object>
+					<int key="connectionID">136</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">highAltitudeSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="547430605"/>
+					</object>
+					<int key="connectionID">137</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">latLonSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="76311330"/>
+					</object>
+					<int key="connectionID">138</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">headingSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="251864900"/>
+					</object>
+					<int key="connectionID">139</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">totalDistanceSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="585898552"/>
+					</object>
+					<int key="connectionID">140</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lowAltitudeSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="93834017"/>
+					</object>
+					<int key="connectionID">141</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1397,7 +1471,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">129</int>
+			<int key="maxID">141</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1405,52 +1479,95 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<string key="className">SGFieldSelectionViewController</string>
 					<string key="superclassName">UITableViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="averageSpeedSwitch">UISwitch</string>
 						<string key="avgSpeedView">UIView</string>
+						<string key="currentAltitudeSwitch">UISwitch</string>
 						<string key="currentAltitudeView">UIView</string>
+						<string key="currentSpeedSwitch">UISwitch</string>
 						<string key="currentSpeedView">UIView</string>
+						<string key="headingSwitch">UISwitch</string>
 						<string key="headingView">UIView</string>
+						<string key="highAltitudeSwitch">UISwitch</string>
 						<string key="highAltitudeView">UIView</string>
+						<string key="latLonSwitch">UISwitch</string>
 						<string key="latLonView">UIView</string>
+						<string key="lowAltitudeSwitch">UISwitch</string>
 						<string key="lowAltitudeView">UIView</string>
+						<string key="lowSpeedSwitch">UISwitch</string>
 						<string key="lowSpeedView">UIView</string>
 						<string key="metricUnitsSwitch">UISwitch</string>
 						<string key="screenAlwaysOnSwitch">UISwitch</string>
 						<string key="screenOnView">UIView</string>
+						<string key="topSpeedSwitch">UISwitch</string>
 						<string key="topSpeedView">UIView</string>
+						<string key="totalDistanceSwitch">UISwitch</string>
 						<string key="totalDistanceView">UIView</string>
+						<string key="totalTimeSwitch">UISwitch</string>
 						<string key="totalTimeView">UIView</string>
 						<string key="trueHeadingSwitch">UISwitch</string>
 						<string key="trueHeadingView">UIView</string>
 						<string key="unitsView">UIView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="averageSpeedSwitch">
+							<string key="name">averageSpeedSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="avgSpeedView">
 							<string key="name">avgSpeedView</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="currentAltitudeSwitch">
+							<string key="name">currentAltitudeSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="currentAltitudeView">
 							<string key="name">currentAltitudeView</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="currentSpeedSwitch">
+							<string key="name">currentSpeedSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="currentSpeedView">
 							<string key="name">currentSpeedView</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="headingSwitch">
+							<string key="name">headingSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="headingView">
 							<string key="name">headingView</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="highAltitudeSwitch">
+							<string key="name">highAltitudeSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="highAltitudeView">
 							<string key="name">highAltitudeView</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="latLonSwitch">
+							<string key="name">latLonSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="latLonView">
 							<string key="name">latLonView</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="lowAltitudeSwitch">
+							<string key="name">lowAltitudeSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="lowAltitudeView">
 							<string key="name">lowAltitudeView</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lowSpeedSwitch">
+							<string key="name">lowSpeedSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="lowSpeedView">
 							<string key="name">lowSpeedView</string>
@@ -1468,13 +1585,25 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<string key="name">screenOnView</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="topSpeedSwitch">
+							<string key="name">topSpeedSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="topSpeedView">
 							<string key="name">topSpeedView</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="totalDistanceSwitch">
+							<string key="name">totalDistanceSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="totalDistanceView">
 							<string key="name">totalDistanceView</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="totalTimeSwitch">
+							<string key="name">totalTimeSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="totalTimeView">
 							<string key="name">totalTimeView</string>

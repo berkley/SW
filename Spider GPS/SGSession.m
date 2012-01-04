@@ -20,7 +20,8 @@ static SGSession *instance = nil;
     NSMutableArray *arr = (NSMutableArray*)[defaultsManager getObjectWithName:@"fields"];
     if(!arr)
         arr = [NSMutableArray arrayWithObjects:@"off", @"on", @"on", @"off", @"off", @"off", @"on", @"off", @"off", @"on", @"on", @"on", nil];
-    fields = arr;
+    self.fields = arr;
+    NSLog(@"fields: %@", self.fields);
 }
 
 #pragma mark - init
@@ -46,11 +47,11 @@ static SGSession *instance = nil;
                                                    object:nil];
         self.defaultsManager = [SGDefaultsManager instance];
 
+        [self setFieldVals];
         self.tracks = [NSMutableDictionary dictionaryWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithFile:[SGSession getDocumentPathWithName:TRACKS_KEY]]];
         if(tracks == nil)
             tracks = [[NSMutableDictionary alloc] init];
         [self createNewTrack];
-        [self setFieldVals];
         if(self.screenAlwaysOn)
             [UIApplication sharedApplication].idleTimerDisabled = YES;
     }

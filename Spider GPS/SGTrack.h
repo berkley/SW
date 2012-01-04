@@ -16,7 +16,6 @@
 #define LOW_SPEED_KEY @"lowSpeed"
 #define TOP_ALTITUDE_KEY @"topAltitude"
 #define LOW_ALTITUDE_KEY @"lowAltitude"
-#define TOTAL_SPEED_KEY @"totalSpeed"
 #define TOTAL_TIME_KEY @"totalTime"
 #define NAME_KEY @"name"
 
@@ -29,7 +28,6 @@
     NSNumber *lowSpeed;
     NSNumber *topAlitude;
     NSNumber *lowAltidude;
-    NSNumber *totalSpeed;
     NSString *name;
     NSNumber *totalTime;
 }
@@ -45,6 +43,8 @@
 @property (nonatomic, retain) NSMutableArray *locations; //array of CLLocation
 @property (nonatomic, retain) NSNumber *totalTime; //treat as an NSTimeInterval (double)
 
-- (void)addDataWithLocation:(CLLocation*)location distance:(double)distance;
+- (void)addDataWithLocation:(CLLocation*)location distance:(double)dist 
+                  startTime:(NSDate*)date1 stopTime:(NSDate*)date2;
++ (double)calculateAvgSpeedForDistance:(NSInteger)distance fromDate:(NSDate*)date1 toDate:(NSDate*)date2;
 
 @end

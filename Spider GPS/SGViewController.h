@@ -33,9 +33,9 @@
     __weak IBOutlet UILabel *longitudeLabel;
     __weak IBOutlet UILabel *latitudeLabel;
     __weak IBOutlet UILabel *altitudeLabel;
-    __weak IBOutlet UIButton *drawerButton;
     __weak IBOutlet UILabel *distanceLabel;
     __weak IBOutlet UISwitch *mapDirectionFollowingSwitch;
+    IBOutlet UIToolbar *toolbar;
     
     IBOutlet UIView *latView;
     IBOutlet UIView *lonView;
@@ -55,8 +55,6 @@
     NSMutableArray *routeArray;
     int pointCount;
     MKMapPoint* pointArr;
-    IBOutlet UIView *settingsView;
-    BOOL drawerOpen;
     __weak IBOutlet UISegmentedControl *unitSegmentedControl;
     __weak IBOutlet UISegmentedControl *compassSegmentedControl;
     double distance;

@@ -18,4 +18,3 @@
 #define METERS_TO_FT 3.2808399
 #define METERS_TO_KPH 3.6
 #define METERS_TO_KM 1000
-

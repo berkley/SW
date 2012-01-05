@@ -85,6 +85,7 @@ static SGSession *instance = nil;
     SGTrack *t = [self.currentTrack copy];
     [self.tracks setObject:t forKey:name];
     [NSKeyedArchiver archiveRootObject:self.tracks toFile:[SGSession getDocumentPathWithName:TRACKS_KEY]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STOP_ACTIVITY_INDICATOR object:nil];
 }
 
 - (void)createNewTrack

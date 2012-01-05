@@ -23,6 +23,21 @@
     mapView.showsUserLocation = NO;
 }
 
+- (void)displayActivityIndicator
+{
+    activityIndicatorLabel.text = @"Saving Track";
+    [self.view addSubview:activityIndicatorView];
+}
+
+- (void)stopActivityIndicator
+{
+    [activityIndicatorView removeFromSuperview];
+}
+
+- (void)startActivityIndicator
+{
+    [self performSelectorOnMainThread:@selector(displayActivityIndicator) withObject:nil waitUntilDone:NO];
+}
 
 #pragma mark - init
 
@@ -58,6 +73,15 @@
                                              selector:@selector(disableLocationServices) 
                                                  name:NOTIFICATION_STOP_LOCATION_SERVICES 
                                                object:nil];   
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(startActivityIndicator) 
+                                                 name:NOTIFICATION_START_ACTIVITY_INDICATOR 
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(stopActivityIndicator) 
+                                                 name:NOTIFICATION_STOP_ACTIVITY_INDICATOR 
+                                               object:nil];
+    
     
     mapView.delegate = self;
     if(![SGSession instance].useMPH)
@@ -144,6 +168,9 @@
     lowAltView = nil;
     lonView = nil;
     locationButton = nil;
+    activityIndicatorView = nil;
+    activityIndicator = nil;
+    activityIndicatorLabel = nil;
     [super viewDidUnload];
 }
 
@@ -401,9 +428,9 @@
                  fromLocation:[notification.userInfo objectForKey:@"oldLocation"]];
 }
 
-- (NSString*)getCarinalHeading:(CGFloat)heading
+- (NSString*)getCardinalHeading:(CGFloat)heading
 {
-    if((heading > 0 & heading <= 22.5) || (heading > 337.5 && heading <= 360))
+    if((heading > 0 && heading <= 22.5) || (heading > 337.5 && heading <= 360))
         return @"N";
     else if(heading > 22.5 && heading <= 67.5)
         return @"NE";
@@ -427,7 +454,7 @@
     {
         if([SGSession instance].cardinalHeading)
         {
-            headingLabel.text = [self getCarinalHeading:newHeading.trueHeading];
+            headingLabel.text = [self getCardinalHeading:newHeading.trueHeading];
         }
         else
         {
@@ -438,7 +465,7 @@
     {
         if([SGSession instance].cardinalHeading)
         {
-            headingLabel.text = [self getCarinalHeading:newHeading.magneticHeading];
+            headingLabel.text = [self getCardinalHeading:newHeading.magneticHeading];
         }
         else
         {
@@ -501,15 +528,12 @@
     { //Save
         NSString *name = [alertView textFieldAtIndex:0].text;
         if(name == nil || [name isEqualToString:@""])
-        {
-            //TODO
-        }
-        else
-        {
-            endTime = [NSDate date];
-            [SGSession instance].currentTrack.totalTime = [NSNumber numberWithDouble:[endTime timeIntervalSinceDate:startTime]];
-            [[SGSession instance] saveCurrentTrackWithName:name];
-        }
+            name = @"Untitled Track";
+
+        endTime = [NSDate date];
+        [SGSession instance].currentTrack.totalTime = [NSNumber numberWithDouble:[endTime timeIntervalSinceDate:startTime]];
+        [self startActivityIndicator];
+        [[SGSession instance] performSelector:@selector(saveCurrentTrackWithName:) withObject:name afterDelay:.1];
     }
 }
 

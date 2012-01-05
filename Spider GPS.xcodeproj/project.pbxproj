@@ -15,7 +15,6 @@
 		7E97AF9B14AA81D8002404A5 /* SGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AF9A14AA81D8002404A5 /* SGAppDelegate.m */; };
 		7E97AF9E14AA81D9002404A5 /* SGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AF9D14AA81D9002404A5 /* SGViewController.m */; };
 		7E97AFA114AA81D9002404A5 /* SGViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AF9F14AA81D9002404A5 /* SGViewController_iPhone.xib */; };
-		7E97AFA414AA81D9002404A5 /* SGViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFA214AA81D9002404A5 /* SGViewController_iPad.xib */; };
 		7E97AFBD14AA8316002404A5 /* SGSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AFAF14AA8316002404A5 /* SGSession.m */; };
 		7E97AFBE14AA8316002404A5 /* SGTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AFB214AA8316002404A5 /* SGTrack.m */; };
 		7E97AFBF14AA8316002404A5 /* SGDefaultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AFB414AA8316002404A5 /* SGDefaultsManager.m */; };
@@ -37,6 +36,7 @@
 		CD4DEB9714B418D700E9110A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4DEB9614B418D700E9110A /* icon.png */; };
 		CD4DEB9914B4190900E9110A /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4DEB9814B4190900E9110A /* icon-small.png */; };
 		CD4DEB9B14B4197D00E9110A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE7120214AFE8500079C133 /* Default.png */; };
+		CD4DEBAB14B5704D00E9110A /* spinnerbox.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4DEBAA14B5704D00E9110A /* spinnerbox.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +53,6 @@
 		7E97AF9C14AA81D8002404A5 /* SGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGViewController.h; sourceTree = "<group>"; };
 		7E97AF9D14AA81D9002404A5 /* SGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SGViewController.m; sourceTree = "<group>"; };
 		7E97AFA014AA81D9002404A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SGViewController_iPhone.xib; sourceTree = "<group>"; };
-		7E97AFA314AA81D9002404A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SGViewController_iPad.xib; sourceTree = "<group>"; };
 		7E97AFAE14AA8316002404A5 /* SGSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSession.h; sourceTree = "<group>"; };
 		7E97AFAF14AA8316002404A5 /* SGSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSession.m; sourceTree = "<group>"; };
 		7E97AFB014AA8316002404A5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -82,6 +81,7 @@
 		7EE7120214AFE8500079C133 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		CD4DEB9614B418D700E9110A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		CD4DEB9814B4190900E9110A /* icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-small.png"; path = "../icon-small.png"; sourceTree = "<group>"; };
+		CD4DEBAA14B5704D00E9110A /* spinnerbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinnerbox.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +137,6 @@
 				7E97AF9C14AA81D8002404A5 /* SGViewController.h */,
 				7E97AF9D14AA81D9002404A5 /* SGViewController.m */,
 				7E97AF9F14AA81D9002404A5 /* SGViewController_iPhone.xib */,
-				7E97AFA214AA81D9002404A5 /* SGViewController_iPad.xib */,
 				7E97AFAE14AA8316002404A5 /* SGSession.h */,
 				7E97AFAF14AA8316002404A5 /* SGSession.m */,
 				7E97AFB014AA8316002404A5 /* Constants.h */,
@@ -173,6 +172,7 @@
 		7E97AFCC14AA90E8002404A5 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				CD4DEBAA14B5704D00E9110A /* spinnerbox.png */,
 				CD4DEB9814B4190900E9110A /* icon-small.png */,
 				CD4DEB9614B418D700E9110A /* icon.png */,
 				7EE7120214AFE8500079C133 /* Default.png */,
@@ -241,7 +241,6 @@
 			files = (
 				7E97AF9514AA81D8002404A5 /* InfoPlist.strings in Resources */,
 				7E97AFA114AA81D9002404A5 /* SGViewController_iPhone.xib in Resources */,
-				7E97AFA414AA81D9002404A5 /* SGViewController_iPad.xib in Resources */,
 				7E97AFC214AA8316002404A5 /* SGTrackDetailViewController.xib in Resources */,
 				7E97AFC414AA8316002404A5 /* SGFieldSelectionViewController.xib in Resources */,
 				7E97AFCB14AA90E5002404A5 /* preferences.png in Resources */,
@@ -255,6 +254,7 @@
 				CD4DEB9714B418D700E9110A /* icon.png in Resources */,
 				CD4DEB9914B4190900E9110A /* icon-small.png in Resources */,
 				CD4DEB9B14B4197D00E9110A /* Default.png in Resources */,
+				CD4DEBAB14B5704D00E9110A /* spinnerbox.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,14 +294,6 @@
 				7E97AFA014AA81D9002404A5 /* en */,
 			);
 			name = SGViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		7E97AFA214AA81D9002404A5 /* SGViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7E97AFA314AA81D9002404A5 /* en */,
-			);
-			name = SGViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

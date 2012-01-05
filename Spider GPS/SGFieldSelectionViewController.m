@@ -85,6 +85,8 @@
     headingSwitch = nil;
     totalDistanceSwitch = nil;
     lowAltitudeSwitch = nil;
+    cardinalHeadingSwitch = nil;
+    cardinalHeadingView = nil;
     [super viewDidUnload];
 }
 
@@ -142,6 +144,7 @@
     metricUnitsSwitch.on = ![SGSession instance].useMPH;
     trueHeadingSwitch.on = [SGSession instance].useTrueHeading;
     screenAlwaysOnSwitch.on = [SGSession instance].screenAlwaysOn;
+    cardinalHeadingSwitch.on = [SGSession instance].cardinalHeading;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -267,6 +270,11 @@
     [SGSession instance].screenAlwaysOn = screenAlwaysOnSwitch.on;
 }
 
+- (IBAction)cardinalHeadingChanged:(id)sender 
+{
+    [SGSession instance].cardinalHeading = cardinalHeadingSwitch.on;
+}
+
 #pragma mark - table del/datasource methods
 
 - (UITableViewCell*)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -293,6 +301,9 @@
                 break;
             case 2:
                 [cell.contentView addSubview:screenOnView];
+                break;
+            case 3:
+                [cell.contentView addSubview:cardinalHeadingView];
                 break;
             default:
                 break;
@@ -346,7 +357,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0)
-        return 3;
+        return 4;
     else //if(section == 1)
         return 11;
 }

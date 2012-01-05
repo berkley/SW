@@ -146,6 +146,23 @@ static SGSession *instance = nil;
 
 #pragma mark - custom getters/setters
 
+- (BOOL)cardinalHeading
+{
+    NSString *ch = (NSString*)[defaultsManager getObjectWithName:@"cardinalHeading"];
+    if(ch != nil && [ch isEqualToString:@"false"])
+        return NO;
+    else
+        return YES;
+}
+
+- (void)setCardinalHeading:(BOOL)ch
+{
+    if(ch)
+        [defaultsManager setObject:@"true" withName:@"cardinalHeading"];
+    else
+        [defaultsManager setObject:@"false" withName:@"cardinalHeading"];
+}
+
 - (void)setUseMPH:(BOOL)umph
 {
     if(umph)

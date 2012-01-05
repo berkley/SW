@@ -401,13 +401,50 @@
                  fromLocation:[notification.userInfo objectForKey:@"oldLocation"]];
 }
 
+- (NSString*)getCarinalHeading:(CGFloat)heading
+{
+    if((heading > 0 & heading <= 22.5) || (heading > 337.5 && heading <= 360))
+        return @"N";
+    else if(heading > 22.5 && heading <= 67.5)
+        return @"NE";
+    else if(heading > 67.6 && heading <= 112.5)
+        return @"E";
+    else if(heading > 112.5 && heading <= 157.5)
+        return @"SE";
+    else if(heading > 157.5 && heading <= 202.5)
+        return @"S";
+    else if(heading > 202.5 && heading <= 247.5)
+        return @"SW";
+    else if(heading > 247.5 && heading <= 292.5)
+        return @"W";
+    else// if(heading > 292.5 && heading < 337.5)
+        return @"NW";
+}
 
 - (void)didUpdateHeading:(CLHeading *)newHeading
 {
     if([SGSession instance].useTrueHeading)
-        headingLabel.text = [NSString stringWithFormat:@"%.0f\u00b0 (T)", newHeading.trueHeading];
+    {
+        if([SGSession instance].cardinalHeading)
+        {
+            headingLabel.text = [self getCarinalHeading:newHeading.trueHeading];
+        }
+        else
+        {
+            headingLabel.text = [NSString stringWithFormat:@"%.0f\u00b0 (T)", newHeading.trueHeading];
+        }
+    }
     else
-        headingLabel.text = [NSString stringWithFormat:@"%.0f\u00b0 (M)", newHeading.magneticHeading];
+    {
+        if([SGSession instance].cardinalHeading)
+        {
+            headingLabel.text = [self getCarinalHeading:newHeading.magneticHeading];
+        }
+        else
+        {
+            headingLabel.text = [NSString stringWithFormat:@"%.0f\u00b0 (M)", newHeading.magneticHeading];
+        }
+    }
 }
 
 - (void)headingUpdated:(NSNotification*)notification

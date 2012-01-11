@@ -15,7 +15,6 @@
     IBOutlet UIView *screenOnView;
     IBOutlet UIView *trueHeadingView;
     IBOutlet UIView *unitsView;
-    IBOutlet UIView *cardinalHeadingView;
 
     //section 1
     IBOutlet UIView *latLonView;
@@ -46,7 +45,6 @@
     __weak IBOutlet UISwitch *headingSwitch;
     __weak IBOutlet UISwitch *totalDistanceSwitch;
     __weak IBOutlet UISwitch *lowAltitudeSwitch;
-    __weak IBOutlet UISwitch *cardinalHeadingSwitch;
     
 }
 

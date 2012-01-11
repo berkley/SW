@@ -85,8 +85,6 @@
     headingSwitch = nil;
     totalDistanceSwitch = nil;
     lowAltitudeSwitch = nil;
-    cardinalHeadingSwitch = nil;
-    cardinalHeadingView = nil;
     [super viewDidUnload];
 }
 
@@ -269,10 +267,6 @@
     [SGSession instance].screenAlwaysOn = screenAlwaysOnSwitch.on;
 }
 
-- (IBAction)cardinalHeadingChanged:(id)sender 
-{
-    [SGSession instance].cardinalHeading = cardinalHeadingSwitch.on;
-}
 
 #pragma mark - table del/datasource methods
 
@@ -301,9 +295,6 @@
             case 2:
                 [cell.contentView addSubview:screenOnView];
                 break;
-//            case 3:
-//                [cell.contentView addSubview:cardinalHeadingView];
-//                break;
             default:
                 break;
         }

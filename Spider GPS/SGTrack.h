@@ -18,10 +18,12 @@
 #define LOW_ALTITUDE_KEY @"lowAltitude"
 #define TOTAL_TIME_KEY @"totalTime"
 #define NAME_KEY @"name"
+#define ANNOTATIONS_KEY @"annotations"
 
 @interface SGTrack : NSObject <NSCoding>
 {
     NSMutableArray *locations;
+    NSMutableArray *annotations;
     NSNumber *distance;
     NSNumber *avgSpeed;
     NSNumber *topSpeed;
@@ -42,6 +44,7 @@
 @property (nonatomic, retain) NSNumber *lowAltidude;
 @property (nonatomic, retain) NSMutableArray *locations; //array of CLLocation
 @property (nonatomic, retain) NSNumber *totalTime; //treat as an NSTimeInterval (double)
+@property (nonatomic, retain) NSMutableArray *annotations;
 
 - (void)addDataWithLocation:(CLLocation*)location distance:(double)dist 
                   startTime:(NSDate*)date1 stopTime:(NSDate*)date2;

@@ -9,7 +9,7 @@
 #import "SGPinAnnotation.h"
 
 @implementation SGPinAnnotation 
-@synthesize coordinate, title, subtitle;
+@synthesize coordinate, title, subtitle, location;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coord
 {
@@ -24,6 +24,28 @@
 - (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate
 {
     coordinate = newCoordinate;
+}
+
+#pragma mark - nscoding
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if(self)
+    {
+        title = [decoder decodeObjectForKey:PIN_TITLE_KEY];
+        subtitle = [decoder decodeObjectForKey:PIN_SUBTITLE_KEY];
+        location = [decoder decodeObjectForKey:PIN_LOCATION_KEY];
+        coordinate = location.coordinate;
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:title forKey:PIN_TITLE_KEY];
+    [coder encodeObject:subtitle forKey:PIN_SUBTITLE_KEY];
+    [coder encodeObject:location forKey:PIN_LOCATION_KEY];
 }
 
 @end

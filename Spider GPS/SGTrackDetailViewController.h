@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "SGTrack.h"
 #import "SGSession.h"
+#import "SGPinAnnotation.h"
 
 @interface SGTrackDetailViewController :UIViewController <MKMapViewDelegate>
 {

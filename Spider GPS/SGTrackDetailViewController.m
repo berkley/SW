@@ -75,12 +75,18 @@
         free(tempPointArr);
     [mapView removeOverlays:mapView.overlays];
     [mapView addOverlay:routeLine];
+    
+    for(SGPinAnnotation *ann in track.annotations)
+    {
+        [mapView addAnnotation:ann];
+    }
+    
     [SGSession zoomToFitLocations:track.locations padding:1 mapView:mapView];
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapTapped:)];
     tapRecognizer.numberOfTapsRequired = 1;
     tapRecognizer.numberOfTouchesRequired = 1;
-    [mapView addGestureRecognizer:tapRecognizer];
+//    [mapView addGestureRecognizer:tapRecognizer];
 }
 
 - (void)hideInfoView
@@ -140,6 +146,22 @@
     }
     
     return overlayView;
+}
+
+- (MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if([annotation isKindOfClass:[SGPinAnnotation class]])
+    {
+        MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation 
+                                                                       reuseIdentifier:@"pinAnnotation"];
+        pinView.animatesDrop = YES;
+        pinView.pinColor = MKPinAnnotationColorGreen;
+        pinView.userInteractionEnabled = YES;
+        pinView.canShowCallout = YES;
+        pinView.frame = CGRectMake(0, 0, 20, 20);
+        return pinView;
+    }
+    return nil;
 }
 
 @end

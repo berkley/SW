@@ -10,7 +10,7 @@
 
 @implementation SGTrack
 @synthesize name, distance, avgSpeed, lowSpeed, topSpeed, topAlitude, 
-lowAltidude, locations, totalTime;
+lowAltidude, locations, totalTime, annotations;
 
 - (id)copy
 {
@@ -24,6 +24,7 @@ lowAltidude, locations, totalTime;
     t.lowAltidude = [lowAltidude copy];
     t.totalTime = [totalTime copy];
     t.name = [name copy];
+    t.annotations = [annotations copy];
     return t;
 }
 
@@ -41,6 +42,7 @@ lowAltidude, locations, totalTime;
         lowAltidude = [decoder decodeObjectForKey:LOW_ALTITUDE_KEY];
         totalTime = [decoder decodeObjectForKey:TOTAL_TIME_KEY];
         name = [decoder decodeObjectForKey:NAME_KEY];
+        annotations = [decoder decodeObjectForKey:ANNOTATIONS_KEY];
     }
     return self;
 }
@@ -56,6 +58,7 @@ lowAltidude, locations, totalTime;
     [coder encodeObject:lowAltidude forKey:LOW_ALTITUDE_KEY];
     [coder encodeObject:totalTime forKey:TOTAL_TIME_KEY];
     [coder encodeObject:name forKey:NAME_KEY];
+    [coder encodeObject:annotations forKey:ANNOTATIONS_KEY];
 }
 
 - (id)init
@@ -64,6 +67,7 @@ lowAltidude, locations, totalTime;
     if(self)
     {
         locations = [[NSMutableArray alloc] init];
+        annotations = [[NSMutableArray alloc] init];
         distance = [NSNumber numberWithDouble:0.0];
         avgSpeed = [NSNumber numberWithDouble:0.0];
         topSpeed = [NSNumber numberWithDouble:0.0];

@@ -552,7 +552,9 @@
             if(name == nil || [name isEqualToString:@""])
                 name = @"Untitled Pin";
             ann.title = name;
+            ann.location = [SGSession instance].currentLocation;
             [mapView addAnnotation:ann];
+            [[SGSession instance].currentTrack.annotations addObject:ann];
         }
     }
 }

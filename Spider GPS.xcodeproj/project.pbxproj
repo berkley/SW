@@ -355,6 +355,7 @@
 				GCC_PREFIX_HEADER = "Spider GPS/Spider GPS-Prefix.pch";
 				INFOPLIST_FILE = "Spider GPS/Spider GPS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -366,6 +367,7 @@
 				GCC_PREFIX_HEADER = "Spider GPS/Spider GPS-Prefix.pch";
 				INFOPLIST_FILE = "Spider GPS/Spider GPS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

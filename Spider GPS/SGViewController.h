@@ -13,13 +13,13 @@
 #import "SGSession.h"
 #import "SGTrackViewController.h"
 #import "SGFieldSelectionViewController.h"
+#import "SGPinAnnotation.h"
 
 #define SETTINGS_HEIGHT 269
 
 @interface SGViewController : UIViewController 
 <MKMapViewDelegate, UIAlertViewDelegate>
 {
-    
     __weak IBOutlet MKMapView *mapView;
     IBOutlet UIView *speedHeadingView;
     __weak IBOutlet UILabel *topSpeedLabel;
@@ -75,6 +75,7 @@
     NSDate *startTime;
     NSDate *endTime;
     __weak IBOutlet UIBarButtonItem *locationButton;
+    __weak IBOutlet UIBarButtonItem *pinButton;
 }
 
 - (void)setFields;

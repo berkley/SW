@@ -21,6 +21,7 @@
     SGDefaultsManager *defaultsManager;
     NSMutableDictionary *tracks;
     NSMutableArray *fields;
+    CLLocation *currentLocation;
 }
 
 @property (nonatomic, retain) SGTrack *currentTrack;
@@ -31,8 +32,8 @@
 @property (nonatomic, assign) BOOL screenAlwaysOn;
 @property (nonatomic, assign) BOOL cardinalHeading;
 @property (nonatomic, retain) NSArray *fields;
+@property (nonatomic, retain) CLLocation *currentLocation;
 
-- (BOOL)orientationIsPortrait;
 + (SGSession*)instance;
 - (void)saveCurrentTrackWithName:(NSString*)name;
 - (void)createNewTrack;

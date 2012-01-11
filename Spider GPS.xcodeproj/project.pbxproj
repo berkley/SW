@@ -32,6 +32,8 @@
 		7E97AFD614AA963D002404A5 /* location-target.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFD514AA963D002404A5 /* location-target.png */; };
 		7E97AFD814AA9652002404A5 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFD714AA9652002404A5 /* map.png */; };
 		7E97AFDA14AA9675002404A5 /* redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFD914AA9675002404A5 /* redo.png */; };
+		7E9977CC14BD4D7D004BB12F /* SGPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9977CB14BD4D7D004BB12F /* SGPinAnnotation.m */; };
+		7E9977CF14BD4FD2004BB12F /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E9977CE14BD4FD2004BB12F /* pin.png */; };
 		7EE7120114AFE8080079C133 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE7120014AFE8080079C133 /* Default@2x.png */; };
 		CD4DEB9714B418D700E9110A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4DEB9614B418D700E9110A /* icon.png */; };
 		CD4DEB9914B4190900E9110A /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4DEB9814B4190900E9110A /* icon-small.png */; };
@@ -77,6 +79,9 @@
 		7E97AFD514AA963D002404A5 /* location-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-target.png"; sourceTree = "<group>"; };
 		7E97AFD714AA9652002404A5 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		7E97AFD914AA9675002404A5 /* redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redo.png; sourceTree = "<group>"; };
+		7E9977CA14BD4D7D004BB12F /* SGPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPinAnnotation.h; sourceTree = "<group>"; };
+		7E9977CB14BD4D7D004BB12F /* SGPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPinAnnotation.m; sourceTree = "<group>"; };
+		7E9977CE14BD4FD2004BB12F /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		7EE7120014AFE8080079C133 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		7EE7120214AFE8500079C133 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		CD4DEB9614B418D700E9110A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
@@ -132,26 +137,7 @@
 		7E97AF9014AA81D8002404A5 /* Spider GPS */ = {
 			isa = PBXGroup;
 			children = (
-				7E97AF9914AA81D8002404A5 /* SGAppDelegate.h */,
-				7E97AF9A14AA81D8002404A5 /* SGAppDelegate.m */,
-				7E97AF9C14AA81D8002404A5 /* SGViewController.h */,
-				7E97AF9D14AA81D9002404A5 /* SGViewController.m */,
-				7E97AF9F14AA81D9002404A5 /* SGViewController_iPhone.xib */,
-				7E97AFAE14AA8316002404A5 /* SGSession.h */,
-				7E97AFAF14AA8316002404A5 /* SGSession.m */,
-				7E97AFB014AA8316002404A5 /* Constants.h */,
-				7E97AFB114AA8316002404A5 /* SGTrack.h */,
-				7E97AFB214AA8316002404A5 /* SGTrack.m */,
-				7E97AFB314AA8316002404A5 /* SGDefaultsManager.h */,
-				7E97AFB414AA8316002404A5 /* SGDefaultsManager.m */,
-				7E97AFB514AA8316002404A5 /* SGTrackViewController.h */,
-				7E97AFB614AA8316002404A5 /* SGTrackViewController.m */,
-				7E97AFB714AA8316002404A5 /* SGTrackDetailViewController.h */,
-				7E97AFB814AA8316002404A5 /* SGTrackDetailViewController.m */,
-				7E97AFB914AA8316002404A5 /* SGTrackDetailViewController.xib */,
-				7E97AFBA14AA8316002404A5 /* SGFieldSelectionViewController.h */,
-				7E97AFBB14AA8316002404A5 /* SGFieldSelectionViewController.m */,
-				7E97AFBC14AA8316002404A5 /* SGFieldSelectionViewController.xib */,
+				7E9977CD14BD4EFD004BB12F /* Classes */,
 				7E97AFCC14AA90E8002404A5 /* assets */,
 				7E97AF9114AA81D8002404A5 /* Supporting Files */,
 			);
@@ -172,6 +158,7 @@
 		7E97AFCC14AA90E8002404A5 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				7E9977CE14BD4FD2004BB12F /* pin.png */,
 				CD4DEBAA14B5704D00E9110A /* spinnerbox.png */,
 				CD4DEB9814B4190900E9110A /* icon-small.png */,
 				CD4DEB9614B418D700E9110A /* icon.png */,
@@ -186,6 +173,35 @@
 				7E97AFCA14AA90E5002404A5 /* preferences.png */,
 			);
 			name = assets;
+			sourceTree = "<group>";
+		};
+		7E9977CD14BD4EFD004BB12F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7E97AF9914AA81D8002404A5 /* SGAppDelegate.h */,
+				7E97AF9A14AA81D8002404A5 /* SGAppDelegate.m */,
+				7E97AF9C14AA81D8002404A5 /* SGViewController.h */,
+				7E97AF9D14AA81D9002404A5 /* SGViewController.m */,
+				7E97AF9F14AA81D9002404A5 /* SGViewController_iPhone.xib */,
+				7E97AFAE14AA8316002404A5 /* SGSession.h */,
+				7E97AFAF14AA8316002404A5 /* SGSession.m */,
+				7E97AFB014AA8316002404A5 /* Constants.h */,
+				7E97AFB114AA8316002404A5 /* SGTrack.h */,
+				7E97AFB214AA8316002404A5 /* SGTrack.m */,
+				7E97AFB314AA8316002404A5 /* SGDefaultsManager.h */,
+				7E97AFB414AA8316002404A5 /* SGDefaultsManager.m */,
+				7E97AFB514AA8316002404A5 /* SGTrackViewController.h */,
+				7E97AFB614AA8316002404A5 /* SGTrackViewController.m */,
+				7E97AFB714AA8316002404A5 /* SGTrackDetailViewController.h */,
+				7E97AFB814AA8316002404A5 /* SGTrackDetailViewController.m */,
+				7E97AFB914AA8316002404A5 /* SGTrackDetailViewController.xib */,
+				7E97AFBA14AA8316002404A5 /* SGFieldSelectionViewController.h */,
+				7E97AFBB14AA8316002404A5 /* SGFieldSelectionViewController.m */,
+				7E97AFBC14AA8316002404A5 /* SGFieldSelectionViewController.xib */,
+				7E9977CA14BD4D7D004BB12F /* SGPinAnnotation.h */,
+				7E9977CB14BD4D7D004BB12F /* SGPinAnnotation.m */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +271,7 @@
 				CD4DEB9914B4190900E9110A /* icon-small.png in Resources */,
 				CD4DEB9B14B4197D00E9110A /* Default.png in Resources */,
 				CD4DEBAB14B5704D00E9110A /* spinnerbox.png in Resources */,
+				7E9977CF14BD4FD2004BB12F /* pin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +291,7 @@
 				7E97AFC014AA8316002404A5 /* SGTrackViewController.m in Sources */,
 				7E97AFC114AA8316002404A5 /* SGTrackDetailViewController.m in Sources */,
 				7E97AFC314AA8316002404A5 /* SGFieldSelectionViewController.m in Sources */,
+				7E9977CC14BD4D7D004BB12F /* SGPinAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,8 @@
 #import "SGSession.h"
 
 @implementation SGSession
-@synthesize currentTrack, defaultsManager, tracks, useMPH, fields, screenAlwaysOn;
+@synthesize currentTrack, defaultsManager, tracks, useMPH, fields, screenAlwaysOn,
+currentLocation;
 
 static SGSession *instance = nil; 
 
@@ -42,8 +43,8 @@ static SGSession *instance = nil;
     if(self != nil)
     {
         [[NSNotificationCenter defaultCenter] addObserver:self 
-                                                 selector:@selector(orientationDidChange:) 
-                                                     name:@"UIDeviceOrientationDidChangeNotification" 
+                                                 selector:@selector(locationUpdated:) 
+                                                     name:NOTIFICATION_LOCATION_UPDATED 
                                                    object:nil];
         self.defaultsManager = [SGDefaultsManager instance];
 
@@ -58,25 +59,9 @@ static SGSession *instance = nil;
     return self;
 }
 
-- (void)orientationDidChange:(NSNotification*)notification
+- (void)locationUpdated:(NSNotification*)notification
 {
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if(orientation != currentOrientation)
-    {
-        NSLog(@"newOrientation: %i, currentOrientation: %i", orientation, currentOrientation);
-        //copy the array so it can't be changed while being enumerated
-        currentOrientation = orientation;
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ORIENTATION_CHANGED object:nil];
-    }
-}
-
-- (BOOL)orientationIsPortrait
-{
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if(orientation == UIDeviceOrientationPortrait || orientation == UIDeviceOrientationPortraitUpsideDown)
-        return YES;
-    
-    return NO;
+    self.currentLocation = [notification.userInfo objectForKey:@"newLocation"];
 }
 
 - (void)saveCurrentTrackWithName:(NSString*)name

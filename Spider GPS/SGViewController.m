@@ -107,7 +107,7 @@
                                                                                     action:@selector(mapTapped:)];
     tapRecognizer.numberOfTapsRequired = 1;
     tapRecognizer.numberOfTouchesRequired = 1;
-    [mapView addGestureRecognizer:tapRecognizer];
+//    [mapView addGestureRecognizer:tapRecognizer];
 }
 
 - (void)hideInfoView
@@ -469,6 +469,22 @@
 
 #pragma mark - mapview delegate methods
 
+- (MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if([annotation isKindOfClass:[SGPinAnnotation class]])
+    {
+        MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation 
+                                                                       reuseIdentifier:@"pinAnnotation"];
+        pinView.animatesDrop = YES;
+        pinView.pinColor = MKPinAnnotationColorGreen;
+        pinView.userInteractionEnabled = YES;
+        pinView.canShowCallout = YES;
+        pinView.frame = CGRectMake(0, 0, 20, 20);
+        return pinView;
+    }
+    return nil;
+}
+
 - (MKOverlayView*)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
 {
     MKOverlayView* overlayView = nil;
@@ -512,16 +528,32 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex == 1)
-    { //Save
-        NSString *name = [alertView textFieldAtIndex:0].text;
-        if(name == nil || [name isEqualToString:@""])
-            name = @"Untitled Track";
+    if(alertView.tag == 9000)
+    {
+        if(buttonIndex == 1)
+        { //Save
+            NSString *name = [alertView textFieldAtIndex:0].text;
+            if(name == nil || [name isEqualToString:@""])
+                name = @"Untitled Track";
 
-        endTime = [NSDate date];
-        [SGSession instance].currentTrack.totalTime = [NSNumber numberWithDouble:[endTime timeIntervalSinceDate:startTime]];
-        [self startActivityIndicator];
-        [[SGSession instance] performSelector:@selector(saveCurrentTrackWithName:) withObject:name afterDelay:.1];
+            endTime = [NSDate date];
+            [SGSession instance].currentTrack.totalTime = [NSNumber numberWithDouble:[endTime timeIntervalSinceDate:startTime]];
+            [self startActivityIndicator];
+            [[SGSession instance] performSelector:@selector(saveCurrentTrackWithName:) withObject:name afterDelay:.1];
+        }
+    }
+    else if(alertView.tag == 9001)
+    {
+        if(buttonIndex == 1)
+        { //save
+            SGPinAnnotation *ann = [[SGPinAnnotation alloc] 
+                                    initWithCoordinate:[SGSession instance].currentLocation.coordinate];
+            NSString *name = [alertView textFieldAtIndex:0].text;
+            if(name == nil || [name isEqualToString:@""])
+                name = @"Untitled Pin";
+            ann.title = name;
+            [mapView addAnnotation:ann];
+        }
     }
 }
 
@@ -563,6 +595,17 @@
     }
 }
 
+- (IBAction)pinButtonTouched:(id)sender 
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Pin Name" 
+                                                    message:@"Please name your pin." 
+                                                   delegate:self cancelButtonTitle:@"Cancel" 
+                                          otherButtonTitles:@"Drop Pin", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    alert.tag = 9001;
+    [alert show];
+}
+
 - (IBAction)tracksButtonTouched:(id)sender 
 {
     [self presentModalViewController:navcon animated:YES];
@@ -575,6 +618,7 @@
                                                    delegate:self cancelButtonTitle:@"Cancel" 
                                           otherButtonTitles:@"Save", nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    alert.tag = 9000;
     [alert show];
 }
 

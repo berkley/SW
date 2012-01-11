@@ -11,10 +11,9 @@
 
 /* TODO:
  - add alt gain/loss
- - fix bugs with heads up data
- - avg speed = dist/time
  - drop a pin button
- - add activity monitor for save
+ - add lines of different color for ascent/descent
+ - show friends on the map in realtime
 */
 
 @class SGViewController;

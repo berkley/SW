@@ -452,25 +452,13 @@
 {
     if([SGSession instance].useTrueHeading)
     {
-        if([SGSession instance].cardinalHeading)
-        {
-            headingLabel.text = [self getCardinalHeading:newHeading.trueHeading];
-        }
-        else
-        {
-            headingLabel.text = [NSString stringWithFormat:@"%.0f\u00b0 (T)", newHeading.trueHeading];
-        }
+        NSString *cardHeading = [self getCardinalHeading:newHeading.trueHeading];
+        headingLabel.text = [NSString stringWithFormat:@"%@ (%.0f\u00b0) T", cardHeading, newHeading.trueHeading];
     }
     else
     {
-        if([SGSession instance].cardinalHeading)
-        {
-            headingLabel.text = [self getCardinalHeading:newHeading.magneticHeading];
-        }
-        else
-        {
-            headingLabel.text = [NSString stringWithFormat:@"%.0f\u00b0 (M)", newHeading.magneticHeading];
-        }
+        NSString *cardHeading = [self getCardinalHeading:newHeading.magneticHeading];
+        headingLabel.text = [NSString stringWithFormat:@"%@ (%.0f\u00b0) M", cardHeading, newHeading.magneticHeading];
     }
 }
 

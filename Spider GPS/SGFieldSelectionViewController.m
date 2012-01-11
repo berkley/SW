@@ -144,7 +144,6 @@
     metricUnitsSwitch.on = ![SGSession instance].useMPH;
     trueHeadingSwitch.on = [SGSession instance].useTrueHeading;
     screenAlwaysOnSwitch.on = [SGSession instance].screenAlwaysOn;
-    cardinalHeadingSwitch.on = [SGSession instance].cardinalHeading;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -302,9 +301,9 @@
             case 2:
                 [cell.contentView addSubview:screenOnView];
                 break;
-            case 3:
-                [cell.contentView addSubview:cardinalHeadingView];
-                break;
+//            case 3:
+//                [cell.contentView addSubview:cardinalHeadingView];
+//                break;
             default:
                 break;
         }

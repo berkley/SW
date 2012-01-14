@@ -213,7 +213,7 @@
     {
         dashboardHidden = NO;
         infoView.alpha = 0.8;
-//        toolbar.alpha = 1.0;
+        self.navigationController.navigationBar.alpha = 1.0;
         [showMapButton setImage:[UIImage imageNamed:@"map2.png"] forState:UIControlStateNormal];
         showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - infoView.frame.size.height - 35 - 20, 35, 35);
     }
@@ -221,7 +221,7 @@
     {
         dashboardHidden = YES;
         infoView.alpha = 0.0;
-//        toolbar.alpha = 0.0;
+        self.navigationController.navigationBar.alpha = 0.0;
         [showMapButton setImage:[UIImage imageNamed:@"dashboard2.png"] forState:UIControlStateNormal];
         showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - 35 - 20, 35, 35);
     }

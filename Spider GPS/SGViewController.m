@@ -106,11 +106,7 @@
     accuracyCount = 0;
     addPointCount = 0;
     
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self 
-                                                                                    action:@selector(mapTapped:)];
-    tapRecognizer.numberOfTapsRequired = 1;
-    tapRecognizer.numberOfTouchesRequired = 1;
-//    [mapView addGestureRecognizer:tapRecognizer];
+    [self.view addSubview:showMapButton];
 }
 
 - (void)viewDidUnload
@@ -159,7 +155,6 @@
     
     showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 35 - 20, 35, 35);
     [showMapButton setImage:[UIImage imageNamed:@"map2.png"] forState:UIControlStateNormal];
-    [self.view addSubview:showMapButton];
     dashboardHidden = NO;
 }
 
@@ -572,8 +567,14 @@
             ann.location = [SGSession instance].currentLocation;
             [mapView addAnnotation:ann];
             [[SGSession instance].currentTrack.annotations addObject:ann];
+            [self performSelector:@selector(selectAnnoation:) withObject:ann afterDelay:.5];
         }
     }
+}
+
+- (void)selectAnnoation:(SGPinAnnotation*)ann
+{
+    [mapView selectAnnotation:ann animated:YES];
 }
 
 - (IBAction)gearMenuTouched:(id)sender 

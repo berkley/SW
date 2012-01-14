@@ -29,6 +29,9 @@
     int accuracyCount;
     double accuracyTotal;
     int addPointCount;
+    
+    IBOutlet UIButton *showMapButton;
+    BOOL dashboardHidden;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil trackName:(NSString*)trackName;

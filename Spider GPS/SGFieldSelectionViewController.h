@@ -45,7 +45,6 @@
     __weak IBOutlet UISwitch *headingSwitch;
     __weak IBOutlet UISwitch *totalDistanceSwitch;
     __weak IBOutlet UISwitch *lowAltitudeSwitch;
-    
 }
 
 @end

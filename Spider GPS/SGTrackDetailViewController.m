@@ -33,6 +33,15 @@
     mapView.delegate = self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - infoView.frame.size.height - 35 - 20, 35, 35);
+    [showMapButton setImage:[UIImage imageNamed:@"map2.png"] forState:UIControlStateNormal];
+    [self.view addSubview:showMapButton];
+    dashboardHidden = NO;
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     if([SGSession instance].useMPH)
@@ -152,6 +161,7 @@
     lowestAltitudeLabel = nil;
     totalTimeLabel = nil;
     mapView = nil;
+    showMapButton = nil;
     [super viewDidUnload];
 }
 
@@ -192,6 +202,30 @@
         return pinView;
     }
     return nil;
+}
+
+- (IBAction)showMapButtonTouched:(id)sender 
+{
+    [UIView beginAnimations:@"hideSpeedHeadingView" context:nil];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:.5];
+    if(dashboardHidden)
+    {
+        dashboardHidden = NO;
+        infoView.alpha = 0.8;
+//        toolbar.alpha = 1.0;
+        [showMapButton setImage:[UIImage imageNamed:@"map2.png"] forState:UIControlStateNormal];
+        showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - infoView.frame.size.height - 35 - 20, 35, 35);
+    }
+    else
+    {
+        dashboardHidden = YES;
+        infoView.alpha = 0.0;
+//        toolbar.alpha = 0.0;
+        [showMapButton setImage:[UIImage imageNamed:@"dashboard2.png"] forState:UIControlStateNormal];
+        showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - 35 - 20, 35, 35);
+    }
+    [UIView commitAnimations];
 }
 
 @end

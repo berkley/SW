@@ -113,11 +113,6 @@
 //    [mapView addGestureRecognizer:tapRecognizer];
 }
 
-- (void)hideInfoView
-{
-    speedHeadingView.hidden = YES;
-}
-
 - (void)viewDidUnload
 {
     mapView = nil;
@@ -161,6 +156,7 @@
     [super viewWillAppear:animated];
     [self setupForCurrentOrientation];
     [self enableLocationServices];
+    
     showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 35 - 20, 35, 35);
     [showMapButton setImage:[UIImage imageNamed:@"map2.png"] forState:UIControlStateNormal];
     [self.view addSubview:showMapButton];
@@ -653,7 +649,6 @@
     if(dashboardHidden)
     {
         dashboardHidden = NO;
-//        speedHeadingView.hidden = NO;
         speedHeadingView.alpha = 0.8;
         toolbar.alpha = 1.0;
         [showMapButton setImage:[UIImage imageNamed:@"map2.png"] forState:UIControlStateNormal];
@@ -666,7 +661,6 @@
         toolbar.alpha = 0.0;
         [showMapButton setImage:[UIImage imageNamed:@"dashboard2.png"] forState:UIControlStateNormal];
         showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - 35 - 20, 35, 35);
-//        [self performSelector:@selector(hideInfoView) withObject:nil afterDelay:1.0];
     }
     [UIView commitAnimations];
 }

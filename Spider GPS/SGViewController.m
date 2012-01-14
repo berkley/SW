@@ -104,6 +104,7 @@
     topSpeed = 0;
     accuracyTotal = 0.0;
     accuracyCount = 0;
+    addPointCount = 0;
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self 
                                                                                     action:@selector(mapTapped:)];
@@ -411,12 +412,21 @@
     if(accuracyCount > NUM_POINTS_FOR_ACCURACY)
     {
         double avgAccuracy = accuracyTotal / (double)accuracyCount;
-        NSLog(@"avgAccuracy: %f", avgAccuracy);
+//        NSLog(@"avgAccuracy: %f", avgAccuracy);
         if(newLocation.horizontalAccuracy > avgAccuracy + ACCURACY_THRESHOLD || 
            newLocation.horizontalAccuracy < avgAccuracy - ACCURACY_THRESHOLD)
         {
             addPoint = NO;
+            addPointCount++;
         }
+    }
+    
+    if(addPointCount > ADD_POINT_COUNT_THRESHOLD)
+    {  //if all of a sudden the accuracy goes to shit, we don't want to stop adding
+       //points forever, so this will reset the accuracy check
+        addPointCount = 0;
+        accuracyTotal = 0.0;
+        accuracyCount = 0;
     }
     
     if(addPoint)

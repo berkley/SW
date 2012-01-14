@@ -22,5 +22,7 @@
 #define METERS_TO_KPH 3.6
 #define METERS_TO_KM 1000
 
-#define NUM_POINTS_FOR_ACCURACY 10
-#define ACCURACY_THRESHOLD 10
+//accuracy-based line smoothing
+#define NUM_POINTS_FOR_ACCURACY 10 //required number of points averaged before accuracy checking happens
+#define ACCURACY_THRESHOLD 10 //+/- 10 meters
+#define ADD_POINT_COUNT_THRESHOLD 10 //number of times we don't add a point before the accuracy check is invalidated

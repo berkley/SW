@@ -79,6 +79,7 @@
     
     double accuracyTotal;
     int accuracyCount;
+    int addPointCount;
 }
 
 - (void)setFields;

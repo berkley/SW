@@ -76,6 +76,9 @@
     NSDate *endTime;
     __weak IBOutlet UIBarButtonItem *locationButton;
     __weak IBOutlet UIBarButtonItem *pinButton;
+    
+    double accuracyTotal;
+    int accuracyCount;
 }
 
 - (void)setFields;

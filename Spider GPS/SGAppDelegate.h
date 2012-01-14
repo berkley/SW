@@ -14,6 +14,7 @@
  - drop a pin button
  - add lines of different color for ascent/descent
  - show friends on the map in realtime
+ - smooth lines from large gps errors
 */
 
 @class SGViewController;

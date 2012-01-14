@@ -10,7 +10,7 @@
 
 @implementation SGTrack
 @synthesize name, distance, avgSpeed, lowSpeed, topSpeed, topAlitude, 
-lowAltidude, locations, totalTime, annotations;
+lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccuracy;
 
 - (id)copy
 {
@@ -25,6 +25,9 @@ lowAltidude, locations, totalTime, annotations;
     t.totalTime = [totalTime copy];
     t.name = [name copy];
     t.annotations = [annotations copy];
+    t.horizontalAccuracy = [horizontalAccuracy copy];
+    t.verticalAccuracy = [verticalAccuracy copy];
+    
     return t;
 }
 
@@ -43,6 +46,8 @@ lowAltidude, locations, totalTime, annotations;
         totalTime = [decoder decodeObjectForKey:TOTAL_TIME_KEY];
         name = [decoder decodeObjectForKey:NAME_KEY];
         annotations = [decoder decodeObjectForKey:ANNOTATIONS_KEY];
+        horizontalAccuracy = [decoder decodeObjectForKey:HORIZONTAL_ACC_KEY];
+        verticalAccuracy = [decoder decodeObjectForKey:VERTICAL_ACC_KEY];
     }
     return self;
 }
@@ -59,6 +64,8 @@ lowAltidude, locations, totalTime, annotations;
     [coder encodeObject:totalTime forKey:TOTAL_TIME_KEY];
     [coder encodeObject:name forKey:NAME_KEY];
     [coder encodeObject:annotations forKey:ANNOTATIONS_KEY];
+    [coder encodeObject:horizontalAccuracy forKey:HORIZONTAL_ACC_KEY];
+    [coder encodeObject:verticalAccuracy forKey:VERTICAL_ACC_KEY];
 }
 
 - (id)init
@@ -75,6 +82,8 @@ lowAltidude, locations, totalTime, annotations;
         topAlitude = [NSNumber numberWithDouble:0.0];
         lowAltidude = [NSNumber numberWithDouble:99999.0];
         totalTime = [NSNumber numberWithDouble:0.0];
+        horizontalAccuracy = [NSNumber numberWithInt:-1];
+        verticalAccuracy = [NSNumber numberWithInt:-1];
         name = nil;
     }
     return self;
@@ -85,6 +94,9 @@ lowAltidude, locations, totalTime, annotations;
                   startTime:(NSDate*)date1 
                    stopTime:(NSDate*)date2
 {
+    if(location.verticalAccuracy < 0)
+        return; //invalid location
+    
     double altitude = location.altitude;
     double speed = location.speed;
     if(speed < 0)
@@ -101,6 +113,8 @@ lowAltidude, locations, totalTime, annotations;
     if(altitude < [lowAltidude doubleValue])
         lowAltidude = [NSNumber numberWithDouble:altitude];
     avgSpeed = [NSNumber numberWithDouble:[SGTrack calculateAvgSpeedForDistance:dist fromDate:date1 toDate:date2]]; 
+    verticalAccuracy = [NSNumber numberWithDouble:location.verticalAccuracy];
+    horizontalAccuracy = [NSNumber numberWithDouble:location.horizontalAccuracy];
     
     
 //    NSLog(@"topSpeed: %.1f lowSpeed: %.1f topAlt: %.1f lowAlt: %.1f avgSpeed: %.1f", 

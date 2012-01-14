@@ -102,6 +102,8 @@
     topAltitude = 0;
     lowAltidude = 99999999.9999;
     topSpeed = 0;
+    accuracyTotal = 0.0;
+    accuracyCount = 0;
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self 
                                                                                     action:@selector(mapTapped:)];
@@ -391,22 +393,7 @@
     latitudeLabel.text = [NSString stringWithFormat:@"%.4f\u00b0 %@", lat, latDir];
     longitudeLabel.text = [NSString stringWithFormat:@"%.4f\u00b0 %@", lon, lonDir];
     
-    MKMapPoint newPoint = MKMapPointForCoordinate(newLocation.coordinate);
-    pointCount++;
-    MKMapPoint* tempPointArr = malloc(sizeof(CLLocationCoordinate2D) * pointCount);
-    for(int i=0; i<pointCount - 1; i++)
-    {
-        tempPointArr[i] = pointArr[i];
-    }
-    tempPointArr[pointCount - 1] = newPoint;
-    routeLine = [MKPolyline polylineWithPoints:tempPointArr count:pointCount];
-    if(pointArr)
-        free(pointArr);
-    pointArr = tempPointArr;
-    NSArray *oldOverlays = mapView.overlays;
-    [mapView addOverlay:routeLine];
-    [mapView removeOverlays:oldOverlays];
-    
+    //calc distance
     distance = distance + [newLocation distanceFromLocation:oldLocation]; //calc distance in meters
     if(distance < 0)
         distance = 0;
@@ -419,7 +406,48 @@
         distanceLabel.text = [NSString stringWithFormat:@"%.2f km", distance / METERS_TO_KM];
     }
     
-    [[SGSession instance].currentTrack addDataWithLocation:newLocation distance:distance startTime:startTime stopTime:endTime];
+    BOOL addPoint = YES;
+    //calculate avg accuracy to smooth this line
+    if(accuracyCount > NUM_POINTS_FOR_ACCURACY)
+    {
+        double avgAccuracy = accuracyTotal / (double)accuracyCount;
+        NSLog(@"avgAccuracy: %f", avgAccuracy);
+        if(newLocation.horizontalAccuracy > avgAccuracy + ACCURACY_THRESHOLD || 
+           newLocation.horizontalAccuracy < avgAccuracy - ACCURACY_THRESHOLD)
+        {
+            addPoint = NO;
+        }
+    }
+    
+    if(addPoint)
+    {
+        //draw the route line
+        MKMapPoint newPoint = MKMapPointForCoordinate(newLocation.coordinate);
+        pointCount++;
+        MKMapPoint* tempPointArr = malloc(sizeof(CLLocationCoordinate2D) * pointCount);
+        for(int i=0; i<pointCount - 1; i++)
+        {
+            tempPointArr[i] = pointArr[i];
+        }
+        tempPointArr[pointCount - 1] = newPoint;
+        routeLine = [MKPolyline polylineWithPoints:tempPointArr count:pointCount];
+        if(pointArr)
+            free(pointArr);
+        pointArr = tempPointArr;
+        NSArray *oldOverlays = mapView.overlays;
+        [mapView addOverlay:routeLine];
+        [mapView removeOverlays:oldOverlays];
+            
+        //record data
+        [[SGSession instance].currentTrack addDataWithLocation:newLocation 
+                                                       distance:distance 
+                                                     startTime:startTime 
+                                                      stopTime:endTime];    
+    }
+    
+    accuracyTotal += newLocation.horizontalAccuracy;
+    accuracyCount++;
+    
 }
 
 - (void)locationUpdated:(NSNotification*)notification

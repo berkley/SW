@@ -19,6 +19,8 @@
 #define TOTAL_TIME_KEY @"totalTime"
 #define NAME_KEY @"name"
 #define ANNOTATIONS_KEY @"annotations"
+#define HORIZONTAL_ACC_KEY @"horizontalAccuracy"
+#define VERTICAL_ACC_KEY @"verticalAccuracy"
 
 @interface SGTrack : NSObject <NSCoding>
 {
@@ -32,6 +34,8 @@
     NSNumber *lowAltidude;
     NSString *name;
     NSNumber *totalTime;
+    NSNumber *horizontalAccuracy;
+    NSNumber *verticalAccuracy;
 }
 
 //all raw values from CLLocationManager, convert to relevant units
@@ -45,6 +49,8 @@
 @property (nonatomic, retain) NSMutableArray *locations; //array of CLLocation
 @property (nonatomic, retain) NSNumber *totalTime; //treat as an NSTimeInterval (double)
 @property (nonatomic, retain) NSMutableArray *annotations;
+@property (nonatomic, retain) NSNumber *horizontalAccuracy;
+@property (nonatomic, retain) NSNumber *verticalAccuracy;
 
 - (void)addDataWithLocation:(CLLocation*)location distance:(double)dist 
                   startTime:(NSDate*)date1 stopTime:(NSDate*)date2;

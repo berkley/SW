@@ -26,6 +26,9 @@
     SGTrack *track;
     MKPolyline *routeLine;
     MKPolylineView *routeLineView;
+    int accuracyCount;
+    double accuracyTotal;
+    int addPointCount;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil trackName:(NSString*)trackName;

@@ -35,6 +35,7 @@
     __weak IBOutlet UILabel *altitudeLabel;
     __weak IBOutlet UILabel *distanceLabel;
     __weak IBOutlet UISwitch *mapDirectionFollowingSwitch;
+    __weak IBOutlet UIButton *showMapButton;
     IBOutlet UIToolbar *toolbar;
     
     IBOutlet UIView *latView;
@@ -80,6 +81,8 @@
     double accuracyTotal;
     int accuracyCount;
     int addPointCount;
+    
+    BOOL dashboardHidden;
 }
 
 - (void)setFields;

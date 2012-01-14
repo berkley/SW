@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E867CB214C23AAF0096A7CE /* dashboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E867CB114C23AAF0096A7CE /* dashboard.png */; };
+		7E867CB414C243500096A7CE /* dashboard2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E867CB314C243500096A7CE /* dashboard2.png */; };
+		7E867CB614C246930096A7CE /* map2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E867CB514C246930096A7CE /* map2.png */; };
 		7E97AF8B14AA81D8002404A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E97AF8A14AA81D8002404A5 /* UIKit.framework */; };
 		7E97AF8D14AA81D8002404A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E97AF8C14AA81D8002404A5 /* Foundation.framework */; };
 		7E97AF8F14AA81D8002404A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E97AF8E14AA81D8002404A5 /* CoreGraphics.framework */; };
@@ -42,6 +45,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E867CB114C23AAF0096A7CE /* dashboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard.png; sourceTree = "<group>"; };
+		7E867CB314C243500096A7CE /* dashboard2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard2.png; sourceTree = "<group>"; };
+		7E867CB514C246930096A7CE /* map2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map2.png; sourceTree = "<group>"; };
 		7E97AF8614AA81D8002404A5 /* Spider GPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spider GPS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E97AF8A14AA81D8002404A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7E97AF8C14AA81D8002404A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -158,6 +164,9 @@
 		7E97AFCC14AA90E8002404A5 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				7E867CB514C246930096A7CE /* map2.png */,
+				7E867CB314C243500096A7CE /* dashboard2.png */,
+				7E867CB114C23AAF0096A7CE /* dashboard.png */,
 				7E9977CE14BD4FD2004BB12F /* pin.png */,
 				CD4DEBAA14B5704D00E9110A /* spinnerbox.png */,
 				CD4DEB9814B4190900E9110A /* icon-small.png */,
@@ -272,6 +281,9 @@
 				CD4DEB9B14B4197D00E9110A /* Default.png in Resources */,
 				CD4DEBAB14B5704D00E9110A /* spinnerbox.png in Resources */,
 				7E9977CF14BD4FD2004BB12F /* pin.png in Resources */,
+				7E867CB214C23AAF0096A7CE /* dashboard.png in Resources */,
+				7E867CB414C243500096A7CE /* dashboard2.png in Resources */,
+				7E867CB614C246930096A7CE /* map2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

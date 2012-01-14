@@ -118,27 +118,6 @@
     speedHeadingView.hidden = YES;
 }
 
-- (void)mapTapped:(id)sender
-{
-    [UIView beginAnimations:@"hideSpeedHeadingView" context:nil];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:.5];
-    if(speedHeadingView.hidden)
-    {
-        speedHeadingView.hidden = NO;
-        speedHeadingView.alpha = 0.8;
-        toolbar.alpha = 1.0;
-    }
-    else
-    {
-        speedHeadingView.alpha = 0.0;
-        toolbar.alpha = 0.0;
-        [self performSelector:@selector(hideInfoView) withObject:nil afterDelay:1.0];
-    }
-    [UIView commitAnimations];
-}
-
-
 - (void)viewDidUnload
 {
     mapView = nil;
@@ -182,6 +161,10 @@
     [super viewWillAppear:animated];
     [self setupForCurrentOrientation];
     [self enableLocationServices];
+    showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 35 - 20, 35, 35);
+    [showMapButton setImage:[UIImage imageNamed:@"map2.png"] forState:UIControlStateNormal];
+    [self.view addSubview:showMapButton];
+    dashboardHidden = NO;
 }
 
 - (void)removeSubviews
@@ -662,5 +645,30 @@
     [alert show];
 }
 
+- (IBAction)showMapButtonTouched:(id)sender 
+{
+    [UIView beginAnimations:@"hideSpeedHeadingView" context:nil];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:.5];
+    if(dashboardHidden)
+    {
+        dashboardHidden = NO;
+//        speedHeadingView.hidden = NO;
+        speedHeadingView.alpha = 0.8;
+        toolbar.alpha = 1.0;
+        [showMapButton setImage:[UIImage imageNamed:@"map2.png"] forState:UIControlStateNormal];
+        showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 35 - 20, 35, 35);
+    }
+    else
+    {
+        dashboardHidden = YES;
+        speedHeadingView.alpha = 0.0;
+        toolbar.alpha = 0.0;
+        [showMapButton setImage:[UIImage imageNamed:@"dashboard2.png"] forState:UIControlStateNormal];
+        showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - 35 - 20, 35, 35);
+//        [self performSelector:@selector(hideInfoView) withObject:nil afterDelay:1.0];
+    }
+    [UIView commitAnimations];
+}
 
 @end

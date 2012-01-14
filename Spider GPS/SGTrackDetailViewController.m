@@ -64,12 +64,42 @@
 
     MKMapPoint* tempPointArr = malloc(sizeof(CLLocationCoordinate2D) * [track.locations count]);
     int pointCount = 0;
+    accuracyCount = 0;
+    accuracyTotal = 0;
     for(CLLocation *loc in track.locations)
     {
-        MKMapPoint newPoint = MKMapPointForCoordinate(loc.coordinate);
-        tempPointArr[pointCount] = newPoint;
-        pointCount++;
+        BOOL addPoint = YES;
+        //calculate avg accuracy to smooth this line
+        if(accuracyCount > NUM_POINTS_FOR_ACCURACY)
+        {
+            double avgAccuracy = accuracyTotal / (double)accuracyCount;
+            if(loc.horizontalAccuracy > avgAccuracy + ACCURACY_THRESHOLD || 
+               loc.horizontalAccuracy < avgAccuracy - ACCURACY_THRESHOLD)
+            {
+                addPoint = NO;
+                addPointCount++;
+            }
+        }
+        
+        if(addPointCount > ADD_POINT_COUNT_THRESHOLD)
+        {  //if all of a sudden the accuracy goes to shit, we don't want to stop adding
+            //points forever, so this will reset the accuracy check
+            addPointCount = 0;
+            accuracyTotal = 0.0;
+            accuracyCount = 0;
+        }
+        
+        if(addPoint)
+        {
+            MKMapPoint newPoint = MKMapPointForCoordinate(loc.coordinate);
+            tempPointArr[pointCount] = newPoint;
+            pointCount++;
+        }
+        
+        accuracyTotal += loc.horizontalAccuracy;
+        accuracyCount++;
     }
+    
     routeLine = [MKPolyline polylineWithPoints:tempPointArr count:pointCount];
     if(tempPointArr)
         free(tempPointArr);

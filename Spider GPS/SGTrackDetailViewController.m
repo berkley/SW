@@ -16,6 +16,7 @@
     {
         track = [[SGSession instance].tracks objectForKey:trackName];
         self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+        polylineCount = 0;
     }
     return self;
 }
@@ -109,11 +110,15 @@
         accuracyCount++;
     }
     
+    NSArray *polylines = [track arrayOfPolylines];
+    
     routeLine = [MKPolyline polylineWithPoints:tempPointArr count:pointCount];
     if(tempPointArr)
         free(tempPointArr);
     [mapView removeOverlays:mapView.overlays];
-    [mapView addOverlay:routeLine];
+//    [mapView addOverlay:routeLine];
+    [mapView addOverlays:polylines];
+//    [mapView addOverlay:[polylines objectAtIndex:20]];
     
     for(SGPinAnnotation *ann in track.annotations)
     {
@@ -176,14 +181,23 @@
 {
     MKOverlayView* overlayView = nil;
     
-    if(overlay == routeLine)
-    {
-        routeLineView = [[MKPolylineView alloc] initWithPolyline:routeLine];
-        routeLineView.fillColor = [UIColor blueColor];
-        routeLineView.strokeColor = [UIColor blueColor];
+//    if(overlay == routeLine)
+//    {
+        routeLineView = [[MKPolylineView alloc] initWithPolyline:(MKPolyline*)overlay];
+        if(polylineCount & 2)
+        {
+            routeLineView.fillColor = [UIColor blueColor];
+            routeLineView.strokeColor = [UIColor blueColor];
+        }
+        else
+        {
+            routeLineView.fillColor = [UIColor redColor];
+            routeLineView.strokeColor = [UIColor redColor];
+        }
+        polylineCount++;
         routeLineView.lineWidth = 5;
         overlayView = routeLineView;
-    }
+//    }
     
     return overlayView;
 }

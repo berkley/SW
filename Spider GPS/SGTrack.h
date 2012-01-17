@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+#import "Constants.h"
+#import "SGPolyline.h"
 
 #define LOCATION_KEY @"locations"
 #define DISTANCE_KEY @"distance"
@@ -51,5 +54,7 @@
 - (void)addDataWithLocation:(CLLocation*)location distance:(double)dist 
                   startTime:(NSDate*)date1 stopTime:(NSDate*)date2;
 + (double)calculateAvgSpeedForDistance:(NSInteger)distance fromDate:(NSDate*)date1 toDate:(NSDate*)date2;
+- (NSDictionary*)divideTrackIntoAscentAndDescent;
+- (NSArray*)arrayOfPolylines;
 
 @end

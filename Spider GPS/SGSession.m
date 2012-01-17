@@ -214,4 +214,5 @@ static SGSession *instance = nil;
     NSString *result = [NSString stringWithFormat:@"%02d:%02d:%02d", [conversionInfo hour], [conversionInfo minute], [conversionInfo second]];
     return result;
 }
+
 @end

@@ -26,3 +26,6 @@
 #define NUM_POINTS_FOR_ACCURACY 10 //required number of points averaged before accuracy checking happens
 #define ACCURACY_THRESHOLD 10 //+/- 10 meters
 #define ADD_POINT_COUNT_THRESHOLD 10 //number of times we don't add a point before the accuracy check is invalidated
+
+//ascent/descent detection
+#define NUMBER_OF_POINTS_DETERMINER 10

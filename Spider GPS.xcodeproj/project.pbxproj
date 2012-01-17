@@ -42,6 +42,7 @@
 		CD4DEB9914B4190900E9110A /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4DEB9814B4190900E9110A /* icon-small.png */; };
 		CD4DEB9B14B4197D00E9110A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE7120214AFE8500079C133 /* Default.png */; };
 		CD4DEBAB14B5704D00E9110A /* spinnerbox.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4DEBAA14B5704D00E9110A /* spinnerbox.png */; };
+		CD8CABF314C53736003E263C /* SGPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8CABF214C53736003E263C /* SGPolyline.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,8 @@
 		CD4DEB9614B418D700E9110A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		CD4DEB9814B4190900E9110A /* icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-small.png"; path = "../icon-small.png"; sourceTree = "<group>"; };
 		CD4DEBAA14B5704D00E9110A /* spinnerbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinnerbox.png; sourceTree = SOURCE_ROOT; };
+		CD8CABF114C53736003E263C /* SGPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPolyline.h; sourceTree = "<group>"; };
+		CD8CABF214C53736003E263C /* SGPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPolyline.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +212,8 @@
 				7E97AFBC14AA8316002404A5 /* SGFieldSelectionViewController.xib */,
 				7E9977CA14BD4D7D004BB12F /* SGPinAnnotation.h */,
 				7E9977CB14BD4D7D004BB12F /* SGPinAnnotation.m */,
+				CD8CABF114C53736003E263C /* SGPolyline.h */,
+				CD8CABF214C53736003E263C /* SGPolyline.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 				7E97AFC114AA8316002404A5 /* SGTrackDetailViewController.m in Sources */,
 				7E97AFC314AA8316002404A5 /* SGFieldSelectionViewController.m in Sources */,
 				7E9977CC14BD4D7D004BB12F /* SGPinAnnotation.m in Sources */,
+				CD8CABF314C53736003E263C /* SGPolyline.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

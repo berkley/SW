@@ -113,6 +113,154 @@ lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccu
 //          [topSpeed doubleValue], [lowSpeed doubleValue], [topAlitude doubleValue],
 //          [lowAltidude doubleValue], [avgSpeed doubleValue]);
 }
+
+//queue the object and if an object gets bumped off the end, return it.  return nil
+//if the queue was not full
+- (NSObject*)queueObject:(NSObject*)obj inArray:(NSMutableArray**)array withCapacity:(NSInteger)cap
+{
+    NSObject *endObj = nil;
+    if([*array count] < cap)
+    {
+        [*array insertObject:obj atIndex:0];
+//        NSLog(@"arr: %@", *array);
+        return nil;
+    }
+    
+    endObj = [*array objectAtIndex:cap - 1];
+    for(int i=cap - 1; i>0; i--)
+    {
+        [*array replaceObjectAtIndex:i withObject:[*array objectAtIndex:i - 1]];
+    }
+    [*array replaceObjectAtIndex:0 withObject:obj];
+//    NSLog(@"arr: %@", *array);
+//    NSLog(@"returning %@", endObj);
+    if(endObj)
+        return endObj;
+    return nil;
+}
+
+//if all of the items in the arr are > val, return NSOrderedAscending
+//if all of the items in the arr are < val, return NSOrderedDescending
+//if it's a mixed bag, return NSOrderedSame
+- (NSInteger)analyzeArray:(NSArray**)arr comparedToValue:(NSInteger)val
+{
+    BOOL greater = NO;
+    BOOL less = NO;
+    for(CLLocation *loc in *arr)
+    {
+        if(loc.altitude > val)
+            greater = YES;
+        if(loc.altitude < val)
+            less = YES;
+    }
+
+    if(greater && !less)
+        return NSOrderedAscending;
+    if(!greater && less)
+        return NSOrderedDescending;
+    
+    return NSOrderedSame;
+}
+
+//returns a dictionary of arrays of CLLocations
+//the dict keys are in chronological order where ascent0 is the first
+//ascent and descent0 is the first descent and ascentN/descentN are the last
+- (NSDictionary*)divideTrackIntoAscentAndDescent
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    NSMutableArray *cachedPoints = [NSMutableArray arrayWithCapacity:NUMBER_OF_POINTS_DETERMINER];
+    BOOL prevIsAscending = NO;
+    BOOL isAscending = NO;
+    int ascendDescendCount = 0;
+    NSString *ascendKey = @"ascend-0";
+    NSString *descendKey = @"descend-0";
+    for(int i=0; i<[locations count]; i++)
+    {
+        CLLocation *lastLoc = (CLLocation*)[self queueObject:[locations objectAtIndex:i] 
+                                        inArray:&cachedPoints 
+                                   withCapacity:NUMBER_OF_POINTS_DETERMINER];
+        if(lastLoc)
+        {
+            NSInteger analize = [self analyzeArray:&cachedPoints comparedToValue:lastLoc.altitude];
+            if(analize == NSOrderedAscending)
+            { //we think we're ascending
+                isAscending = YES;
+            }
+            else if(analize == NSOrderedDescending)
+            { //we think we're descending
+                isAscending = NO;
+            }
+
+            if(prevIsAscending && !isAscending)
+            { //changed from ascending to descending
+                ascendDescendCount++;
+                descendKey = [NSString stringWithFormat:@"descend-%i", ascendDescendCount];
+            }
+            else if(!prevIsAscending && isAscending)
+            { //changed from descending to ascending
+                ascendDescendCount++;
+                ascendKey = [NSString stringWithFormat:@"ascend-%i", ascendDescendCount];
+            }
+            
+            if(isAscending)
+            {
+                NSMutableArray *arr = [dict objectForKey:ascendKey];
+                if(!arr)
+                    arr = [[NSMutableArray alloc] init];
+                [arr addObject:lastLoc];
+                [dict setObject:arr forKey:ascendKey];
+            }
+            else
+            {
+                NSMutableArray *arr = [dict objectForKey:descendKey];
+                if(!arr)
+                    arr = [[NSMutableArray alloc] init];
+                [arr addObject:lastLoc];
+                [dict setObject:arr forKey:descendKey];
+            }
+            
+            prevIsAscending = isAscending;
+        }
+    }
+    return dict;
+}
+
+- (NSArray*)arrayOfPolylines
+{
+    NSDictionary *dict = [self divideTrackIntoAscentAndDescent];
+    NSArray *keys = [[dict allKeys] sortedArrayUsingComparator:^(id a, id b)
+                     {
+                         NSString *stra = (NSString*)a;
+                         NSString *strb = (NSString*)b;
+                         NSString *numa = [stra substringFromIndex:[stra rangeOfString:@"-"].location + 1];
+                         NSString *numb = [strb substringFromIndex:[strb rangeOfString:@"-"].location + 1];
+                         
+                         if([numa intValue] > [numb intValue])
+                             return NSOrderedDescending;
+                         else if([numa intValue] < [numb intValue])
+                             return NSOrderedAscending;
+                         return NSOrderedSame;
+                     }];
+    
+    NSLog(@"allKeys: %@", keys);
+    NSMutableArray *polylineArray = [NSMutableArray array];
+    for(NSString *key in keys)
+    {
+        NSArray *arr = [dict objectForKey:key];
+        MKMapPoint *mapPoints = malloc(sizeof(CLLocationCoordinate2D) * [arr count]);
+//        NSLog(@"new point with name: %@", key);
+        for(int i=0; i<[arr count]; i++)
+        {
+            CLLocation *loc = [arr objectAtIndex:i];
+            MKMapPoint point = MKMapPointForCoordinate(loc.coordinate);
+//            NSLog(@"adding mapPoint: %f,%f", loc.coordinate.latitude, loc.coordinate.longitude);
+            mapPoints[i] = point;
+        }
+        MKPolyline *polyline = [MKPolyline polylineWithPoints:mapPoints count:[arr count]];
+        [polylineArray addObject:polyline];
+    }
+    return polylineArray;
+}
                 
 //returns avg speed between the two dates for the given distance in meters/second.
 //distance must be in meters!
@@ -124,5 +272,7 @@ lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccu
     NSInteger seconds = [conversionInfo second];
     return distance / seconds;
 }
+
+
 
 @end

@@ -11,6 +11,7 @@
 #import "SGTrack.h"
 #import "SGSession.h"
 #import "SGPinAnnotation.h"
+#import "SGPolyline.h"
 
 @interface SGTrackDetailViewController :UIViewController <MKMapViewDelegate>
 {
@@ -32,6 +33,7 @@
     
     IBOutlet UIButton *showMapButton;
     BOOL dashboardHidden;
+    int polylineCount;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil trackName:(NSString*)trackName;

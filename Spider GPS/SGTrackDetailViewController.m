@@ -9,6 +9,8 @@
 #import "SGTrackDetailViewController.h"
 
 @implementation SGTrackDetailViewController
+@synthesize style;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil trackName:(NSString*)trackName
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -16,6 +18,7 @@
     {
         track = [[SGSession instance].tracks objectForKey:trackName];
         self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+        self.navigationItem.title = trackName;
         polylineCount = 0;
     }
     return self;
@@ -76,6 +79,8 @@
     int pointCount = 0;
     accuracyCount = 0;
     accuracyTotal = 0;
+    
+    //do accuracy smoothing
     for(CLLocation *loc in track.locations)
     {
         BOOL addPoint = YES;
@@ -109,27 +114,27 @@
         accuracyTotal += loc.horizontalAccuracy;
         accuracyCount++;
     }
-    
-    NSArray *polylines = [track arrayOfPolylines];
-    
-    routeLine = [MKPolyline polylineWithPoints:tempPointArr count:pointCount];
-    if(tempPointArr)
-        free(tempPointArr);
+
     [mapView removeOverlays:mapView.overlays];
-//    [mapView addOverlay:routeLine];
-    [mapView addOverlays:polylines];
-    
+    if(style == TRACK_STYLE_NORMAL)
+    {
+        routeLine = [MKPolyline polylineWithPoints:tempPointArr count:pointCount];
+        [mapView addOverlay:routeLine];
+        if(tempPointArr)
+            free(tempPointArr);        
+    }
+    else if(style == TRACK_STYLE_RUN)
+    {
+        NSArray *polylines = [track arrayOfPolylines];        
+        [mapView addOverlays:polylines];
+    }
+
     for(SGPinAnnotation *ann in track.annotations)
     {
         [mapView addAnnotation:ann];
     }
     
     [SGSession zoomToFitLocations:track.locations padding:1 mapView:mapView];
-    
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapTapped:)];
-    tapRecognizer.numberOfTapsRequired = 1;
-    tapRecognizer.numberOfTouchesRequired = 1;
-//    [mapView addGestureRecognizer:tapRecognizer];
 }
 
 - (void)hideInfoView
@@ -179,25 +184,30 @@
 - (MKOverlayView*)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
 {
     MKOverlayView* overlayView = nil;
-
-    SGPolyline *polyline = (SGPolyline*)overlay;
     
-//    routeLineView = [[MKPolylineView alloc] initWithPolyline:(MKPolyline*)overlay];
-//    MKPolyline *pl = polyline.polyline;
-//    routeLineView = [[MKPolylineView alloc] initWithPolyline:overlay];
-//    if(polylineCount & 2)
-    routeLineView = [[MKPolylineView alloc] initWithOverlay:overlay];
-//    routeLineView = [[MKPolylineView alloc] initWithPolyline:[MKPolyline polylineWithPoints:polyline.points count:polyline.pointCount]];
-    if(polyline.isAscending)
+    if([overlay isKindOfClass:[SGPolyline class]])
     {
-        routeLineView.fillColor = [UIColor blueColor];
-        routeLineView.strokeColor = [UIColor blueColor];
+        SGPolyline *polyline = (SGPolyline*)overlay;
+        routeLineView = [[MKPolylineView alloc] initWithOverlay:overlay];
+        
+        if(polyline.isAscending)
+        {
+            routeLineView.fillColor = [UIColor blueColor];
+            routeLineView.strokeColor = [UIColor blueColor];
+        }
+        else
+        {
+            routeLineView.fillColor = [UIColor redColor];
+            routeLineView.strokeColor = [UIColor redColor];
+        }
     }
     else
     {
-        routeLineView.fillColor = [UIColor redColor];
-        routeLineView.strokeColor = [UIColor redColor];
+        routeLineView = [[MKPolylineView alloc] initWithOverlay:overlay];
+        routeLineView.fillColor = [UIColor blueColor];
+        routeLineView.strokeColor = [UIColor blueColor];
     }
+    
     polylineCount++;
     routeLineView.lineWidth = 5;
     overlayView = routeLineView;    

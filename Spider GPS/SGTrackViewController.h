@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SGSession.h"
 #import "SGTrackDetailViewController.h"
+#import "SGTrackDataViewController.h"
 
 @interface SGTrackViewController : UITableViewController    
 {

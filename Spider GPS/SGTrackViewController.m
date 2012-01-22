@@ -121,9 +121,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected row: %i", indexPath.row);
-    detailViewController = [[SGTrackDetailViewController alloc] initWithNibName:@"SGTrackDetailViewController" bundle:nil trackName:[[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row]];
-    [self.navigationController pushViewController:detailViewController animated:YES];
+//    detailViewController = [[SGTrackDetailViewController alloc] initWithNibName:@"SGTrackDetailViewController" bundle:nil trackName:[[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row]];
+//    [self.navigationController pushViewController:detailViewController animated:YES];
+    SGTrackDataViewController *dataViewController = [[SGTrackDataViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    dataViewController.track = [[SGSession instance].tracks.allValues objectAtIndex:indexPath.row];
+    dataViewController.track.name = [[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:dataViewController animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView 

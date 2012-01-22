@@ -13,6 +13,10 @@
 #import "SGPinAnnotation.h"
 #import "SGPolyline.h"
 
+#define TRACK_STYLE_NORMAL 0
+#define TRACK_STYLE_RUN 1
+#define TRACK_STYLE_3D 2
+
 @interface SGTrackDetailViewController :UIViewController <MKMapViewDelegate>
 {
     __weak IBOutlet UILabel *totalDistanceLabel;
@@ -34,7 +38,11 @@
     IBOutlet UIButton *showMapButton;
     BOOL dashboardHidden;
     int polylineCount;
+    
+    int style;
 }
+
+@property (nonatomic, assign) NSInteger style;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil trackName:(NSString*)trackName;
 

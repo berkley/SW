@@ -549,6 +549,7 @@
                 name = @"Untitled Track";
 
             endTime = [NSDate date];
+            [SGSession instance].currentTrack.name = name;
             [SGSession instance].currentTrack.totalTime = [NSNumber numberWithDouble:[endTime timeIntervalSinceDate:startTime]];
             [self startActivityIndicator];
             [[SGSession instance] performSelector:@selector(saveCurrentTrackWithName:) withObject:name afterDelay:.1];

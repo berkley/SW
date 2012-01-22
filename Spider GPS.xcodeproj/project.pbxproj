@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E5CA36C14CBE4650049BA1E /* SGTrackDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5CA36B14CBE4650049BA1E /* SGTrackDataViewController.m */; };
 		7E867CB214C23AAF0096A7CE /* dashboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E867CB114C23AAF0096A7CE /* dashboard.png */; };
 		7E867CB414C243500096A7CE /* dashboard2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E867CB314C243500096A7CE /* dashboard2.png */; };
 		7E867CB614C246930096A7CE /* map2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E867CB514C246930096A7CE /* map2.png */; };
@@ -46,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E5CA36A14CBE4650049BA1E /* SGTrackDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTrackDataViewController.h; sourceTree = "<group>"; };
+		7E5CA36B14CBE4650049BA1E /* SGTrackDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTrackDataViewController.m; sourceTree = "<group>"; };
 		7E867CB114C23AAF0096A7CE /* dashboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard.png; sourceTree = "<group>"; };
 		7E867CB314C243500096A7CE /* dashboard2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard2.png; sourceTree = "<group>"; };
 		7E867CB514C246930096A7CE /* map2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map2.png; sourceTree = "<group>"; };
@@ -214,6 +217,8 @@
 				7E9977CB14BD4D7D004BB12F /* SGPinAnnotation.m */,
 				CD8CABF114C53736003E263C /* SGPolyline.h */,
 				CD8CABF214C53736003E263C /* SGPolyline.m */,
+				7E5CA36A14CBE4650049BA1E /* SGTrackDataViewController.h */,
+				7E5CA36B14CBE4650049BA1E /* SGTrackDataViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				7E97AFC314AA8316002404A5 /* SGFieldSelectionViewController.m in Sources */,
 				7E9977CC14BD4D7D004BB12F /* SGPinAnnotation.m in Sources */,
 				CD8CABF314C53736003E263C /* SGPolyline.m in Sources */,
+				7E5CA36C14CBE4650049BA1E /* SGTrackDataViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -246,17 +246,30 @@ lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccu
     NSMutableArray *polylineArray = [NSMutableArray array];
     for(NSString *key in keys)
     {
+        NSString *ascdesc = [key substringToIndex:[key rangeOfString:@"-"].location];
+        BOOL isAscending = NO;
+        if([ascdesc isEqualToString:@"ascend"])
+        {
+            isAscending = YES;
+        }
+        
         NSArray *arr = [dict objectForKey:key];
-        MKMapPoint *mapPoints = malloc(sizeof(CLLocationCoordinate2D) * [arr count]);
-//        NSLog(@"new point with name: %@", key);
+        MKMapPoint *mapPoints = malloc(sizeof(MKMapPoint) * [arr count]);
+        //        NSLog(@"new point with name: %@", key);
+        CLLocation *centerLoc = [arr objectAtIndex:0];
         for(int i=0; i<[arr count]; i++)
         {
             CLLocation *loc = [arr objectAtIndex:i];
             MKMapPoint point = MKMapPointForCoordinate(loc.coordinate);
-//            NSLog(@"adding mapPoint: %f,%f", loc.coordinate.latitude, loc.coordinate.longitude);
             mapPoints[i] = point;
+//            NSLog(@"adding mapPoint: %f,%f", loc.coordinate.latitude, loc.coordinate.longitude);
+//            NSLog(@"point: %f %f", ((MKMapPoint)mapPoints[i]).x, ((MKMapPoint)mapPoints[i]).y);
         }
-        MKPolyline *polyline = [MKPolyline polylineWithPoints:mapPoints count:[arr count]];
+        
+//        MKPolyline *polyline = [MKPolyline polylineWithPoints:mapPoints count:[arr count]];
+        SGPolyline *polyline = [[SGPolyline alloc] initWithPoints:mapPoints count:[arr count] 
+                                                      isAscending:isAscending 
+                                                  withCenterCoord:centerLoc.coordinate];
         [polylineArray addObject:polyline];
     }
     return polylineArray;

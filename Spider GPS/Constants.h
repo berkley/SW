@@ -28,4 +28,4 @@
 #define ADD_POINT_COUNT_THRESHOLD 10 //number of times we don't add a point before the accuracy check is invalidated
 
 //ascent/descent detection
-#define NUMBER_OF_POINTS_DETERMINER 10
+#define NUMBER_OF_POINTS_DETERMINER 150

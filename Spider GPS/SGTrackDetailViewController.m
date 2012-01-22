@@ -118,7 +118,6 @@
     [mapView removeOverlays:mapView.overlays];
 //    [mapView addOverlay:routeLine];
     [mapView addOverlays:polylines];
-//    [mapView addOverlay:[polylines objectAtIndex:20]];
     
     for(SGPinAnnotation *ann in track.annotations)
     {
@@ -180,25 +179,28 @@
 - (MKOverlayView*)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
 {
     MKOverlayView* overlayView = nil;
+
+    SGPolyline *polyline = (SGPolyline*)overlay;
     
-//    if(overlay == routeLine)
-//    {
-        routeLineView = [[MKPolylineView alloc] initWithPolyline:(MKPolyline*)overlay];
-        if(polylineCount & 2)
-        {
-            routeLineView.fillColor = [UIColor blueColor];
-            routeLineView.strokeColor = [UIColor blueColor];
-        }
-        else
-        {
-            routeLineView.fillColor = [UIColor redColor];
-            routeLineView.strokeColor = [UIColor redColor];
-        }
-        polylineCount++;
-        routeLineView.lineWidth = 5;
-        overlayView = routeLineView;
-//    }
-    
+//    routeLineView = [[MKPolylineView alloc] initWithPolyline:(MKPolyline*)overlay];
+//    MKPolyline *pl = polyline.polyline;
+//    routeLineView = [[MKPolylineView alloc] initWithPolyline:overlay];
+//    if(polylineCount & 2)
+    routeLineView = [[MKPolylineView alloc] initWithOverlay:overlay];
+//    routeLineView = [[MKPolylineView alloc] initWithPolyline:[MKPolyline polylineWithPoints:polyline.points count:polyline.pointCount]];
+    if(polyline.isAscending)
+    {
+        routeLineView.fillColor = [UIColor blueColor];
+        routeLineView.strokeColor = [UIColor blueColor];
+    }
+    else
+    {
+        routeLineView.fillColor = [UIColor redColor];
+        routeLineView.strokeColor = [UIColor redColor];
+    }
+    polylineCount++;
+    routeLineView.lineWidth = 5;
+    overlayView = routeLineView;    
     return overlayView;
 }
 

@@ -19,15 +19,7 @@
 
 @interface SGTrackDetailViewController :UIViewController <MKMapViewDelegate>
 {
-    __weak IBOutlet UILabel *totalDistanceLabel;
-    __weak IBOutlet UILabel *avgSpeedLabel;
-    __weak IBOutlet UILabel *topSpeedLabel;
-    __weak IBOutlet UILabel *lowSpeedLabel;
-    __weak IBOutlet UILabel *highestAltitudeLabel;
-    __weak IBOutlet UILabel *lowestAltitudeLabel;
-    __weak IBOutlet UILabel *totalTimeLabel;
     __weak IBOutlet MKMapView *mapView;
-    __weak IBOutlet UIView *infoView;
     SGTrack *track;
     MKPolyline *routeLine;
     MKPolylineView *routeLineView;

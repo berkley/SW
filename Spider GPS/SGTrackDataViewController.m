@@ -78,6 +78,100 @@
     }
 }
 
+- (UIView*)createTrackInfoView
+{
+    NSInteger x = 10;
+    NSInteger x2 = 150;
+    NSInteger y = 0;
+    NSInteger w = 290 / 2;
+    NSInteger h = 23;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, INFO_CELL_HEIGHT)];
+    [view setBackgroundColor:[UIColor clearColor]];
+    
+    UILabel *totalDistanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
+    UILabel *avgSpeedLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
+    UILabel *topSpeedLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
+    UILabel *lowSpeedLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
+    UILabel *highestAltitudeLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
+    UILabel *lowestAltitudeLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
+    UILabel *totalTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
+    
+    y = 0;
+    UILabel *totalDistanceLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
+    totalDistanceLabelLabel.text = @"Total Distance:";
+    UILabel *avgSpeedLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
+    avgSpeedLabelLabel.text = @"Avg. Speed:";
+    UILabel *topSpeedLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
+    topSpeedLabelLabel.text = @"Top Speed:";
+    UILabel *lowSpeedLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
+    lowSpeedLabelLabel.text = @"Low Speed:";
+    UILabel *highestAltitudeLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
+    highestAltitudeLabelLabel.text = @"High Alt.:";
+    UILabel *lowestAltitudeLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
+    lowestAltitudeLabelLabel.text = @"Low Alt.:";
+    UILabel *totalTimeLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
+    totalTimeLabelLabel.text = @"Total Time:";
+    
+    [totalDistanceLabelLabel setBackgroundColor:[UIColor clearColor]];
+    [totalDistanceLabel setBackgroundColor:[UIColor clearColor]];
+    [avgSpeedLabelLabel setBackgroundColor:[UIColor clearColor]];
+    [avgSpeedLabel setBackgroundColor:[UIColor clearColor]];
+    [topSpeedLabelLabel setBackgroundColor:[UIColor clearColor]];
+    [topSpeedLabel setBackgroundColor:[UIColor clearColor]];
+    [lowSpeedLabelLabel setBackgroundColor:[UIColor clearColor]];
+    [lowSpeedLabel setBackgroundColor:[UIColor clearColor]];
+    [highestAltitudeLabelLabel setBackgroundColor:[UIColor clearColor]];
+    [highestAltitudeLabel setBackgroundColor:[UIColor clearColor]];
+    [lowestAltitudeLabelLabel setBackgroundColor:[UIColor clearColor]];
+    [lowestAltitudeLabel setBackgroundColor:[UIColor clearColor]];
+    [totalTimeLabelLabel setBackgroundColor:[UIColor clearColor]];
+    [totalTimeLabel setBackgroundColor:[UIColor clearColor]];
+    
+    [view addSubview:totalDistanceLabel];
+    [view addSubview:avgSpeedLabel];
+    [view addSubview:topSpeedLabel];
+    [view addSubview:lowSpeedLabel];
+    [view addSubview:highestAltitudeLabel];
+    [view addSubview:lowestAltitudeLabel];
+    [view addSubview:totalTimeLabel];
+    
+    [view addSubview:totalDistanceLabelLabel];
+    [view addSubview:avgSpeedLabelLabel];
+    [view addSubview:topSpeedLabelLabel];
+    [view addSubview:lowSpeedLabelLabel];
+    [view addSubview:highestAltitudeLabelLabel];
+    [view addSubview:lowestAltitudeLabelLabel];
+    [view addSubview:totalTimeLabelLabel];    
+    
+    if([SGSession instance].useMPH)
+    { //imperial
+        totalDistanceLabel.text = [NSString stringWithFormat:@"%.2f miles", [track.distance floatValue] * METERS_TO_MILES];
+        avgSpeedLabel.text = [NSString stringWithFormat:@"%.2f mph", [track.avgSpeed floatValue] * METERS_TO_MPH];
+        topSpeedLabel.text = [NSString stringWithFormat:@"%.2f mph", [track.topSpeed floatValue] * METERS_TO_MPH];
+        lowSpeedLabel.text = [NSString stringWithFormat:@"%.2f mph", [track.lowSpeed floatValue] * METERS_TO_MPH];
+        highestAltitudeLabel.text = [NSString stringWithFormat:@"%.2f ft", [track.topAlitude floatValue] * METERS_TO_FT];
+        lowestAltitudeLabel.text = [NSString stringWithFormat:@"%.2f ft", [track.lowAltidude floatValue] * METERS_TO_FT];
+    }
+    else
+    { //metric
+        totalDistanceLabel.text = [NSString stringWithFormat:@"%.2f km", [track.distance floatValue] * METERS_TO_KM];
+        avgSpeedLabel.text = [NSString stringWithFormat:@"%.2f kph", [track.avgSpeed floatValue] * METERS_TO_KPH];
+        topSpeedLabel.text = [NSString stringWithFormat:@"%.2f kph", [track.topSpeed floatValue] * METERS_TO_KPH];
+        lowSpeedLabel.text = [NSString stringWithFormat:@"%.2f kph", [track.lowSpeed floatValue] * METERS_TO_KPH];
+        highestAltitudeLabel.text = [NSString stringWithFormat:@"%.2f m", [track.topAlitude floatValue]];
+        lowestAltitudeLabel.text = [NSString stringWithFormat:@"%.2f m", [track.lowAltidude floatValue]];        
+    }
+        
+    NSTimeInterval theTimeInterval = [track.totalTime doubleValue];
+    
+    // Create the NSDates
+    NSDate *date1 = [[NSDate alloc] init];
+    NSDate *date2 = [[NSDate alloc] initWithTimeInterval:theTimeInterval sinceDate:date1]; 
+    
+    totalTimeLabel.text = [SGSession formattedElapsedTime:date1 date2:date2];
+    return view;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -88,9 +182,11 @@
 
     if(indexPath.section == 0)
     {
-        cell.textLabel.text = track.name;
+//        cell.textLabel.text = track.name;
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        UIView *cellView = [self createTrackInfoView];
+        [cell.contentView addSubview:cellView];
     }
     else if(indexPath.section == 1)
     {
@@ -144,7 +240,7 @@
 {
     if(indexPath.section == 0)
     {
-        return 100;
+        return INFO_CELL_HEIGHT;
     }
     else
     {

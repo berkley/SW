@@ -22,6 +22,8 @@
 #define TOTAL_TIME_KEY @"totalTime"
 #define NAME_KEY @"name"
 #define ANNOTATIONS_KEY @"annotations"
+#define DESCENT_KEY @"descent"
+#define ASCENT_KEY @"ascent"
 
 @interface SGTrack : NSObject <NSCoding>
 {
@@ -35,6 +37,9 @@
     NSNumber *lowAltidude;
     NSString *name;
     NSNumber *totalTime;
+    NSNumber *totalAscent;
+    NSNumber *totalDescent;
+    double previousAltitude;
 }
 
 //all raw values from CLLocationManager, convert to relevant units
@@ -50,11 +55,14 @@
 @property (nonatomic, retain) NSMutableArray *annotations;
 @property (nonatomic, retain) NSNumber *horizontalAccuracy;
 @property (nonatomic, retain) NSNumber *verticalAccuracy;
+@property (nonatomic, retain) NSNumber *totalAscent;
+@property (nonatomic, retain) NSNumber *totalDescent;
 
 - (void)addDataWithLocation:(CLLocation*)location distance:(double)dist 
                   startTime:(NSDate*)date1 stopTime:(NSDate*)date2;
 + (double)calculateAvgSpeedForDistance:(NSInteger)distance fromDate:(NSDate*)date1 toDate:(NSDate*)date2;
 - (NSDictionary*)divideTrackIntoAscentAndDescent;
 - (NSArray*)arrayOfPolylines;
+- (void)calculateAscentAnDescent;
 
 @end

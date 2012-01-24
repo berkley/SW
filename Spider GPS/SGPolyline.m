@@ -9,7 +9,7 @@
 #import "SGPolyline.h"
 
 @implementation SGPolyline
-@synthesize isAscending, points, pointCount;
+@synthesize isAscending, points, pointCount, firstAltitude, lastAltitude;
 
 - (id)initWithPoints:(MKMapPoint*)pts count:(NSInteger)ct isAscending:(BOOL)isAsc withCenterCoord:(CLLocationCoordinate2D)center
 {

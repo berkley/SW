@@ -10,7 +10,7 @@
 #import "SGTrack.h"
 #import "SGTrackDetailViewController.h"
 
-#define INFO_CELL_HEIGHT 200
+#define INFO_CELL_HEIGHT 246
 
 @interface SGTrackDataViewController : UITableViewController
 {

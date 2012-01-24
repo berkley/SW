@@ -11,8 +11,16 @@
 
 /* TODO:
  - add alt gain/loss
- - add lines of different color for ascent/descent
  - show friends on the map in realtime
+ - run slider control
+ - 3D view
+ - spruce up the look of SGTrackDataViewController.view (add small map, change fonts, etc)
+ - auto save function
+ - if track is saved before, auto-populate the save dialog with the same name
+ - realtime track friends
+ - friends track overlays
+ - uploat tracks to icloud/facebook
+ - export files
 */
 
 @class SGViewController;

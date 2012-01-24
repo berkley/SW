@@ -10,7 +10,8 @@
 
 @implementation SGTrack
 @synthesize name, distance, avgSpeed, lowSpeed, topSpeed, topAlitude, 
-lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccuracy;
+lowAltidude, locations, totalTime, annotations, horizontalAccuracy, 
+verticalAccuracy, totalAscent, totalDescent;
 
 - (id)copy
 {
@@ -46,6 +47,8 @@ lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccu
         totalTime = [decoder decodeObjectForKey:TOTAL_TIME_KEY];
         name = [decoder decodeObjectForKey:NAME_KEY];
         annotations = [decoder decodeObjectForKey:ANNOTATIONS_KEY];
+        totalAscent = [decoder decodeObjectForKey:ASCENT_KEY];
+        totalDescent = [decoder decodeObjectForKey:DESCENT_KEY];
     }
     return self;
 }
@@ -62,6 +65,8 @@ lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccu
     [coder encodeObject:totalTime forKey:TOTAL_TIME_KEY];
     [coder encodeObject:name forKey:NAME_KEY];
     [coder encodeObject:annotations forKey:ANNOTATIONS_KEY];
+    [coder encodeObject:totalAscent forKey:ASCENT_KEY];
+    [coder encodeObject:totalDescent forKey:DESCENT_KEY];
 }
 
 - (id)init
@@ -78,6 +83,9 @@ lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccu
         topAlitude = [NSNumber numberWithDouble:0.0];
         lowAltidude = [NSNumber numberWithDouble:99999.0];
         totalTime = [NSNumber numberWithDouble:0.0];
+        totalAscent = [NSNumber numberWithDouble:0.0];
+        totalDescent = [NSNumber numberWithDouble:0.0];
+        previousAltitude = -1.0;
         name = nil;
     }
     return self;
@@ -107,7 +115,21 @@ lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccu
     if(altitude < [lowAltidude doubleValue])
         lowAltidude = [NSNumber numberWithDouble:altitude];
     avgSpeed = [NSNumber numberWithDouble:[SGTrack calculateAvgSpeedForDistance:dist fromDate:date1 toDate:date2]]; 
-    
+    if(previousAltitude == -1)
+        previousAltitude = altitude;
+    if(altitude < previousAltitude)
+    {
+        double d = [totalDescent doubleValue];
+        d += previousAltitude - altitude;
+        totalDescent = [NSNumber numberWithDouble:d];
+    }
+    else
+    {
+        double d = [totalAscent doubleValue];
+        d += previousAltitude - altitude;
+        totalAscent = [NSNumber numberWithDouble:d];
+    }
+    previousAltitude = altitude;
     
 //    NSLog(@"topSpeed: %.1f lowSpeed: %.1f topAlt: %.1f lowAlt: %.1f avgSpeed: %.1f", 
 //          [topSpeed doubleValue], [lowSpeed doubleValue], [topAlitude doubleValue],
@@ -174,6 +196,9 @@ lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccu
     int ascendDescendCount = 0;
     NSString *ascendKey = @"ascend-0";
     NSString *descendKey = @"descend-0";
+    double totalA = 0.0;
+    double totalD = 0.0;
+    previousAltitude = -1;
     for(int i=0; i<[locations count]; i++)
     {
         CLLocation *lastLoc = (CLLocation*)[self queueObject:[locations objectAtIndex:i] 
@@ -202,8 +227,15 @@ lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccu
                 ascendKey = [NSString stringWithFormat:@"ascend-%i", ascendDescendCount];
             }
             
+            if(previousAltitude == -1)
+                previousAltitude = lastLoc.altitude;
+            
             if(isAscending)
             {
+                totalA += lastLoc.altitude - previousAltitude;
+                if(totalA < 1)
+                    totalA *= -1;
+                NSLog(@"totalA: %f", totalA);
                 NSMutableArray *arr = [dict objectForKey:ascendKey];
                 if(!arr)
                     arr = [[NSMutableArray alloc] init];
@@ -212,12 +244,22 @@ lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccu
             }
             else
             {
+                totalD += previousAltitude - lastLoc.altitude;
+                if(totalD < 1)
+                    totalD *= -1;
+                
+                NSLog(@"totalD: %f", totalD);
                 NSMutableArray *arr = [dict objectForKey:descendKey];
                 if(!arr)
                     arr = [[NSMutableArray alloc] init];
                 [arr addObject:lastLoc];
                 [dict setObject:arr forKey:descendKey];
             }
+            NSLog(@"previousAlt: %f currentAlt: %f", previousAltitude, lastLoc.altitude);
+            previousAltitude = lastLoc.altitude;
+            
+            totalAscent = [NSNumber numberWithDouble:totalA];
+            totalDescent = [NSNumber numberWithDouble:totalD];
             
             prevIsAscending = isAscending;
         }
@@ -242,7 +284,7 @@ lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccu
                          return NSOrderedSame;
                      }];
     
-    NSLog(@"allKeys: %@", keys);
+//    NSLog(@"allKeys: %@", keys);
     NSMutableArray *polylineArray = [NSMutableArray array];
     for(NSString *key in keys)
     {
@@ -265,14 +307,22 @@ lowAltidude, locations, totalTime, annotations, horizontalAccuracy, verticalAccu
 //            NSLog(@"adding mapPoint: %f,%f", loc.coordinate.latitude, loc.coordinate.longitude);
 //            NSLog(@"point: %f %f", ((MKMapPoint)mapPoints[i]).x, ((MKMapPoint)mapPoints[i]).y);
         }
-        
 //        MKPolyline *polyline = [MKPolyline polylineWithPoints:mapPoints count:[arr count]];
         SGPolyline *polyline = [[SGPolyline alloc] initWithPoints:mapPoints count:[arr count] 
                                                       isAscending:isAscending 
                                                   withCenterCoord:centerLoc.coordinate];
+        CLLocation *firstLoc = [arr objectAtIndex:0];
+        CLLocation *lastLoc = [arr objectAtIndex:[arr count] - 1];
+        polyline.firstAltitude = firstLoc.altitude;
+        polyline.lastAltitude = lastLoc.altitude;
         [polylineArray addObject:polyline];
     }
     return polylineArray;
+}
+
+- (void)calculateAscentAnDescent
+{
+    [self divideTrackIntoAscentAndDescent];
 }
                 
 //returns avg speed between the two dates for the given distance in meters/second.

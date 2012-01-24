@@ -69,13 +69,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0)
-    {
         return 1;
-    }
     else
-    {
         return 3;
-    }
 }
 
 - (UIView*)createTrackInfoView
@@ -95,6 +91,8 @@
     UILabel *highestAltitudeLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
     UILabel *lowestAltitudeLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
     UILabel *totalTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
+    UILabel *totalAscentLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
+    UILabel *totalDescentLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
     
     y = 0;
     UILabel *totalDistanceLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
@@ -111,6 +109,11 @@
     lowestAltitudeLabelLabel.text = @"Low Alt.:";
     UILabel *totalTimeLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
     totalTimeLabelLabel.text = @"Total Time:";
+    UILabel *totalAscentLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
+    totalAscentLabelLabel.text = @"Total Ascent:";
+    UILabel *totalDescentLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
+    totalDescentLabelLabel.text = @"Total Descent:";
+
     
     [totalDistanceLabelLabel setBackgroundColor:[UIColor clearColor]];
     [totalDistanceLabel setBackgroundColor:[UIColor clearColor]];
@@ -126,6 +129,10 @@
     [lowestAltitudeLabel setBackgroundColor:[UIColor clearColor]];
     [totalTimeLabelLabel setBackgroundColor:[UIColor clearColor]];
     [totalTimeLabel setBackgroundColor:[UIColor clearColor]];
+    [totalAscentLabel setBackgroundColor:[UIColor clearColor]];
+    [totalDescentLabel setBackgroundColor:[UIColor clearColor]];
+    [totalAscentLabelLabel setBackgroundColor:[UIColor clearColor]];
+    [totalDescentLabelLabel setBackgroundColor:[UIColor clearColor]];
     
     [view addSubview:totalDistanceLabel];
     [view addSubview:avgSpeedLabel];
@@ -134,6 +141,8 @@
     [view addSubview:highestAltitudeLabel];
     [view addSubview:lowestAltitudeLabel];
     [view addSubview:totalTimeLabel];
+    [view addSubview:totalAscentLabel];
+    [view addSubview:totalDescentLabel];
     
     [view addSubview:totalDistanceLabelLabel];
     [view addSubview:avgSpeedLabelLabel];
@@ -141,7 +150,15 @@
     [view addSubview:lowSpeedLabelLabel];
     [view addSubview:highestAltitudeLabelLabel];
     [view addSubview:lowestAltitudeLabelLabel];
-    [view addSubview:totalTimeLabelLabel];    
+    [view addSubview:totalTimeLabelLabel];
+    [view addSubview:totalAscentLabelLabel];
+    [view addSubview:totalDescentLabelLabel];
+    
+    if([track.totalAscent doubleValue] == 0.0 &&
+       [track.totalAscent doubleValue] == 0.0)
+    {
+        [track calculateAscentAnDescent];
+    }
     
     if([SGSession instance].useMPH)
     { //imperial
@@ -151,6 +168,8 @@
         lowSpeedLabel.text = [NSString stringWithFormat:@"%.2f mph", [track.lowSpeed floatValue] * METERS_TO_MPH];
         highestAltitudeLabel.text = [NSString stringWithFormat:@"%.2f ft", [track.topAlitude floatValue] * METERS_TO_FT];
         lowestAltitudeLabel.text = [NSString stringWithFormat:@"%.2f ft", [track.lowAltidude floatValue] * METERS_TO_FT];
+        totalAscentLabel.text = [NSString stringWithFormat:@"%.1f ft", [track.totalAscent floatValue] * METERS_TO_FT];
+        totalDescentLabel.text = [NSString stringWithFormat:@"%.1f ft", [track.totalDescent floatValue] * METERS_TO_FT];
     }
     else
     { //metric
@@ -160,6 +179,8 @@
         lowSpeedLabel.text = [NSString stringWithFormat:@"%.2f kph", [track.lowSpeed floatValue] * METERS_TO_KPH];
         highestAltitudeLabel.text = [NSString stringWithFormat:@"%.2f m", [track.topAlitude floatValue]];
         lowestAltitudeLabel.text = [NSString stringWithFormat:@"%.2f m", [track.lowAltidude floatValue]];        
+        totalAscentLabel.text = [NSString stringWithFormat:@"%.2f m", [track.totalAscent floatValue]];
+        totalDescentLabel.text = [NSString stringWithFormat:@"%.2f m", [track.totalDescent floatValue]];
     }
         
     NSTimeInterval theTimeInterval = [track.totalTime doubleValue];

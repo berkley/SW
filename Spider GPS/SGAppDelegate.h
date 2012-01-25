@@ -16,6 +16,9 @@
  - spruce up the look of SGTrackDataViewController.view (add small map, change fonts, etc)
  - auto save function
  - if track is saved before, auto-populate the save dialog with the same name
+ - warn of overwrite
+ - add status indicators for ops that take a while
+ - add "are you sure you want to reset your track" popover
  
  1.1
  - 3D view
@@ -26,6 +29,11 @@
  1.2
  - uploat tracks to icloud/facebook
  - export files
+ 
+ 1.3 
+ - add iPad support
+ - possibly add web support
+ 
 */
 
 @class SGViewController;

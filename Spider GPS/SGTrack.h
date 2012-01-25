@@ -63,6 +63,6 @@
 + (double)calculateAvgSpeedForDistance:(NSInteger)distance fromDate:(NSDate*)date1 toDate:(NSDate*)date2;
 - (NSDictionary*)divideTrackIntoAscentAndDescent;
 - (NSArray*)arrayOfPolylines;
-- (void)calculateAscentAnDescent;
+- (void)calculateAscentAndDescent;
 
 @end

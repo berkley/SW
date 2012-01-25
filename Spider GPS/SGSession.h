@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "SGTrack.h"
 #import "SGDefaultsManager.h"
+#import "ActivityIndicatorModalViewController.h"
 #import <MapKit/MapKit.h>
 
 #define TRACKS_KEY @"Tracks"
@@ -22,6 +23,8 @@
     NSMutableDictionary *tracks;
     NSMutableArray *fields;
     CLLocation *currentLocation;
+    ActivityIndicatorModalViewController *activityIndicatorViewController;
+    NSString *activityIndicatorIsVisible;
 }
 
 @property (nonatomic, retain) SGTrack *currentTrack;
@@ -33,6 +36,8 @@
 @property (nonatomic, assign) BOOL cardinalHeading;
 @property (nonatomic, retain) NSArray *fields;
 @property (nonatomic, retain) CLLocation *currentLocation;
+@property (nonatomic, retain) NSString *activityIndicatorIsVisible;
+@property (nonatomic, retain) ActivityIndicatorModalViewController *activityIndicatorViewController;
 
 + (SGSession*)instance;
 - (void)saveCurrentTrackWithName:(NSString*)name;
@@ -41,5 +46,9 @@
 + (NSString*)getDocumentPathWithName:(NSString*)name;
 - (void)setField:(NSInteger)field toOn:(BOOL)on;
 + (NSString*)formattedElapsedTime:(NSDate*)date1 date2:(NSDate*)date2;
+- (void)showActivityIndicator:(UIViewController *)container 
+                  description:(NSString *)description 
+                 withProgress:(BOOL)prog;
+- (void)hideActivityIndicator;
 
 @end

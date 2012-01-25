@@ -71,7 +71,7 @@
     if(section == 0)
         return 1;
     else
-        return 3;
+        return 2;
 }
 
 - (UIView*)createTrackInfoView
@@ -104,9 +104,9 @@
     UILabel *lowSpeedLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
     lowSpeedLabelLabel.text = @"Low Speed:";
     UILabel *highestAltitudeLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
-    highestAltitudeLabelLabel.text = @"High Alt.:";
+    highestAltitudeLabelLabel.text = @"High Alttitude:";
     UILabel *lowestAltitudeLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
-    lowestAltitudeLabelLabel.text = @"Low Alt.:";
+    lowestAltitudeLabelLabel.text = @"Low Altitude:";
     UILabel *totalTimeLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
     totalTimeLabelLabel.text = @"Total Time:";
     UILabel *totalAscentLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
@@ -157,7 +157,7 @@
     if([track.totalAscent doubleValue] == 0.0 &&
        [track.totalAscent doubleValue] == 0.0)
     {
-        [track calculateAscentAnDescent];
+        [track calculateAscentAndDescent];
     }
     
     if([SGSession instance].useMPH)
@@ -219,7 +219,7 @@
         }
         else if(indexPath.row == 1)
         {
-            cell.textLabel.text = @"Run View";
+            cell.textLabel.text = @"Ascent/Descent View";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
         }
         else if(indexPath.row == 2)

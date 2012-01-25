@@ -25,13 +25,12 @@
 
 - (void)displayActivityIndicator
 {
-    activityIndicatorLabel.text = @"Saving Track";
-    [self.view addSubview:activityIndicatorView];
+    [[SGSession instance] showActivityIndicator:self description:@"Saving Track" withProgress:NO];
 }
 
 - (void)stopActivityIndicator
 {
-    [activityIndicatorView removeFromSuperview];
+    [[SGSession instance] hideActivityIndicator];
 }
 
 - (void)startActivityIndicator
@@ -141,9 +140,6 @@
     lowAltView = nil;
     lonView = nil;
     locationButton = nil;
-    activityIndicatorView = nil;
-    activityIndicator = nil;
-    activityIndicatorLabel = nil;
     [super viewDidUnload];
 }
 

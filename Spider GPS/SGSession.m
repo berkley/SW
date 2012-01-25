@@ -10,7 +10,7 @@
 
 @implementation SGSession
 @synthesize currentTrack, defaultsManager, tracks, useMPH, fields, screenAlwaysOn,
-currentLocation;
+currentLocation, activityIndicatorIsVisible, activityIndicatorViewController;
 
 static SGSession *instance = nil; 
 
@@ -213,6 +213,56 @@ static SGSession *instance = nil;
     NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:date1  toDate:date2  options:0];
     NSString *result = [NSString stringWithFormat:@"%02d:%02d:%02d", [conversionInfo hour], [conversionInfo minute], [conversionInfo second]];
     return result;
+}
+
+- (void)hideActivityIndicator
+{
+    if(!activityIndicatorViewController)
+        return;
+    
+    if(!activityIndicatorIsVisible)
+        return;
+    
+    [activityIndicatorViewController.spinner stopAnimating];
+    [activityIndicatorViewController.view removeFromSuperview];
+    activityIndicatorViewController = nil;
+    @synchronized(activityIndicatorIsVisible)
+    {
+        self.activityIndicatorIsVisible = @"no";
+    }
+}
+
+- (void)showActivityIndicator:(UIViewController *)container 
+                  description:(NSString *)description 
+                 withProgress:(BOOL)prog
+{
+    @synchronized(activityIndicatorIsVisible)
+    {
+        if([self.activityIndicatorIsVisible isEqualToString:@"yes"])
+            return;
+        else
+            self.activityIndicatorIsVisible = @"yes";
+    }
+    
+    activityIndicatorViewController = [[ActivityIndicatorModalViewController alloc] 
+                                       initWithNibName:@"ActivityIndicatorModalViewController" 
+                                       bundle:nil];
+    activityIndicatorViewController.view.frame = CGRectMake(0, 0, 1024, 1024);
+    if(prog)
+        [activityIndicatorViewController useProgressBar];
+    
+    int x;
+    int y;
+
+    x = (320 / 2) - (activityIndicatorViewController.smallView.frame.size.width / 2);
+    y = (480 / 2) - (activityIndicatorViewController.smallView.frame.size.height / 2);
+
+    activityIndicatorViewController.smallView.frame = CGRectMake(x, y, 
+                                                                 activityIndicatorViewController.smallView.frame.size.width, 
+                                                                 activityIndicatorViewController.smallView.frame.size.height);
+    [container.view addSubview:activityIndicatorViewController.view];
+    [activityIndicatorViewController.spinner startAnimating];
+    activityIndicatorViewController.descriptionLabel.text = description;
 }
 
 @end

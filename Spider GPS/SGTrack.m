@@ -235,7 +235,6 @@ verticalAccuracy, totalAscent, totalDescent;
                 totalA += lastLoc.altitude - previousAltitude;
                 if(totalA < 1)
                     totalA *= -1;
-                NSLog(@"totalA: %f", totalA);
                 NSMutableArray *arr = [dict objectForKey:ascendKey];
                 if(!arr)
                     arr = [[NSMutableArray alloc] init];
@@ -248,14 +247,12 @@ verticalAccuracy, totalAscent, totalDescent;
                 if(totalD < 1)
                     totalD *= -1;
                 
-                NSLog(@"totalD: %f", totalD);
                 NSMutableArray *arr = [dict objectForKey:descendKey];
                 if(!arr)
                     arr = [[NSMutableArray alloc] init];
                 [arr addObject:lastLoc];
                 [dict setObject:arr forKey:descendKey];
             }
-            NSLog(@"previousAlt: %f currentAlt: %f", previousAltitude, lastLoc.altitude);
             previousAltitude = lastLoc.altitude;
             
             totalAscent = [NSNumber numberWithDouble:totalA];
@@ -320,7 +317,7 @@ verticalAccuracy, totalAscent, totalDescent;
     return polylineArray;
 }
 
-- (void)calculateAscentAnDescent
+- (void)calculateAscentAndDescent
 {
     [self divideTrackIntoAscentAndDescent];
 }

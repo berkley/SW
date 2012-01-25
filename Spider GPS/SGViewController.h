@@ -51,10 +51,6 @@
     IBOutlet UIView *highAltView;
     IBOutlet UIView *lowAltView;
     
-    IBOutlet UIView *activityIndicatorView;
-    __weak IBOutlet UIActivityIndicatorView *activityIndicator;
-    __weak IBOutlet UILabel *activityIndicatorLabel;
-    
     MKPolyline *routeLine;
     MKPolylineView *routeLineView;
     NSMutableArray *routeArray;

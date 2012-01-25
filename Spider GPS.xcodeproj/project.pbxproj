@@ -44,6 +44,9 @@
 		CD4DEB9B14B4197D00E9110A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE7120214AFE8500079C133 /* Default.png */; };
 		CD4DEBAB14B5704D00E9110A /* spinnerbox.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4DEBAA14B5704D00E9110A /* spinnerbox.png */; };
 		CD8CABF314C53736003E263C /* SGPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8CABF214C53736003E263C /* SGPolyline.m */; };
+		CDC6FF7114D0C48A00F4CFA1 /* ObjectiveCUtil in Resources */ = {isa = PBXBuildFile; fileRef = CDC6FF7014D0C48A00F4CFA1 /* ObjectiveCUtil */; };
+		CDC6FF7614D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC6FF7414D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m */; };
+		CDC6FF7714D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC6FF7514D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +102,10 @@
 		CD4DEBAA14B5704D00E9110A /* spinnerbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinnerbox.png; sourceTree = SOURCE_ROOT; };
 		CD8CABF114C53736003E263C /* SGPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPolyline.h; sourceTree = "<group>"; };
 		CD8CABF214C53736003E263C /* SGPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPolyline.m; sourceTree = "<group>"; };
+		CDC6FF7014D0C48A00F4CFA1 /* ObjectiveCUtil */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ObjectiveCUtil; path = ../../ObjectiveCUtil; sourceTree = "<group>"; };
+		CDC6FF7314D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorModalViewController.h; sourceTree = "<group>"; };
+		CDC6FF7414D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorModalViewController.m; sourceTree = "<group>"; };
+		CDC6FF7514D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityIndicatorModalViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +130,7 @@
 				7E97AF9014AA81D8002404A5 /* Spider GPS */,
 				7E97AF8914AA81D8002404A5 /* Frameworks */,
 				7E97AF8714AA81D8002404A5 /* Products */,
+				CDC6FF7014D0C48A00F4CFA1 /* ObjectiveCUtil */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,6 +227,9 @@
 				CD8CABF214C53736003E263C /* SGPolyline.m */,
 				7E5CA36A14CBE4650049BA1E /* SGTrackDataViewController.h */,
 				7E5CA36B14CBE4650049BA1E /* SGTrackDataViewController.m */,
+				CDC6FF7314D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.h */,
+				CDC6FF7414D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m */,
+				CDC6FF7514D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -294,6 +305,8 @@
 				7E867CB214C23AAF0096A7CE /* dashboard.png in Resources */,
 				7E867CB414C243500096A7CE /* dashboard2.png in Resources */,
 				7E867CB614C246930096A7CE /* map2.png in Resources */,
+				CDC6FF7114D0C48A00F4CFA1 /* ObjectiveCUtil in Resources */,
+				CDC6FF7714D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +329,7 @@
 				7E9977CC14BD4D7D004BB12F /* SGPinAnnotation.m in Sources */,
 				CD8CABF314C53736003E263C /* SGPolyline.m in Sources */,
 				7E5CA36C14CBE4650049BA1E /* SGTrackDataViewController.m in Sources */,
+				CDC6FF7614D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

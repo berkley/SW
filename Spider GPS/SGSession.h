@@ -50,5 +50,7 @@
                   description:(NSString *)description 
                  withProgress:(BOOL)prog;
 - (void)hideActivityIndicator;
+- (void)saveTracks;
+- (SGTrack*)getTrackWithName:(NSString*)name;
 
 @end

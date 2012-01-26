@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGTrackDetailViewController.m"
-         timestampString = "348542809.865558"
+         timestampString = "349233384.431445"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "181"
-         endingLineNumber = "181"
+         startingLineNumber = "159"
+         endingLineNumber = "159"
          landmarkName = "-mapView:viewForOverlay:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGTrackDetailViewController.m"
-         timestampString = "348542809.865558"
+         timestampString = "349233384.431445"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "191"
-         endingLineNumber = "191"
+         startingLineNumber = "169"
+         endingLineNumber = "169"
          landmarkName = "@implementation SGTrackDetailViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -37,12 +37,54 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGTrackDetailViewController.m"
-         timestampString = "348542809.865558"
+         timestampString = "349233384.431445"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "187"
-         endingLineNumber = "187"
+         startingLineNumber = "165"
+         endingLineNumber = "165"
          landmarkName = "-mapView:viewForOverlay:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Spider GPS/SGSession.m"
+         timestampString = "349232188.864984"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "80"
+         endingLineNumber = "80"
+         landmarkName = "-saveCurrentTrackWithName:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Spider GPS/SGSession.m"
+         timestampString = "349232870.45279"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "90"
+         endingLineNumber = "90"
+         landmarkName = "-getTrackWithName:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Spider GPS/SGTrack.m"
+         timestampString = "349233686.54445"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "99"
+         endingLineNumber = "99"
+         landmarkName = "-addDataWithLocation:distance:startTime:stopTime:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

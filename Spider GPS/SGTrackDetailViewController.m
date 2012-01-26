@@ -16,7 +16,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) 
     {
-        track = [[SGSession instance].tracks objectForKey:trackName];
+        track = [[SGSession instance] getTrackWithName:trackName];
         self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
         self.navigationItem.title = trackName;
         polylineCount = 0;
@@ -48,6 +48,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    NSLog(@"loc count: %i track: %@", [track.locations count], track);
     MKMapPoint* tempPointArr = malloc(sizeof(CLLocationCoordinate2D) * [track.locations count]);
     int pointCount = 0;
     accuracyCount = 0;
@@ -124,34 +125,11 @@
     [SGSession zoomToFitLocations:track.locations padding:1 mapView:mapView];
 }
 
-//- (void)mapTapped:(id)sender
-//{
-//    [UIView beginAnimations:@"hideInfoBar" context:nil];
-//    [UIView setAnimationBeginsFromCurrentState:YES];
-//    [UIView setAnimationDuration:.5];
-//    if(infoView.hidden)
-//    {
-//        infoView.hidden = NO;
-//        infoView.alpha = 0.8;
-//    }
-//    else
-//    {
-//        infoView.alpha = 0.0;
-//        [self performSelector:@selector(hideInfoView) withObject:nil afterDelay:1.0];
-//    }
-//    [UIView commitAnimations];
-//}
-
 - (void)viewDidUnload
 {
     mapView = nil;
     showMapButton = nil;
     [super viewDidUnload];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
 }
 
 #pragma mark - MKMapViewDelegate

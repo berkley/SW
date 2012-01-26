@@ -121,11 +121,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    detailViewController = [[SGTrackDetailViewController alloc] initWithNibName:@"SGTrackDetailViewController" bundle:nil trackName:[[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row]];
-//    [self.navigationController pushViewController:detailViewController animated:YES];
     SGTrackDataViewController *dataViewController = [[SGTrackDataViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    dataViewController.track = [[SGSession instance].tracks.allValues objectAtIndex:indexPath.row];
-    dataViewController.track.name = [[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row];
+    NSString *trackName = [[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row];
+    dataViewController.track = [[SGSession instance] getTrackWithName:trackName];
+    dataViewController.track.name = trackName;
     [self.navigationController pushViewController:dataViewController animated:YES];
 }
 
@@ -135,6 +134,7 @@
 {
     NSString *key = [[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row];
     [[SGSession instance].tracks removeObjectForKey:key];
+    [[SGSession instance] saveTracks];
     [self.tableView reloadData];
 }
 

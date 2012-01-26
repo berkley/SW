@@ -49,7 +49,8 @@ static SGSession *instance = nil;
         self.defaultsManager = [SGDefaultsManager instance];
 
         [self setFieldVals];
-        self.tracks = [NSMutableDictionary dictionaryWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithFile:[SGSession getDocumentPathWithName:TRACKS_KEY]]];
+        self.tracks = [NSMutableDictionary dictionaryWithDictionary:
+                       [NSKeyedUnarchiver unarchiveObjectWithFile:[SGSession getDocumentPathWithName:TRACKS_KEY]]];
         if(tracks == nil)
             tracks = [[NSMutableDictionary alloc] init];
         [self createNewTrack];
@@ -68,9 +69,27 @@ static SGSession *instance = nil;
 {
     //todo: make sure name is unique
     SGTrack *t = [self.currentTrack copy];
-    [self.tracks setObject:t forKey:name];
+    NSString *trackKey = [NSString stringWithFormat:@"%@-%@", TRACKS_KEY, name];
+    [self.tracks setObject:trackKey forKey:name];
     [NSKeyedArchiver archiveRootObject:self.tracks toFile:[SGSession getDocumentPathWithName:TRACKS_KEY]];
+    if(![NSKeyedArchiver archiveRootObject:t
+                                    toFile:[SGSession getDocumentPathWithName:trackKey]])
+        NSLog(@"writing track %@ failed", trackKey);
+    else 
+        NSLog(@"track %@ written to key %@", name, trackKey);
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STOP_ACTIVITY_INDICATOR object:nil];
+}
+
+- (void)saveTracks
+{
+    [NSKeyedArchiver archiveRootObject:self.tracks toFile:[SGSession getDocumentPathWithName:TRACKS_KEY]];
+}
+
+- (SGTrack*)getTrackWithName:(NSString*)name
+{
+    NSString *key = [self.tracks objectForKey:name];
+    SGTrack *t = [NSKeyedUnarchiver unarchiveObjectWithFile:[SGSession getDocumentPathWithName:key]];
+    return t;
 }
 
 - (void)createNewTrack
@@ -264,5 +283,7 @@ static SGSession *instance = nil;
     [activityIndicatorViewController.spinner startAnimating];
     activityIndicatorViewController.descriptionLabel.text = description;
 }
+
+
 
 @end

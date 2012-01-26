@@ -96,7 +96,7 @@ verticalAccuracy, totalAscent, totalDescent;
                   startTime:(NSDate*)date1 
                    stopTime:(NSDate*)date2
 {
-    if(location.verticalAccuracy < 0)
+    if(location.horizontalAccuracy < 0)
         return; //invalid location
     
     double altitude = location.altitude;

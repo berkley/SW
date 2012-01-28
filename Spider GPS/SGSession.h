@@ -13,7 +13,8 @@
 #import "ActivityIndicatorModalViewController.h"
 #import <MapKit/MapKit.h>
 
-#define TRACKS_KEY @"Tracks"
+#define OLD_TRACKS_KEY @"Tracks"
+#define TRACKS_KEY @"Track"
 
 @interface SGSession : NSObject
 {

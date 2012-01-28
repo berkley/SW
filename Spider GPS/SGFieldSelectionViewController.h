@@ -28,6 +28,8 @@
     IBOutlet UIView *currentSpeedView;
     IBOutlet UIView *totalDistanceView;
     IBOutlet UIView *totalTimeView;
+    IBOutlet UIView *altGainView;
+    IBOutlet UIView *altLossView;
     
     __weak IBOutlet UISwitch *metricUnitsSwitch;
     __weak IBOutlet UISwitch *trueHeadingSwitch;
@@ -45,6 +47,8 @@
     __weak IBOutlet UISwitch *headingSwitch;
     __weak IBOutlet UISwitch *totalDistanceSwitch;
     __weak IBOutlet UISwitch *lowAltitudeSwitch;
+    __weak IBOutlet UISwitch *altGainSwitch;
+    __weak IBOutlet UISwitch *altLossSwitch;
 }
 
 @end

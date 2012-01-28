@@ -11,7 +11,7 @@
 
 /* TODO:
  1.0
- - add alt gain/loss
+ x add alt gain/loss
  - run slider control
  - spruce up the look of SGTrackDataViewController.view (add small map, change fonts, etc)
  - auto save function
@@ -25,6 +25,7 @@
  - show friends on the map in realtime
  - realtime track friends
  - friends track overlays
+ - alt gain/loss plot (profile)
  
  1.2
  - uploat tracks to icloud/facebook

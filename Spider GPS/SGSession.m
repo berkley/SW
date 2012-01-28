@@ -20,7 +20,7 @@ static SGSession *instance = nil;
 {
     NSMutableArray *arr = (NSMutableArray*)[defaultsManager getObjectWithName:@"fields"];
     if(!arr)
-        arr = [NSMutableArray arrayWithObjects:@"off", @"on", @"on", @"off", @"off", @"off", @"on", @"off", @"off", @"on", @"on", @"on", nil];
+        arr = [NSMutableArray arrayWithObjects:@"off", @"on", @"on", @"off", @"off", @"off", @"on", @"off", @"off", @"on", @"on", @"on", @"off", @"off", nil];
     self.fields = arr;
     NSLog(@"fields: %@", self.fields);
 }

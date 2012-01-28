@@ -40,6 +40,9 @@
     NSNumber *totalAscent;
     NSNumber *totalDescent;
     double previousAltitude;
+    CGFloat avgVerticalAccuracy;
+    CGFloat avgVerticalAccuracyTotal;
+    NSMutableArray *vertAccuracyArray;
 }
 
 //all raw values from CLLocationManager, convert to relevant units
@@ -64,5 +67,7 @@
 - (NSDictionary*)divideTrackIntoAscentAndDescent;
 - (NSArray*)arrayOfPolylines;
 - (void)calculateAscentAndDescent;
+
+- (BOOL)processVertAccuracy:(CGFloat)accuracy;
 
 @end

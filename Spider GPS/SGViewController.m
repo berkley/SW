@@ -140,6 +140,10 @@
     lowAltView = nil;
     lonView = nil;
     locationButton = nil;
+    altGainView = nil;
+    altLossView = nil;
+    altGainLabel = nil;
+    altLossLabel = nil;
     [super viewDidUnload];
 }
 
@@ -231,6 +235,15 @@
             { //heading
                 [fieldViews addObject:headingView];
             }
+            else if(fieldCount == 12)
+            { //alt gain
+                [fieldViews addObject:altGainView];
+            }
+            else if(fieldCount == 13)
+            { //alt loss
+                [fieldViews addObject:altLossView];
+            }
+                    
         }
     }
     
@@ -295,6 +308,7 @@
     [self setupForCurrentOrientation];
 }
 
+//where all the magic happens
 - (void)didUpdateToLocation:(CLLocation *)newLocation 
            fromLocation:(CLLocation *)oldLocation
 {
@@ -423,6 +437,17 @@
                                                        distance:distance 
                                                      startTime:startTime 
                                                       stopTime:endTime];    
+    }
+    
+    if([SGSession instance].useMPH)
+    {
+        altGainLabel.text = [NSString stringWithFormat:@"%.1f ft", [[SGSession instance].currentTrack.totalAscent floatValue] * METERS_TO_FT];
+        altLossLabel.text = [NSString stringWithFormat:@"%.1f ft", [[SGSession instance].currentTrack.totalDescent floatValue] * METERS_TO_FT];
+    }
+    else
+    {
+        altGainLabel.text = [NSString stringWithFormat:@"%.1f m", [[SGSession instance].currentTrack.totalAscent floatValue]];
+        altLossLabel.text = [NSString stringWithFormat:@"%.1f m", [[SGSession instance].currentTrack.totalDescent floatValue]];        
     }
     
     accuracyTotal += newLocation.horizontalAccuracy;

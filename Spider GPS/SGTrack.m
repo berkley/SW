@@ -28,6 +28,8 @@ verticalAccuracy, totalAscent, totalDescent;
     t.annotations = [annotations copy];
     t.horizontalAccuracy = [horizontalAccuracy copy];
     t.verticalAccuracy = [verticalAccuracy copy];
+    t.totalDescent = [totalDescent copy];
+    t.totalAscent = [totalAscent copy];
     
     return t;
 }
@@ -86,6 +88,7 @@ verticalAccuracy, totalAscent, totalDescent;
         totalAscent = [NSNumber numberWithDouble:0.0];
         totalDescent = [NSNumber numberWithDouble:0.0];
         previousAltitude = -1.0;
+        vertAccuracyArray = [NSMutableArray arrayWithCapacity:NUM_POINTS_FOR_VERT_ACCURACY];
         name = nil;
     }
     return self;
@@ -105,6 +108,11 @@ verticalAccuracy, totalAscent, totalDescent;
         speed = 0;
     
     [locations addObject:location];
+    
+    avgVerticalAccuracyTotal += location.verticalAccuracy;
+    if([locations count] > 0)
+        avgVerticalAccuracy = avgVerticalAccuracyTotal / (CGFloat)[locations count];
+    
     distance = [NSNumber numberWithDouble:dist];
     if(speed > [topSpeed doubleValue])
         topSpeed = [NSNumber numberWithDouble:speed];
@@ -115,21 +123,28 @@ verticalAccuracy, totalAscent, totalDescent;
     if(altitude < [lowAltidude doubleValue])
         lowAltidude = [NSNumber numberWithDouble:altitude];
     avgSpeed = [NSNumber numberWithDouble:[SGTrack calculateAvgSpeedForDistance:dist fromDate:date1 toDate:date2]]; 
+    
     if(previousAltitude == -1)
         previousAltitude = altitude;
-    if(altitude < previousAltitude)
+    
+    NSLog(@"currentVertAcc: %f",location.verticalAccuracy);
+    
+    if([self processVertAccuracy:location.verticalAccuracy])
     {
-        double d = [totalDescent doubleValue];
-        d += previousAltitude - altitude;
-        totalDescent = [NSNumber numberWithDouble:d];
+        if(altitude < previousAltitude)
+        {
+            double d = [totalDescent doubleValue];
+            d += previousAltitude - altitude;
+            totalDescent = [NSNumber numberWithDouble:d];
+        }
+        else
+        {
+            double d = [totalAscent doubleValue];
+            d += altitude - previousAltitude;
+            totalAscent = [NSNumber numberWithDouble:d];
+        }
+        previousAltitude = altitude;
     }
-    else
-    {
-        double d = [totalAscent doubleValue];
-        d += previousAltitude - altitude;
-        totalAscent = [NSNumber numberWithDouble:d];
-    }
-    previousAltitude = altitude;
     
 //    NSLog(@"topSpeed: %.1f lowSpeed: %.1f topAlt: %.1f lowAlt: %.1f avgSpeed: %.1f", 
 //          [topSpeed doubleValue], [lowSpeed doubleValue], [topAlitude doubleValue],
@@ -144,20 +159,19 @@ verticalAccuracy, totalAscent, totalDescent;
     if([*array count] < cap)
     {
         [*array insertObject:obj atIndex:0];
-//        NSLog(@"arr: %@", *array);
         return nil;
     }
     
     endObj = [*array objectAtIndex:cap - 1];
+    
     for(int i=cap - 1; i>0; i--)
-    {
         [*array replaceObjectAtIndex:i withObject:[*array objectAtIndex:i - 1]];
-    }
+    
     [*array replaceObjectAtIndex:0 withObject:obj];
-//    NSLog(@"arr: %@", *array);
-//    NSLog(@"returning %@", endObj);
+    
     if(endObj)
         return endObj;
+    
     return nil;
 }
 
@@ -182,6 +196,51 @@ verticalAccuracy, totalAscent, totalDescent;
         return NSOrderedDescending;
     
     return NSOrderedSame;
+}
+
+//queue n points, and when the queue is full, return the average
+- (NSNumber*)queueObjectInVertAccuracyArray:(NSObject*)obj
+{
+    NSNumber *endObj = nil;
+    if([vertAccuracyArray count] < NUM_POINTS_FOR_VERT_ACCURACY)
+    {
+        [vertAccuracyArray insertObject:obj atIndex:0];
+        return nil;
+    }
+    
+    endObj = [vertAccuracyArray objectAtIndex:NUM_POINTS_FOR_VERT_ACCURACY - 1];
+    
+    for(int i=NUM_POINTS_FOR_VERT_ACCURACY - 1; i>0; i--)
+        [vertAccuracyArray replaceObjectAtIndex:i withObject:[vertAccuracyArray objectAtIndex:i - 1]];
+    
+    [vertAccuracyArray replaceObjectAtIndex:0 withObject:obj];
+    
+    if(endObj)
+    {
+        CGFloat total = 0.0;
+        for(NSNumber *n in vertAccuracyArray)
+        {
+            total = total + [n floatValue];
+        }
+        CGFloat avg = total / NUM_POINTS_FOR_VERT_ACCURACY;
+        return [NSNumber numberWithFloat:avg];
+    }
+    
+    return nil;
+}
+
+- (BOOL)processVertAccuracy:(CGFloat)accuracy 
+{
+    NSNumber *num = [[NSNumber alloc] initWithFloat:accuracy];
+    NSNumber *retVal = [self queueObjectInVertAccuracyArray:num];
+    NSLog(@"accuracy: %f avg: %@", accuracy, retVal);
+    if(!retVal)
+        return NO;
+    
+    if(accuracy > [retVal floatValue] + VERT_ACCURACY_THRESHOLD)
+        return NO;
+    else
+        return YES;
 }
 
 //returns a dictionary of arrays of CLLocations

@@ -27,5 +27,8 @@
 #define ACCURACY_THRESHOLD 10 //+/- 10 meters
 #define ADD_POINT_COUNT_THRESHOLD 10 //number of times we don't add a point before the accuracy check is invalidated
 
+#define NUM_POINTS_FOR_VERT_ACCURACY 20 //required number of points averaged before accuracy checking happens
+#define VERT_ACCURACY_THRESHOLD 3 // 3 meters
+
 //ascent/descent detection
 #define NUMBER_OF_POINTS_DETERMINER 150

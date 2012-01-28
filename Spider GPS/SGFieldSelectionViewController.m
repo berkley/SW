@@ -46,6 +46,8 @@
     highAltitudeSwitch.tag = 107;
     latLonSwitch.tag = 109;
     headingSwitch.tag = 111;
+    altGainSwitch.tag = 112;
+    altLossSwitch.tag = 113;
     
     self.navigationItem.title = @"Fields";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" 
@@ -85,6 +87,10 @@
     headingSwitch = nil;
     totalDistanceSwitch = nil;
     lowAltitudeSwitch = nil;
+    altGainView = nil;
+    altLossView = nil;
+    altGainSwitch = nil;
+    altLossSwitch = nil;
     [super viewDidUnload];
 }
 
@@ -128,6 +134,12 @@
                 break;
             case 11:
                 s = headingSwitch;
+                break;
+            case 12:
+                s = altGainSwitch;
+                break;
+            case 13:
+                s = altLossSwitch;
                 break;
             default:
                 break;
@@ -196,6 +208,12 @@
             break;
         case 111:
             [[SGSession instance] setField:11 toOn:s.on];
+            break;
+        case 112:
+            [[SGSession instance] setField:12 toOn:s.on];
+            break;
+        case 113:
+            [[SGSession instance] setField:13 toOn:s.on];
             break;
         default:
             break;
@@ -267,6 +285,15 @@
     [SGSession instance].screenAlwaysOn = screenAlwaysOnSwitch.on;
 }
 
+- (IBAction)altGainChanged:(id)sender 
+{
+    [self switchChanged:(UISwitch*)sender];
+}
+
+- (IBAction)altLossChanged:(id)sender 
+{
+    [self switchChanged:(UISwitch*)sender];
+}
 
 #pragma mark - table del/datasource methods
 
@@ -336,6 +363,12 @@
             case 10:
                 [cell.contentView addSubview:totalDistanceView];
                 break;
+            case 11:
+                [cell.contentView addSubview:altGainView];
+                break;
+            case 12:
+                [cell.contentView addSubview:altLossView];
+                break;
             default:
                 break;
         }
@@ -349,7 +382,7 @@
     if(section == 0)
         return 3;
     else //if(section == 1)
-        return 11;
+        return 13;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

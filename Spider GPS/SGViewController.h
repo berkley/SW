@@ -34,6 +34,8 @@
     __weak IBOutlet UILabel *latitudeLabel;
     __weak IBOutlet UILabel *altitudeLabel;
     __weak IBOutlet UILabel *distanceLabel;
+    __weak IBOutlet UILabel *altGainLabel;
+    __weak IBOutlet UILabel *altLossLabel;
     __weak IBOutlet UISwitch *mapDirectionFollowingSwitch;
     __weak IBOutlet UIButton *showMapButton;
     IBOutlet UIToolbar *toolbar;
@@ -50,6 +52,8 @@
     IBOutlet UIView *timeView;
     IBOutlet UIView *highAltView;
     IBOutlet UIView *lowAltView;
+    IBOutlet UIView *altGainView;
+    IBOutlet UIView *altLossView;
     
     MKPolyline *routeLine;
     MKPolylineView *routeLineView;

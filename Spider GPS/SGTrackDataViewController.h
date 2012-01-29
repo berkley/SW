@@ -11,10 +11,12 @@
 #import "SGTrackDetailViewController.h"
 
 #define INFO_CELL_HEIGHT 246
+#define INFO_CELL_WIDTH 300
 
 @interface SGTrackDataViewController : UITableViewController
 {
     SGTrack *track;
+    UIView *trackInfoView;
 }
 
 @property (nonatomic, retain) SGTrack *track;

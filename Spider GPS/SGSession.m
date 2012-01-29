@@ -299,11 +299,8 @@ static SGSession *instance = nil;
     if(prog)
         [activityIndicatorViewController useProgressBar];
     
-    int x;
-    int y;
-
-    x = (320 / 2) - (activityIndicatorViewController.smallView.frame.size.width / 2);
-    y = (480 / 2) - (activityIndicatorViewController.smallView.frame.size.height / 2);
+    int x = (container.view.frame.size.width / 2) - (activityIndicatorViewController.smallView.frame.size.width / 2);
+    int y = (container.view.frame.size.height / 2) - 100 - (activityIndicatorViewController.smallView.frame.size.height / 2);
 
     activityIndicatorViewController.smallView.frame = CGRectMake(x, y, 
                                                                  activityIndicatorViewController.smallView.frame.size.width, 

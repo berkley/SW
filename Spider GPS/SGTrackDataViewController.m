@@ -34,7 +34,7 @@
     self.navigationItem.title = track.name;
     
     trackInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, INFO_CELL_WIDTH, INFO_CELL_HEIGHT)];
-    [[SGSession instance] showActivityIndicator:self description:@"Processing Track" withProgress:NO];
+    [[SGSession instance] showActivityIndicator:self.navigationController description:@"Processing Track" withProgress:NO];
     [self performSelectorInBackground:@selector(createTrackInfoView) withObject:nil];
 }
 

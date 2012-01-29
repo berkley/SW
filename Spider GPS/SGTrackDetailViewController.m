@@ -48,7 +48,20 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    NSLog(@"loc count: %i track: %@", [track.locations count], track.name);
+    [[SGSession instance] showActivityIndicator:self description:@"Processing Track" withProgress:NO];
+    [self performSelectorInBackground:@selector(doViewDidAppear) withObject:nil];
+}
+
+- (void)viewDidUnload
+{
+    mapView = nil;
+    showMapButton = nil;
+    [super viewDidUnload];
+}
+
+- (void)doViewDidAppear
+{
+    //    NSLog(@"loc count: %i track: %@", [track.locations count], track.name);
     MKMapPoint* tempPointArr = malloc(sizeof(CLLocationCoordinate2D) * [track.locations count]);
     int pointCount = 0;
     accuracyCount = 0;
@@ -60,7 +73,7 @@
         BOOL addPoint = YES;
         //calculate avg accuracy to smooth this line
         double avgAccuracy = accuracyTotal / (double)accuracyCount;
-//       NSLog(@"avgAcc: %f point.acc: %f", avgAccuracy, loc.horizontalAccuracy);
+        //       NSLog(@"avgAcc: %f point.acc: %f", avgAccuracy, loc.horizontalAccuracy);
         if(accuracyCount > NUM_POINTS_FOR_ACCURACY)
         {
             if(loc.horizontalAccuracy > avgAccuracy + ACCURACY_THRESHOLD || 
@@ -68,7 +81,7 @@
             {
                 addPoint = NO;
                 addPointCount++;
-//                NSLog(@"addPointCount: %i", addPointCount);
+                //                NSLog(@"addPointCount: %i", addPointCount);
             }
         }
         
@@ -90,9 +103,9 @@
             accuracyCount++;
         }
         
-
+        
     }
-
+    
     [mapView removeOverlays:mapView.overlays];
     if(style == TRACK_STYLE_NORMAL)
     {
@@ -104,36 +117,30 @@
     else if(style == TRACK_STYLE_RUN)
     {
         NSArray *polylines = [track arrayOfPolylines];       
-//        for(SGPolyline *polyline in polylines)
-//        {
-//            CLLocationCoordinate2D coord = MKCoordinateForMapPoint(polyline.points[0]);
-//            SGPinAnnotation *ann = [[SGPinAnnotation alloc] initWithCoordinate:coord];
-//            ann.title = [NSString stringWithFormat:@"%.2f m", polyline.firstAltitude];
-//            [mapView addAnnotation:ann];
-//            
-//            CLLocationCoordinate2D coord2 = MKCoordinateForMapPoint(polyline.points[pointCount - 1]);
-//            SGPinAnnotation *ann2 = [[SGPinAnnotation alloc] initWithCoordinate:coord2];
-//            ann2.title = [NSString stringWithFormat:@"%.2f m", polyline.firstAltitude];
-//            [mapView addAnnotation:ann2];
-//            
-//            [mapView addOverlay:polyline];
-//        }
+        //        for(SGPolyline *polyline in polylines)
+        //        {
+        //            CLLocationCoordinate2D coord = MKCoordinateForMapPoint(polyline.points[0]);
+        //            SGPinAnnotation *ann = [[SGPinAnnotation alloc] initWithCoordinate:coord];
+        //            ann.title = [NSString stringWithFormat:@"%.2f m", polyline.firstAltitude];
+        //            [mapView addAnnotation:ann];
+        //            
+        //            CLLocationCoordinate2D coord2 = MKCoordinateForMapPoint(polyline.points[pointCount - 1]);
+        //            SGPinAnnotation *ann2 = [[SGPinAnnotation alloc] initWithCoordinate:coord2];
+        //            ann2.title = [NSString stringWithFormat:@"%.2f m", polyline.firstAltitude];
+        //            [mapView addAnnotation:ann2];
+        //            
+        //            [mapView addOverlay:polyline];
+        //        }
         [mapView addOverlays:polylines];
     }
-
+    
     for(SGPinAnnotation *ann in track.annotations)
     {
         [mapView addAnnotation:ann];
     }
     
     [SGSession zoomToFitLocations:track.locations padding:1 mapView:mapView];
-}
-
-- (void)viewDidUnload
-{
-    mapView = nil;
-    showMapButton = nil;
-    [super viewDidUnload];
+    [[SGSession instance] hideActivityIndicator];
 }
 
 #pragma mark - MKMapViewDelegate

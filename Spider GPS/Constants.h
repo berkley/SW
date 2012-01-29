@@ -20,7 +20,7 @@
 #define METERS_TO_MPH 2.23693629
 #define METERS_TO_FT 3.2808399
 #define METERS_TO_KPH 3.6
-#define METERS_TO_KM 1000
+#define METERS_TO_KM 0.001
 
 //accuracy-based line smoothing
 #define NUM_POINTS_FOR_ACCURACY 10 //required number of points averaged before accuracy checking happens

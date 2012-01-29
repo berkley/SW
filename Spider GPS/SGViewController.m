@@ -388,7 +388,7 @@
     }
     else
     {
-        distanceLabel.text = [NSString stringWithFormat:@"%.2f km", distance / METERS_TO_KM];
+        distanceLabel.text = [NSString stringWithFormat:@"%.2f km", distance * METERS_TO_KM];
     }
     
     BOOL addPoint = YES;

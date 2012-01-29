@@ -26,6 +26,7 @@
     CLLocation *currentLocation;
     ActivityIndicatorModalViewController *activityIndicatorViewController;
     NSString *activityIndicatorIsVisible;
+    NSTimer *saveTimer;
 }
 
 @property (nonatomic, retain) SGTrack *currentTrack;

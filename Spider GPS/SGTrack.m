@@ -11,7 +11,7 @@
 @implementation SGTrack
 @synthesize name, distance, avgSpeed, lowSpeed, topSpeed, topAlitude, 
 lowAltidude, locations, totalTime, annotations, horizontalAccuracy, 
-verticalAccuracy, totalAscent, totalDescent;
+verticalAccuracy, totalAscent, totalDescent, hasBeenSaved;
 
 #pragma mark - private methods
 
@@ -258,7 +258,6 @@ verticalAccuracy, totalAscent, totalDescent;
     
     if(lastLoc/* && [self processVertAccuracy:location.verticalAccuracy]*/)
     {
-        NSLog(@"lastLoc.alt: %f", lastLoc.altitude);
         NSInteger analize = [self analyzeArray:&cachedAltPoints comparedToValue:lastLoc.altitude];
         if(analize == NSOrderedAscending)
         { //we think we're ascending
@@ -272,7 +271,7 @@ verticalAccuracy, totalAscent, totalDescent;
         if(previousAltitude == -1)
             previousAltitude = lastLoc.altitude;
         
-        NSLog(@"lastLoc.alt: %f prevAlt: %f", lastLoc.altitude, previousAltitude);
+//        NSLog(@"lastLoc.alt: %f prevAlt: %f", lastLoc.altitude, previousAltitude);
         
         if(isAscending)
         {
@@ -291,7 +290,7 @@ verticalAccuracy, totalAscent, totalDescent;
         
         totalAscent = [NSNumber numberWithDouble:totalAsc];
         totalDescent = [NSNumber numberWithDouble:totalDes];
-        NSLog(@"totalAscent: %@ totalDescent: %@", totalAscent, totalDescent);
+//        NSLog(@"totalAscent: %@ totalDescent: %@", totalAscent, totalDescent);
         
         prevIsAscending = isAscending;
     }

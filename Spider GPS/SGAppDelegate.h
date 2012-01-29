@@ -16,7 +16,7 @@
  - spruce up the look of SGTrackDataViewController.view (add small map, change fonts, etc)
  - auto save function
  - if track is saved before, auto-populate the save dialog with the same name
- - warn of overwrite
+ x warn of overwrite
  - add status indicators for ops that take a while
  x add "are you sure you want to reset your track" popover
  

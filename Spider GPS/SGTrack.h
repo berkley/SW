@@ -46,6 +46,7 @@
     NSMutableArray *cachedAltPoints;
     double totalAsc;
     double totalDes;
+    BOOL hasBeenSaved;
 }
 
 //all raw values from CLLocationManager, convert to relevant units
@@ -63,6 +64,7 @@
 @property (nonatomic, retain) NSNumber *verticalAccuracy;
 @property (nonatomic, retain) NSNumber *totalAscent;
 @property (nonatomic, retain) NSNumber *totalDescent;
+@property (nonatomic, assign) BOOL hasBeenSaved;
 
 - (void)addDataWithLocation:(CLLocation*)location distance:(double)dist 
                   startTime:(NSDate*)date1 stopTime:(NSDate*)date2;

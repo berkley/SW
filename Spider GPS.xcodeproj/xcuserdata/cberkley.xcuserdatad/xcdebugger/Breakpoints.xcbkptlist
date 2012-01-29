@@ -51,12 +51,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGSession.m"
-         timestampString = "349232188.864984"
+         timestampString = "349506714.469372"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "80"
-         endingLineNumber = "80"
-         landmarkName = "-saveCurrentTrackWithName:"
+         startingLineNumber = "85"
+         endingLineNumber = "85"
+         landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -65,12 +65,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGSession.m"
-         timestampString = "349232870.45279"
+         timestampString = "349506395.347435"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "90"
-         endingLineNumber = "90"
-         landmarkName = "-getTrackWithName:"
+         startingLineNumber = "103"
+         endingLineNumber = "103"
+         landmarkName = "-saveCurrentTrackWithName:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -75,8 +75,21 @@ static SGSession *instance = nil;
         [self createNewTrack];
         if(self.screenAlwaysOn)
             [UIApplication sharedApplication].idleTimerDisabled = YES;
+        saveTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self 
+                                                   selector:@selector(saveTimerFired:) 
+                                                   userInfo:nil 
+                                                    repeats:YES];
     }
     return self;
+}
+
+- (void)saveTimerFired:(id)sender
+{
+    if(self.currentTrack.hasBeenSaved)
+    {
+        NSLog(@"auto saving track %@", self.currentTrack.name);
+        [self saveCurrentTrackWithName:self.currentTrack.name];
+    }
 }
 
 - (void)locationUpdated:(NSNotification*)notification
@@ -91,12 +104,9 @@ static SGSession *instance = nil;
     NSString *trackKey = [NSString stringWithFormat:@"%@-%@", TRACKS_KEY, name];
     [self.tracks setObject:trackKey forKey:name];
     [NSKeyedArchiver archiveRootObject:self.tracks toFile:[SGSession getDocumentPathWithName:TRACKS_KEY]];
-    if(![NSKeyedArchiver archiveRootObject:t
-                                    toFile:[SGSession getDocumentPathWithName:trackKey]])
-        NSLog(@"writing track %@ failed", trackKey);
-    else 
-        NSLog(@"track %@ written to key %@", name, trackKey);
+    [NSKeyedArchiver archiveRootObject:t toFile:[SGSession getDocumentPathWithName:trackKey]];
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STOP_ACTIVITY_INDICATOR object:nil];
+    self.currentTrack.hasBeenSaved = YES;
 }
 
 - (void)saveTracks

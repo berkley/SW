@@ -43,6 +43,9 @@
     CGFloat avgVerticalAccuracy;
     CGFloat avgVerticalAccuracyTotal;
     NSMutableArray *vertAccuracyArray;
+    NSMutableArray *cachedAltPoints;
+    double totalAsc;
+    double totalDes;
 }
 
 //all raw values from CLLocationManager, convert to relevant units
@@ -67,7 +70,5 @@
 - (NSDictionary*)divideTrackIntoAscentAndDescent;
 - (NSArray*)arrayOfPolylines;
 - (void)calculateAscentAndDescent;
-
-- (BOOL)processVertAccuracy:(CGFloat)accuracy;
 
 @end

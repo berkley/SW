@@ -18,7 +18,7 @@
  - if track is saved before, auto-populate the save dialog with the same name
  - warn of overwrite
  - add status indicators for ops that take a while
- - add "are you sure you want to reset your track" popover
+ x add "are you sure you want to reset your track" popover
  
  1.1
  - 3D view

@@ -566,14 +566,30 @@
         if(buttonIndex == 1)
         { //Save
             NSString *name = [alertView textFieldAtIndex:0].text;
-            if(name == nil || [name isEqualToString:@""])
-                name = @"Untitled Track";
+            NSString *trackKey = [[SGSession instance].tracks objectForKey:name];
+            if(trackKey)
+            { //the track name already exists, ask to overwrite
+                NSString *msg = [NSString stringWithFormat:@"A track with the name '%@' already exists. Are you sure you want to overwrite it?", name];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Overwrite?" 
+                                                                message:msg 
+                                                               delegate:self 
+                                                      cancelButtonTitle:@"Cancel" 
+                                                      otherButtonTitles:@"Save", nil];
+                alert.tag = 9003;
+                savename = name;
+                [alert show];
+            }
+            else
+            {
+                if(name == nil || [name isEqualToString:@""])
+                    name = @"Untitled Track";
 
-            endTime = [NSDate date];
-            [SGSession instance].currentTrack.name = name;
-            [SGSession instance].currentTrack.totalTime = [NSNumber numberWithDouble:[endTime timeIntervalSinceDate:startTime]];
-            [self startActivityIndicator];
-            [[SGSession instance] performSelector:@selector(saveCurrentTrackWithName:) withObject:name afterDelay:.1];
+                endTime = [NSDate date];
+                [SGSession instance].currentTrack.name = name;
+                [SGSession instance].currentTrack.totalTime = [NSNumber numberWithDouble:[endTime timeIntervalSinceDate:startTime]];
+                [self startActivityIndicator];
+                [[SGSession instance] performSelector:@selector(saveCurrentTrackWithName:) withObject:name afterDelay:.1];
+            }
         }
     }
     else if(alertView.tag == 9001)
@@ -609,6 +625,17 @@
             totalSpeed = 0.0;
             [[SGSession instance] createNewTrack];
             startTime = [NSDate date];
+        }
+    }
+    else if(alertView.tag == 9003)
+    { //save after overwrite msg
+        if(buttonIndex == 1)
+        {
+            endTime = [NSDate date];
+            [SGSession instance].currentTrack.name = savename;
+            [SGSession instance].currentTrack.totalTime = [NSNumber numberWithDouble:[endTime timeIntervalSinceDate:startTime]];
+            [self startActivityIndicator];
+            [[SGSession instance] performSelector:@selector(saveCurrentTrackWithName:) withObject:savename afterDelay:.1];
         }
     }
 }

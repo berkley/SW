@@ -83,6 +83,8 @@
     int addPointCount;
     
     BOOL dashboardHidden;
+    
+    NSString *savename;
 }
 
 - (void)setFields;

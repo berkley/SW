@@ -106,6 +106,10 @@
     addPointCount = 0;
     
     [self.view addSubview:showMapButton];
+    
+//    [SGTest testAltitudeWithTrackName:@"ski bowl jan 16 2012"];
+//    [SGTest testAltitudeWithTrackName:@"alberta"];
+//    [SGTest testAltitudeWithTrackName:@"to skibowl"];
 }
 
 - (void)viewDidUnload

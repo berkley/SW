@@ -227,6 +227,7 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved;
     if(previousAltitude == -1)
         previousAltitude = altitude;
     
+    //simple method
 //    NSLog(@"currentVertAcc: %f",location.verticalAccuracy);
     
 //    if([self processVertAccuracy:location.verticalAccuracy])
@@ -250,8 +251,7 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved;
 //          [topSpeed doubleValue], [lowSpeed doubleValue], [topAlitude doubleValue],
 //          [lowAltidude doubleValue], [avgSpeed doubleValue]);
     
-    BOOL prevIsAscending = NO;
-    BOOL isAscending = NO;
+    //more complicated method
     CLLocation *lastLoc = (CLLocation*)[self queueObject:location 
                                                  inArray:&cachedAltPoints 
                                             withCapacity:NUMBER_OF_POINTS_DETERMINER];
@@ -261,11 +261,15 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved;
         NSInteger analize = [self analyzeArray:&cachedAltPoints comparedToValue:lastLoc.altitude];
         if(analize == NSOrderedAscending)
         { //we think we're ascending
-            isAscending = YES;
+            trackIsAscending = YES;
         }
         else if(analize == NSOrderedDescending)
         { //we think we're descending
-            isAscending = NO;
+            trackIsAscending = NO;
+        }
+        else
+        {
+            //leave isAscending alone
         }
         
         if(previousAltitude == -1)
@@ -273,7 +277,7 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved;
         
 //        NSLog(@"lastLoc.alt: %f prevAlt: %f", lastLoc.altitude, previousAltitude);
         
-        if(isAscending)
+        if(trackIsAscending)
         {
             totalAsc += lastLoc.altitude - previousAltitude;
             if(totalAsc < 1)
@@ -289,10 +293,7 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved;
         previousAltitude = lastLoc.altitude;
         
         totalAscent = [NSNumber numberWithDouble:totalAsc];
-        totalDescent = [NSNumber numberWithDouble:totalDes];
-//        NSLog(@"totalAscent: %@ totalDescent: %@", totalAscent, totalDescent);
-        
-        prevIsAscending = isAscending;
+        totalDescent = [NSNumber numberWithDouble:totalDes];        
     }
 }
 

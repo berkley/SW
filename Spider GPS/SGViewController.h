@@ -14,6 +14,7 @@
 #import "SGTrackViewController.h"
 #import "SGFieldSelectionViewController.h"
 #import "SGPinAnnotation.h"
+#import "SGTest.h"
 
 #define SETTINGS_HEIGHT 269
 

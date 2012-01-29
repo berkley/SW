@@ -46,6 +46,7 @@
     NSMutableArray *cachedAltPoints;
     double totalAsc;
     double totalDes;
+    BOOL trackIsAscending;
     BOOL hasBeenSaved;
 }
 

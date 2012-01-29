@@ -700,6 +700,10 @@
                                                    delegate:self cancelButtonTitle:@"Cancel" 
                                           otherButtonTitles:@"Save", nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    
+    if([SGSession instance].currentTrack.hasBeenSaved)
+        [alert textFieldAtIndex:0].text = [SGSession instance].currentTrack.name;
+    
     alert.tag = 9000;
     [alert show];
 }

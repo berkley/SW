@@ -227,7 +227,7 @@ verticalAccuracy, totalAscent, totalDescent;
     if(previousAltitude == -1)
         previousAltitude = altitude;
     
-    NSLog(@"currentVertAcc: %f",location.verticalAccuracy);
+//    NSLog(@"currentVertAcc: %f",location.verticalAccuracy);
     
 //    if([self processVertAccuracy:location.verticalAccuracy])
 //    {

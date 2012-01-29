@@ -562,7 +562,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(alertView.tag == 9000)
-    {
+    { //save track
         if(buttonIndex == 1)
         { //Save
             NSString *name = [alertView textFieldAtIndex:0].text;
@@ -577,7 +577,7 @@
         }
     }
     else if(alertView.tag == 9001)
-    {
+    { //add annotation
         if(buttonIndex == 1)
         { //save
             SGPinAnnotation *ann = [[SGPinAnnotation alloc] 
@@ -590,6 +590,25 @@
             [mapView addAnnotation:ann];
             [[SGSession instance].currentTrack.annotations addObject:ann];
             [self performSelector:@selector(selectAnnoation:) withObject:ann afterDelay:.5];
+        }
+    }
+    else if(alertView.tag == 9002)
+    { //are you sure you wan to reset
+        if(buttonIndex == 1)
+        {
+            free(pointArr);
+            pointArr = malloc(sizeof(CLLocationCoordinate2D) * 1);
+            pointCount = 0;
+            [mapView removeOverlays:mapView.overlays];
+            distance = 0.0;
+            avgSpeed = 0.0;
+            topSpeed = 0;
+            lowSpeed = 9999999;
+            topAltitude = 0.0;
+            lowAltidude = 9999999;
+            totalSpeed = 0.0;
+            [[SGSession instance] createNewTrack];
+            startTime = [NSDate date];
         }
     }
 }
@@ -606,19 +625,13 @@
 
 - (IBAction)resetTrackButtonTouched:(id)sender 
 {
-    free(pointArr);
-    pointArr = malloc(sizeof(CLLocationCoordinate2D) * 1);
-    pointCount = 0;
-    [mapView removeOverlays:mapView.overlays];
-    distance = 0.0;
-    avgSpeed = 0.0;
-    topSpeed = 0;
-    lowSpeed = 9999999;
-    topAltitude = 0.0;
-    lowAltidude = 9999999;
-    totalSpeed = 0.0;
-    [[SGSession instance] createNewTrack];
-    startTime = [NSDate date];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Are You Sure?" 
+                                                    message:@"Are you sure you want to reset the current track?" 
+                                                   delegate:self 
+                                          cancelButtonTitle:@"Cancel" 
+                                          otherButtonTitles:@"Reset", nil];
+    alert.tag = 9002;
+    [alert show];
 }
 
 - (IBAction)locationButtonTouched:(id)sender 

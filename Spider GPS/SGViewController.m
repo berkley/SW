@@ -720,7 +720,7 @@
     if(dashboardHidden)
     {
         dashboardHidden = NO;
-        speedHeadingView.alpha = 0.8;
+        speedHeadingView.alpha = 1.0;
         toolbar.alpha = 1.0;
         [showMapButton setImage:[UIImage imageNamed:@"map2.png"] forState:UIControlStateNormal];
         showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 35 - 20, 35, 35);

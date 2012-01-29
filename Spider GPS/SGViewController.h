@@ -15,6 +15,7 @@
 #import "SGFieldSelectionViewController.h"
 #import "SGPinAnnotation.h"
 #import "SGTest.h"
+#import "HUDView.h"
 
 #define SETTINGS_HEIGHT 269
 
@@ -22,7 +23,7 @@
 <MKMapViewDelegate, UIAlertViewDelegate>
 {
     __weak IBOutlet MKMapView *mapView;
-    IBOutlet UIView *speedHeadingView;
+    IBOutlet HUDView *speedHeadingView;
     __weak IBOutlet UILabel *topSpeedLabel;
     __weak IBOutlet UILabel *lowSpeedLabel;
     __weak IBOutlet UILabel *averageSpeedLabel;

@@ -48,6 +48,7 @@
 		CDC6FF7714D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC6FF7514D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib */; };
 		CDC6FF8C14D4F40D00F4CFA1 /* ObjectiveCUtil in Resources */ = {isa = PBXBuildFile; fileRef = CDC6FF8B14D4F40D00F4CFA1 /* ObjectiveCUtil */; };
 		CDC6FF9414D5F97400F4CFA1 /* SGTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC6FF9314D5F97400F4CFA1 /* SGTest.m */; };
+		CDC6FF9714D60B7A00F4CFA1 /* HUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC6FF9614D60B7A00F4CFA1 /* HUDView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +110,8 @@
 		CDC6FF8B14D4F40D00F4CFA1 /* ObjectiveCUtil */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ObjectiveCUtil; path = ../../ObjectiveCUtil; sourceTree = "<group>"; };
 		CDC6FF9214D5F97400F4CFA1 /* SGTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTest.h; sourceTree = "<group>"; };
 		CDC6FF9314D5F97400F4CFA1 /* SGTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTest.m; sourceTree = "<group>"; };
+		CDC6FF9514D60B7A00F4CFA1 /* HUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDView.h; sourceTree = "<group>"; };
+		CDC6FF9614D60B7A00F4CFA1 /* HUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +238,8 @@
 				CDC6FF7514D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib */,
 				CDC6FF9214D5F97400F4CFA1 /* SGTest.h */,
 				CDC6FF9314D5F97400F4CFA1 /* SGTest.m */,
+				CDC6FF9514D60B7A00F4CFA1 /* HUDView.h */,
+				CDC6FF9614D60B7A00F4CFA1 /* HUDView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 				7E5CA36C14CBE4650049BA1E /* SGTrackDataViewController.m in Sources */,
 				CDC6FF7614D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m in Sources */,
 				CDC6FF9414D5F97400F4CFA1 /* SGTest.m in Sources */,
+				CDC6FF9714D60B7A00F4CFA1 /* HUDView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

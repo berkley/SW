@@ -101,7 +101,8 @@ static SGSession *instance = nil;
 {
     //todo: make sure name is unique
     SGTrack *t = [self.currentTrack copy];
-    NSString *trackKey = [NSString stringWithFormat:@"%@-%@", TRACKS_KEY, name];
+    NSString *trackKey = [NSString stringWithFormat:@"%@::%@::%@", TRACKS_KEY, name, [SGSession formatDate:t.date withFormat:DATE_KEY_FORMAT_STRING]];
+    NSLog(@"trackKey: %@", trackKey);
     [self.tracks setObject:trackKey forKey:name];
     [NSKeyedArchiver archiveRootObject:self.tracks toFile:[SGSession getDocumentPathWithName:TRACKS_KEY]];
     [NSKeyedArchiver archiveRootObject:t toFile:[SGSession getDocumentPathWithName:trackKey]];
@@ -312,6 +313,12 @@ static SGSession *instance = nil;
     activityIndicatorViewController.descriptionLabel.text = description;
 }
 
-
++ (NSString*)formatDate:(NSDate*)date withFormat:(NSString *)format
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; 
+    [dateFormatter setDateFormat:format];
+    NSString *d = [dateFormatter stringFromDate:date];
+    return d;
+}
 
 @end

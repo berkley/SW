@@ -45,6 +45,13 @@
                                                                              target:self 
                                                                              action:@selector(editButtonTouched:)];
     
+//    trackNames = (NSArray*)[[SGSession instance].tracks.allKeys sortedArrayUsingComparator:^NSComparisonResult (id a, id b)
+//    {
+//        NSDate *adate = (NSDate*)a;
+//        NSDate *bdate = (NSDate*)b;
+//        return [adate compare:bdate];
+//    }];
+    
 }
 
 - (void)editButtonTouched:(id)sender
@@ -107,12 +114,27 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SGTrackTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[SGTrackTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = [[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row];
+    NSString *trackName = [[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row];
+    NSString *trackKey = [[SGSession instance].tracks objectForKey:trackName];
+    NSArray *keyComponents = [trackKey componentsSeparatedByString:@"::"];
+    NSString *dateStr;
+    if([keyComponents count] == 3)
+        dateStr = [keyComponents objectAtIndex:2];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:DATE_KEY_FORMAT_STRING];
+    NSDate *date = [formatter dateFromString:dateStr];
+    [formatter setDateFormat:DATE_DISPLAY_FORMAT];
+    cell.dateLabel.text = [formatter stringFromDate:date];
+//
+    cell.nameLabel.text = trackName;
+//    NSString *dateStr = 
+//    cell.dateLabel.text = [SGSession formatDate:date withFormat:@"MMM dd yyyy HH:mm ZZZZ"];
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
@@ -136,6 +158,11 @@
     [[SGSession instance].tracks removeObjectForKey:key];
     [[SGSession instance] saveTracks];
     [self.tableView reloadData];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60.0;
 }
 
 @end

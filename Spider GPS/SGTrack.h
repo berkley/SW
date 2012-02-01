@@ -24,6 +24,7 @@
 #define ANNOTATIONS_KEY @"annotations"
 #define DESCENT_KEY @"descent"
 #define ASCENT_KEY @"ascent"
+#define DATE_KEY @"date"
 
 @interface SGTrack : NSObject <NSCoding>
 {
@@ -48,6 +49,7 @@
     double totalDes;
     BOOL trackIsAscending;
     BOOL hasBeenSaved;
+    NSDate *date;
 }
 
 //all raw values from CLLocationManager, convert to relevant units
@@ -66,6 +68,7 @@
 @property (nonatomic, retain) NSNumber *totalAscent;
 @property (nonatomic, retain) NSNumber *totalDescent;
 @property (nonatomic, assign) BOOL hasBeenSaved;
+@property (nonatomic, retain) NSDate *date;
 
 - (void)addDataWithLocation:(CLLocation*)location distance:(double)dist 
                   startTime:(NSDate*)date1 stopTime:(NSDate*)date2;

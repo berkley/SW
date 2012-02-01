@@ -32,3 +32,6 @@
 
 //ascent/descent detection
 #define NUMBER_OF_POINTS_DETERMINER 100
+
+#define DATE_KEY_FORMAT_STRING @"yyyy_MM_dd_HH_mm_ZZZZ"
+#define DATE_DISPLAY_FORMAT @"MMM dd, yyyy HH:mm"

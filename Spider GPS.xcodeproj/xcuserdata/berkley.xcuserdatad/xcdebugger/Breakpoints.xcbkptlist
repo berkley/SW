@@ -14,7 +14,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "676"
          endingLineNumber = "676"
-         landmarkName = "-showMapButtonTouched:"
+         landmarkName = "-locationButtonTouched:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -28,8 +28,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "299"
          endingLineNumber = "299"
-         landmarkName = "-divideTrackIntoAscentAndDescent"
-         landmarkType = "5">
+         landmarkName = "@implementation SGTrack"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -42,7 +42,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "288"
          endingLineNumber = "288"
-         landmarkName = "-divideTrackIntoAscentAndDescent"
+         landmarkName = "-addDataWithLocation:distance:startTime:stopTime:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -84,7 +84,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "204"
          endingLineNumber = "204"
-         landmarkName = "-queueObjectInVertAccuracyArray:"
+         landmarkName = "-addDataWithLocation:distance:startTime:stopTime:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -46,7 +46,6 @@
 		CD8CABF314C53736003E263C /* SGPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8CABF214C53736003E263C /* SGPolyline.m */; };
 		CDC6FF7614D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC6FF7414D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m */; };
 		CDC6FF7714D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC6FF7514D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib */; };
-		CDC6FF8C14D4F40D00F4CFA1 /* ObjectiveCUtil in Resources */ = {isa = PBXBuildFile; fileRef = CDC6FF8B14D4F40D00F4CFA1 /* ObjectiveCUtil */; };
 		CDC6FF9414D5F97400F4CFA1 /* SGTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC6FF9314D5F97400F4CFA1 /* SGTest.m */; };
 		CDC6FF9714D60B7A00F4CFA1 /* HUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC6FF9614D60B7A00F4CFA1 /* HUDView.m */; };
 /* End PBXBuildFile section */
@@ -107,7 +106,6 @@
 		CDC6FF7314D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorModalViewController.h; sourceTree = "<group>"; };
 		CDC6FF7414D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorModalViewController.m; sourceTree = "<group>"; };
 		CDC6FF7514D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityIndicatorModalViewController.xib; sourceTree = "<group>"; };
-		CDC6FF8B14D4F40D00F4CFA1 /* ObjectiveCUtil */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ObjectiveCUtil; path = ../../ObjectiveCUtil; sourceTree = "<group>"; };
 		CDC6FF9214D5F97400F4CFA1 /* SGTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTest.h; sourceTree = "<group>"; };
 		CDC6FF9314D5F97400F4CFA1 /* SGTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTest.m; sourceTree = "<group>"; };
 		CDC6FF9514D60B7A00F4CFA1 /* HUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDView.h; sourceTree = "<group>"; };
@@ -133,7 +131,6 @@
 		7E97AF7B14AA81D8002404A5 = {
 			isa = PBXGroup;
 			children = (
-				CDC6FF8B14D4F40D00F4CFA1 /* ObjectiveCUtil */,
 				7E97AF9014AA81D8002404A5 /* Spider GPS */,
 				7E97AF8914AA81D8002404A5 /* Frameworks */,
 				7E97AF8714AA81D8002404A5 /* Products */,
@@ -316,7 +313,6 @@
 				7E867CB414C243500096A7CE /* dashboard2.png in Resources */,
 				7E867CB614C246930096A7CE /* map2.png in Resources */,
 				CDC6FF7714D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib in Resources */,
-				CDC6FF8C14D4F40D00F4CFA1 /* ObjectiveCUtil in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,12 +415,12 @@
 		7E97AFA814AA81D9002404A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Peter Anderson (PK484EQWS2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chad Berkley (A723P8EY37)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spider GPS/Spider GPS-Prefix.pch";
 				INFOPLIST_FILE = "Spider GPS/Spider GPS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E8B86FC5-3355-4CE4-9E7F-6AA2C2B6D640";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F78A21DD-3237-43BC-A8EA-011E14714D0B";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -433,12 +429,12 @@
 		7E97AFA914AA81D9002404A5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bordertown Labs, LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Stumpware LLC";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spider GPS/Spider GPS-Prefix.pch";
 				INFOPLIST_FILE = "Spider GPS/Spider GPS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "69661780-3B96-4D9B-BDCD-B658A61B2431";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A0A4EE2-1EF5-422E-88CB-334967A49EE3";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

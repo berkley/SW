@@ -10,9 +10,11 @@
 #import "SGSession.h"
 #import "SGTrackDetailViewController.h"
 #import "SGTrackDataViewController.h"
+#import "SGTrackTableViewCell.h"
 
 @interface SGTrackViewController : UITableViewController    
 {
     SGTrackDetailViewController *detailViewController;
+    NSArray *trackNames;
 }
 @end

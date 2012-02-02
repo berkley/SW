@@ -11,7 +11,7 @@
 @implementation SGTrack
 @synthesize name, distance, avgSpeed, lowSpeed, topSpeed, topAlitude, 
 lowAltidude, locations, totalTime, annotations, horizontalAccuracy, 
-verticalAccuracy, totalAscent, totalDescent, hasBeenSaved;
+verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
 
 #pragma mark - private methods
 
@@ -127,6 +127,7 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved;
     t.verticalAccuracy = [verticalAccuracy copy];
     t.totalDescent = [totalDescent copy];
     t.totalAscent = [totalAscent copy];
+    t.date = [date copy];
     
     return t;
 }
@@ -148,6 +149,7 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved;
         annotations = [decoder decodeObjectForKey:ANNOTATIONS_KEY];
         totalAscent = [decoder decodeObjectForKey:ASCENT_KEY];
         totalDescent = [decoder decodeObjectForKey:DESCENT_KEY];
+        date = [decoder decodeObjectForKey:DATE_KEY];
     }
     return self;
 }
@@ -166,6 +168,7 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved;
     [coder encodeObject:annotations forKey:ANNOTATIONS_KEY];
     [coder encodeObject:totalAscent forKey:ASCENT_KEY];
     [coder encodeObject:totalDescent forKey:DESCENT_KEY];
+    [coder encodeObject:date forKey:DATE_KEY];
 }
 
 - (id)init
@@ -187,6 +190,7 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved;
         previousAltitude = -1.0;
         vertAccuracyArray = [NSMutableArray arrayWithCapacity:NUM_POINTS_FOR_VERT_ACCURACY];
         cachedAltPoints = [NSMutableArray arrayWithCapacity:NUMBER_OF_POINTS_DETERMINER];
+        date = [NSDate date];
         name = nil;
         totalAsc = 0.0;
         totalDes = 0.0;

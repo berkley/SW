@@ -54,5 +54,6 @@
 - (void)hideActivityIndicator;
 - (void)saveTracks;
 - (SGTrack*)getTrackWithName:(NSString*)name;
++ (NSString*)formatDate:(NSDate*)date withFormat:(NSString *)format;
 
 @end

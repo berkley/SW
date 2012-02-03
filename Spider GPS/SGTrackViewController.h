@@ -15,6 +15,6 @@
 @interface SGTrackViewController : UITableViewController    
 {
     SGTrackDetailViewController *detailViewController;
-    NSArray *trackNames;
+    NSMutableArray *trackNames;
 }
 @end

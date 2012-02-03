@@ -44,14 +44,6 @@
                                                                               style:UIBarButtonItemStylePlain 
                                                                              target:self 
                                                                              action:@selector(editButtonTouched:)];
-    
-//    trackNames = (NSArray*)[[SGSession instance].tracks.allKeys sortedArrayUsingComparator:^NSComparisonResult (id a, id b)
-//    {
-//        NSDate *adate = (NSDate*)a;
-//        NSDate *bdate = (NSDate*)b;
-//        return [adate compare:bdate];
-//    }];
-    
 }
 
 - (void)editButtonTouched:(id)sender
@@ -80,6 +72,37 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSArray *trackKeys = [SGSession instance].tracks.allValues;
+    trackKeys = [trackKeys sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+                 {
+                     //extract the date from the key 
+                     //Track::test::2012_02_02_16_09_GMT-08:00
+                     NSString *stra = (NSString*)a;
+                     NSString *strb = (NSString*)b;
+                     NSArray *keypartsa = [stra componentsSeparatedByString:@"::"];
+                     NSArray *keypartsb = [strb componentsSeparatedByString:@"::"];
+                     NSDate *datea = [NSDate dateWithTimeIntervalSince1970:0];
+                     NSDate *dateb = [NSDate dateWithTimeIntervalSince1970:0];
+                     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                     [formatter setDateFormat:DATE_KEY_FORMAT_STRING];
+                     
+                     if([keypartsa count] == 3)
+                         datea = [formatter dateFromString:[keypartsa objectAtIndex:2]];
+                     
+                     if([keypartsb count] == 3)
+                         dateb = [formatter dateFromString:[keypartsb objectAtIndex:2]];                     
+                     
+                     return [dateb compare:datea];
+                 }];
+    NSLog(@"trackKeys: %@", trackKeys);
+    
+    trackNames = [[NSMutableArray alloc] init];
+    for(int i=0; i<[trackKeys count]; i++)
+    {
+        NSInteger trackIndex = [[SGSession instance].tracks.allValues indexOfObject:[trackKeys objectAtIndex:i]];
+        NSString *trackName = [[SGSession instance].tracks.allKeys objectAtIndex:trackIndex];
+        [trackNames insertObject:trackName atIndex:i];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -119,7 +142,7 @@
         cell = [[SGTrackTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSString *trackName = [[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row];
+    NSString *trackName = [trackNames objectAtIndex:indexPath.row];
     NSString *trackKey = [[SGSession instance].tracks objectForKey:trackName];
     NSArray *keyComponents = [trackKey componentsSeparatedByString:@"::"];
     NSString *dateStr;
@@ -144,7 +167,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SGTrackDataViewController *dataViewController = [[SGTrackDataViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    NSString *trackName = [[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row];
+//    NSString *trackName = [[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row];
+    NSString *trackName = [trackNames objectAtIndex:indexPath.row];
     dataViewController.track = [[SGSession instance] getTrackWithName:trackName];
     dataViewController.track.name = trackName;
     [self.navigationController pushViewController:dataViewController animated:YES];

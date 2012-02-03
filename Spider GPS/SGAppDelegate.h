@@ -11,11 +11,13 @@
 
 /* TODO:
  1.0
- x add alt gain/loss
+ - let user choose map type
  - pause button (maybe)
  - sort tracks by date
+ - allow user to turn auto-save on/off
  - run slider control
  - spruce up the look of SGTrackDataViewController.view (add small map, change fonts, etc)
+ x add alt gain/loss
  x auto save function
  x if track is saved before, auto-populate the save dialog with the same name
  x warn of overwrite

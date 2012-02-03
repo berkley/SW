@@ -37,3 +37,4 @@
 #define DATE_DISPLAY_FORMAT @"MMM dd, yyyy HH:mm"
 
 #define STARTUP_LOCATION_COUNT_MIN 5
+#define KEY_SEPARATOR_STRING @"::"

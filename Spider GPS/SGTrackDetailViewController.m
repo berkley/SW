@@ -62,76 +62,33 @@
 
 - (void)doViewDidAppear
 {
-    //    NSLog(@"loc count: %i track: %@", [track.locations count], track.name);
-    MKMapPoint* tempPointArr = malloc(sizeof(CLLocationCoordinate2D) * [track.locations count]);
-    int pointCount = 0;
-    accuracyCount = 0;
-    accuracyTotal = 0;
-    
-    //do accuracy smoothing
-    for(CLLocation *loc in track.locations)
-    {
-        BOOL addPoint = YES;
-        //calculate avg accuracy to smooth this line
-        double avgAccuracy = accuracyTotal / (double)accuracyCount;
-        //       NSLog(@"avgAcc: %f point.acc: %f", avgAccuracy, loc.horizontalAccuracy);
-        if(accuracyCount > NUM_POINTS_FOR_ACCURACY)
-        {
-            if(loc.horizontalAccuracy > avgAccuracy + ACCURACY_THRESHOLD || 
-               loc.horizontalAccuracy < avgAccuracy - ACCURACY_THRESHOLD)
-            {
-                addPoint = NO;
-                addPointCount++;
-                //                NSLog(@"addPointCount: %i", addPointCount);
-            }
-        }
-        
-        if(addPointCount > ADD_POINT_COUNT_THRESHOLD)
-        {  //if all of a sudden the accuracy goes to shit, we don't want to stop adding
-            //points forever, so this will reset the accuracy check
-            addPointCount = 1;
-            accuracyTotal = 0.0;
-            accuracyCount = 1;
-        }
-        
-        if(addPoint)
-        {
-            MKMapPoint newPoint = MKMapPointForCoordinate(loc.coordinate);
-            tempPointArr[pointCount] = newPoint;
-            pointCount++;
-            
-            accuracyTotal += loc.horizontalAccuracy;
-            accuracyCount++;
-        }
-        
-        
-    }
-    
+    //    NSLog(@"loc count: %i track: %@", [track.locations count], track.name);    
     [mapView removeOverlays:mapView.overlays];
     if(style == TRACK_STYLE_NORMAL)
     {
-        routeLine = [MKPolyline polylineWithPoints:tempPointArr count:pointCount];
+        MKMapPoint *tempPointArr = [track singlePolyline];
+        routeLine = [MKPolyline polylineWithPoints:tempPointArr count:[track.locations count]];
         [mapView addOverlay:routeLine];
-        if(tempPointArr)
-            free(tempPointArr);        
+//        if(tempPointArr)
+//            free(tempPointArr);        
     }
     else if(style == TRACK_STYLE_RUN)
     {
         NSArray *polylines = [track arrayOfPolylines];       
-        //        for(SGPolyline *polyline in polylines)
-        //        {
-        //            CLLocationCoordinate2D coord = MKCoordinateForMapPoint(polyline.points[0]);
-        //            SGPinAnnotation *ann = [[SGPinAnnotation alloc] initWithCoordinate:coord];
-        //            ann.title = [NSString stringWithFormat:@"%.2f m", polyline.firstAltitude];
-        //            [mapView addAnnotation:ann];
-        //            
-        //            CLLocationCoordinate2D coord2 = MKCoordinateForMapPoint(polyline.points[pointCount - 1]);
-        //            SGPinAnnotation *ann2 = [[SGPinAnnotation alloc] initWithCoordinate:coord2];
-        //            ann2.title = [NSString stringWithFormat:@"%.2f m", polyline.firstAltitude];
-        //            [mapView addAnnotation:ann2];
-        //            
-        //            [mapView addOverlay:polyline];
-        //        }
+//        for(SGPolyline *polyline in polylines)
+//        {
+//            CLLocationCoordinate2D coord = MKCoordinateForMapPoint(polyline.points[0]);
+//            SGPinAnnotation *ann = [[SGPinAnnotation alloc] initWithCoordinate:coord];
+//            ann.title = [NSString stringWithFormat:@"%.2f m", polyline.firstAltitude];
+//            [mapView addAnnotation:ann];
+//            
+//            CLLocationCoordinate2D coord2 = MKCoordinateForMapPoint(polyline.points[pointCount - 1]);
+//            SGPinAnnotation *ann2 = [[SGPinAnnotation alloc] initWithCoordinate:coord2];
+//            ann2.title = [NSString stringWithFormat:@"%.2f m", polyline.firstAltitude];
+//            [mapView addAnnotation:ann2];
+//            
+//            [mapView addOverlay:polyline];
+//        }
         [mapView addOverlays:polylines];
     }
     

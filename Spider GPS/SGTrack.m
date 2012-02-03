@@ -381,6 +381,20 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     return dict;
 }
 
+- (MKMapPoint*)singlePolyline
+{
+    MKMapPoint* tempPointArr = malloc(sizeof(CLLocationCoordinate2D) * [self.locations count]);
+    int pointCount = 0;
+
+    for(CLLocation *loc in self.locations)
+    {
+        MKMapPoint newPoint = MKMapPointForCoordinate(loc.coordinate);
+        tempPointArr[pointCount] = newPoint;
+        pointCount++;    
+    }
+    return tempPointArr;
+}
+
 - (NSArray*)arrayOfPolylines
 {
     NSDictionary *dict = [self divideTrackIntoAscentAndDescent];

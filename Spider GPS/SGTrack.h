@@ -76,5 +76,6 @@
 - (NSDictionary*)divideTrackIntoAscentAndDescent;
 - (NSArray*)arrayOfPolylines;
 - (void)calculateAscentAndDescent;
+- (MKMapPoint*)singlePolyline;
 
 @end

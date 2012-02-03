@@ -101,7 +101,7 @@
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="255814722"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="933689588">
+							<object class="IBUIBarButtonItem" id="575695512">
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">play.png</string>
@@ -1249,7 +1249,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">playButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="933689588"/>
+						<reference key="destination" ref="575695512"/>
 					</object>
 					<int key="connectionID">230</int>
 				</object>
@@ -1321,7 +1321,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">playButtonTouched:</string>
-						<reference key="source" ref="933689588"/>
+						<reference key="source" ref="575695512"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">231</int>
@@ -1604,7 +1604,7 @@
 							<reference ref="931626209"/>
 							<reference ref="343376781"/>
 							<reference ref="495001643"/>
-							<reference ref="933689588"/>
+							<reference ref="575695512"/>
 						</array>
 						<reference key="parent" ref="774585933"/>
 					</object>
@@ -1683,7 +1683,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">229</int>
-						<reference key="object" ref="933689588"/>
+						<reference key="object" ref="575695512"/>
 						<reference key="parent" ref="255814722"/>
 					</object>
 				</array>

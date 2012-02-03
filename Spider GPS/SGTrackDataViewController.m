@@ -85,9 +85,11 @@
     NSInteger y = 0;
     NSInteger w = 290 / 2;
     NSInteger h = 23;
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, INFO_CELL_HEIGHT)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, -10, INFO_CELL_WIDTH, INFO_CELL_HEIGHT)];
     [view setBackgroundColor:[UIColor clearColor]];
     
+    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
+    UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
     UILabel *totalDistanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
     UILabel *avgSpeedLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
     UILabel *topSpeedLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
@@ -99,6 +101,10 @@
     UILabel *totalDescentLabel = [[UILabel alloc] initWithFrame:CGRectMake(x2, y += h, w, h)];
     
     y = 0;
+    UILabel *dateLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
+    dateLabelLabel.text = @"Date:";
+    UILabel *timeLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
+    timeLabelLabel.text = @"Time:";
     UILabel *totalDistanceLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
     totalDistanceLabelLabel.text = @"Total Distance:";
     UILabel *avgSpeedLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
@@ -118,7 +124,10 @@
     UILabel *totalDescentLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
     totalDescentLabelLabel.text = @"Total Descent:";
 
-    
+    [timeLabel setBackgroundColor:[UIColor clearColor]];
+    [timeLabelLabel setBackgroundColor:[UIColor clearColor]];
+    [dateLabel setBackgroundColor:[UIColor clearColor]];
+    [dateLabelLabel setBackgroundColor:[UIColor clearColor]];
     [totalDistanceLabelLabel setBackgroundColor:[UIColor clearColor]];
     [totalDistanceLabel setBackgroundColor:[UIColor clearColor]];
     [avgSpeedLabelLabel setBackgroundColor:[UIColor clearColor]];
@@ -138,6 +147,8 @@
     [totalAscentLabelLabel setBackgroundColor:[UIColor clearColor]];
     [totalDescentLabelLabel setBackgroundColor:[UIColor clearColor]];
     
+    [view addSubview:dateLabel];
+    [view addSubview:timeLabel];
     [view addSubview:totalDistanceLabel];
     [view addSubview:avgSpeedLabel];
     [view addSubview:topSpeedLabel];
@@ -148,6 +159,8 @@
     [view addSubview:totalAscentLabel];
     [view addSubview:totalDescentLabel];
     
+    [view addSubview:dateLabelLabel];
+    [view addSubview:timeLabelLabel];
     [view addSubview:totalDistanceLabelLabel];
     [view addSubview:avgSpeedLabelLabel];
     [view addSubview:topSpeedLabelLabel];
@@ -188,6 +201,9 @@
     }
         
     NSTimeInterval theTimeInterval = [track.totalTime doubleValue];
+    
+    dateLabel.text = [SGSession formatDate:track.date withFormat:DATE_ONLY_DISPLAY_FORMAT];
+    timeLabel.text = [SGSession formatDate:track.date withFormat:TIME_ONLY_DISPLAY_FORMAT];
     
     // Create the NSDates
     NSDate *date1 = [[NSDate alloc] init];

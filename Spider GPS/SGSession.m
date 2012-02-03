@@ -52,31 +52,12 @@ static SGSession *instance = nil;
         self.tracks = [NSMutableDictionary dictionaryWithDictionary:
                        [NSKeyedUnarchiver unarchiveObjectWithFile:[SGSession getDocumentPathWithName:TRACKS_KEY]]];
         NSLog(@"saved tracks: %@", self.tracks);
-//to convert from old format to new, change above TRACKS_KEY to OLD_TRACKS_KEY and uncomment this section.
-//        if([[self.tracks.allValues objectAtIndex:0] isKindOfClass:[SGTrack class]])
-//        { //old data format. get each track and save it in the new format
-//            NSMutableDictionary *newTrackDict = [NSMutableDictionary dictionaryWithCapacity:100];
-//            for(NSString *name in self.tracks.allKeys)
-//            {
-//                SGTrack *t = [self.tracks objectForKey:name];
-//                
-//                NSString *trackKey = [NSString stringWithFormat:@"%@-%@", TRACKS_KEY, name];
-//                if(![NSKeyedArchiver archiveRootObject:t
-//                                                toFile:[SGSession getDocumentPathWithName:trackKey]])
-//                    NSLog(@"writing track %@ failed", trackKey);
-//                else 
-//                    NSLog(@"track %@ written to key %@", name, trackKey);
-//                
-//                [newTrackDict setObject:trackKey forKey:name];
-//            }
-//            [NSKeyedArchiver archiveRootObject:newTrackDict toFile:[SGSession getDocumentPathWithName:TRACKS_KEY]];
-//        }
         if(tracks == nil)
             tracks = [[NSMutableDictionary alloc] init];
         [self createNewTrack];
         if(self.screenAlwaysOn)
             [UIApplication sharedApplication].idleTimerDisabled = YES;
-        saveTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self 
+        saveTimer = [NSTimer scheduledTimerWithTimeInterval:AUTO_SAVE_INTERVAL target:self 
                                                    selector:@selector(saveTimerFired:) 
                                                    userInfo:nil 
                                                     repeats:YES];
@@ -86,7 +67,7 @@ static SGSession *instance = nil;
 
 - (void)saveTimerFired:(id)sender
 {
-    if(self.currentTrack.hasBeenSaved)
+    if(self.currentTrack.hasBeenSaved && self.autoSaveEnabled)
     {
         NSLog(@"auto saving track %@", self.currentTrack.name);
         [self saveCurrentTrackWithName:self.currentTrack.name];

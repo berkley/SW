@@ -12,7 +12,7 @@
 /* TODO:
  1.0
  x let user choose map type
- - pause button
+ x pause button
  x allow user to turn auto-save on/off
  - run slider control
  - spruce up the look of SGTrackDataViewController.view (add small map, change fonts, etc)

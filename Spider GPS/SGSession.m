@@ -164,6 +164,23 @@ static SGSession *instance = nil;
 
 #pragma mark - custom getters/setters
 
+- (void)setShowPauseMessage:(BOOL)showPauseMessage
+{
+    if(showPauseMessage)
+        [defaultsManager setObject:@"true" withName:@"showPauseMessage"];
+    else
+        [defaultsManager setObject:@"false" withName:@"showPauseMessage"];
+}
+
+- (BOOL)showPauseMessage
+{
+    NSString *spm = (NSString*)[defaultsManager getObjectWithName:@"showPauseMessage"];
+    if(spm != nil && [spm isEqualToString:@"false"])
+        return NO;
+    else
+        return YES;
+}
+
 - (void)setAutoSaveEnabled:(BOOL)autoSaveEnabled
 {
     if(autoSaveEnabled)

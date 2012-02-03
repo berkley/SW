@@ -79,12 +79,14 @@
     NSDate *endTime;
     __weak IBOutlet UIBarButtonItem *locationButton;
     __weak IBOutlet UIBarButtonItem *pinButton;
+    __weak IBOutlet UIBarButtonItem *playButton;
     
     double accuracyTotal;
     int accuracyCount;
     int addPointCount;
     
     BOOL dashboardHidden;
+    BOOL paused;
     
     NSString *savename;
     int startupLocationCount;

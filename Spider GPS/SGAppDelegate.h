@@ -11,9 +11,9 @@
 
 /* TODO:
  1.0
- - let user choose map type
- - pause button (maybe)
- - allow user to turn auto-save on/off
+ x let user choose map type
+ - pause button
+ x allow user to turn auto-save on/off
  - run slider control
  - spruce up the look of SGTrackDataViewController.view (add small map, change fonts, etc)
  x sort tracks by date

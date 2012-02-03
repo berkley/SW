@@ -47,6 +47,24 @@
     [self performSelectorOnMainThread:@selector(displayActivityIndicator) withObject:nil waitUntilDone:NO];
 }
 
+- (void)collectionDidPause
+{
+    [UIView beginAnimations:@"changeViewHeight" context:nil];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:.5];
+    [self setFields];
+    [UIView commitAnimations];
+}
+
+- (void)collectionDidUnPause
+{
+    [UIView beginAnimations:@"changeViewHeight" context:nil];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:.5];
+    [self setFields];
+    [UIView commitAnimations];
+}
+
 #pragma mark - init
 
 - (void)didReceiveMemoryWarning
@@ -65,6 +83,7 @@
 {
     [super viewDidLoad];
     pointCount = 0;
+    paused = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(orientationDidChange:) 
                                                  name:NOTIFICATION_ORIENTATION_CHANGED 
@@ -89,8 +108,14 @@
                                              selector:@selector(stopActivityIndicator) 
                                                  name:NOTIFICATION_STOP_ACTIVITY_INDICATOR 
                                                object:nil];
-    
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(collectionDidPause) 
+                                                 name:NOTIFICATION_LOCATIONS_COLLECTION_PAUSED 
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(collectionDidUnPause) 
+                                                 name:NOTIFICATION_LOCATIONS_COLLECTION_UNPAUSED 
+                                               object:nil];    
     mapView.delegate = self;
     if(![SGSession instance].useMPH)
         unitSegmentedControl.selectedSegmentIndex = 1;
@@ -157,6 +182,7 @@
     altLossView = nil;
     altGainLabel = nil;
     altLossLabel = nil;
+    playButton = nil;
     [super viewDidUnload];
 }
 
@@ -264,6 +290,33 @@
     if(abs(height) != height)
         height = abs(height) + 1;
     height = height * fieldViewHeight + 10;
+    
+    UILabel *pausedLabel = (UILabel*)[speedHeadingView viewWithTag:9999];
+    if(!pausedLabel)
+    {
+        pausedLabel = [[UILabel alloc] init];
+        [speedHeadingView addSubview:pausedLabel];
+    }
+    pausedLabel.tag = 9999;
+    pausedLabel.frame = CGRectMake(10, height, speedHeadingView.frame.size.width, 22);
+    
+    if(paused)
+    {
+        height += 20;
+        pausedLabel.frame = CGRectMake(10, height - 25, speedHeadingView.frame.size.width, 22);
+        pausedLabel.alpha = 1.0;
+        pausedLabel.textColor = [UIColor redColor];
+        pausedLabel.font = [UIFont systemFontOfSize:20.0];
+        pausedLabel.backgroundColor = [UIColor clearColor];
+        pausedLabel.text = @"Location Collection Paused";
+    }
+    else
+    {
+        UIView *pausedLabel = [speedHeadingView viewWithTag:9999];
+        pausedLabel.alpha = 0.0;
+//        if(pausedLabel)
+//            [pausedLabel removeFromSuperview];
+    }
     
     speedHeadingView.frame = CGRectMake(0, 480-height-20, 320, height);
     
@@ -478,6 +531,9 @@
         return;
     }
     
+    if(paused)
+        return;
+    
     [self didUpdateToLocation:[notification.userInfo objectForKey:@"newLocation"] 
                  fromLocation:[notification.userInfo objectForKey:@"oldLocation"]];
 }
@@ -659,6 +715,11 @@
             [[SGSession instance] performSelector:@selector(saveCurrentTrackWithName:) withObject:savename afterDelay:.1];
         }
     }
+    else if(alertView.tag == 9004)
+    { //track paused
+        if(buttonIndex == 1)
+            [SGSession instance].showPauseMessage = NO;
+    }
 }
 
 - (void)selectAnnoation:(SGPinAnnotation*)ann
@@ -698,11 +759,42 @@
     }
 }
 
+- (IBAction)playButtonTouched:(id)sender 
+{
+    if(paused)
+    {
+        playButton.image = [UIImage imageNamed:@"play.png"];        
+        paused = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATIONS_COLLECTION_UNPAUSED 
+                                                            object:nil];
+
+    }
+    else
+    {
+        if([SGSession instance].showPauseMessage)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Collection Paused" 
+                                                            message:@"You have paused location collection. No locations will be recorded while track collection is paused." 
+                                                           delegate:self 
+                                                  cancelButtonTitle:@"Ok" 
+                                                  otherButtonTitles:@"Don't Show Again", nil];
+            alert.tag = 9004;
+            [alert show];
+        }
+
+        playButton.image = [UIImage imageNamed:@"pause.png"];
+        paused = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATIONS_COLLECTION_PAUSED 
+                                                            object:nil];
+    }
+}
+
 - (IBAction)pinButtonTouched:(id)sender 
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Pin Name" 
                                                     message:@"Please name your pin." 
-                                                   delegate:self cancelButtonTitle:@"Cancel" 
+                                                   delegate:self 
+                                          cancelButtonTitle:@"Cancel" 
                                           otherButtonTitles:@"Drop Pin", nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     alert.tag = 9001;

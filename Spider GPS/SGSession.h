@@ -42,6 +42,7 @@
 @property (nonatomic, retain) ActivityIndicatorModalViewController *activityIndicatorViewController;
 @property (nonatomic, assign) BOOL autoSaveEnabled;
 @property (nonatomic, assign) NSInteger mapType;
+@property (nonatomic, assign) BOOL showPauseMessage;
 
 + (SGSession*)instance;
 - (void)saveCurrentTrackWithName:(NSString*)name;

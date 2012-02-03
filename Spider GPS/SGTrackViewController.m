@@ -170,6 +170,7 @@
 //    NSString *trackName = [[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row];
     NSString *trackName = [trackNames objectAtIndex:indexPath.row];
     dataViewController.track = [[SGSession instance] getTrackWithName:trackName];
+    NSLog(@"track: %@", dataViewController.track);
     dataViewController.track.name = trackName;
     [self.navigationController pushViewController:dataViewController animated:YES];
 }

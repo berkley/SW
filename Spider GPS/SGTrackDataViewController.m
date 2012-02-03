@@ -31,11 +31,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = track.name;
-    
-    trackInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, INFO_CELL_WIDTH, INFO_CELL_HEIGHT)];
-    [[SGSession instance] showActivityIndicator:self.navigationController description:@"Processing Track" withProgress:NO];
-    [self performSelectorInBackground:@selector(createTrackInfoView) withObject:nil];
 }
 
 - (void)viewDidUnload
@@ -51,6 +46,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.navigationItem.title = track.name;
+    trackInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, INFO_CELL_WIDTH, INFO_CELL_HEIGHT)];
+    [[SGSession instance] showActivityIndicator:self.navigationController description:@"Processing Track" withProgress:NO];
+    [self performSelectorInBackground:@selector(createTrackInfoView) withObject:nil];
+//    [self performSelectorOnMainThread:@selector(createTrackInfoView) withObject:nil waitUntilDone:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -195,6 +195,7 @@
     
     totalTimeLabel.text = [SGSession formattedElapsedTime:date1 date2:date2];
     [trackInfoView addSubview:view];
+    [self.tableView reloadData];
     [[SGSession instance] hideActivityIndicator];
     return view;
 }
@@ -209,11 +210,8 @@
 
     if(indexPath.section == 0)
     {
-//        cell.textLabel.text = track.name;
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        UIView *cellView = [self createTrackInfoView];
-        
         [cell.contentView addSubview:trackInfoView];
     }
     else if(indexPath.section == 1)

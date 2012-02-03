@@ -51,6 +51,7 @@ static SGSession *instance = nil;
         [self setFieldVals];
         self.tracks = [NSMutableDictionary dictionaryWithDictionary:
                        [NSKeyedUnarchiver unarchiveObjectWithFile:[SGSession getDocumentPathWithName:TRACKS_KEY]]];
+        NSLog(@"saved tracks: %@", self.tracks);
 //to convert from old format to new, change above TRACKS_KEY to OLD_TRACKS_KEY and uncomment this section.
 //        if([[self.tracks.allValues objectAtIndex:0] isKindOfClass:[SGTrack class]])
 //        { //old data format. get each track and save it in the new format
@@ -167,6 +168,7 @@ static SGSession *instance = nil;
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:name];
+    NSLog(@"doc path: %@", writableDBPath);
     return writableDBPath;
 }
 

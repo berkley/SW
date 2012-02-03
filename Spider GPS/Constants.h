@@ -35,3 +35,5 @@
 
 #define DATE_KEY_FORMAT_STRING @"yyyy_MM_dd_HH_mm_ZZZZ"
 #define DATE_DISPLAY_FORMAT @"MMM dd, yyyy HH:mm"
+
+#define STARTUP_LOCATION_COUNT_MIN 5

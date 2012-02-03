@@ -12,6 +12,8 @@
 /* TODO:
  1.0
  x add alt gain/loss
+ - pause button (maybe)
+ - sort tracks by date
  - run slider control
  - spruce up the look of SGTrackDataViewController.view (add small map, change fonts, etc)
  x auto save function
@@ -22,13 +24,16 @@
  
  1.1
  - 3D view
+ - time view (change color of track every minute or something like that)
+ - alt gain/loss plot (profile view)
  - show friends on the map in realtime
  - realtime track friends
  - friends track overlays
- - alt gain/loss plot (profile)
+ - moving/stopping time
  
  1.2
  - uploat tracks to icloud/facebook
+ - overlay multiple tracks on one map
  - export files
  
  1.3 

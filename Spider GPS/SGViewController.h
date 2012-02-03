@@ -87,6 +87,7 @@
     BOOL dashboardHidden;
     
     NSString *savename;
+    int startupLocationCount;
 }
 
 - (void)setFields;

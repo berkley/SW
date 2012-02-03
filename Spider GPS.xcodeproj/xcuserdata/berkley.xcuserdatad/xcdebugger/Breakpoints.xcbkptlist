@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGViewController.m"
-         timestampString = "349416634.341838"
+         timestampString = "349920498.95358"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "676"
-         endingLineNumber = "676"
+         startingLineNumber = "692"
+         endingLineNumber = "692"
          landmarkName = "-locationButtonTouched:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -51,25 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGSession.m"
-         timestampString = "349413786.158071"
+         timestampString = "349917697.728555"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "52"
-         endingLineNumber = "52"
-         landmarkName = "-init"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Spider GPS/SGSession.m"
-         timestampString = "349415549.898718"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "73"
-         endingLineNumber = "73"
+         startingLineNumber = "54"
+         endingLineNumber = "54"
          landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>

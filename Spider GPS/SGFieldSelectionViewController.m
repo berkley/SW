@@ -49,7 +49,7 @@
     altGainSwitch.tag = 112;
     altLossSwitch.tag = 113;
     
-    self.navigationItem.title = @"Fields";
+    self.navigationItem.title = @"Settings";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" 
                                                                              style:UIBarButtonItemStylePlain 
                                                                             target:self 

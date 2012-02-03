@@ -10,6 +10,15 @@
 
 @implementation SGViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if(self)
+    {
+        startupLocationCount = 0;
+    }
+    return self;
+}
 
 - (void)enableLocationServices
 {
@@ -461,6 +470,13 @@
 
 - (void)locationUpdated:(NSNotification*)notification
 {
+    //throw away the first few points because they're crap
+    if(startupLocationCount < STARTUP_LOCATION_COUNT_MIN) 
+    {
+        startupLocationCount++;
+        return;
+    }
+    
     [self didUpdateToLocation:[notification.userInfo objectForKey:@"newLocation"] 
                  fromLocation:[notification.userInfo objectForKey:@"oldLocation"]];
 }

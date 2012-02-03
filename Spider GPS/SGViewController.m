@@ -192,8 +192,8 @@
     [self setupForCurrentOrientation];
     [self enableLocationServices];
     
-    showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 35 - 20, 35, 35);
-    [showMapButton setImage:[UIImage imageNamed:@"map.png"] forState:UIControlStateNormal];
+    showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 40 - 20, 35, 35);
+    [showMapButton setImage:[UIImage imageNamed:@"mapincircle.png"] forState:UIControlStateNormal];
     dashboardHidden = NO;
 }
 
@@ -314,11 +314,10 @@
     {
         UIView *pausedLabel = [speedHeadingView viewWithTag:9999];
         pausedLabel.alpha = 0.0;
-//        if(pausedLabel)
-//            [pausedLabel removeFromSuperview];
     }
-    
+
     speedHeadingView.frame = CGRectMake(0, 480-height-20, 320, height);
+    showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 40 - 20, 35, 35);
     
     int m = 0;
     int v = -1;
@@ -831,16 +830,16 @@
         dashboardHidden = NO;
         speedHeadingView.alpha = 1.0;
         toolbar.alpha = 1.0;
-        [showMapButton setImage:[UIImage imageNamed:@"map.png"] forState:UIControlStateNormal];
-        showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 35 - 20, 35, 35);
+        [showMapButton setImage:[UIImage imageNamed:@"mapincircle.png"] forState:UIControlStateNormal];
+        showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 40 - 20, 35, 35);
     }
     else
     {
         dashboardHidden = YES;
         speedHeadingView.alpha = 0.0;
         toolbar.alpha = 0.0;
-        [showMapButton setImage:[UIImage imageNamed:@"dashboard.png"] forState:UIControlStateNormal];
-        showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - 35 - 20, 35, 35);
+        [showMapButton setImage:[UIImage imageNamed:@"dashboardincircle.png"] forState:UIControlStateNormal];
+        showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - 40 - 20, 35, 35);
     }
     [UIView commitAnimations];
 }

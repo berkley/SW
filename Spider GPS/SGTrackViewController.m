@@ -178,8 +178,9 @@
     commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *key = [[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row];
-    [[SGSession instance].tracks removeObjectForKey:key];
+    NSString *trackName = [trackNames objectAtIndex:indexPath.row];
+    [[SGSession instance].tracks removeObjectForKey:trackName];
+    [trackNames removeObjectAtIndex:indexPath.row];
     [[SGSession instance] saveTracks];
     [self.tableView reloadData];
 }

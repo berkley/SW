@@ -183,6 +183,36 @@ static SGSession *instance = nil;
 
 #pragma mark - custom getters/setters
 
+- (void)setAutoSaveEnabled:(BOOL)autoSaveEnabled
+{
+    if(autoSaveEnabled)
+        [defaultsManager setObject:@"true" withName:@"autoSaveEnabled"];
+    else
+        [defaultsManager setObject:@"false" withName:@"autoSaveEnabled"];
+}
+
+- (BOOL)autoSaveEnabled
+{
+    NSString *ase = (NSString*)[defaultsManager getObjectWithName:@"autoSaveEnabled"];
+    if(ase != nil && [ase isEqualToString:@"false"])
+        return NO;
+    else
+        return YES;
+}
+
+- (void)setMapType:(NSInteger)mapType
+{
+    [defaultsManager setObject:[NSNumber numberWithInt:mapType] withName:@"mapType"];
+}
+
+- (NSInteger)mapType
+{
+    NSNumber *mtNum = (NSNumber*)[defaultsManager getObjectWithName:@"mapType"];
+    if(!mtNum)
+        return MKMapTypeStandard;
+    return [mtNum intValue];
+}
+
 - (BOOL)cardinalHeading
 {
     NSString *ch = (NSString*)[defaultsManager getObjectWithName:@"cardinalHeading"];

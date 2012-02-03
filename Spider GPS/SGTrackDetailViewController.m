@@ -40,6 +40,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    mapView.mapType = [SGSession instance].mapType;
 //    showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - infoView.frame.size.height - 35 - 20, 35, 35);
 //    [showMapButton setImage:[UIImage imageNamed:@"map2.png"] forState:UIControlStateNormal];
 //    [self.view addSubview:showMapButton];

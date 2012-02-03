@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGViewController.m"
-         timestampString = "349920498.95358"
+         timestampString = "349985680.276114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "692"
-         endingLineNumber = "692"
+         startingLineNumber = "693"
+         endingLineNumber = "693"
          landmarkName = "-locationButtonTouched:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -28,8 +28,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "299"
          endingLineNumber = "299"
-         landmarkName = "@implementation SGTrack"
-         landmarkType = "3">
+         landmarkName = "-addDataWithLocation:distance:startTime:stopTime:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"

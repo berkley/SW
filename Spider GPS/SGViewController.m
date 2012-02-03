@@ -304,6 +304,7 @@
         mapDirectionFollowingSwitch.on = NO;
     [self.view addSubview:speedHeadingView];
     routeArray = [[NSMutableArray alloc] init];
+    mapView.mapType = [SGSession instance].mapType;
 }
 
 - (void)viewWillDisappear:(BOOL)animated

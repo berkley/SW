@@ -91,6 +91,10 @@
     altLossView = nil;
     altGainSwitch = nil;
     altLossSwitch = nil;
+    autoSaveSwitch = nil;
+    autoSaveView = nil;
+    mapTypeSegCon = nil;
+    mapTypeView = nil;
     [super viewDidUnload];
 }
 
@@ -154,6 +158,13 @@
     metricUnitsSwitch.on = ![SGSession instance].useMPH;
     trueHeadingSwitch.on = [SGSession instance].useTrueHeading;
     screenAlwaysOnSwitch.on = [SGSession instance].screenAlwaysOn;
+    autoSaveSwitch.on = [SGSession instance].autoSaveEnabled;
+    if([SGSession instance].mapType == MKMapTypeStandard)
+        mapTypeSegCon.selectedSegmentIndex = 0;
+    else if([SGSession instance].mapType == MKMapTypeSatellite)
+        mapTypeSegCon.selectedSegmentIndex = 1;
+    else if([SGSession instance].mapType == MKMapTypeHybrid)
+        mapTypeSegCon.selectedSegmentIndex = 2;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -295,6 +306,22 @@
     [self switchChanged:(UISwitch*)sender];
 }
 
+- (IBAction)autoSaveChanged:(id)sender 
+{
+    [SGSession instance].autoSaveEnabled = autoSaveSwitch.on;
+}
+
+- (IBAction)mapTypeChanged:(id)sender 
+{
+    if(mapTypeSegCon.selectedSegmentIndex == 0)
+        [SGSession instance].mapType = MKMapTypeStandard;
+    else if(mapTypeSegCon.selectedSegmentIndex == 1)
+        [SGSession instance].mapType = MKMapTypeSatellite;
+    else if(mapTypeSegCon.selectedSegmentIndex == 2)
+        [SGSession instance].mapType = MKMapTypeHybrid;
+}
+
+
 #pragma mark - table del/datasource methods
 
 - (UITableViewCell*)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -321,6 +348,12 @@
                 break;
             case 2:
                 [cell.contentView addSubview:screenOnView];
+                break;
+            case 3:
+                [cell.contentView addSubview:autoSaveView];
+                break;
+            case 4:
+                [cell.contentView addSubview:mapTypeView];
                 break;
             default:
                 break;
@@ -380,7 +413,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0)
-        return 3;
+        return 5;
     else //if(section == 1)
         return 13;
 }
@@ -395,7 +428,7 @@
     if(section == 0)
         return @"Settings";
     else //if(section == 1)
-        return @"Field Selection";
+        return @"Field Display";
 }
 
 @end

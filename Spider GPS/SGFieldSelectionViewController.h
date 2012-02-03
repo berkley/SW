@@ -30,6 +30,8 @@
     IBOutlet UIView *totalTimeView;
     IBOutlet UIView *altGainView;
     IBOutlet UIView *altLossView;
+    IBOutlet UIView *autoSaveView;
+    IBOutlet UIView *mapTypeView;
     
     __weak IBOutlet UISwitch *metricUnitsSwitch;
     __weak IBOutlet UISwitch *trueHeadingSwitch;
@@ -49,6 +51,8 @@
     __weak IBOutlet UISwitch *lowAltitudeSwitch;
     __weak IBOutlet UISwitch *altGainSwitch;
     __weak IBOutlet UISwitch *altLossSwitch;
+    __weak IBOutlet UISwitch *autoSaveSwitch;
+    __weak IBOutlet UISegmentedControl *mapTypeSegCon;
 }
 
 @end

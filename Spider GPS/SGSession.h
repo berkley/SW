@@ -40,6 +40,8 @@
 @property (nonatomic, retain) CLLocation *currentLocation;
 @property (nonatomic, retain) NSString *activityIndicatorIsVisible;
 @property (nonatomic, retain) ActivityIndicatorModalViewController *activityIndicatorViewController;
+@property (nonatomic, assign) BOOL autoSaveEnabled;
+@property (nonatomic, assign) NSInteger mapType;
 
 + (SGSession*)instance;
 - (void)saveCurrentTrackWithName:(NSString*)name;

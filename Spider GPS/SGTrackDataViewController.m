@@ -31,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    returnFromMapView = NO;
 }
 
 - (void)viewDidUnload
@@ -46,11 +47,15 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.navigationItem.title = track.name;
-    trackInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, INFO_CELL_WIDTH, INFO_CELL_HEIGHT)];
-    [[SGSession instance] showActivityIndicator:self.navigationController description:@"Processing Track" withProgress:NO];
-    [self performSelectorInBackground:@selector(createTrackInfoView) withObject:nil];
-//    [self performSelectorOnMainThread:@selector(createTrackInfoView) withObject:nil waitUntilDone:YES];
+    if(!returnFromMapView)
+    {
+        self.navigationItem.title = track.name;
+        trackInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, INFO_CELL_WIDTH, INFO_CELL_HEIGHT)];
+        [[SGSession instance] showActivityIndicator:self.navigationController description:@"Processing Track" withProgress:NO];
+        [self performSelectorInBackground:@selector(createTrackInfoView) withObject:nil];
+    }
+    else
+        returnFromMapView = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -75,7 +80,7 @@
     if(section == 0)
         return 1;
     else
-        return 2;
+        return 3;
 }
 
 - (UIView*)createTrackInfoView
@@ -245,7 +250,7 @@
         }
         else if(indexPath.row == 2)
         {
-            cell.textLabel.text = @"3D View";
+            cell.textLabel.text = @"Time View";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;                        
         }
     }
@@ -272,8 +277,9 @@
         }
         else if(indexPath.row == 2)
         {
-            detailViewController.style = TRACK_STYLE_3D;
+            detailViewController.style = TRACK_STYLE_TIME;
         }
+        returnFromMapView = YES;
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
 }
@@ -281,13 +287,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 0)
-    {
         return INFO_CELL_HEIGHT;
-    }
     else
-    {
         return 40;
-    }
 }
 
 @end

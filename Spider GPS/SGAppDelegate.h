@@ -16,6 +16,7 @@
  x allow user to turn auto-save on/off
  - run slider control
  - spruce up the look of SGTrackDataViewController.view (add small map, change fonts, etc)
+ - time view (change color of track every minute or something like that)
  x sort tracks by date
  x add alt gain/loss
  x auto save function
@@ -26,7 +27,6 @@
  
  1.1
  - 3D view
- - time view (change color of track every minute or something like that)
  - alt gain/loss plot (profile view)
  - show friends on the map in realtime
  - realtime track friends
@@ -41,6 +41,12 @@
  1.3 
  - add iPad support
  - possibly add web support
+ 
+ Unscheduled
+ - smooth the line when the user is in one place so the line doesn't go crazy
+ - add user option for setting the radius that the user must move before a new point is collected
+ - playback view
+ - add photos or other media to track
  
 */
 

@@ -11,6 +11,7 @@
 #import <MapKit/MapKit.h>
 #import "Constants.h"
 #import "SGPolyline.h"
+#import "CommonUtil.h"
 
 #define LOCATION_KEY @"locations"
 #define DISTANCE_KEY @"distance"
@@ -77,5 +78,6 @@
 - (NSArray*)arrayOfPolylines;
 - (void)calculateAscentAndDescent;
 - (MKMapPoint*)singlePolyline;
+- (NSArray*)timeBasedPolylines;
 
 @end

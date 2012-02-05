@@ -16,6 +16,7 @@
 #define TRACK_STYLE_NORMAL 0
 #define TRACK_STYLE_RUN 1
 #define TRACK_STYLE_3D 2
+#define TRACK_STYLE_TIME 3
 
 @interface SGTrackDetailViewController :UIViewController <MKMapViewDelegate>
 {

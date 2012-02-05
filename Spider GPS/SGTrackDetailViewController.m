@@ -69,26 +69,16 @@
         MKMapPoint *tempPointArr = [track singlePolyline];
         routeLine = [MKPolyline polylineWithPoints:tempPointArr count:[track.locations count]];
         [mapView addOverlay:routeLine];
-//        if(tempPointArr)
-//            free(tempPointArr);        
+        free(tempPointArr);
     }
     else if(style == TRACK_STYLE_RUN)
     {
         NSArray *polylines = [track arrayOfPolylines];       
-//        for(SGPolyline *polyline in polylines)
-//        {
-//            CLLocationCoordinate2D coord = MKCoordinateForMapPoint(polyline.points[0]);
-//            SGPinAnnotation *ann = [[SGPinAnnotation alloc] initWithCoordinate:coord];
-//            ann.title = [NSString stringWithFormat:@"%.2f m", polyline.firstAltitude];
-//            [mapView addAnnotation:ann];
-//            
-//            CLLocationCoordinate2D coord2 = MKCoordinateForMapPoint(polyline.points[pointCount - 1]);
-//            SGPinAnnotation *ann2 = [[SGPinAnnotation alloc] initWithCoordinate:coord2];
-//            ann2.title = [NSString stringWithFormat:@"%.2f m", polyline.firstAltitude];
-//            [mapView addAnnotation:ann2];
-//            
-//            [mapView addOverlay:polyline];
-//        }
+        [mapView addOverlays:polylines];
+    }
+    else if(style == TRACK_STYLE_TIME)
+    {
+        NSArray *polylines = [track timeBasedPolylines];
         [mapView addOverlays:polylines];
     }
     

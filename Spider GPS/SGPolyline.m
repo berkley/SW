@@ -11,6 +11,11 @@
 @implementation SGPolyline
 @synthesize isAscending, points, pointCount, firstAltitude, lastAltitude;
 
+- (void)dealloc
+{
+    free(points);
+}
+
 - (id)initWithPoints:(MKMapPoint*)pts count:(NSInteger)ct isAscending:(BOOL)isAsc withCenterCoord:(CLLocationCoordinate2D)center
 {
     self = [super init];
@@ -63,10 +68,6 @@
 
 - (MKPolyline*)polyline
 {
-//    for(int i=0; i<pointCount; i++)
-//    {
-//        NSLog(@"point: %f %f %i", ((MKMapPoint)ps[i]).x, ((MKMapPoint)ps[i]).y, c);
-//    }
     return [MKPolyline polylineWithPoints:points count:pointCount];
 }
 

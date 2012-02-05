@@ -395,6 +395,58 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     return tempPointArr;
 }
 
+- (NSArray*)timeBasedPolylines
+{
+    NSMutableArray *polylineArray = [[NSMutableArray alloc] init];
+    NSInteger prevmin = -1;
+    MKMapPoint *mapPoints = malloc(sizeof(MKMapPoint) * 90);
+    int linecount = 0;
+    int nummappoints = 0;
+    CLLocationCoordinate2D centerPoint;
+    unsigned int unitFlags = NSMinuteCalendarUnit;
+    NSCalendar *cal = [NSCalendar currentCalendar];
+//    @autoreleasepool 
+//    {
+        for(CLLocation *loc in self.locations)
+        {
+            NSDateComponents *conversionInfo = [cal components:unitFlags fromDate:loc.timestamp];
+//            NSInteger min = [CommonUtil getMinuteFromDate:loc.timestamp];
+            NSInteger min = [conversionInfo minute];
+
+            if(prevmin == -1)
+            { //bootstrap
+                prevmin = min;
+                centerPoint = loc.coordinate;
+                continue;
+            }
+            
+            MKMapPoint point = MKMapPointForCoordinate(loc.coordinate);
+            if(min != prevmin)
+            { //make a new polyline
+                BOOL isAscending = NO;
+                if(linecount % 2 == 0)
+                    isAscending = YES;
+                SGPolyline *polyline = [[SGPolyline alloc] initWithPoints:mapPoints 
+                                                                    count:nummappoints 
+                                                              isAscending:isAscending 
+                                                          withCenterCoord:centerPoint];
+                centerPoint = loc.coordinate;
+                [polylineArray addObject:polyline];
+                linecount++;
+                nummappoints = 0;
+            }
+            
+            mapPoints[nummappoints] = point;
+            nummappoints++;
+            prevmin = min;
+        }
+        
+        free(mapPoints);
+//    }
+    
+    return polylineArray;
+}
+
 - (NSArray*)arrayOfPolylines
 {
     NSDictionary *dict = [self divideTrackIntoAscentAndDescent];
@@ -412,7 +464,6 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
                          return NSOrderedSame;
                      }];
     
-//    NSLog(@"allKeys: %@", keys);
     NSMutableArray *polylineArray = [NSMutableArray array];
     for(NSString *key in keys)
     {
@@ -432,10 +483,7 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
             CLLocation *loc = [arr objectAtIndex:i];
             MKMapPoint point = MKMapPointForCoordinate(loc.coordinate);
             mapPoints[i] = point;
-//            NSLog(@"adding mapPoint: %f,%f", loc.coordinate.latitude, loc.coordinate.longitude);
-//            NSLog(@"point: %f %f", ((MKMapPoint)mapPoints[i]).x, ((MKMapPoint)mapPoints[i]).y);
         }
-//        MKPolyline *polyline = [MKPolyline polylineWithPoints:mapPoints count:[arr count]];
         SGPolyline *polyline = [[SGPolyline alloc] initWithPoints:mapPoints count:[arr count] 
                                                       isAscending:isAscending 
                                                   withCenterCoord:centerLoc.coordinate];
@@ -444,6 +492,7 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
         polyline.firstAltitude = firstLoc.altitude;
         polyline.lastAltitude = lastLoc.altitude;
         [polylineArray addObject:polyline];
+        free(mapPoints);
     }
     return polylineArray;
 }

@@ -17,6 +17,7 @@
 {
     SGTrack *track;
     UIView *trackInfoView;
+    BOOL returnFromMapView;
 }
 
 @property (nonatomic, retain) SGTrack *track;

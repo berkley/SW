@@ -43,6 +43,7 @@
 		7ED5A04514DC662E008D6C67 /* disk.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED5A04414DC662E008D6C67 /* disk.png */; };
 		7ED5A04714DC7628008D6C67 /* mapincircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED5A04614DC7628008D6C67 /* mapincircle.png */; };
 		7ED5A04914DC77FC008D6C67 /* dashboardincircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED5A04814DC77FC008D6C67 /* dashboardincircle.png */; };
+		7ED5A04C14DDF96B008D6C67 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED5A04B14DDF96B008D6C67 /* CommonUtil.m */; };
 		7EE7120114AFE8080079C133 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE7120014AFE8080079C133 /* Default@2x.png */; };
 		CD4DEB9714B418D700E9110A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4DEB9614B418D700E9110A /* icon.png */; };
 		CD4DEB9914B4190900E9110A /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4DEB9814B4190900E9110A /* icon-small.png */; };
@@ -107,6 +108,8 @@
 		7ED5A04414DC662E008D6C67 /* disk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disk.png; sourceTree = "<group>"; };
 		7ED5A04614DC7628008D6C67 /* mapincircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapincircle.png; sourceTree = "<group>"; };
 		7ED5A04814DC77FC008D6C67 /* dashboardincircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboardincircle.png; sourceTree = "<group>"; };
+		7ED5A04A14DDF96B008D6C67 /* CommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonUtil.h; path = ../../ObjectiveCUtil/arc/CommonUtil.h; sourceTree = "<group>"; };
+		7ED5A04B14DDF96B008D6C67 /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonUtil.m; path = ../../ObjectiveCUtil/arc/CommonUtil.m; sourceTree = "<group>"; };
 		7EE7120014AFE8080079C133 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		7EE7120214AFE8500079C133 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		CD4DEB9614B418D700E9110A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
@@ -283,6 +286,8 @@
 		CDC6FF9B14D6115D00F4CFA1 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				7ED5A04A14DDF96B008D6C67 /* CommonUtil.h */,
+				7ED5A04B14DDF96B008D6C67 /* CommonUtil.m */,
 				CDC6FF9214D5F97400F4CFA1 /* SGTest.h */,
 				CDC6FF9314D5F97400F4CFA1 /* SGTest.m */,
 				CDC6FF9514D60B7A00F4CFA1 /* HUDView.h */,
@@ -396,6 +401,7 @@
 				CDC6FF9414D5F97400F4CFA1 /* SGTest.m in Sources */,
 				CDC6FF9714D60B7A00F4CFA1 /* HUDView.m in Sources */,
 				CDC6FFA114D617E800F4CFA1 /* SGTrackTableViewCell.m in Sources */,
+				7ED5A04C14DDF96B008D6C67 /* CommonUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

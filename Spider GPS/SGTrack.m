@@ -513,18 +513,21 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     return distance / seconds;
 }
 
-- (NSArray*)timeAnnotations
+- (NSArray*)timeAnnotationsWithInterval:(NSInteger)interval
 {
     NSMutableArray *annotationArray = [[NSMutableArray alloc] init];
     NSInteger prevmin = -1;
     MKMapPoint *mapPoints = malloc(sizeof(MKMapPoint) * 90);
     int linecount = 0;
-    unsigned int unitFlags = NSMinuteCalendarUnit;
+    unsigned int unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit;
     NSCalendar *cal = [NSCalendar currentCalendar];
+    NSInteger alreadyDone = -1;
     for(CLLocation *loc in self.locations)
     {
         NSDateComponents *conversionInfo = [cal components:unitFlags fromDate:loc.timestamp];
         NSInteger min = [conversionInfo minute];
+        NSInteger hr = [conversionInfo hour];
+        min = min + (hr * 60);
         
         if(prevmin == -1)
         { //bootstrap
@@ -532,20 +535,24 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
             continue;
         }
         
-        if(min != prevmin)
+        if(min > prevmin && min != alreadyDone)
         { //make a new polyline
-            NSString *timeString;
-            if(linecount > 59)
+            alreadyDone = min;
+            if(min % interval == 0)
             {
-                NSInteger hours = linecount / 60;
-                NSInteger mins = linecount % 60;
-                timeString = [NSString stringWithFormat:@"%02d:%02d:00", hours, mins];
+                NSString *timeString;
+                if(linecount > 59)
+                {
+                    NSInteger hours = linecount / 60;
+                    NSInteger mins = linecount % 60;
+                    timeString = [NSString stringWithFormat:@"%02d:%02d:00", hours, mins];
+                }
+                else
+                    timeString = [NSString stringWithFormat:@"%02d:00", linecount];
+                SGTimeAnnotation *ann = [[SGTimeAnnotation alloc] initWithCoordinate:loc.coordinate time:timeString];
+                [annotationArray addObject:ann];
             }
-            else
-                timeString = [NSString stringWithFormat:@"%0i:00", linecount];
             
-            SGTimeAnnotation *ann = [[SGTimeAnnotation alloc] initWithCoordinate:loc.coordinate time:timeString];
-            [annotationArray addObject:ann];
             linecount++;
         }
         

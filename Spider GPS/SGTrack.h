@@ -80,6 +80,6 @@
 - (void)calculateAscentAndDescent;
 - (MKMapPoint*)singlePolyline;
 - (NSArray*)timeBasedPolylines;
-- (NSArray*)timeAnnotations;
+- (NSArray*)timeAnnotationsWithInterval:(NSInteger)interval;
 
 @end

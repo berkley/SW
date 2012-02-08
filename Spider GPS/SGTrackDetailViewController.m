@@ -86,7 +86,7 @@
         routeLine = [MKPolyline polylineWithPoints:tempPointArr count:[track.locations count]];
         [mapView addOverlay:routeLine];
         free(tempPointArr);
-        [mapView addAnnotations:[track timeAnnotations]];
+        [mapView addAnnotations:[track timeAnnotationsWithInterval:5]];
     }
     
     for(SGPinAnnotation *ann in track.annotations)

@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGTrackDetailViewController.m"
-         timestampString = "350418729.235139"
+         timestampString = "350423998.449713"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "185"
-         endingLineNumber = "185"
+         startingLineNumber = "257"
+         endingLineNumber = "257"
          landmarkName = "@implementation SGTrackDetailViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGTrackDetailViewController.m"
-         timestampString = "350418729.235139"
+         timestampString = "350423998.449713"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "195"
-         endingLineNumber = "195">
+         startingLineNumber = "267"
+         endingLineNumber = "267">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -35,11 +35,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGTrackDetailViewController.m"
-         timestampString = "350418729.235139"
+         timestampString = "350423998.449713"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "191"
-         endingLineNumber = "191">
+         startingLineNumber = "263"
+         endingLineNumber = "263">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"

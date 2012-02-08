@@ -33,8 +33,12 @@
     IBOutlet UIButton *showMapButton;
     BOOL dashboardHidden;
     int polylineCount;
-    
     int style;
+    __weak IBOutlet UISlider *slider;
+    __weak IBOutlet UILabel *sliderLabel;
+    __weak IBOutlet UILabel *sliderValueLabel;
+    __weak IBOutlet UISegmentedControl *segmentedControl;
+    __weak IBOutlet UILabel *segmentedControlLabel;
 }
 
 @property (nonatomic, assign) NSInteger style;

@@ -57,6 +57,11 @@
 {
     mapView = nil;
     showMapButton = nil;
+    slider = nil;
+    sliderLabel = nil;
+    sliderValueLabel = nil;
+    segmentedControl = nil;
+    segmentedControlLabel = nil;
     [super viewDidUnload];
 }
 
@@ -72,11 +77,21 @@
         routeLine = [MKPolyline polylineWithPoints:tempPointArr count:[track.locations count]];
         [mapView addOverlay:routeLine];
         free(tempPointArr);
+        slider.hidden = YES;
+        sliderLabel.hidden = YES;
+        sliderValueLabel.hidden = YES;
+        segmentedControl.hidden = YES;
+        segmentedControlLabel.hidden = YES;
     }
     else if(style == TRACK_STYLE_RUN)
     {
         NSArray *polylines = [track arrayOfPolylines];       
         [mapView addOverlays:polylines];
+        slider.hidden = YES;
+        sliderLabel.hidden = YES;
+        sliderValueLabel.hidden = YES;
+        segmentedControl.hidden = YES;
+        segmentedControlLabel.hidden = YES;
     }
     else if(style == TRACK_STYLE_TIME)
     {
@@ -87,6 +102,22 @@
         [mapView addOverlay:routeLine];
         free(tempPointArr);
         [mapView addAnnotations:[track timeAnnotationsWithInterval:5]];
+        
+        slider.hidden = YES;
+        sliderLabel.hidden = YES;
+        sliderValueLabel.hidden = YES;
+        segmentedControlLabel.text = @"Interval (minutes)";
+        segmentedControl.hidden = NO;
+        segmentedControlLabel.hidden = NO;
+        segmentedControl.selectedSegmentIndex = 1;
+//        slider.hidden = NO;
+//        sliderLabel.hidden = NO;
+//        sliderValueLabel.hidden = NO;
+//        slider.maximumValue = 60;
+//        slider.minimumValue = 1;
+
+//        slider.value = 5;
+//        slider.continuous = NO;
     }
     
     for(SGPinAnnotation *ann in track.annotations)
@@ -156,6 +187,47 @@
         return timeAnnView;
     }
     return nil;
+}
+
+- (IBAction)sliderValueChanged:(id)sender 
+{
+    NSLog(@"slider value: %f", slider.value);
+    NSInteger val = [[NSNumber numberWithFloat:slider.value] intValue];
+    sliderValueLabel.text = [NSString stringWithFormat:@"%i", val];
+    if(style == TRACK_STYLE_TIME)
+    {
+        [mapView removeAnnotations:mapView.annotations];
+        [mapView addAnnotations:[track timeAnnotationsWithInterval:val]];
+    }
+}
+
+- (IBAction)segmentedControlValueChanged:(id)sender 
+{
+    [mapView removeAnnotations:mapView.annotations];
+    if(segmentedControl.selectedSegmentIndex == 0)
+    { //1
+        [mapView addAnnotations:[track timeAnnotationsWithInterval:1]];
+    }
+    else if(segmentedControl.selectedSegmentIndex == 1)
+    { //5
+        [mapView addAnnotations:[track timeAnnotationsWithInterval:5]];
+    }
+    else if(segmentedControl.selectedSegmentIndex == 2)
+    { //10
+        [mapView addAnnotations:[track timeAnnotationsWithInterval:10]];
+    }
+    else if(segmentedControl.selectedSegmentIndex == 3)
+    { //15
+        [mapView addAnnotations:[track timeAnnotationsWithInterval:15]];
+    }
+    else if(segmentedControl.selectedSegmentIndex == 4)
+    { //30
+        [mapView addAnnotations:[track timeAnnotationsWithInterval:30]];
+    }
+    else if(segmentedControl.selectedSegmentIndex == 5)
+    { //60
+        [mapView addAnnotations:[track timeAnnotationsWithInterval:60]];
+    }
 }
 
 //- (IBAction)showMapButtonTouched:(id)sender 

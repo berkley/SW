@@ -531,14 +531,14 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
         
         if(prevmin == -1)
         { //bootstrap
-            prevmin = min;
-            continue;
+            prevmin = min - 1;
+//            continue;
         }
         
         if(min > prevmin && min != alreadyDone)
         { //make a new polyline
             alreadyDone = min;
-            if(min % interval == 0)
+            if(linecount % interval == 0)
             {
                 NSString *timeString;
                 if(linecount > 59)

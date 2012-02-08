@@ -19,6 +19,25 @@
     return self;
 }
 
+- (id)initWithFrame:(CGRect)frame 
+     tlCornerCurved:(BOOL)tlcorner 
+     trCornerCurved:(BOOL)trcorner 
+     blCornerCurved:(BOOL)blcorner 
+     brCornerCurved:(BOOL)brcorner
+     arrowDirection:(NSInteger)dir
+{
+    self = [self initWithFrame:frame];
+    if(self)
+    {
+        tlCornerCurved = tlcorner;
+        trCornerCurved = trcorner;
+        brCornerCurved = brcorner;
+        blCornerCurved = blcorner;
+        arrowDirection = dir;
+    }
+    return self;
+}
+
 - (void)drawRect:(CGRect)rect 
 {
 	CGFloat stroke = 1.0;
@@ -38,43 +57,160 @@
 	
 	//Create Path For Callout Bubble
 	CGPathMoveToPoint(path, NULL, rect.origin.x, rect.origin.y + radius);
-	CGPathAddLineToPoint(path, NULL, rect.origin.x, rect.origin.y + rect.size.height/* - radius*/);
-//	CGPathAddArc(path, NULL, rect.origin.x + radius, rect.origin.y + rect.size.height - radius, 
-//				 radius, M_PI, M_PI / 2, 1);
+    //bottom left
+    if(blCornerCurved)
+    {
+        CGPathAddLineToPoint(path, NULL, rect.origin.x, rect.origin.y + rect.size.height - radius);
+        CGPathAddArc(path, NULL, rect.origin.x + radius, rect.origin.y + rect.size.height - radius, 
+        				 radius, M_PI, M_PI / 2, 1);
+    }
+    else
+    {
+        CGPathAddLineToPoint(path, NULL, rect.origin.x, rect.origin.y + rect.size.height);
+    }
+	
+    if(arrowDirection == ARROW_DIRECTION_DOWN)
+    {
+        //the down arrow
+        CGFloat parentX = 10.0;
+        int xoffset = 200;
+        if(parentX > xoffset)
+        {
+            CGPathAddLineToPoint(path, NULL, rect.origin.x - 15 + xoffset, 
+                                 rect.origin.y + rect.size.height);
+            CGPathAddLineToPoint(path, NULL, rect.origin.x + xoffset, 
+                                 rect.origin.y + rect.size.height + 15);
+            CGPathAddLineToPoint(path, NULL, rect.origin.x + 15 + xoffset, 
+                                 rect.origin.y + rect.size.height);
+        }
+        else
+        {
+            CGPathAddLineToPoint(path, NULL, parentX - 15, 
+                                 rect.origin.y + rect.size.height);
+            CGPathAddLineToPoint(path, NULL, parentX, 
+                                 rect.origin.y + rect.size.height + 15);
+            CGPathAddLineToPoint(path, NULL, parentX + 15, 
+                                 rect.origin.y + rect.size.height);
+        }        
+    }
+
     
-    //the down arrow
-//    CGFloat parentX = 10.0;
-//    int xoffset = 200;
-//    if(parentX > xoffset)
-//    {
-//        CGPathAddLineToPoint(path, NULL, rect.origin.x - 15 + xoffset, 
-//                             rect.origin.y + rect.size.height);
-//        CGPathAddLineToPoint(path, NULL, rect.origin.x + xoffset, 
-//                             rect.origin.y + rect.size.height + 15);
-//        CGPathAddLineToPoint(path, NULL, rect.origin.x + 15 + xoffset, 
-//                             rect.origin.y + rect.size.height);
-//    }
-//    else
-//    {
-//        CGPathAddLineToPoint(path, NULL, parentX - 15, 
-//                             rect.origin.y + rect.size.height);
-//        CGPathAddLineToPoint(path, NULL, parentX, 
-//                             rect.origin.y + rect.size.height + 15);
-//        CGPathAddLineToPoint(path, NULL, parentX + 15, 
-//                             rect.origin.y + rect.size.height);
-//    }
+    //bottom right
+    if(brCornerCurved)
+    {
+        CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width - radius, 
+                             rect.origin.y + rect.size.height);
+        CGPathAddArc(path, NULL, rect.origin.x + rect.size.width - radius, 
+        				 rect.origin.y + rect.size.height - radius, radius, M_PI / 2, 0.0f, 1);
+        
+    }
+    else
+    {
+        CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width, 
+                             rect.origin.y + rect.size.height);
+        
+    }
     
-    //continue the box
-	CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width /*- radius*/, 
-						 rect.origin.y + rect.size.height);
-//	CGPathAddArc(path, NULL, rect.origin.x + rect.size.width - radius, 
-//				 rect.origin.y + rect.size.height - radius, radius, M_PI / 2, 0.0f, 1);
-	CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width, rect.origin.y + radius);
-	CGPathAddArc(path, NULL, rect.origin.x + rect.size.width - radius, rect.origin.y + radius, 
-				 radius, 0.0f, -M_PI / 2, 1);
-	CGPathAddLineToPoint(path, NULL, rect.origin.x + radius, rect.origin.y);
-	CGPathAddArc(path, NULL, rect.origin.x + radius, rect.origin.y + radius, radius, 
-				 -M_PI / 2, M_PI, 1);
+    if(arrowDirection == ARROW_DIRECTION_RIGHT)
+    {
+        //the right arrow
+        CGFloat parentX = 10.0;
+        int xoffset = 200;
+        if(parentX > xoffset)
+        {
+            CGPathAddLineToPoint(path, NULL, rect.origin.x - 15 + xoffset, 
+                                 rect.origin.y + rect.size.height);
+            CGPathAddLineToPoint(path, NULL, rect.origin.x + xoffset, 
+                                 rect.origin.y + rect.size.height + 15);
+            CGPathAddLineToPoint(path, NULL, rect.origin.x + 15 + xoffset, 
+                                 rect.origin.y + rect.size.height);
+        }
+        else
+        {
+            CGPathAddLineToPoint(path, NULL, parentX - 15, 
+                                 rect.origin.y + rect.size.height);
+            CGPathAddLineToPoint(path, NULL, parentX, 
+                                 rect.origin.y + rect.size.height + 15);
+            CGPathAddLineToPoint(path, NULL, parentX + 15, 
+                                 rect.origin.y + rect.size.height);
+        }        
+    }
+    
+    
+    //top left
+    if(trCornerCurved)
+    {
+        CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width, rect.origin.y + radius);
+        CGPathAddArc(path, NULL, rect.origin.x + rect.size.width - radius, rect.origin.y + radius, 
+                     radius, 0.0f, -M_PI / 2, 1);
+    }
+    else
+    {
+        CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width, rect.origin.y);
+    }
+    
+    if(arrowDirection == ARROW_DIRECTION_UP)
+    {
+        //the down arrow
+        CGFloat parentX = 10.0;
+        int xoffset = 200;
+        if(parentX > xoffset)
+        {
+            CGPathAddLineToPoint(path, NULL, rect.origin.x - 15 + xoffset, 
+                                 rect.origin.y + rect.size.height);
+            CGPathAddLineToPoint(path, NULL, rect.origin.x + xoffset, 
+                                 rect.origin.y + rect.size.height + 15);
+            CGPathAddLineToPoint(path, NULL, rect.origin.x + 15 + xoffset, 
+                                 rect.origin.y + rect.size.height);
+        }
+        else
+        {
+            CGPathAddLineToPoint(path, NULL, parentX - 15, 
+                                 rect.origin.y + rect.size.height);
+            CGPathAddLineToPoint(path, NULL, parentX, 
+                                 rect.origin.y + rect.size.height + 15);
+            CGPathAddLineToPoint(path, NULL, parentX + 15, 
+                                 rect.origin.y + rect.size.height);
+        }        
+    }
+    
+    //top right
+    if(tlCornerCurved)
+    {
+        CGPathAddLineToPoint(path, NULL, rect.origin.x + radius, rect.origin.y);
+        CGPathAddArc(path, NULL, rect.origin.x + radius, rect.origin.y + radius, radius, 
+                     -M_PI / 2, M_PI, 1);
+    }
+    else
+    {
+        CGPathAddLineToPoint(path, NULL, rect.origin.x, rect.origin.y);      
+    }
+    
+    if(arrowDirection == ARROW_DIRECTION_LEFT)
+    {
+        //the down arrow
+        CGFloat parentX = 10.0;
+        int xoffset = 200;
+        if(parentX > xoffset)
+        {
+            CGPathAddLineToPoint(path, NULL, rect.origin.x - 15 + xoffset, 
+                                 rect.origin.y + rect.size.height);
+            CGPathAddLineToPoint(path, NULL, rect.origin.x + xoffset, 
+                                 rect.origin.y + rect.size.height + 15);
+            CGPathAddLineToPoint(path, NULL, rect.origin.x + 15 + xoffset, 
+                                 rect.origin.y + rect.size.height);
+        }
+        else
+        {
+            CGPathAddLineToPoint(path, NULL, parentX - 15, 
+                                 rect.origin.y + rect.size.height);
+            CGPathAddLineToPoint(path, NULL, parentX, 
+                                 rect.origin.y + rect.size.height + 15);
+            CGPathAddLineToPoint(path, NULL, parentX + 15, 
+                                 rect.origin.y + rect.size.height);
+        }        
+    }
+    
 	CGPathCloseSubpath(path);
 	
 	//Fill Callout Bubble & Add Shadow

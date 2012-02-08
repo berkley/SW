@@ -50,6 +50,8 @@
 		CD4DEB9B14B4197D00E9110A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE7120214AFE8500079C133 /* Default.png */; };
 		CD4DEBAB14B5704D00E9110A /* spinnerbox.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4DEBAA14B5704D00E9110A /* spinnerbox.png */; };
 		CD8CABF314C53736003E263C /* SGPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8CABF214C53736003E263C /* SGPolyline.m */; };
+		CD8E4A4914E2E57100959D00 /* SGTimeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8E4A4814E2E57000959D00 /* SGTimeAnnotation.m */; };
+		CD8E4A4C14E2E63300959D00 /* SGTimeAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8E4A4B14E2E63300959D00 /* SGTimeAnnotationView.m */; };
 		CDC6FF7614D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC6FF7414D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m */; };
 		CDC6FF7714D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC6FF7514D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib */; };
 		CDC6FF9414D5F97400F4CFA1 /* SGTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC6FF9314D5F97400F4CFA1 /* SGTest.m */; };
@@ -117,6 +119,10 @@
 		CD4DEBAA14B5704D00E9110A /* spinnerbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinnerbox.png; sourceTree = SOURCE_ROOT; };
 		CD8CABF114C53736003E263C /* SGPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPolyline.h; sourceTree = "<group>"; };
 		CD8CABF214C53736003E263C /* SGPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPolyline.m; sourceTree = "<group>"; };
+		CD8E4A4714E2E57000959D00 /* SGTimeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTimeAnnotation.h; sourceTree = "<group>"; };
+		CD8E4A4814E2E57000959D00 /* SGTimeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTimeAnnotation.m; sourceTree = "<group>"; };
+		CD8E4A4A14E2E63300959D00 /* SGTimeAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGTimeAnnotationView.h; sourceTree = "<group>"; };
+		CD8E4A4B14E2E63300959D00 /* SGTimeAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGTimeAnnotationView.m; sourceTree = "<group>"; };
 		CDC6FF7314D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorModalViewController.h; sourceTree = "<group>"; };
 		CDC6FF7414D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorModalViewController.m; sourceTree = "<group>"; };
 		CDC6FF7514D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityIndicatorModalViewController.xib; sourceTree = "<group>"; };
@@ -243,11 +249,11 @@
 				7E97AFB714AA8316002404A5 /* SGTrackDetailViewController.h */,
 				7E97AFB814AA8316002404A5 /* SGTrackDetailViewController.m */,
 				7E97AFB914AA8316002404A5 /* SGTrackDetailViewController.xib */,
+				7E5CA36A14CBE4650049BA1E /* SGTrackDataViewController.h */,
+				7E5CA36B14CBE4650049BA1E /* SGTrackDataViewController.m */,
 				7E97AFBA14AA8316002404A5 /* SGFieldSelectionViewController.h */,
 				7E97AFBB14AA8316002404A5 /* SGFieldSelectionViewController.m */,
 				7E97AFBC14AA8316002404A5 /* SGFieldSelectionViewController.xib */,
-				7E5CA36A14CBE4650049BA1E /* SGTrackDataViewController.h */,
-				7E5CA36B14CBE4650049BA1E /* SGTrackDataViewController.m */,
 				CDC6FF7314D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.h */,
 				CDC6FF7414D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m */,
 				CDC6FF7514D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib */,
@@ -262,6 +268,10 @@
 				7E9977CB14BD4D7D004BB12F /* SGPinAnnotation.m */,
 				CD8CABF114C53736003E263C /* SGPolyline.h */,
 				CD8CABF214C53736003E263C /* SGPolyline.m */,
+				CD8E4A4714E2E57000959D00 /* SGTimeAnnotation.h */,
+				CD8E4A4814E2E57000959D00 /* SGTimeAnnotation.m */,
+				CD8E4A4A14E2E63300959D00 /* SGTimeAnnotationView.h */,
+				CD8E4A4B14E2E63300959D00 /* SGTimeAnnotationView.m */,
 			);
 			name = Mapping;
 			sourceTree = "<group>";
@@ -402,6 +412,8 @@
 				CDC6FF9714D60B7A00F4CFA1 /* HUDView.m in Sources */,
 				CDC6FFA114D617E800F4CFA1 /* SGTrackTableViewCell.m in Sources */,
 				7ED5A04C14DDF96B008D6C67 /* CommonUtil.m in Sources */,
+				CD8E4A4914E2E57100959D00 /* SGTimeAnnotation.m in Sources */,
+				CD8E4A4C14E2E63300959D00 /* SGTimeAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,12 +491,12 @@
 		7E97AFA814AA81D9002404A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chad Berkley (A723P8EY37)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Peter Anderson (PK484EQWS2)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spider GPS/Spider GPS-Prefix.pch";
 				INFOPLIST_FILE = "Spider GPS/Spider GPS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "34FF8DA7-4691-4B42-B354-EE8D831EBDB8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E8B86FC5-3355-4CE4-9E7F-6AA2C2B6D640";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

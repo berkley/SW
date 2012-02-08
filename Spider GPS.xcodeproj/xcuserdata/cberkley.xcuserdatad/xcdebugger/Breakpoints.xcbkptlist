@@ -9,12 +9,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGTrackDetailViewController.m"
-         timestampString = "349571551.559118"
+         timestampString = "350418729.235139"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "170"
-         endingLineNumber = "170"
-         landmarkName = "-mapView:viewForOverlay:"
+         startingLineNumber = "185"
+         endingLineNumber = "185"
+         landmarkName = "-mapView:viewForAnnotation:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -23,13 +23,13 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGTrackDetailViewController.m"
-         timestampString = "349571551.559118"
+         timestampString = "350418729.235139"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "180"
-         endingLineNumber = "180"
-         landmarkName = "@implementation SGTrackDetailViewController"
-         landmarkType = "3">
+         startingLineNumber = "195"
+         endingLineNumber = "195"
+         landmarkName = "-mapView:viewForAnnotation:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -37,12 +37,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Spider GPS/SGTrackDetailViewController.m"
-         timestampString = "349571551.559118"
+         timestampString = "350418729.235139"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "176"
-         endingLineNumber = "176"
-         landmarkName = "-mapView:viewForOverlay:"
+         startingLineNumber = "191"
+         endingLineNumber = "191"
+         landmarkName = "-mapView:viewForAnnotation:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -56,8 +56,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "85"
          endingLineNumber = "85"
-         landmarkName = "@implementation SGSession"
-         landmarkType = "3">
+         landmarkName = "-saveCurrentTrackWithName:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -70,7 +70,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "103"
          endingLineNumber = "103"
-         landmarkName = "-saveCurrentTrackWithName:"
+         landmarkName = "-getTrackWithName:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -84,7 +84,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "119"
          endingLineNumber = "119"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkName = "-viewDidDisappear:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

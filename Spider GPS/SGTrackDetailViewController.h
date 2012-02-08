@@ -12,6 +12,8 @@
 #import "SGSession.h"
 #import "SGPinAnnotation.h"
 #import "SGPolyline.h"
+#import "SGTimeAnnotation.h"
+#import "SGTimeAnnotationView.h"
 
 #define TRACK_STYLE_NORMAL 0
 #define TRACK_STYLE_RUN 1

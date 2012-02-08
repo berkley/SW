@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "SGPolyline.h"
 #import "CommonUtil.h"
+#import "SGTimeAnnotation.h"
 
 #define LOCATION_KEY @"locations"
 #define DISTANCE_KEY @"distance"
@@ -79,5 +80,6 @@
 - (void)calculateAscentAndDescent;
 - (MKMapPoint*)singlePolyline;
 - (NSArray*)timeBasedPolylines;
+- (NSArray*)timeAnnotations;
 
 @end

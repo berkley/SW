@@ -64,6 +64,8 @@
 {
     //    NSLog(@"loc count: %i track: %@", [track.locations count], track.name);    
     [mapView removeOverlays:mapView.overlays];
+    [mapView removeAnnotations:mapView.annotations];
+    
     if(style == TRACK_STYLE_NORMAL)
     {
         MKMapPoint *tempPointArr = [track singlePolyline];
@@ -78,8 +80,13 @@
     }
     else if(style == TRACK_STYLE_TIME)
     {
-        NSArray *polylines = [track timeBasedPolylines];
-        [mapView addOverlays:polylines];
+//        NSArray *polylines = [track timeBasedPolylines];
+//        [mapView addOverlays:polylines];
+        MKMapPoint *tempPointArr = [track singlePolyline];
+        routeLine = [MKPolyline polylineWithPoints:tempPointArr count:[track.locations count]];
+        [mapView addOverlay:routeLine];
+        free(tempPointArr);
+        [mapView addAnnotations:[track timeAnnotations]];
     }
     
     for(SGPinAnnotation *ann in track.annotations)
@@ -138,6 +145,15 @@
         pinView.canShowCallout = YES;
         pinView.frame = CGRectMake(0, 0, 20, 20);
         return pinView;
+    }
+    else if([annotation isKindOfClass:[SGTimeAnnotation class]])
+    {
+        SGTimeAnnotationView *timeAnnView = [[SGTimeAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"timeAnnotation"];
+        timeAnnView.canShowCallout = NO;
+        timeAnnView.userInteractionEnabled = NO;
+        timeAnnView.frame = CGRectMake(0, 0, 20, 20);
+        timeAnnView.backgroundColor = [UIColor clearColor];
+        return timeAnnView;
     }
     return nil;
 }

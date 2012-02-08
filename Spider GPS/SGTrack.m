@@ -506,13 +506,55 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
 //distance must be in meters!
 + (double)calculateAvgSpeedForDistance:(NSInteger)distance fromDate:(NSDate*)date1 toDate:(NSDate*)date2
 {
-    unsigned int unitFlags = NSSecondCalendarUnit;
+    unsigned int unitFlags = NSMinuteCalendarUnit;
     NSCalendar *sysCalendar = [NSCalendar currentCalendar];
     NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:date1  toDate:date2  options:0];
     NSInteger seconds = [conversionInfo second];
     return distance / seconds;
 }
 
-
+- (NSArray*)timeAnnotations
+{
+    NSMutableArray *annotationArray = [[NSMutableArray alloc] init];
+    NSInteger prevmin = -1;
+    MKMapPoint *mapPoints = malloc(sizeof(MKMapPoint) * 90);
+    int linecount = 0;
+    unsigned int unitFlags = NSMinuteCalendarUnit;
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    for(CLLocation *loc in self.locations)
+    {
+        NSDateComponents *conversionInfo = [cal components:unitFlags fromDate:loc.timestamp];
+        NSInteger min = [conversionInfo minute];
+        
+        if(prevmin == -1)
+        { //bootstrap
+            prevmin = min;
+            continue;
+        }
+        
+        if(min != prevmin)
+        { //make a new polyline
+            NSString *timeString;
+            if(linecount > 59)
+            {
+                NSInteger hours = linecount / 60;
+                NSInteger mins = linecount % 60;
+                timeString = [NSString stringWithFormat:@"%02d:%02d:00", hours, mins];
+            }
+            else
+                timeString = [NSString stringWithFormat:@"%0i:00", linecount];
+            
+            SGTimeAnnotation *ann = [[SGTimeAnnotation alloc] initWithCoordinate:loc.coordinate time:timeString];
+            [annotationArray addObject:ann];
+            linecount++;
+        }
+        
+        prevmin = min;
+    }
+    
+    free(mapPoints);
+    
+    return annotationArray;
+}
 
 @end

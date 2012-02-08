@@ -124,6 +124,14 @@
     
     distance = 0.0;
     
+    speedHeadingView = [[HUDView alloc] initWithFrame:CGRectMake(0, 0, 316, 214) 
+                                       tlCornerCurved:YES 
+                                       trCornerCurved:YES
+                                       blCornerCurved:NO 
+                                       brCornerCurved:NO 
+                                       arrowDirection:ARROW_DIRECTION_NONE];
+    speedHeadingView.backgroundColor = [UIColor clearColor];
+    
     trackViewController = [[SGTrackViewController alloc] init];
     fieldsViewController = [[SGFieldSelectionViewController alloc] initWithNibName:@"SGFieldSelectionViewController" bundle:nil];
     navcon = [[UINavigationController alloc] initWithRootViewController:trackViewController];

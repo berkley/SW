@@ -38,6 +38,8 @@
 		7E97AFDA14AA9675002404A5 /* redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AFD914AA9675002404A5 /* redo.png */; };
 		7E9977CC14BD4D7D004BB12F /* SGPinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9977CB14BD4D7D004BB12F /* SGPinAnnotation.m */; };
 		7E9977CF14BD4FD2004BB12F /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E9977CE14BD4FD2004BB12F /* pin.png */; };
+		7E9DF1FF14E5EE3C007B9AFA /* SGDetailPreferencesModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9DF1FD14E5EE3C007B9AFA /* SGDetailPreferencesModalViewController.m */; };
+		7E9DF20014E5EE3C007B9AFA /* SGDetailPreferencesModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9DF1FE14E5EE3C007B9AFA /* SGDetailPreferencesModalViewController.xib */; };
 		7ED5A04214DC6519008D6C67 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED5A04014DC6519008D6C67 /* pause.png */; };
 		7ED5A04314DC6519008D6C67 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED5A04114DC6519008D6C67 /* play.png */; };
 		7ED5A04514DC662E008D6C67 /* disk.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED5A04414DC662E008D6C67 /* disk.png */; };
@@ -105,6 +107,9 @@
 		7E9977CA14BD4D7D004BB12F /* SGPinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPinAnnotation.h; sourceTree = "<group>"; };
 		7E9977CB14BD4D7D004BB12F /* SGPinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPinAnnotation.m; sourceTree = "<group>"; };
 		7E9977CE14BD4FD2004BB12F /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
+		7E9DF1FC14E5EE3C007B9AFA /* SGDetailPreferencesModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDetailPreferencesModalViewController.h; sourceTree = "<group>"; };
+		7E9DF1FD14E5EE3C007B9AFA /* SGDetailPreferencesModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGDetailPreferencesModalViewController.m; sourceTree = "<group>"; };
+		7E9DF1FE14E5EE3C007B9AFA /* SGDetailPreferencesModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SGDetailPreferencesModalViewController.xib; sourceTree = "<group>"; };
 		7ED5A04014DC6519008D6C67 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		7ED5A04114DC6519008D6C67 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		7ED5A04414DC662E008D6C67 /* disk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disk.png; sourceTree = "<group>"; };
@@ -257,6 +262,9 @@
 				CDC6FF7314D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.h */,
 				CDC6FF7414D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.m */,
 				CDC6FF7514D0C9E200F4CFA1 /* ActivityIndicatorModalViewController.xib */,
+				7E9DF1FC14E5EE3C007B9AFA /* SGDetailPreferencesModalViewController.h */,
+				7E9DF1FD14E5EE3C007B9AFA /* SGDetailPreferencesModalViewController.m */,
+				7E9DF1FE14E5EE3C007B9AFA /* SGDetailPreferencesModalViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -385,6 +393,7 @@
 				7ED5A04514DC662E008D6C67 /* disk.png in Resources */,
 				7ED5A04714DC7628008D6C67 /* mapincircle.png in Resources */,
 				7ED5A04914DC77FC008D6C67 /* dashboardincircle.png in Resources */,
+				7E9DF20014E5EE3C007B9AFA /* SGDetailPreferencesModalViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +423,7 @@
 				7ED5A04C14DDF96B008D6C67 /* CommonUtil.m in Sources */,
 				CD8E4A4914E2E57100959D00 /* SGTimeAnnotation.m in Sources */,
 				CD8E4A4C14E2E63300959D00 /* SGTimeAnnotationView.m in Sources */,
+				7E9DF1FF14E5EE3C007B9AFA /* SGDetailPreferencesModalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

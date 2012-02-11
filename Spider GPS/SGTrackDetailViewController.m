@@ -19,6 +19,15 @@
         track = [[SGSession instance] getTrackWithName:trackName];
         self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
         self.navigationItem.title = trackName;
+        optionsItem = [[UIBarButtonItem alloc] initWithTitle:@"Options" 
+                                                       style:UIBarButtonItemStylePlain 
+                                                      target:self 
+                                                      action:@selector(preferenceBarButtonItemTouched)];
+
+//        optionsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl 
+//                                                                    target:self 
+//                                                                    action:@selector(preferenceBarButtonItemTouched)];
+        self.navigationItem.rightBarButtonItem = optionsItem;
         polylineCount = 0;
     }
     return self;
@@ -253,5 +262,12 @@
 //    }
 //    [UIView commitAnimations];
 //}
+
+- (void)preferenceBarButtonItemTouched
+{
+    SGDetailPreferencesModalViewController *con = [[SGDetailPreferencesModalViewController alloc] initWithNibName:@"SGDetailPreferencesModalViewController" bundle:nil];
+    con.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    [self presentModalViewController:con animated:YES];
+}
 
 @end

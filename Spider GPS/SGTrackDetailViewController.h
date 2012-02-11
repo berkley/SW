@@ -14,6 +14,7 @@
 #import "SGPolyline.h"
 #import "SGTimeAnnotation.h"
 #import "SGTimeAnnotationView.h"
+#import "SGDetailPreferencesModalViewController.h"
 
 #define TRACK_STYLE_NORMAL 0
 #define TRACK_STYLE_RUN 1
@@ -39,6 +40,8 @@
     __weak IBOutlet UILabel *sliderValueLabel;
     __weak IBOutlet UISegmentedControl *segmentedControl;
     __weak IBOutlet UILabel *segmentedControlLabel;
+    
+    UIBarButtonItem *optionsItem;
 }
 
 @property (nonatomic, assign) NSInteger style;

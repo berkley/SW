@@ -10,11 +10,17 @@
 #import "Constants.h"
 #import <MapKit/MapKit.h>
 
+@protocol PrefModalDelegate <NSObject>
+- (void)prefModalDidClose;
+@end
+
 @interface SGDetailPreferencesModalViewController : UIViewController
 {
     IBOutlet UISegmentedControl *mapTypeSegCon;
     IBOutlet UISwitch *ascentDescentSwitch;
     IBOutlet UISwitch *timeLabelSwitch;
+    
+    __unsafe_unretained id<PrefModalDelegate> delegate;
     
     NSInteger mapType;
     BOOL ascentDescentOn;
@@ -28,5 +34,7 @@
 @property (nonatomic, assign) NSInteger mapType;
 @property (nonatomic, assign) BOOL ascentDescentOn;
 @property (nonatomic, assign) BOOL timeLabelOn;
+
+@property (nonatomic, assign) id<PrefModalDelegate> delegate;
 
 @end

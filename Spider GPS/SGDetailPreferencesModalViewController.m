@@ -10,7 +10,7 @@
 
 @implementation SGDetailPreferencesModalViewController
 @synthesize mapTypeSegCon, ascentDescentSwitch, timeLabelSwitch, mapType, 
-timeLabelOn, ascentDescentOn;
+timeLabelOn, ascentDescentOn, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,6 +48,12 @@ timeLabelOn, ascentDescentOn;
     ascentDescentSwitch = nil;
     timeLabelSwitch = nil;
     [super viewDidUnload];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if(delegate)
+        [delegate prefModalDidClose];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

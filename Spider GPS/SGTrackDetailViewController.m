@@ -25,9 +25,6 @@
         self.navigationItem.rightBarButtonItem = optionsItem;
         self.navigationItem.rightBarButtonItem.width = 30;
         polylineCount = 0;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ascentDescentChanged) name:NOTIFICATION_ASCENT_DESCENT_CHANGED object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeLabelsChanged) name:NOTIFICATION_TIME_LABELS_CHANGED object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapTypeChanged) name:NOTIFICATION_DETAILS_MAP_TYPE_CHANGED object:nil];
     }
     return self;
 }
@@ -274,7 +271,16 @@
     prefViewController.mapType = mapView.mapType;
     prefViewController.ascentDescentOn = showAscentDescent;
     prefViewController.timeLabelOn = showTimeLabels;
+    prefViewController.delegate = self;
+    
     [self presentModalViewController:prefViewController animated:YES];
+}
+
+- (void)prefModalDidClose
+{
+    [self ascentDescentChanged];
+    [self timeLabelsChanged];
+    [self mapTypeChanged];
 }
 
 @end

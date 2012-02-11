@@ -38,11 +38,8 @@
     
     UIBarButtonItem *optionsItem;
     
-    BOOL showTimeLabels;
-    BOOL showAscentDescent;
-    
     SGDetailPreferencesModalViewController *prefViewController;
-    NSArray *timeAnnotations;
+    __strong NSArray *timeAnnotations;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil trackName:(NSString*)trackName;

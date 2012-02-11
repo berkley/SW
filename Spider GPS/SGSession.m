@@ -207,7 +207,7 @@ static SGSession *instance = nil;
 {
     NSNumber *mtNum = (NSNumber*)[defaultsManager getObjectWithName:@"mapType"];
     if(!mtNum)
-        return MKMapTypeStandard;
+        return MKMapTypeHybrid;
     return [mtNum intValue];
 }
 
@@ -284,6 +284,68 @@ static SGSession *instance = nil;
     else
         return NO;
 }
+
+- (void)setShowTimeMarkers:(BOOL)showTimeMarkers
+{
+    if(showTimeMarkers)
+        [defaultsManager setObject:@"true" withName:@"showTimeMarkers"];
+    else
+        [defaultsManager setObject:@"false" withName:@"showTimeMarkers"];
+}
+
+- (BOOL)showTimeMarkers
+{
+    NSString *stm = (NSString*)[defaultsManager getObjectWithName:@"showTimeMarkers"];
+    if(stm != nil && [stm isEqualToString:@"true"])
+        return YES;
+    else
+        return NO;
+}
+
+- (void)setShowAscentDescentView:(BOOL)showAscentDescentView
+{
+    if(showAscentDescentView)
+        [defaultsManager setObject:@"true" withName:@"showAscentDescent"];
+    else
+        [defaultsManager setObject:@"false" withName:@"showAscentDescent"];
+}
+
+- (BOOL)showAscentDescentView
+{
+    NSString *stm = (NSString*)[defaultsManager getObjectWithName:@"showAscentDescent"];
+    if(stm != nil && [stm isEqualToString:@"true"])
+        return YES;
+    else
+        return NO;
+}
+
+- (void)setDetailsMapType:(NSInteger)mapType
+{
+    [defaultsManager setObject:[NSNumber numberWithInt:mapType] withName:@"detailsMapType"];
+}
+
+- (NSInteger)detailsMapType
+{
+    NSNumber *mtNum = (NSNumber*)[defaultsManager getObjectWithName:@"detailsMapType"];
+    if(!mtNum)
+        return MKMapTypeHybrid;
+    return [mtNum intValue];
+}
+
+- (void)setTimeMarkerInterval:(NSInteger)timeMarkerInterval
+{
+    [defaultsManager setObject:[NSNumber numberWithInt:timeMarkerInterval] withName:@"timeMarkerInterval"];
+}
+
+- (NSInteger)timeMarkerInterval
+{
+    NSNumber *mtNum = (NSNumber*)[defaultsManager getObjectWithName:@"timeMarkerInterval"];
+    if(!mtNum)
+        return MKMapTypeHybrid;
+    return [mtNum intValue];
+}
+
+#pragma mark - misc
 
 + (NSString*)formattedElapsedTime:(NSDate*)date1 date2:(NSDate*)date2
 {

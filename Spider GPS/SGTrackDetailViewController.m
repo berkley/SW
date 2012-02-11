@@ -62,8 +62,32 @@
 
 - (void)addTimeLabels
 {
-    timeAnnotations = [track timeAnnotationsWithInterval:5];
+    timeAnnotations = [track timeAnnotationsWithInterval:[SGSession instance].timeMarkerInterval];
     [mapView addAnnotations:timeAnnotations];
+    
+    switch ([SGSession instance].timeMarkerInterval)
+    {
+        case 1:
+            [segmentedControl setSelectedSegmentIndex:0];
+            break;
+        case 5:
+            [segmentedControl setSelectedSegmentIndex:1];
+            break;
+        case 10:
+            [segmentedControl setSelectedSegmentIndex:2];
+            break;
+        case 15:
+            [segmentedControl setSelectedSegmentIndex:3];
+            break;
+        case 30:
+            [segmentedControl setSelectedSegmentIndex:4];
+            break;
+        case 60:
+            [segmentedControl setSelectedSegmentIndex:5];
+            break;
+        default:
+            break;
+    }
     
     slider.hidden = YES;
     sliderLabel.hidden = YES;
@@ -71,7 +95,6 @@
     segmentedControlLabel.text = @"Interval (minutes)";
     segmentedControl.hidden = NO;
     segmentedControlLabel.hidden = NO;
-    segmentedControl.selectedSegmentIndex = 1;
 }
 
 #pragma mark - View lifecycle
@@ -79,15 +102,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    showAscentDescent = NO;
-    showTimeLabels = NO;
     mapView.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    mapView.mapType = [SGSession instance].mapType;
+    mapView.mapType = [SGSession instance].detailsMapType;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -112,15 +133,11 @@
 {
     [mapView removeOverlays:mapView.overlays];
     [mapView removeAnnotations:mapView.annotations];
-    [self addTrackOverlay];
-    showTimeLabels = NO;
-    showAscentDescent = NO;
-//    for(SGPinAnnotation *ann in track.annotations)
-//    {
-//        [mapView addAnnotation:ann];
-//    }
-
+    [self addTrackOverlay];    
+    //add the track's annotations
     [mapView addAnnotations:track.annotations];
+    //set view preferences
+    [self prefModalDidClose];
     
     [SGSession zoomToFitLocations:track.locations padding:1 mapView:mapView];
     [[SGSession instance] hideActivityIndicator];
@@ -130,32 +147,19 @@
 
 - (void)ascentDescentChanged
 {
-    showAscentDescent = prefViewController.ascentDescentOn;
     [mapView removeOverlays:mapView.overlays];
-    if(showAscentDescent)
+    if([SGSession instance].showAscentDescentView)
         [self addAscentDescentOverlay];
     else
         [self addTrackOverlay];
 }
 
-- (void)mapTypeChanged
-{
-    if(prefViewController.mapTypeSegCon.selectedSegmentIndex == 0)
-        mapView.mapType = MKMapTypeStandard;
-    else if(prefViewController.mapTypeSegCon.selectedSegmentIndex == 1)
-        mapView.mapType = MKMapTypeSatellite;
-    else if(prefViewController.mapTypeSegCon.selectedSegmentIndex == 2)
-        mapView.mapType = MKMapTypeHybrid;
-}
-
 - (void)timeLabelsChanged
 {
-    
-    showTimeLabels = prefViewController.timeLabelOn;
     if(timeAnnotations)
         [mapView removeAnnotations:timeAnnotations];
     timeAnnotations = nil;
-    if(showTimeLabels)
+    if([SGSession instance].showTimeMarkers)
     {
         [self addTimeLabels];
         segmentedControl.hidden = NO;
@@ -240,37 +244,37 @@
     [mapView removeAnnotations:mapView.annotations];
     if(segmentedControl.selectedSegmentIndex == 0)
     { //1
-        [mapView addAnnotations:[track timeAnnotationsWithInterval:1]];
+        [SGSession instance].timeMarkerInterval = 1;
     }
     else if(segmentedControl.selectedSegmentIndex == 1)
     { //5
-        [mapView addAnnotations:[track timeAnnotationsWithInterval:5]];
+        [SGSession instance].timeMarkerInterval = 5;
     }
     else if(segmentedControl.selectedSegmentIndex == 2)
     { //10
-        [mapView addAnnotations:[track timeAnnotationsWithInterval:10]];
+        [SGSession instance].timeMarkerInterval = 10;
     }
     else if(segmentedControl.selectedSegmentIndex == 3)
     { //15
-        [mapView addAnnotations:[track timeAnnotationsWithInterval:15]];
+        [SGSession instance].timeMarkerInterval = 15;
     }
     else if(segmentedControl.selectedSegmentIndex == 4)
     { //30
-        [mapView addAnnotations:[track timeAnnotationsWithInterval:30]];
+        [SGSession instance].timeMarkerInterval = 30;
     }
     else if(segmentedControl.selectedSegmentIndex == 5)
     { //60
-        [mapView addAnnotations:[track timeAnnotationsWithInterval:60]];
+        [SGSession instance].timeMarkerInterval = 60;
     }
+    
+    timeAnnotations = [track timeAnnotationsWithInterval:[SGSession instance].timeMarkerInterval];
+    [mapView addAnnotations:timeAnnotations];
 }
 
 - (void)preferenceBarButtonItemTouched
 {
     prefViewController = [[SGDetailPreferencesModalViewController alloc] initWithNibName:@"SGDetailPreferencesModalViewController" bundle:nil];
     prefViewController.modalTransitionStyle = UIModalTransitionStylePartialCurl;
-    prefViewController.mapType = mapView.mapType;
-    prefViewController.ascentDescentOn = showAscentDescent;
-    prefViewController.timeLabelOn = showTimeLabels;
     prefViewController.delegate = self;
     
     [self presentModalViewController:prefViewController animated:YES];
@@ -278,9 +282,9 @@
 
 - (void)prefModalDidClose
 {
+    mapView.mapType = [SGSession instance].detailsMapType;
     [self ascentDescentChanged];
     [self timeLabelsChanged];
-    [self mapTypeChanged];
 }
 
 @end

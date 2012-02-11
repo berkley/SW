@@ -43,6 +43,10 @@
 @property (nonatomic, assign) BOOL autoSaveEnabled;
 @property (nonatomic, assign) NSInteger mapType;
 @property (nonatomic, assign) BOOL showPauseMessage;
+@property (nonatomic, assign) BOOL showAscentDescentView;
+@property (nonatomic, assign) BOOL showTimeMarkers;
+@property (nonatomic, assign) NSInteger detailsMapType;
+@property (nonatomic, assign) NSInteger timeMarkerInterval;
 
 + (SGSession*)instance;
 - (void)saveCurrentTrackWithName:(NSString*)name;

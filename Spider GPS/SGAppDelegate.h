@@ -15,8 +15,8 @@
  x pause button
  x allow user to turn auto-save on/off
  - run slider control
- - spruce up the look of SGTrackDataViewController.view (add small map, change fonts, etc)
- - time view (change color of track every minute or something like that)
+ x spruce up the look of SGTrackDataViewController.view (add small map, change fonts, etc)
+ x time view (change color of track every minute or something like that)
  x sort tracks by date
  x add alt gain/loss
  x auto save function

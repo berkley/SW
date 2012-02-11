@@ -9,8 +9,7 @@
 #import "SGDetailPreferencesModalViewController.h"
 
 @implementation SGDetailPreferencesModalViewController
-@synthesize mapTypeSegCon, ascentDescentSwitch, timeLabelSwitch, mapType, 
-timeLabelOn, ascentDescentOn, delegate;
+@synthesize mapTypeSegCon, ascentDescentSwitch, timeLabelSwitch, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,15 +30,16 @@ timeLabelOn, ascentDescentOn, delegate;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if(mapType == MKMapTypeStandard)
+    activitySpinner.hidden = YES;
+    if([SGSession instance].detailsMapType == MKMapTypeStandard)
         mapTypeSegCon.selectedSegmentIndex = 0;
-    else if(mapType == MKMapTypeSatellite)
+    else if([SGSession instance].detailsMapType == MKMapTypeSatellite)
         mapTypeSegCon.selectedSegmentIndex = 1;
-    else if(mapType == MKMapTypeHybrid)
+    else if([SGSession instance].detailsMapType == MKMapTypeHybrid)
         mapTypeSegCon.selectedSegmentIndex = 2;
     
-    timeLabelSwitch.on = timeLabelOn;
-    ascentDescentSwitch.on = ascentDescentOn;
+    timeLabelSwitch.on = [SGSession instance].showTimeMarkers;
+    ascentDescentSwitch.on = [SGSession instance].showAscentDescentView;
 }
 
 - (void)viewDidUnload
@@ -47,13 +47,25 @@ timeLabelOn, ascentDescentOn, delegate;
     mapTypeSegCon = nil;
     ascentDescentSwitch = nil;
     timeLabelSwitch = nil;
+    activitySpinner = nil;
     [super viewDidUnload];
+}
+
+- (void)showSpinner
+{
+    activitySpinner.hidden = NO;
+}
+
+- (void)callDelegate
+{
+    if(delegate)
+        [delegate prefModalDidClose];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    if(delegate)
-        [delegate prefModalDidClose];
+    [self performSelectorOnMainThread:@selector(showSpinner) withObject:nil waitUntilDone:YES];
+    [self performSelector:@selector(callDelegate) withObject:nil afterDelay:.1];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -65,27 +77,22 @@ timeLabelOn, ascentDescentOn, delegate;
 
 - (IBAction)ascentDescentSwitchChangedValue:(id)sender 
 {
-    ascentDescentOn = ascentDescentSwitch.on;
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ASCENT_DESCENT_CHANGED object:nil];
+    [SGSession instance].showAscentDescentView = ascentDescentSwitch.on;
 }
 
 - (IBAction)timeLabelSwitchChangedValue:(id)sender 
 {
-    timeLabelOn = timeLabelSwitch.on;
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_TIME_LABELS_CHANGED object:nil];
+    [SGSession instance].showTimeMarkers = timeLabelSwitch.on;
 }
 
 - (IBAction)mapTypeSegConValueChanged:(id)sender 
 {
     if(mapTypeSegCon.selectedSegmentIndex == 0)
-        mapType = MKMapTypeStandard;
+        [SGSession instance].detailsMapType = MKMapTypeStandard;
     else if(mapTypeSegCon.selectedSegmentIndex == 1)
-        mapType = MKMapTypeSatellite;
+        [SGSession instance].detailsMapType = MKMapTypeSatellite;
     else if(mapTypeSegCon.selectedSegmentIndex == 2)
-        mapType = MKMapTypeHybrid;
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DETAILS_MAP_TYPE_CHANGED object:nil];
+        [SGSession instance].detailsMapType = MKMapTypeHybrid;
 }
-
 
 @end

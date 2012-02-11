@@ -821,7 +821,8 @@
                                           otherButtonTitles:@"Save", nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     
-    if([SGSession instance].currentTrack.hasBeenSaved)
+    if([SGSession instance].currentTrack.hasBeenSaved && 
+       ![[SGSession instance].currentTrack.name isEqualToString:@"Auto-saved Track"])
         [alert textFieldAtIndex:0].text = [SGSession instance].currentTrack.name;
     
     alert.tag = 9000;

@@ -67,7 +67,13 @@ static SGSession *instance = nil;
 
 - (void)saveTimerFired:(id)sender
 {
-    if(self.currentTrack.hasBeenSaved && self.autoSaveEnabled)
+    if(!self.currentTrack.hasBeenSaved)
+    {
+        NSLog(@"auto saving unsaved track");
+        self.currentTrack.name = @"Auto-saved Track";
+        [self saveCurrentTrackWithName:self.currentTrack.name];
+    }
+    else if(self.currentTrack.hasBeenSaved && self.autoSaveEnabled)
     {
         NSLog(@"auto saving track %@", self.currentTrack.name);
         [self saveCurrentTrackWithName:self.currentTrack.name];
@@ -341,7 +347,7 @@ static SGSession *instance = nil;
 {
     NSNumber *mtNum = (NSNumber*)[defaultsManager getObjectWithName:@"timeMarkerInterval"];
     if(!mtNum)
-        return MKMapTypeHybrid;
+        return 15;
     return [mtNum intValue];
 }
 

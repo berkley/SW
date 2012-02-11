@@ -14,7 +14,6 @@
  x let user choose map type
  x pause button
  x allow user to turn auto-save on/off
- - run slider control
  x spruce up the look of SGTrackDataViewController.view (add small map, change fonts, etc)
  x time view (change color of track every minute or something like that)
  x sort tracks by date
@@ -26,6 +25,7 @@
  x add "are you sure you want to reset your track" popover
  
  1.1
+ - run slider control
  - 3D view
  - alt gain/loss plot (profile view)
  - show friends on the map in realtime
@@ -34,7 +34,7 @@
  - moving/stopping time
  
  1.2
- - uploat tracks to icloud/facebook
+ - upload tracks to icloud/facebook
  - overlay multiple tracks on one map
  - export files
  

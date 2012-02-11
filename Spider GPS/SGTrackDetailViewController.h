@@ -16,11 +16,6 @@
 #import "SGTimeAnnotationView.h"
 #import "SGDetailPreferencesModalViewController.h"
 
-#define TRACK_STYLE_NORMAL 0
-#define TRACK_STYLE_RUN 1
-#define TRACK_STYLE_3D 2
-#define TRACK_STYLE_TIME 3
-
 @interface SGTrackDetailViewController :UIViewController <MKMapViewDelegate>
 {
     __weak IBOutlet MKMapView *mapView;
@@ -34,7 +29,7 @@
     IBOutlet UIButton *showMapButton;
     BOOL dashboardHidden;
     int polylineCount;
-    int style;
+
     __weak IBOutlet UISlider *slider;
     __weak IBOutlet UILabel *sliderLabel;
     __weak IBOutlet UILabel *sliderValueLabel;
@@ -42,9 +37,13 @@
     __weak IBOutlet UILabel *segmentedControlLabel;
     
     UIBarButtonItem *optionsItem;
+    
+    BOOL showTimeLabels;
+    BOOL showAscentDescent;
+    
+    SGDetailPreferencesModalViewController *prefViewController;
+    NSArray *timeAnnotations;
 }
-
-@property (nonatomic, assign) NSInteger style;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil trackName:(NSString*)trackName;
 

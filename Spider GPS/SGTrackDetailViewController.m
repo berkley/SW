@@ -9,7 +9,6 @@
 #import "SGTrackDetailViewController.h"
 
 @implementation SGTrackDetailViewController
-@synthesize style;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil trackName:(NSString*)trackName
 {
@@ -24,11 +23,11 @@
                                                       target:self 
                                                       action:@selector(preferenceBarButtonItemTouched)];
 
-//        optionsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl 
-//                                                                    target:self 
-//                                                                    action:@selector(preferenceBarButtonItemTouched)];
         self.navigationItem.rightBarButtonItem = optionsItem;
         polylineCount = 0;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ascentDescentChanged) name:NOTIFICATION_ASCENT_DESCENT_CHANGED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeLabelsChanged) name:NOTIFICATION_TIME_LABELS_CHANGED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mapTypeChanged) name:NOTIFICATION_DETAILS_MAP_TYPE_CHANGED object:nil];
     }
     return self;
 }
@@ -38,11 +37,53 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - overlays and annotations
+
+- (void)addTrackOverlay
+{
+    MKMapPoint *tempPointArr = [track singlePolyline];
+    routeLine = [MKPolyline polylineWithPoints:tempPointArr count:[track.locations count]];
+    [mapView addOverlay:routeLine];
+    free(tempPointArr);
+    slider.hidden = YES;
+    sliderLabel.hidden = YES;
+    sliderValueLabel.hidden = YES;
+    segmentedControl.hidden = YES;
+    segmentedControlLabel.hidden = YES;
+}
+
+- (void)addAscentDescentOverlay
+{
+    NSArray *polylines = [track arrayOfPolylines];       
+    [mapView addOverlays:polylines];
+    slider.hidden = YES;
+    sliderLabel.hidden = YES;
+    sliderValueLabel.hidden = YES;
+    segmentedControl.hidden = YES;
+    segmentedControlLabel.hidden = YES;
+}
+
+- (void)addTimeLabels
+{
+    timeAnnotations = [track timeAnnotationsWithInterval:5];
+    [mapView addAnnotations:timeAnnotations];
+    
+    slider.hidden = YES;
+    sliderLabel.hidden = YES;
+    sliderValueLabel.hidden = YES;
+    segmentedControlLabel.text = @"Interval (minutes)";
+    segmentedControl.hidden = NO;
+    segmentedControlLabel.hidden = NO;
+    segmentedControl.selectedSegmentIndex = 1;
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    showAscentDescent = NO;
+    showTimeLabels = NO;
     mapView.delegate = self;
 }
 
@@ -50,10 +91,6 @@
 {
     [super viewWillAppear:animated];
     mapView.mapType = [SGSession instance].mapType;
-//    showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - infoView.frame.size.height - 35 - 20, 35, 35);
-//    [showMapButton setImage:[UIImage imageNamed:@"map2.png"] forState:UIControlStateNormal];
-//    [self.view addSubview:showMapButton];
-//    dashboardHidden = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -76,66 +113,62 @@
 
 - (void)doViewDidAppear
 {
-    //    NSLog(@"loc count: %i track: %@", [track.locations count], track.name);    
     [mapView removeOverlays:mapView.overlays];
     [mapView removeAnnotations:mapView.annotations];
-    
-    if(style == TRACK_STYLE_NORMAL)
-    {
-        MKMapPoint *tempPointArr = [track singlePolyline];
-        routeLine = [MKPolyline polylineWithPoints:tempPointArr count:[track.locations count]];
-        [mapView addOverlay:routeLine];
-        free(tempPointArr);
-        slider.hidden = YES;
-        sliderLabel.hidden = YES;
-        sliderValueLabel.hidden = YES;
-        segmentedControl.hidden = YES;
-        segmentedControlLabel.hidden = YES;
-    }
-    else if(style == TRACK_STYLE_RUN)
-    {
-        NSArray *polylines = [track arrayOfPolylines];       
-        [mapView addOverlays:polylines];
-        slider.hidden = YES;
-        sliderLabel.hidden = YES;
-        sliderValueLabel.hidden = YES;
-        segmentedControl.hidden = YES;
-        segmentedControlLabel.hidden = YES;
-    }
-    else if(style == TRACK_STYLE_TIME)
-    {
-//        NSArray *polylines = [track timeBasedPolylines];
-//        [mapView addOverlays:polylines];
-        MKMapPoint *tempPointArr = [track singlePolyline];
-        routeLine = [MKPolyline polylineWithPoints:tempPointArr count:[track.locations count]];
-        [mapView addOverlay:routeLine];
-        free(tempPointArr);
-        [mapView addAnnotations:[track timeAnnotationsWithInterval:5]];
-        
-        slider.hidden = YES;
-        sliderLabel.hidden = YES;
-        sliderValueLabel.hidden = YES;
-        segmentedControlLabel.text = @"Interval (minutes)";
-        segmentedControl.hidden = NO;
-        segmentedControlLabel.hidden = NO;
-        segmentedControl.selectedSegmentIndex = 1;
-//        slider.hidden = NO;
-//        sliderLabel.hidden = NO;
-//        sliderValueLabel.hidden = NO;
-//        slider.maximumValue = 60;
-//        slider.minimumValue = 1;
+    [self addTrackOverlay];
+    showTimeLabels = NO;
+    showAscentDescent = NO;
+//    for(SGPinAnnotation *ann in track.annotations)
+//    {
+//        [mapView addAnnotation:ann];
+//    }
 
-//        slider.value = 5;
-//        slider.continuous = NO;
-    }
-    
-    for(SGPinAnnotation *ann in track.annotations)
-    {
-        [mapView addAnnotation:ann];
-    }
+    [mapView addAnnotations:track.annotations];
     
     [SGSession zoomToFitLocations:track.locations padding:1 mapView:mapView];
     [[SGSession instance] hideActivityIndicator];
+}
+
+#pragma mark - notification selectors
+
+- (void)ascentDescentChanged
+{
+    showAscentDescent = prefViewController.ascentDescentOn;
+    [mapView removeOverlays:mapView.overlays];
+    if(showAscentDescent)
+        [self addAscentDescentOverlay];
+    else
+        [self addTrackOverlay];
+}
+
+- (void)mapTypeChanged
+{
+    if(prefViewController.mapTypeSegCon.selectedSegmentIndex == 0)
+        mapView.mapType = MKMapTypeStandard;
+    else if(prefViewController.mapTypeSegCon.selectedSegmentIndex == 1)
+        mapView.mapType = MKMapTypeSatellite;
+    else if(prefViewController.mapTypeSegCon.selectedSegmentIndex == 2)
+        mapView.mapType = MKMapTypeHybrid;
+}
+
+- (void)timeLabelsChanged
+{
+    
+    showTimeLabels = prefViewController.timeLabelOn;
+    if(timeAnnotations)
+        [mapView removeAnnotations:timeAnnotations];
+    timeAnnotations = nil;
+    if(showTimeLabels)
+    {
+        [self addTimeLabels];
+        segmentedControl.hidden = NO;
+        segmentedControlLabel.hidden = NO;
+    }
+    else
+    {
+        segmentedControl.hidden = YES;
+        segmentedControlLabel.hidden = YES;
+    }
 }
 
 #pragma mark - MKMapViewDelegate
@@ -188,7 +221,8 @@
     }
     else if([annotation isKindOfClass:[SGTimeAnnotation class]])
     {
-        SGTimeAnnotationView *timeAnnView = [[SGTimeAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"timeAnnotation"];
+        SGTimeAnnotationView *timeAnnView = [[SGTimeAnnotationView alloc] initWithAnnotation:annotation 
+                                                                             reuseIdentifier:@"timeAnnotation"];
         timeAnnView.canShowCallout = NO;
         timeAnnView.userInteractionEnabled = NO;
         timeAnnView.frame = CGRectMake(0, 0, 20, 20);
@@ -200,14 +234,8 @@
 
 - (IBAction)sliderValueChanged:(id)sender 
 {
-    NSLog(@"slider value: %f", slider.value);
     NSInteger val = [[NSNumber numberWithFloat:slider.value] intValue];
     sliderValueLabel.text = [NSString stringWithFormat:@"%i", val];
-    if(style == TRACK_STYLE_TIME)
-    {
-        [mapView removeAnnotations:mapView.annotations];
-        [mapView addAnnotations:[track timeAnnotationsWithInterval:val]];
-    }
 }
 
 - (IBAction)segmentedControlValueChanged:(id)sender 
@@ -239,35 +267,14 @@
     }
 }
 
-//- (IBAction)showMapButtonTouched:(id)sender 
-//{
-//    [UIView beginAnimations:@"hideSpeedHeadingView" context:nil];
-//    [UIView setAnimationBeginsFromCurrentState:YES];
-//    [UIView setAnimationDuration:.5];
-//    if(dashboardHidden)
-//    {
-//        dashboardHidden = NO;
-//        infoView.alpha = 0.8;
-//        self.navigationController.navigationBar.alpha = 1.0;
-//        [showMapButton setImage:[UIImage imageNamed:@"map2.png"] forState:UIControlStateNormal];
-//        showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - infoView.frame.size.height - 35 - 20, 35, 35);
-//    }
-//    else
-//    {
-//        dashboardHidden = YES;
-//        infoView.alpha = 0.0;
-//        self.navigationController.navigationBar.alpha = 0.0;
-//        [showMapButton setImage:[UIImage imageNamed:@"dashboard2.png"] forState:UIControlStateNormal];
-//        showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - 35 - 20, 35, 35);
-//    }
-//    [UIView commitAnimations];
-//}
-
 - (void)preferenceBarButtonItemTouched
 {
-    SGDetailPreferencesModalViewController *con = [[SGDetailPreferencesModalViewController alloc] initWithNibName:@"SGDetailPreferencesModalViewController" bundle:nil];
-    con.modalTransitionStyle = UIModalTransitionStylePartialCurl;
-    [self presentModalViewController:con animated:YES];
+    prefViewController = [[SGDetailPreferencesModalViewController alloc] initWithNibName:@"SGDetailPreferencesModalViewController" bundle:nil];
+    prefViewController.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    prefViewController.mapType = mapView.mapType;
+    prefViewController.ascentDescentOn = showAscentDescent;
+    prefViewController.timeLabelOn = showTimeLabels;
+    [self presentModalViewController:prefViewController animated:YES];
 }
 
 @end

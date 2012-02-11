@@ -501,12 +501,12 @@
 		7E97AFA814AA81D9002404A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Peter Anderson (PK484EQWS2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chad Berkley (A723P8EY37)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Spider GPS/Spider GPS-Prefix.pch";
 				INFOPLIST_FILE = "Spider GPS/Spider GPS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E8B86FC5-3355-4CE4-9E7F-6AA2C2B6D640";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "34FF8DA7-4691-4B42-B354-EE8D831EBDB8";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

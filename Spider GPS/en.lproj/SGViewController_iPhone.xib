@@ -44,6 +44,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="774585933"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="255814722"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -54,6 +55,8 @@
 						<int key="NSvFlags">266</int>
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="774585933"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -95,6 +98,7 @@
 									<string key="NSResourceName">pin.png</string>
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<float key="IBUIWidth">30</float>
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="255814722"/>
 							</object>
@@ -129,6 +133,7 @@
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="124692873"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -647,7 +652,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="213204942">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUILabel" id="1001025043">
@@ -655,6 +660,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{1, 0}, {89, 21}}</string>
 						<reference key="NSSuperview" ref="213204942"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="278149063"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -674,6 +680,8 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{27, 0}, {118, 21}}</string>
 						<reference key="NSSuperview" ref="213204942"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -690,13 +698,15 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{160, 20}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1001025043"/>
 				<reference key="IBUIBackgroundColor" ref="932016652"/>
 				<float key="IBUIAlpha">0.80000001192092896</float>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="755545950">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUILabel" id="342576329">
@@ -704,6 +714,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{1, 0}, {89, 21}}</string>
 						<reference key="NSSuperview" ref="755545950"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="345987971"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -723,6 +734,8 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{32, 0}, {118, 21}}</string>
 						<reference key="NSSuperview" ref="755545950"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -739,15 +752,20 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{160, 20}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="342576329"/>
 				<reference key="IBUIBackgroundColor" ref="932016652"/>
 				<float key="IBUIAlpha">0.80000001192092896</float>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIButton" id="719747">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<string key="NSFrameSize">{34, 34}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
 				<bool key="IBUIOpaque">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUIContentHorizontalAlignment">0</int>
@@ -785,6 +803,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{1, 0}, {89, 21}}</string>
 						<reference key="NSSuperview" ref="724920315"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="888941922"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -804,6 +823,8 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{66, 0}, {79, 21}}</string>
 						<reference key="NSSuperview" ref="724920315"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -821,6 +842,7 @@
 				</array>
 				<string key="NSFrameSize">{160, 20}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="355711715"/>
 				<reference key="IBUIBackgroundColor" ref="932016652"/>
 				<float key="IBUIAlpha">0.80000001192092896</float>
@@ -835,6 +857,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{1, 0}, {89, 21}}</string>
 						<reference key="NSSuperview" ref="659045819"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="193546744"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -854,6 +877,8 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{66, 0}, {79, 21}}</string>
 						<reference key="NSSuperview" ref="659045819"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -871,6 +896,7 @@
 				</array>
 				<string key="NSFrameSize">{160, 20}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="560655813"/>
 				<reference key="IBUIBackgroundColor" ref="932016652"/>
 				<float key="IBUIAlpha">0.80000001192092896</float>
@@ -1653,19 +1679,232 @@
 			<nil key="sourceID"/>
 			<int key="maxID">231</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">HUDView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/HUDView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SGViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="altGainLabel">UILabel</string>
+						<string key="altGainView">UIView</string>
+						<string key="altLossLabel">UILabel</string>
+						<string key="altLossView">UIView</string>
+						<string key="altView">UIView</string>
+						<string key="altitudeLabel">UILabel</string>
+						<string key="averageSpeedLabel">UILabel</string>
+						<string key="avgSpeedView">UIView</string>
+						<string key="compassSegmentedControl">UISegmentedControl</string>
+						<string key="distView">UIView</string>
+						<string key="distanceLabel">UILabel</string>
+						<string key="headingLabel">UILabel</string>
+						<string key="headingView">UIView</string>
+						<string key="highAltView">UIView</string>
+						<string key="highAltitudeLabel">UILabel</string>
+						<string key="latView">UIView</string>
+						<string key="latitudeLabel">UILabel</string>
+						<string key="locationButton">UIBarButtonItem</string>
+						<string key="lonView">UIView</string>
+						<string key="longitudeLabel">UILabel</string>
+						<string key="lowAltView">UIView</string>
+						<string key="lowAltitudeLabel">UILabel</string>
+						<string key="lowSpeedLabel">UILabel</string>
+						<string key="lowSpeedView">UIView</string>
+						<string key="mapDirectionFollowingSwitch">UISwitch</string>
+						<string key="mapView">MKMapView</string>
+						<string key="pinButton">UIBarButtonItem</string>
+						<string key="playButton">UIBarButtonItem</string>
+						<string key="showMapButton">UIButton</string>
+						<string key="speedHeadingView">HUDView</string>
+						<string key="speedLabel">UILabel</string>
+						<string key="speedView">UIView</string>
+						<string key="timeLabel">UILabel</string>
+						<string key="timeView">UIView</string>
+						<string key="toolbar">UIToolbar</string>
+						<string key="topSpeedLabel">UILabel</string>
+						<string key="topSpeedView">UIView</string>
+						<string key="unitSegmentedControl">UISegmentedControl</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="altGainLabel">
+							<string key="name">altGainLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="altGainView">
+							<string key="name">altGainView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="altLossLabel">
+							<string key="name">altLossLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="altLossView">
+							<string key="name">altLossView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="altView">
+							<string key="name">altView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="altitudeLabel">
+							<string key="name">altitudeLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="averageSpeedLabel">
+							<string key="name">averageSpeedLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="avgSpeedView">
+							<string key="name">avgSpeedView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="compassSegmentedControl">
+							<string key="name">compassSegmentedControl</string>
+							<string key="candidateClassName">UISegmentedControl</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="distView">
+							<string key="name">distView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="distanceLabel">
+							<string key="name">distanceLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="headingLabel">
+							<string key="name">headingLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="headingView">
+							<string key="name">headingView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="highAltView">
+							<string key="name">highAltView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="highAltitudeLabel">
+							<string key="name">highAltitudeLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="latView">
+							<string key="name">latView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="latitudeLabel">
+							<string key="name">latitudeLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="locationButton">
+							<string key="name">locationButton</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lonView">
+							<string key="name">lonView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="longitudeLabel">
+							<string key="name">longitudeLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lowAltView">
+							<string key="name">lowAltView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lowAltitudeLabel">
+							<string key="name">lowAltitudeLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lowSpeedLabel">
+							<string key="name">lowSpeedLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lowSpeedView">
+							<string key="name">lowSpeedView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="mapDirectionFollowingSwitch">
+							<string key="name">mapDirectionFollowingSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="mapView">
+							<string key="name">mapView</string>
+							<string key="candidateClassName">MKMapView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="pinButton">
+							<string key="name">pinButton</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playButton">
+							<string key="name">playButton</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="showMapButton">
+							<string key="name">showMapButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="speedHeadingView">
+							<string key="name">speedHeadingView</string>
+							<string key="candidateClassName">HUDView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="speedLabel">
+							<string key="name">speedLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="speedView">
+							<string key="name">speedView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="timeLabel">
+							<string key="name">timeLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="timeView">
+							<string key="name">timeView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="toolbar">
+							<string key="name">toolbar</string>
+							<string key="candidateClassName">UIToolbar</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="topSpeedLabel">
+							<string key="name">topSpeedLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="topSpeedView">
+							<string key="name">topSpeedView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="unitSegmentedControl">
+							<string key="name">unitSegmentedControl</string>
+							<string key="candidateClassName">UISegmentedControl</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SGViewController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="compass.png">{22, 22}</string>
-			<string key="disk.png">{21, 21}</string>
-			<string key="gear.png">{22, 22}</string>
-			<string key="map.png">{52, 42}</string>
-			<string key="pin.png">{13, 25}</string>
+			<string key="compass.png">{30, 30}</string>
+			<string key="disk.png">{30, 30}</string>
+			<string key="gear.png">{30, 30}</string>
+			<string key="map.png">{60, 50}</string>
+			<string key="pin.png">{30, 30}</string>
 			<string key="play.png">{32, 32}</string>
-			<string key="redo.png">{20, 22}</string>
+			<string key="redo.png">{30, 30}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

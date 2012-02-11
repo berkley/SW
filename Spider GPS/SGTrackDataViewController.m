@@ -80,7 +80,7 @@
     if(section == 0)
         return 1;
     else
-        return 3;
+        return 1;
 }
 
 - (UIView*)createTrackInfoView
@@ -240,18 +240,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         if(indexPath.row == 0)
         {
-            cell.textLabel.text = @"Track View";
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
-        }
-        else if(indexPath.row == 1)
-        {
-            cell.textLabel.text = @"Ascent/Descent View";
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
-        }
-        else if(indexPath.row == 2)
-        {
-            cell.textLabel.text = @"Time View";
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;                        
+            cell.textLabel.text = @"View Track";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;   
+            cell.imageView.image = [UIImage imageNamed:@"map.png"];
         }
     }
     
@@ -267,18 +258,6 @@
     else if(indexPath.section == 1)
     {
         SGTrackDetailViewController *detailViewController = [[SGTrackDetailViewController alloc] initWithNibName:@"SGTrackDetailViewController" bundle:nil trackName:track.name];
-        if(indexPath.row == 0)
-        {
-            detailViewController.style = TRACK_STYLE_NORMAL;
-        }
-        else if(indexPath.row == 1)
-        {
-            detailViewController.style = TRACK_STYLE_RUN;
-        }
-        else if(indexPath.row == 2)
-        {
-            detailViewController.style = TRACK_STYLE_TIME;
-        }
         returnFromMapView = YES;
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
@@ -289,7 +268,7 @@
     if(indexPath.section == 0)
         return INFO_CELL_HEIGHT;
     else
-        return 40;
+        return 60;
 }
 
 @end

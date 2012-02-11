@@ -18,12 +18,12 @@
         track = [[SGSession instance] getTrackWithName:trackName];
         self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
         self.navigationItem.title = trackName;
-        optionsItem = [[UIBarButtonItem alloc] initWithTitle:@"Options" 
+        optionsItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"pagecurl.png"]
                                                        style:UIBarButtonItemStylePlain 
                                                       target:self 
                                                       action:@selector(preferenceBarButtonItemTouched)];
-
         self.navigationItem.rightBarButtonItem = optionsItem;
+        self.navigationItem.rightBarButtonItem.width = 30;
         polylineCount = 0;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ascentDescentChanged) name:NOTIFICATION_ASCENT_DESCENT_CHANGED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeLabelsChanged) name:NOTIFICATION_TIME_LABELS_CHANGED object:nil];

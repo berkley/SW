@@ -47,6 +47,7 @@
  - add user option for setting the radius that the user must move before a new point is collected
  - playback view
  - add photos or other media to track
+ - add battery low notification
  
 */
 

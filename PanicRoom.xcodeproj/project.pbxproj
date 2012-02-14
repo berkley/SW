@@ -16,6 +16,9 @@
 		CDAB1DB914EB122200203ECD /* PRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAB1DB814EB122200203ECD /* PRViewController.m */; };
 		CDAB1DBC14EB122200203ECD /* PRViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDAB1DBA14EB122200203ECD /* PRViewController_iPhone.xib */; };
 		CDAB1DBF14EB122200203ECD /* PRViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDAB1DBD14EB122200203ECD /* PRViewController_iPad.xib */; };
+		CDAB1DCC14EB134B00203ECD /* PRSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAB1DCA14EB134B00203ECD /* PRSettingsViewController.m */; };
+		CDAB1DCD14EB134B00203ECD /* PRSettingsViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDAB1DCB14EB134B00203ECD /* PRSettingsViewController_iPad.xib */; };
+		CDAB1DD014EB138600203ECD /* PRSettingsViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDAB1DCF14EB138600203ECD /* PRSettingsViewController_iPhone.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,10 @@
 		CDAB1DB814EB122200203ECD /* PRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRViewController.m; sourceTree = "<group>"; };
 		CDAB1DBB14EB122200203ECD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PRViewController_iPhone.xib; sourceTree = "<group>"; };
 		CDAB1DBE14EB122200203ECD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PRViewController_iPad.xib; sourceTree = "<group>"; };
+		CDAB1DC914EB134B00203ECD /* PRSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRSettingsViewController.h; sourceTree = "<group>"; };
+		CDAB1DCA14EB134B00203ECD /* PRSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRSettingsViewController.m; sourceTree = "<group>"; };
+		CDAB1DCB14EB134B00203ECD /* PRSettingsViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PRSettingsViewController_iPad.xib; sourceTree = "<group>"; };
+		CDAB1DCF14EB138600203ECD /* PRSettingsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PRSettingsViewController_iPhone.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +92,10 @@
 				CDAB1DB814EB122200203ECD /* PRViewController.m */,
 				CDAB1DBA14EB122200203ECD /* PRViewController_iPhone.xib */,
 				CDAB1DBD14EB122200203ECD /* PRViewController_iPad.xib */,
+				CDAB1DC914EB134B00203ECD /* PRSettingsViewController.h */,
+				CDAB1DCA14EB134B00203ECD /* PRSettingsViewController.m */,
+				CDAB1DCB14EB134B00203ECD /* PRSettingsViewController_iPad.xib */,
+				CDAB1DCF14EB138600203ECD /* PRSettingsViewController_iPhone.xib */,
 				CDAB1DAC14EB122100203ECD /* Supporting Files */,
 			);
 			path = PanicRoom;
@@ -154,6 +165,8 @@
 				CDAB1DB014EB122200203ECD /* InfoPlist.strings in Resources */,
 				CDAB1DBC14EB122200203ECD /* PRViewController_iPhone.xib in Resources */,
 				CDAB1DBF14EB122200203ECD /* PRViewController_iPad.xib in Resources */,
+				CDAB1DCD14EB134B00203ECD /* PRSettingsViewController_iPad.xib in Resources */,
+				CDAB1DD014EB138600203ECD /* PRSettingsViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +180,7 @@
 				CDAB1DB214EB122200203ECD /* main.m in Sources */,
 				CDAB1DB614EB122200203ECD /* PRAppDelegate.m in Sources */,
 				CDAB1DB914EB122200203ECD /* PRViewController.m in Sources */,
+				CDAB1DCC14EB134B00203ECD /* PRSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +302,7 @@
 				CDAB1DC414EB122200203ECD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

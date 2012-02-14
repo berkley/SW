@@ -1,0 +1,295 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CDAB1DA614EB122100203ECD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAB1DA514EB122100203ECD /* UIKit.framework */; };
+		CDAB1DA814EB122100203ECD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAB1DA714EB122100203ECD /* Foundation.framework */; };
+		CDAB1DAA14EB122100203ECD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAB1DA914EB122100203ECD /* CoreGraphics.framework */; };
+		CDAB1DB014EB122200203ECD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDAB1DAE14EB122200203ECD /* InfoPlist.strings */; };
+		CDAB1DB214EB122200203ECD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAB1DB114EB122200203ECD /* main.m */; };
+		CDAB1DB614EB122200203ECD /* PRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAB1DB514EB122200203ECD /* PRAppDelegate.m */; };
+		CDAB1DB914EB122200203ECD /* PRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAB1DB814EB122200203ECD /* PRViewController.m */; };
+		CDAB1DBC14EB122200203ECD /* PRViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDAB1DBA14EB122200203ECD /* PRViewController_iPhone.xib */; };
+		CDAB1DBF14EB122200203ECD /* PRViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDAB1DBD14EB122200203ECD /* PRViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CDAB1DA114EB122100203ECD /* PanicRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PanicRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDAB1DA514EB122100203ECD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CDAB1DA714EB122100203ECD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CDAB1DA914EB122100203ECD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CDAB1DAD14EB122100203ECD /* PanicRoom-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PanicRoom-Info.plist"; sourceTree = "<group>"; };
+		CDAB1DAF14EB122200203ECD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CDAB1DB114EB122200203ECD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CDAB1DB314EB122200203ECD /* PanicRoom-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PanicRoom-Prefix.pch"; sourceTree = "<group>"; };
+		CDAB1DB414EB122200203ECD /* PRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRAppDelegate.h; sourceTree = "<group>"; };
+		CDAB1DB514EB122200203ECD /* PRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRAppDelegate.m; sourceTree = "<group>"; };
+		CDAB1DB714EB122200203ECD /* PRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRViewController.h; sourceTree = "<group>"; };
+		CDAB1DB814EB122200203ECD /* PRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRViewController.m; sourceTree = "<group>"; };
+		CDAB1DBB14EB122200203ECD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PRViewController_iPhone.xib; sourceTree = "<group>"; };
+		CDAB1DBE14EB122200203ECD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PRViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CDAB1D9E14EB122100203ECD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDAB1DA614EB122100203ECD /* UIKit.framework in Frameworks */,
+				CDAB1DA814EB122100203ECD /* Foundation.framework in Frameworks */,
+				CDAB1DAA14EB122100203ECD /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CDAB1D9614EB122100203ECD = {
+			isa = PBXGroup;
+			children = (
+				CDAB1DAB14EB122100203ECD /* PanicRoom */,
+				CDAB1DA414EB122100203ECD /* Frameworks */,
+				CDAB1DA214EB122100203ECD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CDAB1DA214EB122100203ECD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CDAB1DA114EB122100203ECD /* PanicRoom.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CDAB1DA414EB122100203ECD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CDAB1DA514EB122100203ECD /* UIKit.framework */,
+				CDAB1DA714EB122100203ECD /* Foundation.framework */,
+				CDAB1DA914EB122100203ECD /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CDAB1DAB14EB122100203ECD /* PanicRoom */ = {
+			isa = PBXGroup;
+			children = (
+				CDAB1DB414EB122200203ECD /* PRAppDelegate.h */,
+				CDAB1DB514EB122200203ECD /* PRAppDelegate.m */,
+				CDAB1DB714EB122200203ECD /* PRViewController.h */,
+				CDAB1DB814EB122200203ECD /* PRViewController.m */,
+				CDAB1DBA14EB122200203ECD /* PRViewController_iPhone.xib */,
+				CDAB1DBD14EB122200203ECD /* PRViewController_iPad.xib */,
+				CDAB1DAC14EB122100203ECD /* Supporting Files */,
+			);
+			path = PanicRoom;
+			sourceTree = "<group>";
+		};
+		CDAB1DAC14EB122100203ECD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CDAB1DAD14EB122100203ECD /* PanicRoom-Info.plist */,
+				CDAB1DAE14EB122200203ECD /* InfoPlist.strings */,
+				CDAB1DB114EB122200203ECD /* main.m */,
+				CDAB1DB314EB122200203ECD /* PanicRoom-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CDAB1DA014EB122100203ECD /* PanicRoom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDAB1DC214EB122200203ECD /* Build configuration list for PBXNativeTarget "PanicRoom" */;
+			buildPhases = (
+				CDAB1D9D14EB122100203ECD /* Sources */,
+				CDAB1D9E14EB122100203ECD /* Frameworks */,
+				CDAB1D9F14EB122100203ECD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PanicRoom;
+			productName = PanicRoom;
+			productReference = CDAB1DA114EB122100203ECD /* PanicRoom.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CDAB1D9814EB122100203ECD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = CDAB1D9B14EB122100203ECD /* Build configuration list for PBXProject "PanicRoom" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CDAB1D9614EB122100203ECD;
+			productRefGroup = CDAB1DA214EB122100203ECD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CDAB1DA014EB122100203ECD /* PanicRoom */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CDAB1D9F14EB122100203ECD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDAB1DB014EB122200203ECD /* InfoPlist.strings in Resources */,
+				CDAB1DBC14EB122200203ECD /* PRViewController_iPhone.xib in Resources */,
+				CDAB1DBF14EB122200203ECD /* PRViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CDAB1D9D14EB122100203ECD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDAB1DB214EB122200203ECD /* main.m in Sources */,
+				CDAB1DB614EB122200203ECD /* PRAppDelegate.m in Sources */,
+				CDAB1DB914EB122200203ECD /* PRViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CDAB1DAE14EB122200203ECD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDAB1DAF14EB122200203ECD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CDAB1DBA14EB122200203ECD /* PRViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDAB1DBB14EB122200203ECD /* en */,
+			);
+			name = PRViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		CDAB1DBD14EB122200203ECD /* PRViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDAB1DBE14EB122200203ECD /* en */,
+			);
+			name = PRViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CDAB1DC014EB122200203ECD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CDAB1DC114EB122200203ECD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CDAB1DC314EB122200203ECD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PanicRoom/PanicRoom-Prefix.pch";
+				INFOPLIST_FILE = "PanicRoom/PanicRoom-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CDAB1DC414EB122200203ECD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PanicRoom/PanicRoom-Prefix.pch";
+				INFOPLIST_FILE = "PanicRoom/PanicRoom-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CDAB1D9B14EB122100203ECD /* Build configuration list for PBXProject "PanicRoom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDAB1DC014EB122200203ECD /* Debug */,
+				CDAB1DC114EB122200203ECD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CDAB1DC214EB122200203ECD /* Build configuration list for PBXNativeTarget "PanicRoom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDAB1DC314EB122200203ECD /* Debug */,
+				CDAB1DC414EB122200203ECD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CDAB1D9814EB122100203ECD /* Project object */;
+}

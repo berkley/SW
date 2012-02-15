@@ -10,6 +10,7 @@
 #import "DefaultsManager.h"
 #import "PRService.h"
 #import "CommonUtil.h"
+#import "Constants.h"
 
 @interface PRSession : NSObject
 {

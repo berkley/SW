@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7EB6E5C214EB6B5A00ECA13E /* PRLabelTextFieldTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB6E5C114EB6B5A00ECA13E /* PRLabelTextFieldTableCell.m */; };
+		7EB6E5C914EC697800ECA13E /* icon@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB6E5C814EC697800ECA13E /* icon@x2.png */; };
+		7EB6E5CB14EC697C00ECA13E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB6E5CA14EC697C00ECA13E /* icon.png */; };
+		7EB6E5CF14EC6A9800ECA13E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB6E5CE14EC6A9800ECA13E /* Default.png */; };
+		7EB6E5D214EC6C4100ECA13E /* Default@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB6E5D114EC6C4100ECA13E /* Default@x2.png */; };
 		CD82992614EB14A200F594AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD82992514EB14A200F594AF /* UIKit.framework */; };
 		CD82992814EB14A200F594AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD82992714EB14A200F594AF /* Foundation.framework */; };
 		CD82992A14EB14A200F594AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD82992914EB14A200F594AF /* CoreGraphics.framework */; };
@@ -31,6 +35,11 @@
 /* Begin PBXFileReference section */
 		7EB6E5C014EB6B5A00ECA13E /* PRLabelTextFieldTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRLabelTextFieldTableCell.h; sourceTree = "<group>"; };
 		7EB6E5C114EB6B5A00ECA13E /* PRLabelTextFieldTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRLabelTextFieldTableCell.m; sourceTree = "<group>"; };
+		7EB6E5C714EC687C00ECA13E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		7EB6E5C814EC697800ECA13E /* icon@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@x2.png"; path = "../icon@x2.png"; sourceTree = "<group>"; };
+		7EB6E5CA14EC697C00ECA13E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		7EB6E5CE14EC6A9800ECA13E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		7EB6E5D114EC6C4100ECA13E /* Default@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@x2.png"; sourceTree = SOURCE_ROOT; };
 		CD82992114EB14A200F594AF /* SafeRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD82992514EB14A200F594AF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CD82992714EB14A200F594AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -38,7 +47,7 @@
 		CD82992D14EB14A200F594AF /* PanicRoom-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PanicRoom-Info.plist"; sourceTree = "<group>"; };
 		CD82992F14EB14A200F594AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CD82993114EB14A200F594AF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CD82993314EB14A200F594AF /* SafeRoom-Prefix.pch */ = {isa = PBXFileReference; path = "SafeRoom-Prefix.pch"; sourceTree = "<group>"; };
+		CD82993314EB14A200F594AF /* SafeRoom-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafeRoom-Prefix.pch"; sourceTree = "<group>"; };
 		CD82993414EB14A200F594AF /* PRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRAppDelegate.h; sourceTree = "<group>"; };
 		CD82993514EB14A200F594AF /* PRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRAppDelegate.m; sourceTree = "<group>"; };
 		CD82993714EB14A200F594AF /* PRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRViewController.h; sourceTree = "<group>"; };
@@ -88,6 +97,7 @@
 				CD8299A014EB2A9000F594AF /* PRSession.m */,
 				CD8299A914EB2CD400F594AF /* PRService.h */,
 				CD8299AA14EB2CD400F594AF /* PRService.m */,
+				7EB6E5C714EC687C00ECA13E /* Constants.h */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -125,12 +135,23 @@
 			name = Facebook;
 			sourceTree = "<group>";
 		};
+		7EB6E5D014EC6B0900ECA13E /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				7EB6E5CE14EC6A9800ECA13E /* Default.png */,
+				7EB6E5D114EC6C4100ECA13E /* Default@x2.png */,
+				7EB6E5CA14EC697C00ECA13E /* icon.png */,
+				7EB6E5C814EC697800ECA13E /* icon@x2.png */,
+			);
+			name = assets;
+			sourceTree = "<group>";
+		};
 		CD82991614EB14A200F594AF = {
 			isa = PBXGroup;
 			children = (
 				7EB6E5C614EC5DCF00ECA13E /* Facebook */,
 				CD8299A214EB2B3600F594AF /* ObjectiveCUtil */,
-				CD82992B14EB14A200F594AF /* PanicRoom */,
+				CD82992B14EB14A200F594AF /* SafeRoom */,
 				CD82992414EB14A200F594AF /* Frameworks */,
 				CD82992214EB14A200F594AF /* Products */,
 			);
@@ -156,12 +177,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CD82992B14EB14A200F594AF /* PanicRoom */ = {
+		CD82992B14EB14A200F594AF /* SafeRoom */ = {
 			isa = PBXGroup;
 			children = (
 				CD82998B14EB204F00F594AF /* Classes */,
+				7EB6E5D014EC6B0900ECA13E /* assets */,
 				CD82992C14EB14A200F594AF /* Supporting Files */,
 			);
+			name = SafeRoom;
 			path = PanicRoom;
 			sourceTree = "<group>";
 		};
@@ -224,6 +247,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = Stumpware;
 			};
 			buildConfigurationList = CD82991B14EB14A200F594AF /* Build configuration list for PBXProject "SafeRoom" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -250,6 +274,10 @@
 				CD82993014EB14A200F594AF /* InfoPlist.strings in Resources */,
 				CD82993C14EB14A200F594AF /* PRViewController_iPhone.xib in Resources */,
 				CD82993F14EB14A200F594AF /* PRViewController_iPad.xib in Resources */,
+				7EB6E5C914EC697800ECA13E /* icon@x2.png in Resources */,
+				7EB6E5CB14EC697C00ECA13E /* icon.png in Resources */,
+				7EB6E5CF14EC6A9800ECA13E /* Default.png in Resources */,
+				7EB6E5D214EC6C4100ECA13E /* Default@x2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

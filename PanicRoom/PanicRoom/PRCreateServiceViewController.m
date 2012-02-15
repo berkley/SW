@@ -3,7 +3,7 @@
 //  PanicRoom
 //
 //  Created by Chad Berkley on 2/14/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Stumpware. All rights reserved.
 //
 
 #import "PRCreateServiceViewController.h"
@@ -86,7 +86,7 @@
     {
         PRService *service = [[PRService alloc] init];
         service.name = nameCell.textField.text;
-        [[PRSession instance] addServices:service];
+        [[PRSession instance] addService:service];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }

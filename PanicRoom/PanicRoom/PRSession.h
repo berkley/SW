@@ -3,21 +3,23 @@
 //  PanicRoom
 //
 //  Created by Chad Berkley on 2/14/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Stumpware. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "DefaultsManager.h"
 #import "PRService.h"
+#import "CommonUtil.h"
 
 @interface PRSession : NSObject
 {
     DefaultsManager *defaults;
+    NSMutableArray *services;
 }
 
-@property (nonatomic, readonly) NSMutableArray *services;
+@property (nonatomic, retain) NSMutableArray *services;
 
 + (PRSession*)instance;
-- (void)addServices:(PRService*)service;
+- (void)addService:(PRService*)service;
 
 @end

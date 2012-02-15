@@ -3,7 +3,7 @@
 //  PanicRoom
 //
 //  Created by Chad Berkley on 2/14/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Stumpware. All rights reserved.
 //
 
 #import "PRSession.h"
@@ -11,6 +11,7 @@
 static PRSession *instance;
 
 @implementation PRSession
+@synthesize services;
 
 + (PRSession*)instance
 {
@@ -27,26 +28,21 @@ static PRSession *instance;
     if(self)
     {
         defaults = [DefaultsManager instance];
+        NSString *filename = [CommonUtil getDataPathForFileWithName:@"services"];
+        self.services = [NSMutableArray arrayWithArray:
+                       [NSKeyedUnarchiver unarchiveObjectWithFile:filename]];
+        if(self.services == nil)
+            self.services = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 #pragma mark - setters/getters
 
-- (void)addServices:(PRService*)service
+- (void)addService:(PRService*)service
 {
-    NSMutableArray *services = self.services;
     [services addObject:service];
-    [defaults setObject:services withName:@"Services"];
-}
-
-- (NSMutableArray*)services
-{
-    NSMutableArray *services = (NSMutableArray*)[defaults getObjectWithName:@"Services"];
-    if(!services)
-        services = [[NSMutableArray alloc] init];
-    
-    return services;
+    [NSKeyedArchiver archiveRootObject:self.services toFile:[CommonUtil getDataPathForFileWithName:@"services"]];
 }
 
 

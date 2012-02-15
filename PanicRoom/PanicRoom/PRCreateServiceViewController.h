@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PRSession.h"
+#import "PRLabelTextFieldTableCell.h"
 
 #define SERVICE_TYPE_FACEBOOK 0
 #define SERVICE_TYPE_TWITTER 1
@@ -17,6 +18,7 @@
 @interface PRCreateServiceViewController : UITableViewController
 {
     NSInteger serviceType;
+    PRLabelTextFieldTableCell *nameCell;
 }
 
 @property (nonatomic, assign) NSInteger serviceType;

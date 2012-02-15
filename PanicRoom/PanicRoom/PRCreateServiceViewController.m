@@ -15,8 +15,10 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+    if (self) 
+    {
+        nameCell = [[PRLabelTextFieldTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"namelabeltextcell"];
+        nameCell.label = @"Name:";
     }
     return self;
 }
@@ -61,23 +63,18 @@
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-
     if(indexPath.section == 0)
     {
-        if(indexPath.row == 1)
+        if(indexPath.row == 0)
         {
-            UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-            UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 105, 100, 30)];
-            textField.tag = 9000;
-            [cell.contentView addSubview:nameLabel];
-            [cell.contentView addSubview:textField];
+            return nameCell;
         }
     }
     else
     {
         cell.textLabel.text = @"Done";
+        return cell;
     }
-    
     return cell;
 }
 
@@ -88,8 +85,7 @@
     if(indexPath.section == 1)
     {
         PRService *service = [[PRService alloc] init];
-        UITextField *nameField = (UITextField*)[self.view viewWithTag:9000];
-        service.name = nameField.text;
+        service.name = nameCell.textField.text;
         [[PRSession instance] addServices:service];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }

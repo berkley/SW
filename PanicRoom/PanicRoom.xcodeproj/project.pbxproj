@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7EB6E5C214EB6B5A00ECA13E /* PRLabelTextFieldTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB6E5C114EB6B5A00ECA13E /* PRLabelTextFieldTableCell.m */; };
 		CD82992614EB14A200F594AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD82992514EB14A200F594AF /* UIKit.framework */; };
 		CD82992814EB14A200F594AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD82992714EB14A200F594AF /* Foundation.framework */; };
 		CD82992A14EB14A200F594AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD82992914EB14A200F594AF /* CoreGraphics.framework */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7EB6E5C014EB6B5A00ECA13E /* PRLabelTextFieldTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRLabelTextFieldTableCell.h; sourceTree = "<group>"; };
+		7EB6E5C114EB6B5A00ECA13E /* PRLabelTextFieldTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRLabelTextFieldTableCell.m; sourceTree = "<group>"; };
 		CD82992114EB14A200F594AF /* PanicRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PanicRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD82992514EB14A200F594AF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CD82992714EB14A200F594AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -76,11 +79,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7EB6E5BD14EB6AE600ECA13E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				CD82993414EB14A200F594AF /* PRAppDelegate.h */,
+				CD82993514EB14A200F594AF /* PRAppDelegate.m */,
+				CD82999F14EB2A9000F594AF /* PRSession.h */,
+				CD8299A014EB2A9000F594AF /* PRSession.m */,
+				CD8299A914EB2CD400F594AF /* PRService.h */,
+				CD8299AA14EB2CD400F594AF /* PRService.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		7EB6E5BE14EB6AF500ECA13E /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7EB6E5C014EB6B5A00ECA13E /* PRLabelTextFieldTableCell.h */,
+				7EB6E5C114EB6B5A00ECA13E /* PRLabelTextFieldTableCell.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		7EB6E5BF14EB6AFD00ECA13E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CD82993714EB14A200F594AF /* PRViewController.h */,
+				CD82993814EB14A200F594AF /* PRViewController.m */,
+				CD82993A14EB14A200F594AF /* PRViewController_iPhone.xib */,
+				CD82993D14EB14A200F594AF /* PRViewController_iPad.xib */,
+				CD82998C14EB208E00F594AF /* PRSettingsViewController.h */,
+				CD82998D14EB208E00F594AF /* PRSettingsViewController.m */,
+				CD8299B514EB2FD800F594AF /* PRNewServiceViewController.h */,
+				CD8299B614EB2FD800F594AF /* PRNewServiceViewController.m */,
+				CD8299B814EB318500F594AF /* PRCreateServiceViewController.h */,
+				CD8299B914EB318500F594AF /* PRCreateServiceViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		CD82991614EB14A200F594AF = {
 			isa = PBXGroup;
 			children = (
-				CD8299AE14EB2E3C00F594AF /* CoreLocation.framework */,
-				CD8299AC14EB2E2D00F594AF /* MapKit.framework */,
 				CD8299A214EB2B3600F594AF /* ObjectiveCUtil */,
 				CD82992B14EB14A200F594AF /* PanicRoom */,
 				CD82992414EB14A200F594AF /* Frameworks */,
@@ -99,6 +139,8 @@
 		CD82992414EB14A200F594AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD8299AE14EB2E3C00F594AF /* CoreLocation.framework */,
+				CD8299AC14EB2E2D00F594AF /* MapKit.framework */,
 				CD82992514EB14A200F594AF /* UIKit.framework */,
 				CD82992714EB14A200F594AF /* Foundation.framework */,
 				CD82992914EB14A200F594AF /* CoreGraphics.framework */,
@@ -129,22 +171,9 @@
 		CD82998B14EB204F00F594AF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CD82993414EB14A200F594AF /* PRAppDelegate.h */,
-				CD82993514EB14A200F594AF /* PRAppDelegate.m */,
-				CD82993714EB14A200F594AF /* PRViewController.h */,
-				CD82993814EB14A200F594AF /* PRViewController.m */,
-				CD82993A14EB14A200F594AF /* PRViewController_iPhone.xib */,
-				CD82993D14EB14A200F594AF /* PRViewController_iPad.xib */,
-				CD82998C14EB208E00F594AF /* PRSettingsViewController.h */,
-				CD82998D14EB208E00F594AF /* PRSettingsViewController.m */,
-				CD82999F14EB2A9000F594AF /* PRSession.h */,
-				CD8299A014EB2A9000F594AF /* PRSession.m */,
-				CD8299A914EB2CD400F594AF /* PRService.h */,
-				CD8299AA14EB2CD400F594AF /* PRService.m */,
-				CD8299B514EB2FD800F594AF /* PRNewServiceViewController.h */,
-				CD8299B614EB2FD800F594AF /* PRNewServiceViewController.m */,
-				CD8299B814EB318500F594AF /* PRCreateServiceViewController.h */,
-				CD8299B914EB318500F594AF /* PRCreateServiceViewController.m */,
+				7EB6E5BD14EB6AE600ECA13E /* Main */,
+				7EB6E5BF14EB6AFD00ECA13E /* View Controllers */,
+				7EB6E5BE14EB6AF500ECA13E /* Util */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -233,6 +262,7 @@
 				CD8299AB14EB2CD400F594AF /* PRService.m in Sources */,
 				CD8299B714EB2FD800F594AF /* PRNewServiceViewController.m in Sources */,
 				CD8299BA14EB318500F594AF /* PRCreateServiceViewController.m in Sources */,
+				7EB6E5C214EB6B5A00ECA13E /* PRLabelTextFieldTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

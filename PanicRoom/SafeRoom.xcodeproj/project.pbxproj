@@ -31,14 +31,14 @@
 /* Begin PBXFileReference section */
 		7EB6E5C014EB6B5A00ECA13E /* PRLabelTextFieldTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRLabelTextFieldTableCell.h; sourceTree = "<group>"; };
 		7EB6E5C114EB6B5A00ECA13E /* PRLabelTextFieldTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRLabelTextFieldTableCell.m; sourceTree = "<group>"; };
-		CD82992114EB14A200F594AF /* PanicRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PanicRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD82992114EB14A200F594AF /* SafeRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD82992514EB14A200F594AF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CD82992714EB14A200F594AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CD82992914EB14A200F594AF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CD82992D14EB14A200F594AF /* PanicRoom-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PanicRoom-Info.plist"; sourceTree = "<group>"; };
 		CD82992F14EB14A200F594AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CD82993114EB14A200F594AF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CD82993314EB14A200F594AF /* PanicRoom-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PanicRoom-Prefix.pch"; sourceTree = "<group>"; };
+		CD82993314EB14A200F594AF /* SafeRoom-Prefix.pch */ = {isa = PBXFileReference; path = "SafeRoom-Prefix.pch"; sourceTree = "<group>"; };
 		CD82993414EB14A200F594AF /* PRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRAppDelegate.h; sourceTree = "<group>"; };
 		CD82993514EB14A200F594AF /* PRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRAppDelegate.m; sourceTree = "<group>"; };
 		CD82993714EB14A200F594AF /* PRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRViewController.h; sourceTree = "<group>"; };
@@ -118,9 +118,17 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
+		7EB6E5C614EC5DCF00ECA13E /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Facebook;
+			sourceTree = "<group>";
+		};
 		CD82991614EB14A200F594AF = {
 			isa = PBXGroup;
 			children = (
+				7EB6E5C614EC5DCF00ECA13E /* Facebook */,
 				CD8299A214EB2B3600F594AF /* ObjectiveCUtil */,
 				CD82992B14EB14A200F594AF /* PanicRoom */,
 				CD82992414EB14A200F594AF /* Frameworks */,
@@ -131,7 +139,7 @@
 		CD82992214EB14A200F594AF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CD82992114EB14A200F594AF /* PanicRoom.app */,
+				CD82992114EB14A200F594AF /* SafeRoom.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,7 +171,7 @@
 				CD82992D14EB14A200F594AF /* PanicRoom-Info.plist */,
 				CD82992E14EB14A200F594AF /* InfoPlist.strings */,
 				CD82993114EB14A200F594AF /* main.m */,
-				CD82993314EB14A200F594AF /* PanicRoom-Prefix.pch */,
+				CD82993314EB14A200F594AF /* SafeRoom-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -192,9 +200,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CD82992014EB14A200F594AF /* PanicRoom */ = {
+		CD82992014EB14A200F594AF /* SafeRoom */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD82994214EB14A200F594AF /* Build configuration list for PBXNativeTarget "PanicRoom" */;
+			buildConfigurationList = CD82994214EB14A200F594AF /* Build configuration list for PBXNativeTarget "SafeRoom" */;
 			buildPhases = (
 				CD82991D14EB14A200F594AF /* Sources */,
 				CD82991E14EB14A200F594AF /* Frameworks */,
@@ -204,9 +212,9 @@
 			);
 			dependencies = (
 			);
-			name = PanicRoom;
+			name = SafeRoom;
 			productName = PanicRoom;
-			productReference = CD82992114EB14A200F594AF /* PanicRoom.app */;
+			productReference = CD82992114EB14A200F594AF /* SafeRoom.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -217,7 +225,7 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 			};
-			buildConfigurationList = CD82991B14EB14A200F594AF /* Build configuration list for PBXProject "PanicRoom" */;
+			buildConfigurationList = CD82991B14EB14A200F594AF /* Build configuration list for PBXProject "SafeRoom" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -229,7 +237,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CD82992014EB14A200F594AF /* PanicRoom */,
+				CD82992014EB14A200F594AF /* SafeRoom */,
 			);
 		};
 /* End PBXProject section */
@@ -347,9 +355,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PanicRoom/PanicRoom-Prefix.pch";
+				GCC_PREFIX_HEADER = "PanicRoom/SafeRoom-Prefix.pch";
 				INFOPLIST_FILE = "PanicRoom/PanicRoom-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SafeRoom;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -358,9 +366,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PanicRoom/PanicRoom-Prefix.pch";
+				GCC_PREFIX_HEADER = "PanicRoom/SafeRoom-Prefix.pch";
 				INFOPLIST_FILE = "PanicRoom/PanicRoom-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SafeRoom;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -368,7 +376,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CD82991B14EB14A200F594AF /* Build configuration list for PBXProject "PanicRoom" */ = {
+		CD82991B14EB14A200F594AF /* Build configuration list for PBXProject "SafeRoom" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD82994014EB14A200F594AF /* Debug */,
@@ -377,7 +385,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD82994214EB14A200F594AF /* Build configuration list for PBXNativeTarget "PanicRoom" */ = {
+		CD82994214EB14A200F594AF /* Build configuration list for PBXNativeTarget "SafeRoom" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD82994314EB14A200F594AF /* Debug */,

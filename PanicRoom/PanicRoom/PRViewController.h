@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PRSettingsViewController.h"
 
 #define ACTIVE_TIME_INTERVAL 1.0
 
 @interface PRViewController : UIViewController
 {
-    UINavigationController *navigationController;
-    
     __weak IBOutlet UISlider *activationSlider;
     __weak IBOutlet UIBarButtonItem *settingsBarButtonItem;
     __weak IBOutlet UIBarButtonItem *toolbar;
@@ -22,6 +21,8 @@
     __weak IBOutlet UILabel *distressActiveLabel;
     BOOL distressCallIsActive;
     NSTimer *activeTimer;
+    UINavigationController *settingsNavigationController;
+    PRSettingsViewController *settingsViewController;
 }
 
 @end

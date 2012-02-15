@@ -21,8 +21,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    navigationController = [[UINavigationController alloc] initWithRootViewController:self];
-	// Do any additional setup after loading the view, typically from a nib.
+    //    PRSettingsViewController *vc = [[PRSettingsViewController alloc] initWithNibName:@"PRSettingsViewController" bundle:nil];
+    settingsViewController = [[PRSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    settingsViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    settingsNavigationController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
 }
 
 - (void)viewDidUnload
@@ -34,8 +36,6 @@
     headingLabel = nil;
     distressActiveLabel = nil;
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -67,12 +67,11 @@
         activationSlider.thumbTintColor = [UIColor redColor];
     else
         activationSlider.thumbTintColor = [UIColor whiteColor];
-    //update information here
 }
 
 - (IBAction)settingsButtonTouched:(id)sender 
 {
-    
+    [self presentModalViewController:settingsNavigationController animated:YES];
 }
 
 - (IBAction)activationSliderValueChanged:(id)sender 

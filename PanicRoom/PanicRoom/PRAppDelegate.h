@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBConnect.h"
 
 @class PRViewController;
 
-@interface PRAppDelegate : UIResponder <UIApplicationDelegate>
+@interface PRAppDelegate : UIResponder <UIApplicationDelegate, FBSessionDelegate, FBRequestDelegate>
+{
+    Facebook *facebook;
+}
 
 @property (strong, nonatomic) UIWindow *window;
-
 @property (strong, nonatomic) PRViewController *viewController;
-
+@property (nonatomic, retain) Facebook *facebook;
 @end

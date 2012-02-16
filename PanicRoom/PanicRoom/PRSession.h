@@ -22,5 +22,7 @@
 
 + (PRSession*)instance;
 - (void)addService:(PRService*)service;
+- (void)removeService:(PRService*)service;
+- (PRService*)serviceWithName:(NSString*)name;
 
 @end

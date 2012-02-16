@@ -101,7 +101,11 @@
 {
     PRCreateServiceViewController *vc = [[PRCreateServiceViewController alloc] initWithStyle:UITableViewStyleGrouped];
     if(indexPath.row == 0)
-        vc.serviceType = SERVICE_TYPE_FACEBOOK;
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_AUTHORIZE_FACEBOOK 
+                                                            object:nil];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
     else if(indexPath.row == 1)
         vc.serviceType = SERVICE_TYPE_TWITTER;
     else if(indexPath.row == 2)

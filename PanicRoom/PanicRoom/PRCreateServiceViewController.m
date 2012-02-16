@@ -83,7 +83,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 1)
-    {
+    { //done
         PRService *service = [[PRService alloc] init];
         service.name = nameCell.textField.text;
         [[PRSession instance] addService:service];

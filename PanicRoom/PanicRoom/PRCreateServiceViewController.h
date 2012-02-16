@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PRSession.h"
 #import "PRLabelTextFieldTableCell.h"
+#import "PRFacebookService.h"
 
 #define SERVICE_TYPE_FACEBOOK 0
 #define SERVICE_TYPE_TWITTER 1

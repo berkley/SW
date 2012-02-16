@@ -47,6 +47,10 @@
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     self.navigationItem.leftBarButtonItem = doneBarButtonItem;
     self.navigationItem.title = @"Settings";
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(refreshServiceList) 
+                                                 name:NOTIFICATION_REFRESH_SERVICE_LIST 
+                                               object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -59,6 +63,11 @@
 - (void)doneButtonTouched
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)refreshServiceList
+{
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -134,7 +143,12 @@
         }
         else
         { //show details of current service
-            
+            PRService *service = [[PRSession instance].services objectAtIndex:indexPath.row - 1];
+            if([service isKindOfClass:[PRFacebookService class]])
+            {
+                PRFacebookSettingsViewController *vc = [[PRFacebookSettingsViewController alloc] initWithNibName:@"PRFacebookSettingsViewController" bundle:nil];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
     }
 }

@@ -25,6 +25,13 @@
     settingsViewController = [[PRSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
     settingsViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     settingsNavigationController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
+    statusTextView.text = @"";
+    numTimerFired = 0;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(updateStatusTextView:) 
+                                                 name:NOTIFICATION_UPDATE_STATUS_TEXT 
+                                               object:nil];
 }
 
 - (void)viewDidUnload
@@ -35,6 +42,7 @@
     slideLabel = nil;
     headingLabel = nil;
     distressActiveLabel = nil;
+    statusTextView = nil;
     [super viewDidUnload];
 }
 
@@ -60,6 +68,22 @@
 
 #pragma mark - selectors
 
+- (void)updateStatusText:(NSString*)text
+{
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"HH:mm:ss";
+    NSString *timestamp = [formatter stringFromDate:date];
+    statusTextView.text = [NSString stringWithFormat:@"%@: %@\n%@",timestamp, text, statusTextView.text];    
+}
+
+- (void)updateStatusTextView:(NSNotification*)notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    NSString *text = [userInfo objectForKey:@"text"];
+    [self updateStatusText:text];
+}
+
 - (void)activeTimerFired:(id)sender
 {
     distressActiveLabel.hidden = !distressActiveLabel.hidden;
@@ -67,6 +91,12 @@
         activationSlider.thumbTintColor = [UIColor redColor];
     else
         activationSlider.thumbTintColor = [UIColor whiteColor];
+    NSString *newMessage = @"Broadcasting...";
+    NSString *text = [NSString stringWithFormat:@"%@%i", newMessage, numTimerFired];
+    [self updateStatusText:text];
+//    NSRange range = NSMakeRange(numStatusTextViewMessages, 1);
+    numTimerFired++;
+//    [statusTextView scrollRangeToVisible:range];
 }
 
 - (IBAction)settingsButtonTouched:(id)sender 

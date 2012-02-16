@@ -45,5 +45,20 @@ static PRSession *instance;
     [NSKeyedArchiver archiveRootObject:self.services toFile:[CommonUtil getDataPathForFileWithName:@"services"]];
 }
 
+- (void)removeService:(PRService*)service
+{
+    [services removeObject:service];
+    [NSKeyedArchiver archiveRootObject:self.services toFile:[CommonUtil getDataPathForFileWithName:@"services"]];
+}
+
+- (PRService*)serviceWithName:(NSString*)name
+{
+    for(PRService *service in services)
+    {
+        if([service.name isEqualToString:name])
+            return service;
+    }
+    return nil;
+}
 
 @end

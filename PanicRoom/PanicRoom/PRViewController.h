@@ -19,6 +19,8 @@
     __weak IBOutlet UILabel *slideLabel;
     __weak IBOutlet UILabel *headingLabel;
     __weak IBOutlet UILabel *distressActiveLabel;
+    __weak IBOutlet UITextView *statusTextView;
+    NSInteger numTimerFired;
     BOOL distressCallIsActive;
     NSTimer *activeTimer;
     UINavigationController *settingsNavigationController;

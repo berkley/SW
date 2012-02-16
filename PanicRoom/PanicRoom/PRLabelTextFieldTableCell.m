@@ -28,9 +28,14 @@
     return self;
 }
 
-- (void)setLabel:(NSString *)l
+- (void)setLabelText:(NSString *)l
 {
     self.nameLabel.text = l;
+}
+
+- (void)setTextFieldText:(NSString*)text
+{
+    self.textField.text = text;
 }
 
 @end

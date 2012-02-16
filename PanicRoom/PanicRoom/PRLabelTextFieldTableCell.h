@@ -18,4 +18,7 @@
 @property (nonatomic, retain) UITextField *textField;
 @property (nonatomic, retain) NSString *label;
 
+- (void)setLabelText:(NSString *)l;
+- (void)setTextFieldText:(NSString*)text;
+
 @end

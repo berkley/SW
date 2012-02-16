@@ -52,20 +52,34 @@
                                                  name:NOTIFICATION_REFRESH_SERVICE_LIST 
                                                object:nil];
     
-    testModeCell = [[PROnOffTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"testmodecell"];
-    [testModeCell setSwitch:NO];
-    [testModeCell setLabel:@"Test Mode:"];
+    testModeCell = [[PROnOffTableCell alloc] initWithStyle:UITableViewCellStyleDefault 
+                                           reuseIdentifier:@"testmodecell"];
+    [testModeCell setLabelText:@"Test Mode:"];
     
-    alertMessageCell = [[PRLabelTextFieldTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"alertmessagecell"];
-    [alertMessageCell setLabel:@"Alert Message:"];
+    alertMessageCell = [[PRLabelTextFieldTableCell alloc] initWithStyle:UITableViewCellStyleDefault 
+                                                        reuseIdentifier:@"alertmessagecell"];
+    [alertMessageCell setLabelText:@"Alert Message:"];
     
-    testMessageCell = [[PRLabelTextFieldTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"testmessagecell"];
-    [testMessageCell setLabel:@"Test Message:"];
+    testMessageCell = [[PRLabelTextFieldTableCell alloc] initWithStyle:UITableViewCellStyleDefault 
+                                                       reuseIdentifier:@"testmessagecell"];
+    [testMessageCell setLabelText:@"Test Message:"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    [alertMessageCell setTextFieldText:[PRSession instance].alertMessage];
+    [testMessageCell setTextFieldText:[PRSession instance].testMessage];
+    [testModeCell setSwitchValue:[PRSession instance].testMode];
     [self.tableView reloadData];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [PRSession instance].alertMessage = alertMessageCell.textField.text;
+    [PRSession instance].testMessage = testMessageCell.textField.text;
+    [PRSession instance].testMode = [testModeCell getSwitchValue];
 }
 
 #pragma mark - selectors

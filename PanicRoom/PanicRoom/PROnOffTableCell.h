@@ -14,8 +14,8 @@
     UILabel *label;
 }
 
-- (void)setLabel:(NSString*)label;
-- (void)setSwitch:(BOOL)on;
+- (void)setLabelText:(NSString*)label;
+- (void)setSwitchValue:(BOOL)on;
 - (BOOL)getSwitchValue;
 
 @end

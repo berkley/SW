@@ -30,12 +30,12 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)setLabel:(NSString*)l
+- (void)setLabelText:(NSString*)l
 {
     label.text = l;
 }
 
-- (void)setSwitch:(BOOL)on
+- (void)setSwitchValue:(BOOL)on
 {
     switchButton.on = on;
 }

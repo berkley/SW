@@ -19,6 +19,9 @@
 }
 
 @property (nonatomic, retain) NSMutableArray *services;
+@property (nonatomic, assign) BOOL testMode;
+@property (nonatomic, retain) NSString *testMessage;
+@property (nonatomic, retain) NSString *alertMessage;
 
 + (PRSession*)instance;
 - (void)addService:(PRService*)service;

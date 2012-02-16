@@ -16,9 +16,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 100, 30)];
-        textField = [[UITextField alloc] initWithFrame:CGRectMake(105, 5, 100, 30)];
-        textField.borderStyle = UITextBorderStyleBezel;
+        nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, 150, 30)];
+        textField = [[UITextField alloc] initWithFrame:CGRectMake(155, 8, 140, 30)];
+        textField.borderStyle = UITextBorderStyleRoundedRect;
         textField.backgroundColor = [UIColor clearColor];
         nameLabel.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:nameLabel];

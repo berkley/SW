@@ -10,9 +10,14 @@
 #import "PRSession.h"
 #import "PRNewServiceViewController.h"
 #import "PRFacebookSettingsViewController.h"
+#import "PRLabelTextFieldTableCell.h"
+#import "PROnOffTableCell.h"
 
 @interface PRSettingsViewController : UITableViewController
 {
+    PRLabelTextFieldTableCell *alertMessageCell;
+    PRLabelTextFieldTableCell *testMessageCell;
+    PROnOffTableCell *testModeCell;
 }
 
 @end

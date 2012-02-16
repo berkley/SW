@@ -51,6 +51,16 @@
                                              selector:@selector(refreshServiceList) 
                                                  name:NOTIFICATION_REFRESH_SERVICE_LIST 
                                                object:nil];
+    
+    testModeCell = [[PROnOffTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"testmodecell"];
+    [testModeCell setSwitch:NO];
+    [testModeCell setLabel:@"Test Mode:"];
+    
+    alertMessageCell = [[PRLabelTextFieldTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"alertmessagecell"];
+    [alertMessageCell setLabel:@"Alert Message:"];
+    
+    testMessageCell = [[PRLabelTextFieldTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"testmessagecell"];
+    [testMessageCell setLabel:@"Test Message:"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -80,7 +90,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0)
-        return 1;
+        return 3;
     else if(section == 1)
         return 1 + [[PRSession instance].services count];
     return 0;
@@ -99,7 +109,11 @@
     if(indexPath.section == 0)
     {
         if(indexPath.row == 0)
-            cell.textLabel.text = @"Setting0";
+            return testModeCell;
+        else if(indexPath.row == 1)
+            return testMessageCell;
+        else if(indexPath.row == 2)
+            return alertMessageCell;
     }
     else if(indexPath.section == 1)
     {

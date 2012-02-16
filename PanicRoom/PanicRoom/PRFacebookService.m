@@ -29,5 +29,13 @@
     [coder encodeObject:accessToken forKey:@"accessToken"];
 }
 
+- (void)sendMessage:(NSString*)msg
+{
+    //send facebook message here
+    msg = [NSString stringWithFormat:@"Sending to Facebook: %@", msg];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATE_STATUS_TEXT 
+                                                        object:nil 
+                                                      userInfo:[NSDictionary dictionaryWithObjectsAndKeys:msg, @"text", nil]];
+}
 
 @end

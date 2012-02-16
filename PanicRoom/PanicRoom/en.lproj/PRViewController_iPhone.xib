@@ -44,7 +44,6 @@
 						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{0, 416}, {320, 44}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:371</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -67,7 +66,7 @@
 					<object class="IBUISlider" id="271394398">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{18, 283}, {284, 23}}</string>
+						<string key="NSFrame">{{18, 365}, {284, 23}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSNextKeyView" ref="41421203"/>
 						<string key="NSReuseIdentifierKey">_NS:623</string>
@@ -88,7 +87,7 @@
 					<object class="IBUILabel" id="40393287">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{62, 232}, {197, 43}}</string>
+						<string key="NSFrame">{{62, 314}, {197, 43}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSNextKeyView" ref="271394398"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
@@ -170,7 +169,7 @@
 					<object class="IBUILabel" id="471353998">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{34, 68}, {253, 43}}</string>
+						<string key="NSFrame">{{34, 65}, {253, 43}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSNextKeyView" ref="40393287"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
@@ -193,7 +192,7 @@
 					<object class="IBUITextView" id="9721592">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{34, 119}, {253, 100}}</string>
+						<string key="NSFrame">{{20, 119}, {280, 185}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<string key="NSReuseIdentifierKey">_NS:639</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="890060489">

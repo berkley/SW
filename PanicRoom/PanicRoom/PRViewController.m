@@ -27,10 +27,15 @@
     settingsNavigationController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
     statusTextView.text = @"";
     numTimerFired = 0;
-
+    currentLocation = nil;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(updateStatusTextView:) 
                                                  name:NOTIFICATION_UPDATE_STATUS_TEXT 
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(locationUpdated:) 
+                                                 name:NOTIFICATION_LOCATION_CHANGED 
                                                object:nil];
 }
 
@@ -44,26 +49,6 @@
     distressActiveLabel = nil;
     statusTextView = nil;
     [super viewDidUnload];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
 }
 
 #pragma mark - selectors
@@ -91,12 +76,15 @@
         activationSlider.thumbTintColor = [UIColor redColor];
     else
         activationSlider.thumbTintColor = [UIColor whiteColor];
-    NSString *newMessage = @"Broadcasting...";
-    NSString *text = [NSString stringWithFormat:@"%@%i", newMessage, numTimerFired];
-    [self updateStatusText:text];
-//    NSRange range = NSMakeRange(numStatusTextViewMessages, 1);
+
+    NSLog(@"numTimerFired %i messageInterval %i mod: %i", numTimerFired, [PRSession instance].messageInterval, numTimerFired % [PRSession instance].messageInterval);
+    if(numTimerFired % [PRSession instance].messageInterval == 0)
+    {
+        //turn on location servies, wait for a location, then send messages
+        [[PRSession instance] startLocationServices];
+    }
+    
     numTimerFired++;
-//    [statusTextView scrollRangeToVisible:range];
 }
 
 - (IBAction)settingsButtonTouched:(id)sender 
@@ -117,6 +105,11 @@
         activeTimer = [NSTimer scheduledTimerWithTimeInterval:ACTIVE_TIME_INTERVAL target:self selector:@selector(activeTimerFired:) userInfo:nil repeats:YES];
         distressActiveLabel.hidden = NO;
         distressCallIsActive = YES;
+        numTimerFired = 0;
+        if(![PRSession instance].testMode)
+            [self updateStatusText:@"Distress Beacon Activated"];
+        else
+            [self updateStatusText:@"Testing Distress Beacon"];
     }
     else if(activationSlider.value == 0 && distressCallIsActive)
     {
@@ -125,6 +118,36 @@
         activeTimer = nil;
         distressActiveLabel.hidden = YES;
         distressCallIsActive = NO;
+        [self updateStatusText:@"Beacon Deactivated"];
+    }
+}
+
+- (void)sendMessages
+{
+    messageSent = YES;
+    NSLog(@"sending messages to services");
+    NSString *msg = [PRSession instance].alertMessage;
+    if([PRSession instance].testMode)
+        msg = [PRSession instance].testMessage;
+    
+    msg = [NSString stringWithFormat:@"%@ - My location is: latitude: %f longitude: %f", msg, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude];
+    
+    for(PRService *service in [PRSession instance].services)
+    {
+        [service sendMessage:msg];
+    }
+}
+
+- (void)locationUpdated:(NSNotification*)notification
+{
+    currentLocation = [notification.userInfo objectForKey:@"newLocation"];
+    if([PRSession instance].locationUpdateCounter >= VALID_LOCATION_COUNT || 
+       currentLocation.horizontalAccuracy <= MIN_LOCATION_ACCURACY)
+    { //try 5 times to achieve min_accuracy
+        if(!messageSent)
+            [self sendMessages];
+        messageSent = YES;
+        [[PRSession instance] stopLocationServices];
     }
 }
 

@@ -15,4 +15,6 @@
 
 @property (nonatomic, retain) NSString *name;
 
+- (void)sendMessage:(NSString*)msg;
+
 @end

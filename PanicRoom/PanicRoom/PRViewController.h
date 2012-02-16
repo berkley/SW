@@ -25,6 +25,8 @@
     NSTimer *activeTimer;
     UINavigationController *settingsNavigationController;
     PRSettingsViewController *settingsViewController;
+    CLLocation *currentLocation;
+    BOOL messageSent;
 }
 
 @end

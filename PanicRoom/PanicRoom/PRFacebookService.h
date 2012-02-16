@@ -7,6 +7,8 @@
 //
 
 #import "PRService.h"
+#import "PRSession.h"
+#import "Constants.h"
 
 @interface PRFacebookService : PRService
 {

@@ -13,3 +13,7 @@
 #define NOTIFICATION_FACEBOOK_LOGOUT @"facebookLogout"
 #define NOTIFICATION_REFRESH_SERVICE_LIST @"refreshServiceList"
 #define NOTIFICATION_UPDATE_STATUS_TEXT @"updateStatusText"
+#define NOTIFICATION_LOCATION_CHANGED @"locationChanged"
+
+#define VALID_LOCATION_COUNT 5
+#define MIN_LOCATION_ACCURACY 50

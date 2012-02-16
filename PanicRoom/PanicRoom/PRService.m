@@ -26,4 +26,9 @@
     return self;
 }
 
+- (void)sendMessage:(NSString*)msg
+{
+    NSAssert(FALSE, @"this method should be overridden", nil);
+}
+
 @end

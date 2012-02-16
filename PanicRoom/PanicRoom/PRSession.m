@@ -11,7 +11,7 @@
 static PRSession *instance;
 
 @implementation PRSession
-@synthesize services;
+@synthesize services, locationManager, locationUpdateCounter;
 
 + (PRSession*)instance
 {
@@ -33,6 +33,10 @@ static PRSession *instance;
                        [NSKeyedUnarchiver unarchiveObjectWithFile:filename]];
         if(self.services == nil)
             self.services = [[NSMutableArray alloc] init];
+        
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     }
     return self;
 }
@@ -77,6 +81,20 @@ static PRSession *instance;
         [defaults setObject:@"NO" withName:@"testMode"];
 }
 
+- (NSInteger)messageInterval
+{
+    NSNumber *num = (NSNumber*)[defaults getObjectWithName:@"messageInterval"];
+    if(!num)
+        return 10;
+    return [num intValue];
+}
+
+- (void)setMessageInterval:(NSInteger)messageInterval
+{
+    NSNumber *num = [NSNumber numberWithInt:messageInterval];
+    [defaults setObject:num  withName:@"messageInterval"];
+}
+
 #pragma mark - service methods
 
 - (void)addService:(PRService*)service
@@ -99,6 +117,31 @@ static PRSession *instance;
             return service;
     }
     return nil;
+}
+
+#pragma mark - location services
+
+- (void)startLocationServices
+{
+    locationUpdateCounter = 0;
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [locationManager startUpdatingLocation];
+}
+
+- (void)stopLocationServices
+{
+    [locationManager stopUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager 
+    didUpdateToLocation:(CLLocation *)newLocation 
+           fromLocation:(CLLocation *)oldLocation
+{
+    locationUpdateCounter++;
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATION_CHANGED 
+                                                        object:nil 
+                                                      userInfo:[NSDictionary dictionaryWithObjectsAndKeys:newLocation, @"newLocation", oldLocation, @"oldLocation", nil]];
 }
 
 @end

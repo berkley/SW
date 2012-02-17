@@ -39,6 +39,7 @@
     serviceNameTextField = nil;
     phoneNumberTextField = nil;
     recipientNameTextField = nil;
+    deleteButton = nil;
     [super viewDidUnload];
 }
 
@@ -50,6 +51,11 @@
         serviceNameTextField.text = service.name;
         phoneNumberTextField.text = service.phoneNumber;
         recipientNameTextField.text = service.receiverName;
+        deleteButton.hidden = NO;
+    }
+    else
+    {
+        deleteButton.hidden = YES;
     }
 }
 
@@ -79,6 +85,16 @@
 - (IBAction)cancelButtonTouched:(id)sender 
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)deleteButtonTouched:(id)sender 
+{
+    if(self.service)
+    {
+        [[PRSession instance] removeService:self.service];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REFRESH_SERVICE_LIST object:nil];
+    }
 }
 
 @end

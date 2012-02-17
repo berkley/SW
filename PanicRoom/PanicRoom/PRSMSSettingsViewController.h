@@ -16,6 +16,7 @@
     __weak IBOutlet UITextField *serviceNameTextField;
     __weak IBOutlet UITextField *phoneNumberTextField;
     __weak IBOutlet UITextField *recipientNameTextField;
+    __weak IBOutlet UIButton *deleteButton;
     PRSMSService *service;
 }
 

@@ -34,32 +34,6 @@
     self.navigationItem.title = @"Add Service";
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -69,7 +43,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,11 +58,11 @@
     if(indexPath.row == 0)
         cell.textLabel.text = @"Facebook";
     else if(indexPath.row == 1)
-        cell.textLabel.text = @"Twitter";
-    else if(indexPath.row == 2)
         cell.textLabel.text = @"SMS";
-    else if(indexPath.row == 3)
-        cell.textLabel.text = @"Email";
+    else if(indexPath.row == 2)
+//        cell.textLabel.text = @"SMS";
+//    else if(indexPath.row == 3)
+//        cell.textLabel.text = @"Email";
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -99,7 +73,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PRCreateServiceViewController *vc = [[PRCreateServiceViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//    PRCreateServiceViewController *vc = [[PRCreateServiceViewController alloc] initWithStyle:UITableViewStyleGrouped];
     if(indexPath.row == 0)
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_AUTHORIZE_FACEBOOK 
@@ -107,12 +81,12 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
     else if(indexPath.row == 1)
-        vc.serviceType = SERVICE_TYPE_TWITTER;
-    else if(indexPath.row == 2)
-        vc.serviceType = SERVICE_TYPE_SMS;
-    else if(indexPath.row == 3)
-        vc.serviceType = SERVICE_TYPE_EMAIL;
-    [self.navigationController pushViewController:vc animated:YES];
+    {
+        PRSMSSettingsViewController *vc = [[PRSMSSettingsViewController alloc] initWithNibName:@"PRSMSSettingsViewController" bundle:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

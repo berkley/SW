@@ -11,7 +11,6 @@
 
 @interface PRFacebookSettingsViewController : UIViewController
 {
-    
     __weak IBOutlet UIButton *logoutButton;
     __weak IBOutlet UILabel *statusLabel;
 }

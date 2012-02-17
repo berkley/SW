@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PRCreateServiceViewController.h"
+#import "PRSMSSettingsViewController.h"
 
 @interface PRNewServiceViewController : UITableViewController
 

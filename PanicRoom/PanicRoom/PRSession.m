@@ -46,7 +46,7 @@ static PRSession *instance;
 - (NSString*)testMessage
 {
     if(![defaults getObjectWithName:@"testMessage"])
-        [defaults setObject:@"I'm testing SafeRoom. Please disregard this message." withName:@"testMessage"];
+        [defaults setObject:@"I'm using SafeRoom to send out alerts in case of emergency. This is a test. Please disregard this message." withName:@"testMessage"];
     return (NSString*)[defaults getObjectWithName:@"testMessage"];
 }
 
@@ -97,10 +97,19 @@ static PRSession *instance;
 
 #pragma mark - service methods
 
-- (void)addService:(PRService*)service
+//return NO if the name already exists
+- (BOOL)addService:(PRService*)service
 {
+    for(PRService *s in self.services)
+    {
+        if([[CommonUtil trimString:s.name] isEqualToString:[CommonUtil trimString:service.name]])
+        {
+            return NO;
+        }
+    }
     [services addObject:service];
     [NSKeyedArchiver archiveRootObject:self.services toFile:[CommonUtil getDataPathForFileWithName:@"services"]];
+    return YES;
 }
 
 - (void)removeService:(PRService*)service

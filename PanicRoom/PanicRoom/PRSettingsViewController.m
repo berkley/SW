@@ -56,24 +56,24 @@
                                            reuseIdentifier:@"testmodecell"];
     [testModeCell setLabelText:@"Test Mode:"];
     
-    alertMessageCell = [[PRLabelTextFieldTableCell alloc] initWithStyle:UITableViewCellStyleDefault 
+    alertMessageCell = [[PRTextAreaTableCell alloc] initWithStyle:UITableViewCellStyleDefault 
                                                         reuseIdentifier:@"alertmessagecell"];
     [alertMessageCell setLabelText:@"Alert Message:"];
     
-    testMessageCell = [[PRLabelTextFieldTableCell alloc] initWithStyle:UITableViewCellStyleDefault 
+    testMessageCell = [[PRTextAreaTableCell alloc] initWithStyle:UITableViewCellStyleDefault 
                                                        reuseIdentifier:@"testmessagecell"];
     [testMessageCell setLabelText:@"Test Message:"];
     
     intervalCell = [[PRLabelTextFieldTableCell alloc] initWithStyle:UITableViewCellStyleDefault 
                                                     reuseIdentifier:@"intervalcell"];
-    [intervalCell setLabelText:@"Interval (sec)"];
+    [intervalCell setLabelText:@"Send Interval (sec):"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [alertMessageCell setTextFieldText:[PRSession instance].alertMessage];
-    [testMessageCell setTextFieldText:[PRSession instance].testMessage];
+    [alertMessageCell setTextViewText:[PRSession instance].alertMessage];
+    [testMessageCell setTextViewText:[PRSession instance].testMessage];
     [testModeCell setSwitchValue:[PRSession instance].testMode];
     [intervalCell setTextFieldText:[NSString stringWithFormat:@"%i", [PRSession instance].messageInterval]];
     [self.tableView reloadData];
@@ -82,8 +82,8 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [PRSession instance].alertMessage = alertMessageCell.textField.text;
-    [PRSession instance].testMessage = testMessageCell.textField.text;
+    [PRSession instance].alertMessage = alertMessageCell.textView.text;
+    [PRSession instance].testMessage = testMessageCell.textView.text;
     [PRSession instance].testMode = [testModeCell getSwitchValue];
     NSCharacterSet* notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
     if ([intervalCell.textField.text rangeOfCharacterFromSet:notDigits].location == NSNotFound)
@@ -189,8 +189,33 @@
                 PRFacebookSettingsViewController *vc = [[PRFacebookSettingsViewController alloc] initWithNibName:@"PRFacebookSettingsViewController" bundle:nil];
                 [self.navigationController pushViewController:vc animated:YES];
             }
+            else if([service isKindOfClass:[PRSMSService class]])
+            {
+                PRSMSSettingsViewController *vc = [[PRSMSSettingsViewController alloc] initWithNibName:@"PRSMSSettingsViewController" bundle:nil];
+                vc.service = (PRSMSService*)service;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 0)
+    {
+        if(indexPath.row == 0)
+            return ON_OFF_CELL_HEIGHT;
+        else if(indexPath.row == 1)
+            return LABEL_TEXT_VIEW_CELL_HEIGHT;
+        else if(indexPath.row == 2)
+            return LABEL_TEXT_VIEW_CELL_HEIGHT;
+        else if(indexPath.row == 3)
+            return LABEL_TEXT_FIELD_CELL_HEIGHT;
+        else
+            return 50;
+    }
+    else
+        return 50;
 }
 
 @end

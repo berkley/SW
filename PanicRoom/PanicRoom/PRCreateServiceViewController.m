@@ -86,8 +86,21 @@
     { //done
         PRService *service = [[PRService alloc] init];
         service.name = nameCell.textField.text;
-        [[PRSession instance] addService:service];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        if([[PRSession instance] addService:service])
+        {
+            [self.navigationController popToRootViewControllerAnimated:YES];            
+        }
+        else
+        {
+            NSString *msg = [NSString stringWithFormat:@"There is already a service called %@. Please choose a new name", nameCell.textField.text];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Duplicate Name" 
+                                                            message:msg 
+                                                           delegate:nil 
+                                                  cancelButtonTitle:@"OK" 
+                                                  otherButtonTitles: nil];
+            [alert show];
+        }
+
     }
 }
 

@@ -28,8 +28,9 @@
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, assign) NSInteger messageInterval;
 @property (nonatomic, assign) NSInteger locationUpdateCounter;
+
 + (PRSession*)instance;
-- (void)addService:(PRService*)service;
+- (BOOL)addService:(PRService*)service;
 - (void)removeService:(PRService*)service;
 - (PRService*)serviceWithName:(NSString*)name;
 - (void)startLocationServices;

@@ -40,6 +40,10 @@
                                              selector:@selector(logoutOfFacebook) 
                                                  name:NOTIFICATION_FACEBOOK_LOGOUT 
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(postToFacebook:) 
+                                                 name:NOTIFICATION_POST_TO_FACEBOOK 
+                                               object:nil];
     
     return YES;
 }
@@ -91,6 +95,23 @@
 - (void)logoutOfFacebook
 {
     [facebook logout];
+}
+
+- (void)postToFacebook:(NSNotification*)notification
+{
+    NSString *msg = [notification.userInfo objectForKey:@"message"];
+    NSString *accessToken = [notification.userInfo objectForKey:@"accessToken"];
+    NSDate *expirationDate = [notification.userInfo objectForKey:@"expirationDate"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   msg ,@"message", nil];
+    
+    self.facebook.expirationDate = expirationDate;
+    self.facebook.accessToken = accessToken;
+    
+    [self.facebook requestWithGraphPath:@"me/feed"
+                              andParams:params
+                          andHttpMethod:@"POST"
+                            andDelegate:self];
 }
 
 #pragma mark - facebook delegate

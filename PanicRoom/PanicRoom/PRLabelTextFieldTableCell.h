@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define LABEL_TEXT_FIELD_CELL_HEIGHT 50
+
 @interface PRLabelTextFieldTableCell : UITableViewCell
 {
     UILabel *nameLabel;

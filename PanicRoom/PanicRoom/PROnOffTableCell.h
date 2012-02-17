@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define ON_OFF_CELL_HEIGHT 40
+
 @interface PROnOffTableCell : UITableViewCell
 {
     UISwitch *switchButton;

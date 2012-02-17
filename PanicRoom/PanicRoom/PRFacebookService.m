@@ -32,7 +32,7 @@
 - (void)sendMessage:(NSString*)msg
 {
     //send facebook message here
-    msg = [NSString stringWithFormat:@"Sending to Facebook: %@", msg];
+    msg = [NSString stringWithFormat:@"Publishing to Facebook: '%@'", msg];
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATE_STATUS_TEXT 
                                                         object:nil 
                                                       userInfo:[NSDictionary dictionaryWithObjectsAndKeys:msg, @"text", nil]];

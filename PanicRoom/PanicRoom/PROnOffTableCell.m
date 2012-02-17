@@ -21,6 +21,7 @@
         [self.contentView addSubview:switchButton];
         label.backgroundColor = [UIColor clearColor];
         switchButton.backgroundColor = [UIColor clearColor];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }

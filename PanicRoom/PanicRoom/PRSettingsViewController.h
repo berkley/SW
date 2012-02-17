@@ -18,6 +18,7 @@
     PRLabelTextFieldTableCell *alertMessageCell;
     PRLabelTextFieldTableCell *testMessageCell;
     PROnOffTableCell *testModeCell;
+    PRLabelTextFieldTableCell *intervalCell;
 }
 
 @end

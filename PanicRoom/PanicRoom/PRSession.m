@@ -85,7 +85,7 @@ static PRSession *instance;
 {
     NSNumber *num = (NSNumber*)[defaults getObjectWithName:@"messageInterval"];
     if(!num)
-        return 10;
+        return PUBLISHING_INTERVAL;
     return [num intValue];
 }
 

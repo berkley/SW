@@ -26,7 +26,7 @@
     UINavigationController *settingsNavigationController;
     PRSettingsViewController *settingsViewController;
     CLLocation *currentLocation;
-    BOOL messageSent;
+    BOOL welcomeShown;
 }
 
 @end

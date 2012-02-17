@@ -63,6 +63,10 @@
     testMessageCell = [[PRLabelTextFieldTableCell alloc] initWithStyle:UITableViewCellStyleDefault 
                                                        reuseIdentifier:@"testmessagecell"];
     [testMessageCell setLabelText:@"Test Message:"];
+    
+    intervalCell = [[PRLabelTextFieldTableCell alloc] initWithStyle:UITableViewCellStyleDefault 
+                                                    reuseIdentifier:@"intervalcell"];
+    [intervalCell setLabelText:@"Interval (sec)"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -71,6 +75,7 @@
     [alertMessageCell setTextFieldText:[PRSession instance].alertMessage];
     [testMessageCell setTextFieldText:[PRSession instance].testMessage];
     [testModeCell setSwitchValue:[PRSession instance].testMode];
+    [intervalCell setTextFieldText:[NSString stringWithFormat:@"%i", [PRSession instance].messageInterval]];
     [self.tableView reloadData];
 }
 
@@ -80,6 +85,11 @@
     [PRSession instance].alertMessage = alertMessageCell.textField.text;
     [PRSession instance].testMessage = testMessageCell.textField.text;
     [PRSession instance].testMode = [testModeCell getSwitchValue];
+    NSCharacterSet* notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    if ([intervalCell.textField.text rangeOfCharacterFromSet:notDigits].location == NSNotFound)
+    {
+        [PRSession instance].messageInterval = [intervalCell.textField.text intValue];
+    }
 }
 
 #pragma mark - selectors
@@ -104,7 +114,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0)
-        return 3;
+        return 4;
     else if(section == 1)
         return 1 + [[PRSession instance].services count];
     return 0;
@@ -128,6 +138,8 @@
             return testMessageCell;
         else if(indexPath.row == 2)
             return alertMessageCell;
+        else if(indexPath.row == 3)
+            return intervalCell;
     }
     else if(indexPath.section == 1)
     {

@@ -11,9 +11,13 @@
 @interface PRService : NSObject <NSCoding>
 {
     NSString *name;
+    NSString *testMessage;
+    NSString *emergencyMessage;
 }
 
 @property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *testMessage;
+@property (nonatomic, retain) NSString *emergencyMessage;
 
 - (void)sendMessage:(NSString*)msg;
 

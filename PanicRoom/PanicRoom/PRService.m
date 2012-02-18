@@ -9,11 +9,13 @@
 #import "PRService.h"
 
 @implementation PRService
-@synthesize name;
+@synthesize name, testMessage, emergencyMessage;
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     [coder encodeObject:name forKey:@"name"];
+    [coder encodeObject:testMessage forKey:@"testMessage"];
+    [coder encodeObject:emergencyMessage forKey:@"emergencyMessage"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -22,6 +24,8 @@
     if(self)
     {
         name = [decoder decodeObjectForKey:@"name"];
+        emergencyMessage = [decoder decodeObjectForKey:@"emergencyMessage"];
+        testMessage = [decoder decodeObjectForKey:@"testMessage"];
     }
     return self;
 }

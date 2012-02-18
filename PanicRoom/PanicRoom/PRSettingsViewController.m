@@ -187,6 +187,7 @@
             if([service isKindOfClass:[PRFacebookService class]])
             {
                 PRFacebookSettingsViewController *vc = [[PRFacebookSettingsViewController alloc] initWithNibName:@"PRFacebookSettingsViewController" bundle:nil];
+                vc.service = (PRFacebookService*)service;
                 [self.navigationController pushViewController:vc animated:YES];
             }
             else if([service isKindOfClass:[PRSMSService class]])

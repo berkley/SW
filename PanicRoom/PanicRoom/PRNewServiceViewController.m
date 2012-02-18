@@ -76,9 +76,11 @@
 //    PRCreateServiceViewController *vc = [[PRCreateServiceViewController alloc] initWithStyle:UITableViewStyleGrouped];
     if(indexPath.row == 0)
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_AUTHORIZE_FACEBOOK 
-                                                            object:nil];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_AUTHORIZE_FACEBOOK 
+//                                                            object:nil];
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+        PRFacebookSettingsViewController *vc = [[PRFacebookSettingsViewController alloc] initWithNibName:@"PRFacebookSettingsViewController" bundle:nil];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if(indexPath.row == 1)
     {

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PRCreateServiceViewController.h"
 #import "PRSMSSettingsViewController.h"
+#import "PRFacebookSettingsViewController.h"
 
 @interface PRNewServiceViewController : UITableViewController
 

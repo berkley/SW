@@ -14,7 +14,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "134"
          endingLineNumber = "134"
-         landmarkName = "-stopLocationServices"
+         landmarkName = "-startLocationServices"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -28,7 +28,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "141"
          endingLineNumber = "141"
-         landmarkName = "-locationManager:didUpdateToLocation:fromLocation:"
+         landmarkName = "-stopLocationServices"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -42,7 +42,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "129"
          endingLineNumber = "129"
-         landmarkName = "-startLocationServices"
+         landmarkName = "-serviceWithName:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

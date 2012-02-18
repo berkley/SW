@@ -35,5 +35,7 @@
 - (PRService*)serviceWithName:(NSString*)name;
 - (void)startLocationServices;
 - (void)stopLocationServices;
++ (NSString*)createStaticMapURLForLocation:(CLLocation*)location;
++ (NSString*)getShortenedURLForURL:(NSString*)url;
 
 @end

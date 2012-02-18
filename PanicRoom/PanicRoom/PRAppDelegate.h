@@ -20,6 +20,7 @@
  - new graphics
  - change interval to segcon
  - Add 'name' setting for sms
+ - put limit on number of test messages
  
  
  */

@@ -104,6 +104,7 @@
 
 - (void)sendMessages
 {
+//    NSLog(@"currentLocation: %@ updateCounter: %i horizAcc: %f", currentLocation, [PRSession instance].locationUpdateCounter, currentLocation.horizontalAccuracy);
     if(currentLocation != nil &&
        ([PRSession instance].locationUpdateCounter >= VALID_LOCATION_COUNT || 
        currentLocation.horizontalAccuracy <= MIN_LOCATION_ACCURACY))
@@ -113,7 +114,9 @@
         if([PRSession instance].testMode)
             msg = [PRSession instance].testMessage;
         
-        msg = [NSString stringWithFormat:@"%@ - My location is: latitude: %f longitude: %f", msg, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude];
+        NSString *mapURL = [PRSession getShortenedURLForURL:[PRSession createStaticMapURLForLocation:currentLocation]];
+        
+        msg = [NSString stringWithFormat:@"%@ - My location is: latitude: %f longitude: %f %@", msg, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude, mapURL];
         
         for(PRService *service in [PRSession instance].services)
         {

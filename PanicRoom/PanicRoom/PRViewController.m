@@ -114,7 +114,7 @@
         if([PRSession instance].testMode)
             msg = [PRSession instance].testMessage;
         
-        NSString *mapURL = [PRSession getShortenedURLForURL:[PRSession createStaticMapURLForLocation:currentLocation]];
+        NSString *mapURL = [CommonUtil getShortenedURLForURL:[CommonUtil createStaticMapURLForLocation:currentLocation]];
         
         msg = [NSString stringWithFormat:@"%@ - My location is: latitude: %f longitude: %f %@", msg, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude, mapURL];
         

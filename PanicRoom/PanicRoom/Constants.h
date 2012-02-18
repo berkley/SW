@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Stumpware. All rights reserved.
 //
 
-#define GOOGLE_STATIC_MAP_BASE_URL @"http://maps.googleapis.com/maps/api/staticmap?zoom=15&size=400x400&sensor=true&markers=color:red|"
-
 #define GOOGLE_PLUS_CLIENT_ID @"775363503173.apps.googleusercontent.com"
 #define GOOGLE_PLUS_SECRET @"ApZT1EcY0dEF3r6IWkAFE0yb"
 #define GOOGLE_PLUS_API_KEY @"AIzaSyB4xtuagnbyoKXI4AGzAupw6ZNeLXgVkk8"

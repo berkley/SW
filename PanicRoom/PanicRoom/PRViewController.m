@@ -30,6 +30,11 @@
     currentLocation = nil;
     welcomeShown = NO;
     
+    if([PRSession instance].testMode)
+        testEmergencySegCon.selectedSegmentIndex = 0;
+    else
+        testEmergencySegCon.selectedSegmentIndex = 1;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(updateStatusTextView:) 
                                                  name:NOTIFICATION_UPDATE_STATUS_TEXT 
@@ -49,6 +54,7 @@
     headingLabel = nil;
     distressActiveLabel = nil;
     statusTextView = nil;
+    testEmergencySegCon = nil;
     [super viewDidUnload];
 }
 
@@ -85,6 +91,18 @@
 }
 
 #pragma mark - selectors
+
+- (IBAction)testEmergencySegConValueChanged:(id)sender 
+{
+    if(testEmergencySegCon.selectedSegmentIndex == 0)
+    { //text
+        [PRSession instance].testMode = YES;
+    }
+    else
+    {
+        [PRSession instance].testMode = NO;
+    }
+}
 
 - (void)updateStatusText:(NSString*)text
 {

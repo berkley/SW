@@ -20,6 +20,7 @@
     __weak IBOutlet UILabel *headingLabel;
     __weak IBOutlet UILabel *distressActiveLabel;
     __weak IBOutlet UITextView *statusTextView;
+    __weak IBOutlet UISegmentedControl *testEmergencySegCon;
     NSInteger numTimerFired;
     BOOL distressCallIsActive;
     NSTimer *activeTimer;

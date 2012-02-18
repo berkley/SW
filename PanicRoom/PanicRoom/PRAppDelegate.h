@@ -22,6 +22,10 @@
  - Add 'name' setting for sms
  - put limit on number of test messages
  
+ - put test button on toolbar
+ - put message text cells in configuration for indiv. services
+ - get rid of settings section
+ - for SMS add a character counter so message lenght < 160
  
  */
 

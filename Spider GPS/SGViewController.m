@@ -492,27 +492,27 @@
     if(addPoint)
     {
         //draw the route line
-        MKMapPoint newPoint = MKMapPointForCoordinate(newLocation.coordinate);
         pointCount++;
-        MKMapPoint* tempPointArr = malloc(sizeof(CLLocationCoordinate2D) * pointCount);
-        for(int i=0; i<pointCount - 1; i++)
+        CLLocationCoordinate2D *locs = malloc(sizeof(CLLocationCoordinate2D) * 2);
+        
+        if(previousLocation)
         {
-            tempPointArr[i] = pointArr[i];
+//            NSLog(@"new: %f %f prv: %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude,
+//                  previousLocation.coordinate.latitude, previousLocation.coordinate.longitude);
+            locs[0] = previousLocation.coordinate;
+            locs[1] = newLocation.coordinate;
+            MKPolyline *polyline = [MKPolyline polylineWithCoordinates:locs count:2];
+            [self performSelectorOnMainThread:@selector(addPoint:) withObject:polyline waitUntilDone:NO];
         }
-        tempPointArr[pointCount - 1] = newPoint;
-        routeLine = [MKPolyline polylineWithPoints:tempPointArr count:pointCount];
-        if(pointArr)
-            free(pointArr);
-        pointArr = tempPointArr;
-        NSArray *oldOverlays = mapView.overlays;
-        [mapView addOverlay:routeLine];
-        [mapView removeOverlays:oldOverlays];
-            
+        
+        previousLocation = newLocation;
+        
         //record data
         [[SGSession instance].currentTrack addDataWithLocation:newLocation 
                                                        distance:distance 
                                                      startTime:startTime 
                                                       stopTime:endTime];    
+        free(locs);
     }
     
     if([SGSession instance].useMPH)
@@ -529,6 +529,14 @@
     accuracyTotal += newLocation.horizontalAccuracy;
     accuracyCount++;
     
+}
+
+- (void)addPoint:(MKPolyline*)polyline
+{
+    @synchronized(mapView.overlays)
+    {
+        [mapView addOverlay:polyline];
+    }
 }
 
 - (void)locationUpdated:(NSNotification*)notification
@@ -608,9 +616,9 @@
 {
     MKOverlayView* overlayView = nil;
     
-    if(overlay == routeLine)
+    if([overlay isKindOfClass:[MKPolyline class]])
     {
-        routeLineView = [[MKPolylineView alloc] initWithPolyline:routeLine];
+        routeLineView = [[MKPolylineView alloc] initWithPolyline:(MKPolyline*)overlay];
         routeLineView.fillColor = [UIColor blueColor];
         routeLineView.strokeColor = [UIColor blueColor];
         routeLineView.lineWidth = 5;
@@ -698,8 +706,6 @@
     { //are you sure you wan to reset
         if(buttonIndex == 1)
         {
-            free(pointArr);
-            pointArr = malloc(sizeof(CLLocationCoordinate2D) * 1);
             pointCount = 0;
             [mapView removeOverlays:mapView.overlays];
             distance = 0.0;

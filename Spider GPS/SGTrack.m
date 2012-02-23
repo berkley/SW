@@ -510,9 +510,7 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     NSCalendar *sysCalendar = [NSCalendar currentCalendar];
     NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:date1  toDate:date2  options:0];
     NSInteger seconds = [conversionInfo second];
-    NSLog(@"distance: %i seconds: %i", distance, seconds);
     double retval = (double)distance / (double)seconds;
-    NSLog(@"avgspd: %f", retval);
     return retval;
 }
 

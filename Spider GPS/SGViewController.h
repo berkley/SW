@@ -90,6 +90,7 @@
     
     NSString *savename;
     int startupLocationCount;
+    __strong CLLocation *previousLocation;
 }
 
 - (void)setFields;

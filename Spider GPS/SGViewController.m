@@ -201,6 +201,7 @@
     [self enableLocationServices];
     
     showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 40 - 20, 35, 35);
+    mapView.frame = CGRectMake(0, 0, 320, 460 - speedHeadingView.frame.size.height);
     [showMapButton setImage:[UIImage imageNamed:@"mapincircle.png"] forState:UIControlStateNormal];
     dashboardHidden = NO;
 }
@@ -325,6 +326,7 @@
     }
 
     speedHeadingView.frame = CGRectMake(0, 480-height-20, 320, height);
+    mapView.frame = CGRectMake(0, 0, 320, 460 - speedHeadingView.frame.size.height);
     showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 40 - 20, 35, 35);
     
     int m = 0;
@@ -841,6 +843,7 @@
         toolbar.alpha = 1.0;
         [showMapButton setImage:[UIImage imageNamed:@"mapincircle.png"] forState:UIControlStateNormal];
         showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 40 - 20, 35, 35);
+        mapView.frame = CGRectMake(0, 0, 320, 460 - speedHeadingView.frame.size.height);
     }
     else
     {
@@ -849,6 +852,7 @@
         toolbar.alpha = 0.0;
         [showMapButton setImage:[UIImage imageNamed:@"dashboardincircle.png"] forState:UIControlStateNormal];
         showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - 40 - 20, 35, 35);
+        mapView.frame = CGRectMake(0, 0, 320, 460);
     }
     [UIView commitAnimations];
 }

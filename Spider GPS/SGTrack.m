@@ -506,11 +506,14 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
 //distance must be in meters!
 + (double)calculateAvgSpeedForDistance:(NSInteger)distance fromDate:(NSDate*)date1 toDate:(NSDate*)date2
 {
-    unsigned int unitFlags = NSMinuteCalendarUnit;
+    unsigned int unitFlags = NSSecondCalendarUnit;
     NSCalendar *sysCalendar = [NSCalendar currentCalendar];
     NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:date1  toDate:date2  options:0];
     NSInteger seconds = [conversionInfo second];
-    return distance / seconds;
+    NSLog(@"distance: %i seconds: %i", distance, seconds);
+    double retval = (double)distance / (double)seconds;
+    NSLog(@"avgspd: %f", retval);
+    return retval;
 }
 
 - (NSArray*)timeAnnotationsWithInterval:(NSInteger)interval

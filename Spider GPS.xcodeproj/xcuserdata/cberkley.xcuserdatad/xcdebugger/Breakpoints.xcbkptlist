@@ -14,8 +14,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "257"
          endingLineNumber = "257"
-         landmarkName = "@implementation SGTrackDetailViewController"
-         landmarkType = "3">
+         landmarkName = "-segmentedControlValueChanged:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -27,7 +27,9 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "267"
-         endingLineNumber = "267">
+         endingLineNumber = "267"
+         landmarkName = "-segmentedControlValueChanged:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -39,7 +41,9 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "263"
-         endingLineNumber = "263">
+         endingLineNumber = "263"
+         landmarkName = "-segmentedControlValueChanged:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -52,7 +56,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "85"
          endingLineNumber = "85"
-         landmarkName = "-saveCurrentTrackWithName:"
+         landmarkName = "-locationUpdated:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -66,7 +70,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "103"
          endingLineNumber = "103"
-         landmarkName = "-getTrackWithName:"
+         landmarkName = "-saveTracks"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

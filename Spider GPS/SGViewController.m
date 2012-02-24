@@ -502,28 +502,53 @@
             locs[0] = previousLocation.coordinate;
             locs[1] = newLocation.coordinate;
             MKPolyline *polyline = [MKPolyline polylineWithCoordinates:locs count:2];
+            polyline.title = @"new";
             [self performSelectorOnMainThread:@selector(addPoint:) withObject:polyline waitUntilDone:NO];
         }
         
         previousLocation = newLocation;
         
-        //record data
-        [[SGSession instance].currentTrack addDataWithLocation:newLocation 
-                                                       distance:distance 
-                                                     startTime:startTime 
-                                                      stopTime:endTime];    
-        free(locs);
     }
+    
+//    if(addPoint)
+//    {
+//        //draw the route line
+//        MKMapPoint newPoint = MKMapPointForCoordinate(newLocation.coordinate);
+//        pointCount++;
+//        MKMapPoint* tempPointArr = malloc(sizeof(CLLocationCoordinate2D) * pointCount);
+//        for(int i=0; i<pointCount - 1; i++)
+//        {
+//            tempPointArr[i] = pointArr[i];
+//        }
+//        tempPointArr[pointCount - 1] = newPoint;
+//        routeLine = [MKPolyline polylineWithPoints:tempPointArr count:pointCount];
+//        if(pointArr)
+//            free(pointArr);
+//        pointArr = tempPointArr;
+//        NSArray *oldOverlays = mapView.overlays;
+//        [mapView addOverlay:routeLine];
+//        [mapView removeOverlays:oldOverlays];
+//        
+//        //record data
+//        [[SGSession instance].currentTrack addDataWithLocation:newLocation 
+//                                                      distance:distance 
+//                                                     startTime:startTime 
+//                                                      stopTime:endTime];    
+//    }
     
     if([SGSession instance].useMPH)
     {
-        altGainLabel.text = [NSString stringWithFormat:@"%.1f ft", [[SGSession instance].currentTrack.totalAscent floatValue] * METERS_TO_FT];
-        altLossLabel.text = [NSString stringWithFormat:@"%.1f ft", [[SGSession instance].currentTrack.totalDescent floatValue] * METERS_TO_FT];
+        altGainLabel.text = [NSString stringWithFormat:@"%.1f ft", 
+                             [[SGSession instance].currentTrack.totalAscent floatValue] * METERS_TO_FT];
+        altLossLabel.text = [NSString stringWithFormat:@"%.1f ft", 
+                             [[SGSession instance].currentTrack.totalDescent floatValue] * METERS_TO_FT];
     }
     else
     {
-        altGainLabel.text = [NSString stringWithFormat:@"%.1f m", [[SGSession instance].currentTrack.totalAscent floatValue]];
-        altLossLabel.text = [NSString stringWithFormat:@"%.1f m", [[SGSession instance].currentTrack.totalDescent floatValue]];        
+        altGainLabel.text = [NSString stringWithFormat:@"%.1f m", 
+                             [[SGSession instance].currentTrack.totalAscent floatValue]];
+        altLossLabel.text = [NSString stringWithFormat:@"%.1f m", 
+                             [[SGSession instance].currentTrack.totalDescent floatValue]];        
     }
     
     accuracyTotal += newLocation.horizontalAccuracy;
@@ -531,12 +556,14 @@
     
 }
 
+- (void)removePreviousOverlay:(NSArray*)arr
+{
+    [mapView removeOverlays:arr];
+}
+
 - (void)addPoint:(MKPolyline*)polyline
 {
-    @synchronized(mapView.overlays)
-    {
-        [mapView addOverlay:polyline];
-    }
+    [mapView addOverlay:polyline];
 }
 
 - (void)locationUpdated:(NSNotification*)notification
@@ -613,19 +640,19 @@
 }
 
 - (MKOverlayView*)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
-{
-    MKOverlayView* overlayView = nil;
-    
-    if([overlay isKindOfClass:[MKPolyline class]])
+{    
+    MKPolylineView *routeLineView;
+    if([overlay isKindOfClass:[MKPolyline class]] && 
+       [((MKPolyline*)overlay).title isEqualToString:@"new"])
     {
         routeLineView = [[MKPolylineView alloc] initWithPolyline:(MKPolyline*)overlay];
         routeLineView.fillColor = [UIColor blueColor];
         routeLineView.strokeColor = [UIColor blueColor];
         routeLineView.lineWidth = 5;
-        overlayView = routeLineView;
+        ((MKPolyline*)overlay).title = @"old";
     }
     
-    return overlayView;
+    return routeLineView;
 }
 
 - (void)mapView:(MKMapView *)mv didChangeUserTrackingMode:(MKUserTrackingMode)mode animated:(BOOL)animated
@@ -715,6 +742,8 @@
             topAltitude = 0.0;
             lowAltidude = 9999999;
             totalSpeed = 0.0;
+            [[SGSession instance].tracks removeObjectForKey:@"Auto-saved Track"];
+            [[SGSession instance] saveTracks];
             [[SGSession instance] createNewTrack];
             startTime = [NSDate date];
         }

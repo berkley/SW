@@ -58,7 +58,6 @@
     IBOutlet UIView *altLossView;
     
     MKPolyline *routeLine;
-    MKPolylineView *routeLineView;
     NSMutableArray *routeArray;
     int pointCount;
     MKMapPoint* pointArr;
@@ -91,6 +90,7 @@
     NSString *savename;
     int startupLocationCount;
     __strong CLLocation *previousLocation;
+    MKPolyline *prevPolyline;
 }
 
 - (void)setFields;

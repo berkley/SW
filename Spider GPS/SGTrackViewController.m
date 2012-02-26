@@ -180,6 +180,10 @@
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *trackName = [trackNames objectAtIndex:indexPath.row];
+    NSString *trackLocKey = [NSString stringWithFormat:@"%@-%@", LOCATION_KEY, trackName];
+    NSError *error;
+    [[NSFileManager defaultManager] removeItemAtPath:[CommonUtil getDataPathForFileWithName:trackLocKey] error:&error];
+    
     [[SGSession instance].tracks removeObjectForKey:trackName];
     [trackNames removeObjectAtIndex:indexPath.row];
     [[SGSession instance] saveTracks];

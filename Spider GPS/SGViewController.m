@@ -425,9 +425,15 @@
         altitudeLabel.text = [NSString stringWithFormat:@"%.0f ft", newLocation.altitude * METERS_TO_FT];
         if(newLocation.speed < 0)
             speedLabel.text = @"0 mph";
-        lowSpeedLabel.text = [NSString stringWithFormat:@"%.0f mph", lowSpeed * METERS_TO_MPH];
+        if(lowSpeed == 9999999)
+            lowSpeedLabel.text = @"--";
+        else
+            lowSpeedLabel.text = [NSString stringWithFormat:@"%.0f mph", lowSpeed * METERS_TO_MPH];
         topSpeedLabel.text = [NSString stringWithFormat:@"%.0f mph", topSpeed * METERS_TO_MPH];
-        lowAltitudeLabel.text = [NSString stringWithFormat:@"%.0f ft", lowAltidude * METERS_TO_FT];
+        if(lowAltidude == 9999999)
+            lowAltitudeLabel.text = @"--";
+        else
+            lowAltitudeLabel.text = [NSString stringWithFormat:@"%.0f ft", lowAltidude * METERS_TO_FT];
         highAltitudeLabel.text = [NSString stringWithFormat:@"%.0f ft", topAltitude * METERS_TO_FT];
         averageSpeedLabel.text = [NSString stringWithFormat:@"%.1f mph", avgSpeed * METERS_TO_MPH];
     }
@@ -437,9 +443,15 @@
         altitudeLabel.text = [NSString stringWithFormat:@"%.0f m", newLocation.altitude];
         if(newLocation.speed < 0)
             speedLabel.text = @"0 kph";
-        lowSpeedLabel.text = [NSString stringWithFormat:@"%.0f kph", lowSpeed * METERS_TO_KPH];
+        if(lowSpeed == 9999999)
+            lowSpeedLabel.text = @"--";
+        else
+            lowSpeedLabel.text = [NSString stringWithFormat:@"%.0f kph", lowSpeed * METERS_TO_KPH];
         topSpeedLabel.text = [NSString stringWithFormat:@"%.0f kph", topSpeed * METERS_TO_KPH];
-        lowAltitudeLabel.text = [NSString stringWithFormat:@"%.0f m", lowAltidude];
+        if(lowAltidude == 9999999)
+            lowAltitudeLabel.text = @"--";
+        else
+            lowAltitudeLabel.text = [NSString stringWithFormat:@"%.0f m", lowAltidude];
         highAltitudeLabel.text = [NSString stringWithFormat:@"%.0f m", topAltitude];
         averageSpeedLabel.text = [NSString stringWithFormat:@"%.1f kph", avgSpeed * METERS_TO_KPH];
     }
@@ -489,52 +501,59 @@
         accuracyCount = 0;
     }
     
-    if(addPoint)
-    {
-        //draw the route line
-        pointCount++;
-        CLLocationCoordinate2D *locs = malloc(sizeof(CLLocationCoordinate2D) * 2);
-        
-        if(previousLocation)
-        {
-//            NSLog(@"new: %f %f prv: %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude,
-//                  previousLocation.coordinate.latitude, previousLocation.coordinate.longitude);
-            locs[0] = previousLocation.coordinate;
-            locs[1] = newLocation.coordinate;
-            MKPolyline *polyline = [MKPolyline polylineWithCoordinates:locs count:2];
-            polyline.title = @"new";
-            [self performSelectorOnMainThread:@selector(addPoint:) withObject:polyline waitUntilDone:NO];
-        }
-        
-        previousLocation = newLocation;
-        
-    }
-    
 //    if(addPoint)
 //    {
 //        //draw the route line
-//        MKMapPoint newPoint = MKMapPointForCoordinate(newLocation.coordinate);
 //        pointCount++;
-//        MKMapPoint* tempPointArr = malloc(sizeof(CLLocationCoordinate2D) * pointCount);
-//        for(int i=0; i<pointCount - 1; i++)
-//        {
-//            tempPointArr[i] = pointArr[i];
-//        }
-//        tempPointArr[pointCount - 1] = newPoint;
-//        routeLine = [MKPolyline polylineWithPoints:tempPointArr count:pointCount];
-//        if(pointArr)
-//            free(pointArr);
-//        pointArr = tempPointArr;
-//        NSArray *oldOverlays = mapView.overlays;
-//        [mapView addOverlay:routeLine];
-//        [mapView removeOverlays:oldOverlays];
+//        CLLocationCoordinate2D *locs = malloc(sizeof(CLLocationCoordinate2D) * 2);
 //        
-//        //record data
-//        [[SGSession instance].currentTrack addDataWithLocation:newLocation 
-//                                                      distance:distance 
-//                                                     startTime:startTime 
-//                                                      stopTime:endTime];    
+//        if(previousLocation)
+//        {
+////            NSLog(@"new: %f %f prv: %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude,
+////                  previousLocation.coordinate.latitude, previousLocation.coordinate.longitude);
+//            locs[0] = previousLocation.coordinate;
+//            locs[1] = newLocation.coordinate;
+//            MKPolyline *polyline = [MKPolyline polylineWithCoordinates:locs count:2];
+//            polyline.title = @"new";
+//            [self performSelectorOnMainThread:@selector(addPoint:) withObject:polyline waitUntilDone:NO];
+//        }
+//        
+//        previousLocation = newLocation;
+//        
 //    }
+    
+    if(addPoint)
+    {
+        //draw the route line
+        MKMapPoint newPoint = MKMapPointForCoordinate(newLocation.coordinate);
+        pointCount++;
+        MKMapPoint* tempPointArr = malloc(sizeof(CLLocationCoordinate2D) * pointCount);
+        for(int i=0; i<pointCount - 1; i++)
+        {
+            tempPointArr[i] = pointArr[i];
+        }
+        tempPointArr[pointCount - 1] = newPoint;
+        routeLine = [MKPolyline polylineWithPoints:tempPointArr count:pointCount];
+        routeLine.title = @"newrouteline";
+        if(pointArr)
+            free(pointArr);
+        pointArr = tempPointArr;
+        for(MKPolyline *overlay in mapView.overlays)
+        {
+            if([overlay.title isEqualToString:@"newrouteline"])
+            {
+                overlay.title = @"oldrouteline";
+                [self performSelector:@selector(removePreviousOverlay:) withObject:overlay afterDelay:2.0];
+            }
+        }
+        [mapView addOverlay:routeLine];
+        
+        //record data
+        [[SGSession instance].currentTrack addDataWithLocation:newLocation 
+                                                      distance:distance 
+                                                     startTime:startTime 
+                                                      stopTime:endTime];    
+    }
     
     if([SGSession instance].useMPH)
     {
@@ -556,9 +575,9 @@
     
 }
 
-- (void)removePreviousOverlay:(NSArray*)arr
+- (void)removePreviousOverlay:(MKPolyline*)overlay
 {
-    [mapView removeOverlays:arr];
+    [mapView removeOverlay:overlay];
 }
 
 - (void)addPoint:(MKPolyline*)polyline
@@ -643,13 +662,11 @@
 {    
     MKPolylineView *routeLineView;
     if([overlay isKindOfClass:[MKPolyline class]] && 
-       [((MKPolyline*)overlay).title isEqualToString:@"new"])
+       [((MKPolyline*)overlay).title isEqualToString:@"newrouteline"])
     {
         routeLineView = [[MKPolylineView alloc] initWithPolyline:(MKPolyline*)overlay];
-        routeLineView.fillColor = [UIColor blueColor];
         routeLineView.strokeColor = [UIColor blueColor];
         routeLineView.lineWidth = 5;
-        ((MKPolyline*)overlay).title = @"old";
     }
     
     return routeLineView;

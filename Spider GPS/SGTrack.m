@@ -137,7 +137,11 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     self = [super init];
     if(self)
     {
-        locations = [decoder decodeObjectForKey:LOCATION_KEY];
+        name = [decoder decodeObjectForKey:NAME_KEY];
+//        locations = [decoder decodeObjectForKey:LOCATION_KEY];
+        NSString *trackLocKey = [NSString stringWithFormat:@"%@-%@", LOCATION_KEY, name];
+        locations = [NSMutableArray arrayWithArray:
+                      [NSKeyedUnarchiver unarchiveObjectWithFile:[CommonUtil getDataPathForFileWithName:trackLocKey]]];
         distance = [decoder decodeObjectForKey:DISTANCE_KEY];
         avgSpeed = [decoder decodeObjectForKey:AVG_SPEED_KEY];
         topSpeed = [decoder decodeObjectForKey:TOP_SPEED_KEY];
@@ -145,7 +149,6 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
         topAlitude = [decoder decodeObjectForKey:TOP_ALTITUDE_KEY];
         lowAltidude = [decoder decodeObjectForKey:LOW_ALTITUDE_KEY];
         totalTime = [decoder decodeObjectForKey:TOTAL_TIME_KEY];
-        name = [decoder decodeObjectForKey:NAME_KEY];
         annotations = [decoder decodeObjectForKey:ANNOTATIONS_KEY];
         totalAscent = [decoder decodeObjectForKey:ASCENT_KEY];
         totalDescent = [decoder decodeObjectForKey:DESCENT_KEY];
@@ -156,7 +159,21 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-    [coder encodeObject:locations forKey:LOCATION_KEY];
+    NSString *trackLocKey = [NSString stringWithFormat:@"%@-%@", LOCATION_KEY, name];
+    NSMutableArray *oldlocs = [NSMutableArray arrayWithArray:
+                               [NSKeyedUnarchiver unarchiveObjectWithFile:[CommonUtil getDataPathForFileWithName:trackLocKey]]];
+    if(oldlocs)
+    {
+        [oldlocs addObjectsFromArray:locations];
+//        [coder encodeObject:oldlocs forKey:LOCATION_KEY];     
+        [NSKeyedArchiver archiveRootObject:oldlocs toFile:[CommonUtil getDataPathForFileWithName:trackLocKey]];
+        locations = [[NSMutableArray alloc] init];
+    }
+    else
+    {
+        [NSKeyedArchiver archiveRootObject:locations toFile:[CommonUtil getDataPathForFileWithName:trackLocKey]];
+//        [coder encodeObject:locations forKey:LOCATION_KEY];
+    }
     [coder encodeObject:distance forKey:DISTANCE_KEY];
     [coder encodeObject:avgSpeed forKey:AVG_SPEED_KEY];
     [coder encodeObject:topSpeed forKey:TOP_SPEED_KEY];
@@ -230,30 +247,6 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     
     if(previousAltitude == -1)
         previousAltitude = altitude;
-    
-    //simple method
-//    NSLog(@"currentVertAcc: %f",location.verticalAccuracy);
-    
-//    if([self processVertAccuracy:location.verticalAccuracy])
-//    {
-//        if(altitude < previousAltitude)
-//        {
-//            double d = [totalDescent doubleValue];
-//            d += previousAltitude - altitude;
-//            totalDescent = [NSNumber numberWithDouble:d];
-//        }
-//        else
-//        {
-//            double d = [totalAscent doubleValue];
-//            d += altitude - previousAltitude;
-//            totalAscent = [NSNumber numberWithDouble:d];
-//        }
-//        previousAltitude = altitude;
-//    }
-    
-//    NSLog(@"topSpeed: %.1f lowSpeed: %.1f topAlt: %.1f lowAlt: %.1f avgSpeed: %.1f", 
-//          [topSpeed doubleValue], [lowSpeed doubleValue], [topAlitude doubleValue],
-//          [lowAltidude doubleValue], [avgSpeed doubleValue]);
     
     //more complicated method
     CLLocation *lastLoc = (CLLocation*)[self queueObject:location 

@@ -70,7 +70,7 @@ static SGSession *instance = nil;
     if(!self.currentTrack.hasBeenSaved)
     {
         NSLog(@"auto saving unsaved track");
-        self.currentTrack.name = @"Auto-saved Track";
+        self.currentTrack.name = AUTO_SAVE_TRACK_NAME;
         [self saveCurrentTrackWithName:self.currentTrack.name];
     }
     else if(self.currentTrack.hasBeenSaved && self.autoSaveEnabled)
@@ -87,15 +87,34 @@ static SGSession *instance = nil;
 
 - (void)saveCurrentTrackWithName:(NSString*)name
 {
-    //todo: make sure name is unique
     SGTrack *t = [self.currentTrack copy];
     NSString *trackKey = [NSString stringWithFormat:@"%@::%@::%@", TRACKS_KEY, name, [SGSession formatDate:t.date withFormat:DATE_KEY_FORMAT_STRING]];
-    NSLog(@"trackKey: %@", trackKey);
+    NSLog(@"saving track %@ with key %@ and path %@", name, trackKey, [SGSession getDocumentPathWithName:trackKey]);
+    
     [self.tracks setObject:trackKey forKey:name];
     [NSKeyedArchiver archiveRootObject:self.tracks toFile:[SGSession getDocumentPathWithName:TRACKS_KEY]];
     [NSKeyedArchiver archiveRootObject:t toFile:[SGSession getDocumentPathWithName:trackKey]];
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STOP_ACTIVITY_INDICATOR object:nil];
+    if(![self.currentTrack.name isEqualToString:AUTO_SAVE_TRACK_NAME])
+    {
+        [self deleteTrackWithName:AUTO_SAVE_TRACK_NAME];
+    }
+    self.currentTrack.name = name;
     self.currentTrack.hasBeenSaved = YES;
+}
+
+- (void)deleteTrackWithName:(NSString*)name
+{
+    NSString *key = [self.tracks objectForKey:name];
+    if(key == nil || ![[NSFileManager defaultManager] fileExistsAtPath:[SGSession getDocumentPathWithName:key]])
+        return;
+    
+    NSLog(@"deleting track %@ with key %@", name, key);
+    NSError *error;
+    [[NSFileManager defaultManager] removeItemAtPath:[SGSession getDocumentPathWithName:key] 
+                                                            error:&error];
+    [self.tracks removeObjectForKey:name];
+    [self saveTracks];
 }
 
 - (void)saveTracks
@@ -106,13 +125,17 @@ static SGSession *instance = nil;
 - (SGTrack*)getTrackWithName:(NSString*)name
 {
     NSString *key = [self.tracks objectForKey:name];
+    NSLog(@"getting track with name %@ and key %@ and path %@", name, key, [SGSession getDocumentPathWithName:key]);
+//    [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[SGSession getDocumentPathWithName:key] error:<#(NSError *__autoreleasing *)#>
     SGTrack *t = [NSKeyedUnarchiver unarchiveObjectWithFile:[SGSession getDocumentPathWithName:key]];
     return t;
 }
 
 - (void)createNewTrack
 {
+    [self deleteTrackWithName:AUTO_SAVE_TRACK_NAME];
     self.currentTrack = [[SGTrack alloc] init];
+//    self.currentTrack.name = AUTO_SAVE_TRACK_NAME;
 }
 
 + (void)zoomToFitLocations:(NSArray*)locations padding:(NSInteger)padding mapView:(MKMapView*)mapView

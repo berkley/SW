@@ -107,9 +107,9 @@
     
     y = 0;
     UILabel *dateLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
-    dateLabelLabel.text = @"Date:";
+    dateLabelLabel.text = @"Date Started:";
     UILabel *timeLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
-    timeLabelLabel.text = @"Time:";
+    timeLabelLabel.text = @"Time Started:";
     UILabel *totalDistanceLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
     totalDistanceLabelLabel.text = @"Total Distance:";
     UILabel *avgSpeedLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
@@ -119,7 +119,7 @@
     UILabel *lowSpeedLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
     lowSpeedLabelLabel.text = @"Low Speed:";
     UILabel *highestAltitudeLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
-    highestAltitudeLabelLabel.text = @"High Alttitude:";
+    highestAltitudeLabelLabel.text = @"High Altitude:";
     UILabel *lowestAltitudeLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];
     lowestAltitudeLabelLabel.text = @"Low Altitude:";
     UILabel *totalTimeLabelLabel = [[UILabel alloc] initWithFrame:CGRectMake(x, y += h, w, h)];

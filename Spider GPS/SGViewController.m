@@ -752,6 +752,7 @@
         {
             pointCount = 0;
             [mapView removeOverlays:mapView.overlays];
+            [mapView removeAnnotations:mapView.annotations];
             distance = 0.0;
             avgSpeed = 0.0;
             topSpeed = 0;
@@ -759,9 +760,6 @@
             topAltitude = 0.0;
             lowAltidude = 9999999;
             totalSpeed = 0.0;
-            [mapView removeAnnotations:mapView.annotations];
-            [[SGSession instance].tracks removeObjectForKey:@"Auto-saved Track"];
-            [[SGSession instance] saveTracks];
             [[SGSession instance] createNewTrack];
             startTime = [NSDate date];
         }

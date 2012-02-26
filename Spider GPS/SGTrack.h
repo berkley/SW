@@ -43,8 +43,8 @@
     NSNumber *totalAscent;
     NSNumber *totalDescent;
     double previousAltitude;
-    CGFloat avgVerticalAccuracy;
-    CGFloat avgVerticalAccuracyTotal;
+//    CGFloat avgVerticalAccuracy;
+//    CGFloat avgVerticalAccuracyTotal;
     NSMutableArray *vertAccuracyArray;
     NSMutableArray *cachedAltPoints;
     double totalAsc;

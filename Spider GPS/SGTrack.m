@@ -15,6 +15,12 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
 
 #pragma mark - private methods
 
+- (NSString*)trackLocationKey
+{
+    NSString *trackLocKey = [NSString stringWithFormat:@"%@-%@", LOCATION_KEY, name];
+    return trackLocKey;
+}
+
 //queue the object and if an object gets bumped off the end, return it.  return nil
 //if the queue was not full
 - (NSObject*)queueObject:(NSObject*)obj inArray:(NSMutableArray*__strong*)array withCapacity:(NSInteger)cap
@@ -97,7 +103,7 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
 {
     NSNumber *num = [[NSNumber alloc] initWithFloat:accuracy];
     NSNumber *retVal = [self queueObjectInVertAccuracyArray:num];
-    NSLog(@"accuracy: %f avg: %@", accuracy, retVal);
+//    NSLog(@"accuracy: %f avg: %@", accuracy, retVal);
     if(!retVal)
         return NO;
     
@@ -138,10 +144,11 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     if(self)
     {
         name = [decoder decodeObjectForKey:NAME_KEY];
-//        locations = [decoder decodeObjectForKey:LOCATION_KEY];
-        NSString *trackLocKey = [NSString stringWithFormat:@"%@-%@", LOCATION_KEY, name];
-        locations = [NSMutableArray arrayWithArray:
-                      [NSKeyedUnarchiver unarchiveObjectWithFile:[CommonUtil getDataPathForFileWithName:trackLocKey]]];
+//        NSString *trackLocKey = [self trackLocationKey];
+//        locations = [NSMutableArray arrayWithArray:
+//                      [NSKeyedUnarchiver unarchiveObjectWithFile:
+//                        [CommonUtil getDataPathForFileWithName:trackLocKey]]];
+        locations = [decoder decodeObjectForKey:LOCATION_KEY];
         distance = [decoder decodeObjectForKey:DISTANCE_KEY];
         avgSpeed = [decoder decodeObjectForKey:AVG_SPEED_KEY];
         topSpeed = [decoder decodeObjectForKey:TOP_SPEED_KEY];
@@ -159,21 +166,13 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-    NSString *trackLocKey = [NSString stringWithFormat:@"%@-%@", LOCATION_KEY, name];
-    NSMutableArray *oldlocs = [NSMutableArray arrayWithArray:
-                               [NSKeyedUnarchiver unarchiveObjectWithFile:[CommonUtil getDataPathForFileWithName:trackLocKey]]];
-    if(oldlocs)
-    {
-        [oldlocs addObjectsFromArray:locations];
-//        [coder encodeObject:oldlocs forKey:LOCATION_KEY];     
-        [NSKeyedArchiver archiveRootObject:oldlocs toFile:[CommonUtil getDataPathForFileWithName:trackLocKey]];
-        locations = [[NSMutableArray alloc] init];
-    }
-    else
-    {
-        [NSKeyedArchiver archiveRootObject:locations toFile:[CommonUtil getDataPathForFileWithName:trackLocKey]];
-//        [coder encodeObject:locations forKey:LOCATION_KEY];
-    }
+//    NSString *trackLocKey = [self trackLocationKey];
+//
+//    [NSKeyedArchiver archiveRootObject:self.locations
+//                                toFile:[CommonUtil getDataPathForFileWithName:trackLocKey]];
+//    locations = [[NSMutableArray alloc] init];
+    
+    [coder encodeObject:locations forKey:LOCATION_KEY];
     [coder encodeObject:distance forKey:DISTANCE_KEY];
     [coder encodeObject:avgSpeed forKey:AVG_SPEED_KEY];
     [coder encodeObject:topSpeed forKey:TOP_SPEED_KEY];
@@ -215,6 +214,8 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     return self;
 }
 
+#pragma mark - data collection
+
 - (void)addDataWithLocation:(CLLocation*)location 
                    distance:(double)dist 
                   startTime:(NSDate*)date1 
@@ -230,9 +231,9 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     
     [locations addObject:location];
     
-    avgVerticalAccuracyTotal += location.verticalAccuracy;
-    if([locations count] > 0)
-        avgVerticalAccuracy = avgVerticalAccuracyTotal / (CGFloat)[locations count];
+//    avgVerticalAccuracyTotal += location.verticalAccuracy;
+//    if([locations count] > 0)
+//        avgVerticalAccuracy = avgVerticalAccuracyTotal / (CGFloat)[locations count];
     
     distance = [NSNumber numberWithDouble:dist];
     if(speed > [topSpeed doubleValue])
@@ -253,7 +254,7 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
                                                  inArray:&cachedAltPoints 
                                             withCapacity:NUMBER_OF_POINTS_DETERMINER];
     
-    if(lastLoc/* && [self processVertAccuracy:location.verticalAccuracy]*/)
+    if(lastLoc)
     {
         NSInteger analize = [self analyzeArray:&cachedAltPoints comparedToValue:lastLoc.altitude];
         if(analize == NSOrderedAscending)
@@ -294,6 +295,8 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     }
 }
 
+#pragma mark - data views and analysis
+
 //returns a dictionary of arrays of CLLocations
 //the dict keys are in chronological order where ascent0 is the first
 //ascent and descent0 is the first descent and ascentN/descentN are the last
@@ -309,9 +312,10 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     double totalA = 0.0;
     double totalD = 0.0;
     previousAltitude = -1;
-    for(int i=0; i<[locations count]; i++)
+    NSMutableArray *allLocations = self.locations;
+    for(int i=0; i<[allLocations count]; i++)
     {
-        CLLocation *lastLoc = (CLLocation*)[self queueObject:[locations objectAtIndex:i] 
+        CLLocation *lastLoc = (CLLocation*)[self queueObject:[allLocations objectAtIndex:i] 
                                         inArray:&cachedPoints 
                                    withCapacity:NUMBER_OF_POINTS_DETERMINER];
         if(lastLoc)
@@ -376,10 +380,11 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
 
 - (MKMapPoint*)singlePolyline
 {
-    MKMapPoint* tempPointArr = malloc(sizeof(CLLocationCoordinate2D) * [self.locations count]);
+    NSMutableArray *allLocations = self.locations;
+    MKMapPoint* tempPointArr = malloc(sizeof(CLLocationCoordinate2D) * [allLocations count]);
     int pointCount = 0;
 
-    for(CLLocation *loc in self.locations)
+    for(CLLocation *loc in allLocations)
     {
         MKMapPoint newPoint = MKMapPointForCoordinate(loc.coordinate);
         tempPointArr[pointCount] = newPoint;
@@ -398,9 +403,10 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     CLLocationCoordinate2D centerPoint;
     unsigned int unitFlags = NSMinuteCalendarUnit;
     NSCalendar *cal = [NSCalendar currentCalendar];
+    NSMutableArray *allLocations = self.locations;
 //    @autoreleasepool 
 //    {
-        for(CLLocation *loc in self.locations)
+        for(CLLocation *loc in allLocations)
         {
             NSDateComponents *conversionInfo = [cal components:unitFlags fromDate:loc.timestamp];
 //            NSInteger min = [CommonUtil getMinuteFromDate:loc.timestamp];
@@ -516,7 +522,8 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     unsigned int unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit;
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSInteger alreadyDone = -1;
-    for(CLLocation *loc in self.locations)
+    NSMutableArray *allLocations = self.locations;
+    for(CLLocation *loc in allLocations)
     {
         NSDateComponents *conversionInfo = [cal components:unitFlags fromDate:loc.timestamp];
         NSInteger min = [conversionInfo minute];
@@ -526,7 +533,6 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
         if(prevmin == -1)
         { //bootstrap
             prevmin = min - 1;
-//            continue;
         }
         
         if(min > prevmin && min != alreadyDone)
@@ -557,5 +563,24 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     
     return annotationArray;
 }
+
+#pragma mark - custom getters/setters
+
+//- (NSMutableArray*)locations
+//{
+//    NSMutableArray *oldlocs = [NSMutableArray arrayWithArray:
+//                               [NSKeyedUnarchiver unarchiveObjectWithFile:
+//                                [CommonUtil getDataPathForFileWithName:
+//                                 [self trackLocationKey]]]];
+//    if(oldlocs)
+//    {
+//        [oldlocs addObjectsFromArray:locations];
+//        return oldlocs;
+//    }
+//    else
+//    {
+//        return locations;
+//    }
+//}
 
 @end

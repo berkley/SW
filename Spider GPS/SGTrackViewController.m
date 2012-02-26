@@ -167,7 +167,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SGTrackDataViewController *dataViewController = [[SGTrackDataViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//    NSString *trackName = [[SGSession instance].tracks.allKeys objectAtIndex:indexPath.row];
     NSString *trackName = [trackNames objectAtIndex:indexPath.row];
     dataViewController.track = [[SGSession instance] getTrackWithName:trackName];
     NSLog(@"track: %@", dataViewController.track);
@@ -179,14 +178,9 @@
     commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *trackName = [trackNames objectAtIndex:indexPath.row];
-    NSString *trackLocKey = [NSString stringWithFormat:@"%@-%@", LOCATION_KEY, trackName];
-    NSError *error;
-    [[NSFileManager defaultManager] removeItemAtPath:[CommonUtil getDataPathForFileWithName:trackLocKey] error:&error];
-    
-    [[SGSession instance].tracks removeObjectForKey:trackName];
+    NSString *trackName = [trackNames objectAtIndex:indexPath.row];    
+    [[SGSession instance]deleteTrackWithName:trackName];
     [trackNames removeObjectAtIndex:indexPath.row];
-    [[SGSession instance] saveTracks];
     [self.tableView reloadData];
 }
 

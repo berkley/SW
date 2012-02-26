@@ -62,5 +62,6 @@
 - (void)saveTracks;
 - (SGTrack*)getTrackWithName:(NSString*)name;
 + (NSString*)formatDate:(NSDate*)date withFormat:(NSString *)format;
+- (void)deleteTrackWithName:(NSString*)name;
 
 @end

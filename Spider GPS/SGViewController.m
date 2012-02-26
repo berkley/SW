@@ -65,6 +65,26 @@
     [UIView commitAnimations];
 }
 
+- (void)setPausedLabelText
+{
+    if(paused)
+    {
+        if([SGSession instance].currentTrack.name == nil || 
+           [[SGSession instance].currentTrack.name isEqualToString:AUTO_SAVE_TRACK_NAME])
+            pausedLabel.text = @"Track recording paused";
+        else
+            pausedLabel.text = [NSString stringWithFormat:@"Paused: %@", [SGSession instance].currentTrack.name];
+    }
+    else
+    {
+        if([SGSession instance].currentTrack.name == nil || 
+           [[SGSession instance].currentTrack.name isEqualToString:AUTO_SAVE_TRACK_NAME])
+            pausedLabel.text = @"Recording track";
+        else
+            pausedLabel.text = [NSString stringWithFormat:@"Recording: %@", [SGSession instance].currentTrack.name];
+    }
+}
+
 #pragma mark - init
 
 - (void)didReceiveMemoryWarning
@@ -198,6 +218,7 @@
 {
     [super viewWillAppear:animated];
     [self setupForCurrentOrientation];
+    pausedLabel.text = @"Initializing...";
     [self enableLocationServices];
     
     showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 40 - 20, 35, 35);
@@ -300,7 +321,7 @@
         height = abs(height) + 1;
     height = height * fieldViewHeight + 10;
     
-    UILabel *pausedLabel = (UILabel*)[speedHeadingView viewWithTag:9999];
+    pausedLabel = (UILabel*)[speedHeadingView viewWithTag:9999];
     if(!pausedLabel)
     {
         pausedLabel = [[UILabel alloc] init];
@@ -312,18 +333,33 @@
     if(paused)
     {
         height += 20;
-        pausedLabel.frame = CGRectMake(10, height - 25, speedHeadingView.frame.size.width, 22);
+        pausedLabel.frame = CGRectMake(10, height - 25, speedHeadingView.frame.size.width - 13, 22);
         pausedLabel.alpha = 1.0;
         pausedLabel.textColor = [UIColor redColor];
-        pausedLabel.font = [UIFont systemFontOfSize:20.0];
+        pausedLabel.font = [UIFont systemFontOfSize:15];
         pausedLabel.backgroundColor = [UIColor clearColor];
-        pausedLabel.text = @"Location Collection Paused";
+        //        pausedLabel.text = @"Location Collection Paused";
+//        if([SGSession instance].currentTrack.name == nil || 
+//           [[SGSession instance].currentTrack.name isEqualToString:AUTO_SAVE_TRACK_NAME])
+//            pausedLabel.text = @"Track recording paused";
+//        else
+//            pausedLabel.text = [NSString stringWithFormat:@"Paused: %@", [SGSession instance].currentTrack.name];
     }
     else
     {
-        UIView *pausedLabel = [speedHeadingView viewWithTag:9999];
-        pausedLabel.alpha = 0.0;
+        height += 20;
+        pausedLabel.frame = CGRectMake(10, height - 25, speedHeadingView.frame.size.width - 13, 22);
+        pausedLabel.alpha = 1.0;
+        pausedLabel.textColor = [UIColor lightTextColor];
+        pausedLabel.font = [UIFont systemFontOfSize:15.0];
+        pausedLabel.backgroundColor = [UIColor clearColor];
+//        if([SGSession instance].currentTrack.name == nil || 
+//           [[SGSession instance].currentTrack.name isEqualToString:AUTO_SAVE_TRACK_NAME])
+//            pausedLabel.text = @"Recording track";
+//        else
+//            pausedLabel.text = [NSString stringWithFormat:@"Recording: %@", [SGSession instance].currentTrack.name];
     }
+    [self setPausedLabelText];
 
     speedHeadingView.frame = CGRectMake(0, 480-height-20, 320, height);
     mapView.frame = CGRectMake(0, 0, 320, 460 - speedHeadingView.frame.size.height);
@@ -501,27 +537,6 @@
         accuracyCount = 0;
     }
     
-//    if(addPoint)
-//    {
-//        //draw the route line
-//        pointCount++;
-//        CLLocationCoordinate2D *locs = malloc(sizeof(CLLocationCoordinate2D) * 2);
-//        
-//        if(previousLocation)
-//        {
-////            NSLog(@"new: %f %f prv: %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude,
-////                  previousLocation.coordinate.latitude, previousLocation.coordinate.longitude);
-//            locs[0] = previousLocation.coordinate;
-//            locs[1] = newLocation.coordinate;
-//            MKPolyline *polyline = [MKPolyline polylineWithCoordinates:locs count:2];
-//            polyline.title = @"new";
-//            [self performSelectorOnMainThread:@selector(addPoint:) withObject:polyline waitUntilDone:NO];
-//        }
-//        
-//        previousLocation = newLocation;
-//        
-//    }
-    
     if(addPoint)
     {
         //draw the route line
@@ -553,6 +568,7 @@
                                                       distance:distance 
                                                      startTime:startTime 
                                                       stopTime:endTime];    
+        [self setPausedLabelText];
     }
     
     if([SGSession instance].useMPH)
@@ -724,6 +740,7 @@
 
                 endTime = [NSDate date];
                 [SGSession instance].currentTrack.name = name;
+                [self setFields];
                 [SGSession instance].currentTrack.totalTime = [NSNumber numberWithDouble:[endTime timeIntervalSinceDate:startTime]];
                 [self startActivityIndicator];
                 [[SGSession instance] performSelector:@selector(saveCurrentTrackWithName:) withObject:name afterDelay:.1];
@@ -770,6 +787,7 @@
         {
             endTime = [NSDate date];
             [SGSession instance].currentTrack.name = savename;
+            [self setFields];
             [SGSession instance].currentTrack.totalTime = [NSNumber numberWithDouble:[endTime timeIntervalSinceDate:startTime]];
             [self startActivityIndicator];
             [[SGSession instance] performSelector:@selector(saveCurrentTrackWithName:) withObject:savename afterDelay:.1];

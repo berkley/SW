@@ -152,6 +152,10 @@
 						<string key="NSFrame">{{1, 0}, {89, 21}}</string>
 						<reference key="NSSuperview" ref="1061233840"/>
 						<reference key="NSNextKeyView" ref="704989536"/>
+						<object class="NSColor" key="IBUIBackgroundColor" id="932016652">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MCAwAA</bytes>
+						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -181,6 +185,7 @@
 						<string key="NSFrame">{{74, 0}, {68, 21}}</string>
 						<reference key="NSSuperview" ref="1061233840"/>
 						<reference key="NSNextKeyView"/>
+						<reference key="IBUIBackgroundColor" ref="932016652"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -199,15 +204,12 @@
 				<string key="NSFrameSize">{160, 20}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="825366644"/>
-				<object class="NSColor" key="IBUIBackgroundColor" id="932016652">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MCAwAA</bytes>
-				</object>
+				<reference key="IBUIBackgroundColor" ref="932016652"/>
 				<float key="IBUIAlpha">0.80000001192092896</float>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="405945722">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUILabel" id="454629433">
@@ -216,6 +218,7 @@
 						<string key="NSFrame">{{1, 0}, {91, 21}}</string>
 						<reference key="NSSuperview" ref="405945722"/>
 						<reference key="NSNextKeyView" ref="553434410"/>
+						<reference key="IBUIBackgroundColor" ref="932016652"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -234,6 +237,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{77, 0}, {68, 21}}</string>
 						<reference key="NSSuperview" ref="405945722"/>
+						<reference key="IBUIBackgroundColor" ref="932016652"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -250,6 +254,7 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{160, 20}</string>
+				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="454629433"/>
 				<reference key="IBUIBackgroundColor" ref="932016652"/>
 				<float key="IBUIAlpha">0.80000001192092896</float>
@@ -1672,7 +1677,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">231</int>
+			<int key="maxID">233</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

@@ -40,6 +40,7 @@
     __weak IBOutlet UILabel *altLossLabel;
     __weak IBOutlet UISwitch *mapDirectionFollowingSwitch;
     __weak IBOutlet UIButton *showMapButton;
+    UILabel *pausedLabel;
     IBOutlet UIToolbar *toolbar;
     
     IBOutlet UIView *latView;

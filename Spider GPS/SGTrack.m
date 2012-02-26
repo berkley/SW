@@ -369,7 +369,8 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     //flush the queue into the last ascent or descent keyed array since
     //we can no longer do the averaged comparison to determine if ascent or 
     //descent is changing
-    for(int i=0; i<[cachedPoints count]; i++)
+
+    for(int i=[cachedPoints count] - 1; i>=0; i--)
     {
         CLLocation *lastLoc = [cachedPoints objectAtIndex:i];
         if(isAscending)

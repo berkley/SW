@@ -47,7 +47,7 @@ static DBUtil *sharedInstance;
 	success = [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error];
 	if(!success)
 	{
-        NSLog(@"DB file is %s", SQL_FILE);
+        NSLog(@"DB file is %@", SQL_FILE);
 		NSAssert1(0, @"Failed to create writable database file with message '%s'.", [error localizedDescription]);
 	}
 }

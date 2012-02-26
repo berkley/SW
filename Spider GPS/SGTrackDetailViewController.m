@@ -51,13 +51,41 @@
 
 - (void)addAscentDescentOverlay
 {
-    NSArray *polylines = [track arrayOfPolylines];       
+    NSArray *polylines = [track arrayOfPolylines];   
+    if([polylines count] == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Enough Data" 
+                                                        message:@"There is not enough data in this track to determine ascent and descent. Would you like to turn ascent/descent view off?" 
+                                                       delegate:self 
+                                              cancelButtonTitle:@"No" 
+                                              otherButtonTitles: @"Yes", nil];
+        [alert show];
+        
+    }
     [mapView addOverlays:polylines];
     slider.hidden = YES;
     sliderLabel.hidden = YES;
     sliderValueLabel.hidden = YES;
     segmentedControl.hidden = YES;
     segmentedControlLabel.hidden = YES;
+}
+
+- (void)ascentDescentChanged
+{
+    [mapView removeOverlays:mapView.overlays];
+    if([SGSession instance].showAscentDescentView)
+        [self addAscentDescentOverlay];
+    else
+        [self addTrackOverlay];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1)
+    { //yes
+        [SGSession instance].showAscentDescentView = NO;
+        [self ascentDescentChanged];
+    }
 }
 
 - (void)addTimeLabels
@@ -144,15 +172,6 @@
 }
 
 #pragma mark - notification selectors
-
-- (void)ascentDescentChanged
-{
-    [mapView removeOverlays:mapView.overlays];
-    if([SGSession instance].showAscentDescentView)
-        [self addAscentDescentOverlay];
-    else
-        [self addTrackOverlay];
-}
 
 - (void)timeLabelsChanged
 {

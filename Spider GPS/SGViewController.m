@@ -759,6 +759,7 @@
             topAltitude = 0.0;
             lowAltidude = 9999999;
             totalSpeed = 0.0;
+            [mapView removeAnnotations:mapView.annotations];
             [[SGSession instance].tracks removeObjectForKey:@"Auto-saved Track"];
             [[SGSession instance] saveTracks];
             [[SGSession instance] createNewTrack];

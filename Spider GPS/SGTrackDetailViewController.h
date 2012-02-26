@@ -16,7 +16,8 @@
 #import "SGTimeAnnotationView.h"
 #import "SGDetailPreferencesModalViewController.h"
 
-@interface SGTrackDetailViewController :UIViewController <MKMapViewDelegate, PrefModalDelegate>
+@interface SGTrackDetailViewController :UIViewController 
+<MKMapViewDelegate, PrefModalDelegate, UIAlertViewDelegate>
 {
     __weak IBOutlet MKMapView *mapView;
     SGTrack *track;

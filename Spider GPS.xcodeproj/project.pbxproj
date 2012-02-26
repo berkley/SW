@@ -121,8 +121,8 @@
 		7ED5A04B14DDF96B008D6C67 /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonUtil.m; path = ../../ObjectiveCUtil/arc/CommonUtil.m; sourceTree = "<group>"; };
 		7EE7120014AFE8080079C133 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		7EE7120214AFE8500079C133 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
-		CD4DEB9614B418D700E9110A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
-		CD4DEB9814B4190900E9110A /* icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-small.png"; path = "../icon-small.png"; sourceTree = "<group>"; };
+		CD4DEB9614B418D700E9110A /* icon.png */ = {isa = PBXFileReference; explicitFileType = image.icns; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		CD4DEB9814B4190900E9110A /* icon-small.png */ = {isa = PBXFileReference; explicitFileType = image.icns; name = "icon-small.png"; path = "../icon-small.png"; sourceTree = "<group>"; };
 		CD4DEBAA14B5704D00E9110A /* spinnerbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinnerbox.png; sourceTree = SOURCE_ROOT; };
 		CD8CABF114C53736003E263C /* SGPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPolyline.h; sourceTree = "<group>"; };
 		CD8CABF214C53736003E263C /* SGPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPolyline.m; sourceTree = "<group>"; };

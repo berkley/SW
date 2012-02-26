@@ -92,6 +92,8 @@
     int startupLocationCount;
     __strong CLLocation *previousLocation;
     MKPolyline *prevPolyline;
+    
+    BOOL viewHasNotAppeared;
 }
 
 - (void)setFields;

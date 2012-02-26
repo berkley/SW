@@ -218,8 +218,11 @@
 {
     [super viewWillAppear:animated];
     [self setupForCurrentOrientation];
-    pausedLabel.text = @"Initializing...";
     [self enableLocationServices];
+    
+    if(!viewHasNotAppeared)
+        pausedLabel.text = @"Initializing...";
+    viewHasNotAppeared = YES;
     
     showMapButton.frame = CGRectMake(320 - 35 - 5, 480 - speedHeadingView.frame.size.height - 40 - 20, 35, 35);
     mapView.frame = CGRectMake(0, 0, 320, 460 - speedHeadingView.frame.size.height);

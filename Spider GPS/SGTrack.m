@@ -144,10 +144,6 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     if(self)
     {
         name = [decoder decodeObjectForKey:NAME_KEY];
-//        NSString *trackLocKey = [self trackLocationKey];
-//        locations = [NSMutableArray arrayWithArray:
-//                      [NSKeyedUnarchiver unarchiveObjectWithFile:
-//                        [CommonUtil getDataPathForFileWithName:trackLocKey]]];
         locations = [decoder decodeObjectForKey:LOCATION_KEY];
         distance = [decoder decodeObjectForKey:DISTANCE_KEY];
         avgSpeed = [decoder decodeObjectForKey:AVG_SPEED_KEY];
@@ -166,12 +162,6 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-//    NSString *trackLocKey = [self trackLocationKey];
-//
-//    [NSKeyedArchiver archiveRootObject:self.locations
-//                                toFile:[CommonUtil getDataPathForFileWithName:trackLocKey]];
-//    locations = [[NSMutableArray alloc] init];
-    
     [coder encodeObject:locations forKey:LOCATION_KEY];
     [coder encodeObject:distance forKey:DISTANCE_KEY];
     [coder encodeObject:avgSpeed forKey:AVG_SPEED_KEY];
@@ -312,10 +302,9 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     double totalA = 0.0;
     double totalD = 0.0;
     previousAltitude = -1;
-    NSMutableArray *allLocations = self.locations;
-    for(int i=0; i<[allLocations count]; i++)
+    for(int i=0; i<[self.locations count]; i++)
     {
-        CLLocation *lastLoc = (CLLocation*)[self queueObject:[allLocations objectAtIndex:i] 
+        CLLocation *lastLoc = (CLLocation*)[self queueObject:[self.locations objectAtIndex:i] 
                                         inArray:&cachedPoints 
                                    withCapacity:NUMBER_OF_POINTS_DETERMINER];
         if(lastLoc)
@@ -375,6 +364,40 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
             prevIsAscending = isAscending;
         }
     }
+    
+    //when this loop is done, there will still be some points left in the queue.
+    //flush the queue into the last ascent or descent keyed array since
+    //we can no longer do the averaged comparison to determine if ascent or 
+    //descent is changing
+    for(int i=0; i<[cachedPoints count]; i++)
+    {
+        CLLocation *lastLoc = [cachedPoints objectAtIndex:i];
+        if(isAscending)
+        {
+            totalA += lastLoc.altitude - previousAltitude;
+            if(totalA < 1)
+                totalA *= -1;
+            NSMutableArray *arr = [dict objectForKey:ascendKey];
+            if(!arr)
+                arr = [[NSMutableArray alloc] init];
+            [arr addObject:lastLoc];
+            [dict setObject:arr forKey:ascendKey];
+        }
+        else
+        {
+            totalD += previousAltitude - lastLoc.altitude;
+            if(totalD < 1)
+                totalD *= -1;
+            
+            NSMutableArray *arr = [dict objectForKey:descendKey];
+            if(!arr)
+                arr = [[NSMutableArray alloc] init];
+            [arr addObject:lastLoc];
+            [dict setObject:arr forKey:descendKey];
+        }
+        previousAltitude = lastLoc.altitude;
+    }
+    
     return dict;
 }
 
@@ -404,44 +427,41 @@ verticalAccuracy, totalAscent, totalDescent, hasBeenSaved, date;
     unsigned int unitFlags = NSMinuteCalendarUnit;
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSMutableArray *allLocations = self.locations;
-//    @autoreleasepool 
-//    {
-        for(CLLocation *loc in allLocations)
-        {
-            NSDateComponents *conversionInfo = [cal components:unitFlags fromDate:loc.timestamp];
-//            NSInteger min = [CommonUtil getMinuteFromDate:loc.timestamp];
-            NSInteger min = [conversionInfo minute];
 
-            if(prevmin == -1)
-            { //bootstrap
-                prevmin = min;
-                centerPoint = loc.coordinate;
-                continue;
-            }
-            
-            MKMapPoint point = MKMapPointForCoordinate(loc.coordinate);
-            if(min != prevmin)
-            { //make a new polyline
-                BOOL isAscending = NO;
-                if(linecount % 2 == 0)
-                    isAscending = YES;
-                SGPolyline *polyline = [[SGPolyline alloc] initWithPoints:mapPoints 
-                                                                    count:nummappoints 
-                                                              isAscending:isAscending 
-                                                          withCenterCoord:centerPoint];
-                centerPoint = loc.coordinate;
-                [polylineArray addObject:polyline];
-                linecount++;
-                nummappoints = 0;
-            }
-            
-            mapPoints[nummappoints] = point;
-            nummappoints++;
+    for(CLLocation *loc in allLocations)
+    {
+        NSDateComponents *conversionInfo = [cal components:unitFlags fromDate:loc.timestamp];
+        NSInteger min = [conversionInfo minute];
+
+        if(prevmin == -1)
+        { //bootstrap
             prevmin = min;
+            centerPoint = loc.coordinate;
+            continue;
         }
         
-        free(mapPoints);
-//    }
+        MKMapPoint point = MKMapPointForCoordinate(loc.coordinate);
+        if(min != prevmin)
+        { //make a new polyline
+            BOOL isAscending = NO;
+            if(linecount % 2 == 0)
+                isAscending = YES;
+            SGPolyline *polyline = [[SGPolyline alloc] initWithPoints:mapPoints 
+                                                                count:nummappoints 
+                                                          isAscending:isAscending 
+                                                      withCenterCoord:centerPoint];
+            centerPoint = loc.coordinate;
+            [polylineArray addObject:polyline];
+            linecount++;
+            nummappoints = 0;
+        }
+        
+        mapPoints[nummappoints] = point;
+        nummappoints++;
+        prevmin = min;
+    }
+    
+    free(mapPoints);
     
     return polylineArray;
 }

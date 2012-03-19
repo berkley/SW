@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:YesAnd/YesAnd/YesAnd.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SpiderGPS/Spider GPS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SimplyDone/Simply Done.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SafeRoom/SafeRoom.xcodeproj">
+   </FileRef>
+</Workspace>

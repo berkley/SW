@@ -17,6 +17,17 @@
     if (self) 
     {
         service = nil;
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(keyboardWillShow:) 
+                                                     name:UIKeyboardWillShowNotification 
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(keyboardWillHide:) 
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:nil];
+        doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
+                                                                   target:self 
+                                                                   action:@selector(doneButtonTouched)];
     }
     return self;
 }
@@ -38,8 +49,10 @@
 {
     serviceNameTextField = nil;
     phoneNumberTextField = nil;
-    recipientNameTextField = nil;
     deleteButton = nil;
+    scrollView = nil;
+    emergenyMessageTextView = nil;
+    testMessageTextView = nil;
     [super viewDidUnload];
 }
 
@@ -50,12 +63,15 @@
     {
         serviceNameTextField.text = service.name;
         phoneNumberTextField.text = service.phoneNumber;
-        recipientNameTextField.text = service.receiverName;
+        emergenyMessageTextView.text = service.emergencyMessage;
+        testMessageTextView.text = service.testMessage;
         deleteButton.hidden = NO;
     }
     else
     {
         deleteButton.hidden = YES;
+        emergenyMessageTextView.text = [PRSession instance].alertMessage;
+        testMessageTextView.text = [PRSession instance].testMessage;
     }
 }
 
@@ -64,7 +80,6 @@
     PRSMSService *s = [[PRSMSService alloc] init];
     s.name = serviceNameTextField.text;
     s.phoneNumber = phoneNumberTextField.text;
-    s.receiverName = recipientNameTextField.text;
     if(![[PRSession instance] addService:s])
     {
         NSString *msg = [NSString stringWithFormat:@"A service named %@ already exists. Please choose another name.", s.name];
@@ -95,6 +110,32 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REFRESH_SERVICE_LIST object:nil];
     }
+}
+
+- (void)keyboardWillShow:(NSNotification*)notification
+{
+    self.navigationItem.rightBarButtonItem = doneButton;
+    scrollView.frame = CGRectMake(0, 0, 320, 250);
+    scrollView.contentSize = CGSizeMake(320, 460);
+    if([testMessageTextView isFirstResponder])
+        [scrollView scrollRectToVisible:CGRectMake(0, 200, 280, 84) animated:YES];
+    else if([emergenyMessageTextView isFirstResponder])
+        [scrollView scrollRectToVisible:CGRectMake(0, 310, 280, 84) animated:YES];
+
+}
+
+- (void)keyboardWillHide:(NSNotification*)notification
+{
+    self.navigationItem.rightBarButtonItem = nil;
+    scrollView.frame = CGRectMake(0, 0, 320, 480);    
+}
+
+- (void)doneButtonTouched
+{
+    [testMessageTextView resignFirstResponder];
+    [emergenyMessageTextView resignFirstResponder];
+    [serviceNameTextField resignFirstResponder];
+    [phoneNumberTextField resignFirstResponder];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "PRService.h"
 #import "Constants.h"
 #import "ASIHTTPRequest.h"
+#import "PRSession.h"
 
 @interface PRSMSService : PRService 
 {

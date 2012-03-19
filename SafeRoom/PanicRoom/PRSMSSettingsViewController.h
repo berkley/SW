@@ -15,8 +15,11 @@
 {
     __weak IBOutlet UITextField *serviceNameTextField;
     __weak IBOutlet UITextField *phoneNumberTextField;
-    __weak IBOutlet UITextField *recipientNameTextField;
     __weak IBOutlet UIButton *deleteButton;
+    __weak IBOutlet UIScrollView *scrollView;
+    __weak IBOutlet UITextView *emergenyMessageTextView;
+    __weak IBOutlet UITextView *testMessageTextView;
+    UIBarButtonItem *doneButton;
     PRSMSService *service;
 }
 

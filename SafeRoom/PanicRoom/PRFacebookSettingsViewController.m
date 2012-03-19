@@ -17,6 +17,19 @@
     if (self) 
     {
         self.navigationItem.title = @"Facebook";
+        doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
+                                                                   target:self 
+                                                                   action:@selector(doneButtonTouched)];
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(refreshDisplay:) 
+                                                     name:NOTIFICATION_REFRESH_SERVICE_LIST 
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(keyboardWillShow:) 
+                                                     name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(keyboardWillHide:) 
+                                                     name:UIKeyboardWillHideNotification object:nil];
     }
     return self;
 }
@@ -39,12 +52,12 @@
     logoutButton = nil;
     testMessageTextView = nil;
     eMessageTextView = nil;
+    scrollView = nil;
     [super viewDidUnload];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)doViewDidAppear
 {
-    [super viewDidAppear:animated];
     self.service = (PRFacebookService*)[[PRSession instance] serviceWithName:@"Facebook"];
     if(service == nil || service.accessToken == nil)
     {
@@ -62,6 +75,12 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self doViewDidAppear];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
@@ -70,6 +89,11 @@
 }
 
 #pragma mark - selectors
+
+- (void)refreshDisplay:(NSNotification*)notification
+{
+    [self doViewDidAppear];
+}
 
 - (IBAction)logoutButtonTouched:(id)sender 
 {
@@ -83,6 +107,32 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FACEBOOK_LOGOUT object:nil];
         [self.navigationController popToRootViewControllerAnimated:NO];
     }
+}
+
+#pragma mark - keyboard notifications
+
+- (void)keyboardWillShow:(NSNotification*)notification
+{
+    self.navigationItem.rightBarButtonItem = doneButton;
+    scrollView.frame = CGRectMake(0, 0, 320, 250);
+    scrollView.contentSize = CGSizeMake(320, 350);
+    if([testMessageTextView isFirstResponder])
+        [scrollView scrollRectToVisible:CGRectMake(0, 200, 320, 85) animated:YES];
+    else
+        [scrollView scrollRectToVisible:CGRectMake(0, 302, 320, 85) animated:YES];
+}
+
+- (void)keyboardWillHide:(NSNotification*)notification
+{
+    self.navigationItem.rightBarButtonItem = nil;
+    scrollView.frame = CGRectMake(0, 0, 320, 480);
+    
+}
+
+- (void)doneButtonTouched
+{
+    [testMessageTextView resignFirstResponder];
+    [eMessageTextView resignFirstResponder];
 }
 
 @end

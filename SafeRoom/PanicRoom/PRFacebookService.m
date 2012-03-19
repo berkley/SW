@@ -45,4 +45,20 @@
                                                       userInfo:[NSDictionary dictionaryWithObjectsAndKeys:msg, @"text", nil]];
 }
 
+- (NSString*)emergencyMessage
+{
+    if(emergencyMessage == nil)
+        return [PRSession instance].alertMessage;
+    else
+        return emergencyMessage;
+}
+
+- (NSString*)testMessage
+{
+    if(testMessage == nil)
+        return [PRSession instance].testMessage;
+    else
+        return testMessage;
+}
+
 @end

@@ -84,8 +84,11 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    service = (PRFacebookService*)[[PRSession instance] serviceWithName:@"Facebook"];
     service.emergencyMessage = eMessageTextView.text;
     service.testMessage = testMessageTextView.text;
+    [[PRSession instance] removeService:service];
+    [[PRSession instance] addService:service];
 }
 
 #pragma mark - selectors

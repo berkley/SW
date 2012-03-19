@@ -56,13 +56,33 @@
     else 
     {
         NSString *receivedString = [[NSString alloc]initWithData:receivedData encoding:NSUTF8StringEncoding];
-        NSLog(@"Request sent. %@", receivedString);
-    }  
-    
-    msg = [NSString stringWithFormat:@"Sending SMS: '%@'", msg];
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATE_STATUS_TEXT 
-                                                        object:nil 
-                                                      userInfo:[NSDictionary dictionaryWithObjectsAndKeys:msg, @"text", nil]];
+        NSLog(@"Request sent. Response received: %@", receivedString);
+        if([receivedString rangeOfString:@"RestException"].location != NSNotFound)
+        {
+            NSString *failmsg;
+            if([receivedString rangeOfString:@"<Message>"].location == NSNotFound)
+            {
+                failmsg = @"unknown error";
+            }
+            else
+            {
+                NSInteger msglength = [receivedString rangeOfString:@"</Message>"].location - [receivedString rangeOfString:@"<Message>"].location - 9;
+                NSRange range = NSMakeRange([receivedString rangeOfString:@"<Message>"].location + 9, msglength);
+                failmsg = [receivedString substringWithRange:range];
+            }
+            msg = [NSString stringWithFormat:@"SMS Send Failure: %@", failmsg];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATE_STATUS_TEXT 
+                                                                object:nil 
+                                                              userInfo:[NSDictionary dictionaryWithObjectsAndKeys:msg, @"text", nil]];
+        }
+        else
+        {
+            msg = [NSString stringWithFormat:@"SMS Sent: '%@'", msg];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATE_STATUS_TEXT 
+                                                                object:nil 
+                                                              userInfo:[NSDictionary dictionaryWithObjectsAndKeys:msg, @"text", nil]];
+        }
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response

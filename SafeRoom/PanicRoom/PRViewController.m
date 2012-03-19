@@ -128,16 +128,24 @@
        currentLocation.horizontalAccuracy <= MIN_LOCATION_ACCURACY))
     { //try 5 times to achieve min_accuracy
         NSLog(@"sending messages to services");
-        NSString *msg = [PRSession instance].alertMessage;
-        if([PRSession instance].testMode)
-            msg = [PRSession instance].testMessage;
-        
-        NSString *mapURL = [CommonUtil getShortenedURLForURL:[CommonUtil createStaticMapURLForLocation:currentLocation]];
-        
-        msg = [NSString stringWithFormat:@"%@ - My location is: latitude: %f longitude: %f %@", msg, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude, mapURL];
+        NSString *msg = @"";
         
         for(PRService *service in [PRSession instance].services)
         {
+            if([PRSession instance].testMode && !service.testMessage)
+                msg = [PRSession instance].testMessage;
+            else if(![PRSession instance].testMode && !service.emergencyMessage)
+                msg = [PRSession instance].alertMessage;       
+            else if(![PRSession instance].testMode && service.emergencyMessage)
+                msg = service.emergencyMessage;
+            else if([PRSession instance].testMode && service.testMessage)
+                msg = service.testMessage;
+            
+            
+            NSString *mapURL = [CommonUtil getShortenedURLForURL:[CommonUtil createStaticMapURLForLocation:currentLocation]];
+            
+            msg = [NSString stringWithFormat:@"%@ - My location is: latitude: %f longitude: %f %@", msg, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude, mapURL];
+            
             [service sendMessage:msg];
         }
         [[PRSession instance] stopLocationServices];

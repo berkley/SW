@@ -80,6 +80,9 @@
     PRSMSService *s = [[PRSMSService alloc] init];
     s.name = serviceNameTextField.text;
     s.phoneNumber = phoneNumberTextField.text;
+    s.testMessage = testMessageTextView.text;
+    s.emergencyMessage = emergenyMessageTextView.text;
+    
     if(![[PRSession instance] addService:s])
     {
         NSString *msg = [NSString stringWithFormat:@"A service named %@ already exists. Please choose another name.", s.name];

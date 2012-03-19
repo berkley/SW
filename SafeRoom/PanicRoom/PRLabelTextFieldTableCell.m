@@ -3,7 +3,7 @@
 //  PanicRoom
 //
 //  Created by Chad Berkley on 2/14/12.
-//  Copyright (c) 2012 ucsb. All rights reserved.
+//  Copyright (c) 2012 Chad Berkley. All rights reserved.
 //
 
 #import "PRLabelTextFieldTableCell.h"

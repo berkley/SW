@@ -3,7 +3,7 @@
 //  SimpleGPS
 //
 //  Created by Chad Berkley on 12/12/11.
-//  Copyright (c) 2011 UCSB. All rights reserved.
+//  Copyright (c) 2011 Chad Berkley. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

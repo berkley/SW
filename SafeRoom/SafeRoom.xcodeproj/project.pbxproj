@@ -440,7 +440,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
-				ORGANIZATIONNAME = Stumpware;
+				ORGANIZATIONNAME = "Stumpware LLC";
 			};
 			buildConfigurationList = CD82991B14EB14A200F594AF /* Build configuration list for PBXProject "SafeRoom" */;
 			compatibilityVersion = "Xcode 3.2";

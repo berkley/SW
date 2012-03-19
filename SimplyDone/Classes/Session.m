@@ -3,7 +3,7 @@
 //  Simply Done
 //
 //  Created by Chad Berkley on 10/15/10.
-//  Copyright 2010 UCSB. All rights reserved.
+//  Copyright 2010 Chad Berkley. All rights reserved.
 //
 
 #import "Session.h"

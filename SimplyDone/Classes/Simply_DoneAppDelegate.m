@@ -3,7 +3,7 @@
 //  Simply Done
 //
 //  Created by Chad Berkley on 6/29/10.
-//  Copyright ucsb 2010. All rights reserved.
+//  Copyright Chad Berkley 2010. All rights reserved.
 //
 
 #import "Simply_DoneAppDelegate.h"

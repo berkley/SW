@@ -3,7 +3,7 @@
 //  Spider GPS
 //
 //  Created by Chad Berkley on 1/16/12.
-//  Copyright (c) 2012 ucsb. All rights reserved.
+//  Copyright (c) 2012 Chad Berkley. All rights reserved.
 //
 
 #import "SGPolyline.h"

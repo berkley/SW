@@ -46,7 +46,7 @@ static PRSession *instance;
 - (NSString*)testMessage
 {
     if(![defaults getObjectWithName:@"testMessage"])
-        [defaults setObject:@"I'm using SafeRoom to send out alerts in case of emergency. This is a test. Please disregard this message." withName:@"testMessage"];
+        [defaults setObject:@"I'm testing SafeRoom to send out alerts in case of emergency. Please disregard this message." withName:@"testMessage"];
     return (NSString*)[defaults getObjectWithName:@"testMessage"];
 }
 
@@ -126,6 +126,14 @@ static PRSession *instance;
             return service;
     }
     return nil;
+}
+
++ (NSString*)createMessage:(NSString*)msg withLocation:(CLLocation*)currentLocation
+{
+    NSString *mapURL = [CommonUtil getShortenedURLForURL:[CommonUtil createStaticMapURLForLocation:currentLocation]];
+    
+    msg = [NSString stringWithFormat:@"%@ - My location is: latitude: %f longitude: %f %@", msg, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude, mapURL];
+    return msg;
 }
 
 #pragma mark - location services

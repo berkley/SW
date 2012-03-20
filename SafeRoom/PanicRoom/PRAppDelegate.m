@@ -12,7 +12,7 @@
  - UI Changes
    - Better activation method/graphics
    - New logo/startup screen/color scheme
-   - Move "add a service" to its own cell
+   X Move "add a service" to its own cell
    - add facebook/twitter icons
  - Add Twitter service, count characters
  - Add character counting for SMS

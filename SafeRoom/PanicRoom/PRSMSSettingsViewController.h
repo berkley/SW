@@ -12,7 +12,7 @@
 #import "PRSession.h"
 
 @interface PRSMSSettingsViewController : UIViewController
-<UIAlertViewDelegate>
+<UIAlertViewDelegate, UITextViewDelegate>
 {
     __weak IBOutlet UITextField *serviceNameTextField;
     __weak IBOutlet UITextField *phoneNumberTextField;
@@ -20,9 +20,13 @@
     __weak IBOutlet UIScrollView *scrollView;
     __weak IBOutlet UITextView *emergenyMessageTextView;
     __weak IBOutlet UITextView *testMessageTextView;
+    __weak IBOutlet UILabel *testCharCountLabel;
+    __weak IBOutlet UILabel *emergencyCharCountLabel;
     UIBarButtonItem *doneButton;
     PRSMSService *service;
     PRSMSService *serviceToSave;
+    NSInteger testCharCount;
+    NSInteger emergencyCharCount;
 }
 
 @property (nonatomic, retain) PRSMSService *service;

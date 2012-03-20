@@ -11,6 +11,31 @@
 @implementation PRSMSSettingsViewController
 @synthesize service;
 
+#pragma mark - private
+
+- (void)updateCharCounts
+{
+    NSString *testStr = [PRSession createMessage:testMessageTextView.text withLocation:[PRSession instance].locationManager.location];
+    NSString *emergStr = [PRSession createMessage:emergenyMessageTextView.text withLocation:[PRSession instance].locationManager.location];
+    
+    testCharCount = 160 - [testStr length];
+    testCharCountLabel.text = [NSString stringWithFormat:@"%i", testCharCount];
+    if(testCharCount < 0)
+        testCharCountLabel.textColor = [UIColor redColor];
+    else
+        testCharCountLabel.textColor = [UIColor whiteColor];
+    
+    emergencyCharCount = 160 - [emergStr length];
+    emergencyCharCountLabel.text = [NSString stringWithFormat:@"%i", emergencyCharCount];
+    if(emergencyCharCount < 0)
+        emergencyCharCountLabel.textColor = [UIColor redColor];
+    else
+        emergencyCharCountLabel.textColor = [UIColor whiteColor];
+
+}
+
+#pragma mark - init
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -43,6 +68,7 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = @"SMS";
+    testCharCount = 0;
 }
 
 - (void)viewDidUnload
@@ -73,6 +99,8 @@
         emergenyMessageTextView.text = [PRSession instance].alertMessage;
         testMessageTextView.text = [PRSession instance].testMessage;
     }
+
+    [self updateCharCounts];
 }
 
 - (IBAction)saveButtonTouched:(id)sender 
@@ -164,5 +192,19 @@
     }
 }
 
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    [self updateCharCounts];
+    if(textView == emergenyMessageTextView)
+    {
+        
+    }
+    else if(textView == testMessageTextView)
+    {
+        
+    }
+}
 
 @end

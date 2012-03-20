@@ -16,7 +16,8 @@
 #define SERVICE_TYPE_SMS 2
 #define SERVICE_TYPE_EMAIL 3
 
-@interface PRCreateServiceViewController : UITableViewController
+@interface PRCreateServiceViewController : UITableViewController 
+<UIAlertViewDelegate>
 {
     NSInteger serviceType;
     PRLabelTextFieldTableCell *nameCell;

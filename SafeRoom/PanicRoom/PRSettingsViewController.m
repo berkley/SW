@@ -98,9 +98,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0)
-        return 0;
+        return 1;
     else if(section == 1)
-        return 1 + [[PRSession instance].services count];
+        return [[PRSession instance].services count];
     return 0;
 }
 
@@ -116,21 +116,13 @@
     
     if(indexPath.section == 0)
     {
-//        if(indexPath.row == 0)
-//            return testMessageCell;
-//        else if(indexPath.row == 1)
-//            return alertMessageCell;
+        cell.textLabel.text = @"Add a service";        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; 
     }
     else if(indexPath.section == 1)
     {
-        if(indexPath.row == 0)
-            cell.textLabel.text = @"Add a service";
-        else
-        {
-            PRService *service = [[PRSession instance].services objectAtIndex:indexPath.row - 1];
-            cell.textLabel.text = service.name;
-        }
-        
+        PRService *service = [[PRSession instance].services objectAtIndex:indexPath.row];
+        cell.textLabel.text = service.name;        
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; 
     }
     
@@ -142,9 +134,9 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if(section == 0)
-        return @"Settings";
+        return @"";
     else if(section == 1)
-        return @"Registered Alerts";
+        return @"Services";
     return nil;
 }
 
@@ -152,47 +144,33 @@
 {
     if(indexPath.section == 0)
     {
-        
-    }
-    else if(indexPath.section == 1)
-    {
         if(indexPath.row == 0)
         { //add new service
             PRNewServiceViewController *vc = [[PRNewServiceViewController alloc] initWithStyle:UITableViewStyleGrouped];
             [self.navigationController pushViewController:vc animated:YES];
         }
-        else
-        { //show details of current service
-            PRService *service = [[PRSession instance].services objectAtIndex:indexPath.row - 1];
-            if([service isKindOfClass:[PRFacebookService class]])
-            {
-                PRFacebookSettingsViewController *vc = [[PRFacebookSettingsViewController alloc] initWithNibName:@"PRFacebookSettingsViewController" bundle:nil];
-                vc.service = (PRFacebookService*)service;
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-            else if([service isKindOfClass:[PRSMSService class]])
-            {
-                PRSMSSettingsViewController *vc = [[PRSMSSettingsViewController alloc] initWithNibName:@"PRSMSSettingsViewController" bundle:nil];
-                vc.service = (PRSMSService*)service;
-                [self.navigationController pushViewController:vc animated:YES];
-            }
+    }
+    else if(indexPath.section == 1)
+    {
+        PRService *service = [[PRSession instance].services objectAtIndex:indexPath.row];
+        if([service isKindOfClass:[PRFacebookService class]])
+        {
+            PRFacebookSettingsViewController *vc = [[PRFacebookSettingsViewController alloc] initWithNibName:@"PRFacebookSettingsViewController" bundle:nil];
+            vc.service = (PRFacebookService*)service;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if([service isKindOfClass:[PRSMSService class]])
+        {
+            PRSMSSettingsViewController *vc = [[PRSMSSettingsViewController alloc] initWithNibName:@"PRSMSSettingsViewController" bundle:nil];
+            vc.service = (PRSMSService*)service;
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if(indexPath.section == 0)
-//    {
-//        if(indexPath.row == 0)
-//            return LABEL_TEXT_VIEW_CELL_HEIGHT;
-//        else if(indexPath.row == 1)
-//            return LABEL_TEXT_VIEW_CELL_HEIGHT;
-//        else
-//            return 50;
-//    }
-//    else
-        return 50;
+    return 50;
 }
 
 @end

@@ -85,12 +85,13 @@
     
     if(![[PRSession instance] addService:s])
     {
-        NSString *msg = [NSString stringWithFormat:@"A service named %@ already exists. Please choose another name.", s.name];
+        NSString *msg = [NSString stringWithFormat:@"A service with the name %@ already exists. Are you sure you want to overwrite it?", s.name];
+        serviceToSave = s;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Duplicate Name" 
                                                         message:msg 
-                                                       delegate:nil 
-                                              cancelButtonTitle:@"OK" 
-                                              otherButtonTitles: nil];
+                                                       delegate:self 
+                                              cancelButtonTitle:@"No" 
+                                              otherButtonTitles:@"Yes", nil];
         [alert show];
     }
     else
@@ -140,5 +141,28 @@
     [serviceNameTextField resignFirstResponder];
     [phoneNumberTextField resignFirstResponder];
 }
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0)
+    { //cancel
+        
+    }
+    else if(buttonIndex == 1)
+    { //overwrite
+        if(serviceToSave != nil)
+        {
+            PRService *oldService = [[PRSession instance] serviceWithName:serviceToSave.name];
+            if(oldService)
+                [[PRSession instance] removeService:oldService];
+            [[PRSession instance] addService:serviceToSave];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REFRESH_SERVICE_LIST object:nil];
+        }
+    }
+}
+
 
 @end

@@ -92,12 +92,12 @@
         }
         else
         {
-            NSString *msg = [NSString stringWithFormat:@"There is already a service called %@. Please choose a new name", nameCell.textField.text];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Duplicate Name" 
+            NSString *msg = [NSString stringWithFormat:@"Sorry, saving service %@ failed.", nameCell.textField.text];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Overwrite" 
                                                             message:msg 
-                                                           delegate:nil 
+                                                           delegate:self
                                                   cancelButtonTitle:@"OK" 
-                                                  otherButtonTitles: nil];
+                                                  otherButtonTitles:nil];
             [alert show];
         }
 

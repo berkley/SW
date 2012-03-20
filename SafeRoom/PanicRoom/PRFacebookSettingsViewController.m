@@ -87,15 +87,19 @@
     service = (PRFacebookService*)[[PRSession instance] serviceWithName:@"Facebook"];
     service.emergencyMessage = eMessageTextView.text;
     service.testMessage = testMessageTextView.text;
-    [[PRSession instance] removeService:service];
-    [[PRSession instance] addService:service];
+    if(service != nil)
+    {
+        [[PRSession instance] removeService:service];
+        [[PRSession instance] addService:service];
+    }
 }
 
 #pragma mark - selectors
 
 - (void)refreshDisplay:(NSNotification*)notification
 {
-    [self doViewDidAppear];
+//    [self doViewDidAppear];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)logoutButtonTouched:(id)sender 

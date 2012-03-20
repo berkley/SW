@@ -15,7 +15,7 @@
    X Move "add a service" to its own cell
    - add facebook/twitter icons
  - Add Twitter service, count characters
- - Add character counting for SMS
+ X Add character counting for SMS
  - Use geoloqi for mapping link instead of static google map
  
  1.1

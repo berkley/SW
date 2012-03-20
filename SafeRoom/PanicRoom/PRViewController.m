@@ -164,7 +164,7 @@
     else
         activationSlider.thumbTintColor = [UIColor whiteColor];
 
-    NSLog(@"numTimerFired %i messageInterval %i mod: %i", numTimerFired, [PRSession instance].messageInterval, numTimerFired % [PRSession instance].messageInterval);
+//    NSLog(@"numTimerFired %i messageInterval %i mod: %i", numTimerFired, [PRSession instance].messageInterval, numTimerFired % [PRSession instance].messageInterval);
     if(numTimerFired % [PRSession instance].messageInterval == 0)
     {
         //turn on location servies, wait for a location, then send messages

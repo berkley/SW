@@ -6,6 +6,23 @@
 //  Copyright (c) 2012 Stumpware. All rights reserved.
 //
 
+/***********************************************************************
+ 
+1.0
+ - UI Changes
+   - Better activation method/graphics
+   - New logo/startup screen/color scheme
+   - Move "add a service" to its own cell
+   - add facebook/twitter icons
+ - Add Twitter service, count characters
+ - Add character counting for SMS
+ - Use geoloqi for mapping link instead of static google map
+ 
+ 1.1
+ - Add walkie-talkie feature
+
+************************************************************************/
+
 #import "PRAppDelegate.h"
 #import "PRViewController.h"
 

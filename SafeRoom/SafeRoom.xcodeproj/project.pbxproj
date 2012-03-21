@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E5F4BBB1519808600D820CA /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5F4BBA1519808600D820CA /* Twitter.framework */; };
+		7E5F4BBF1519834600D820CA /* PRTwitterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5F4BBE1519834600D820CA /* PRTwitterService.m */; };
+		7E5F4BC31519839300D820CA /* PRTwitterSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5F4BC11519839200D820CA /* PRTwitterSettingsViewController.m */; };
+		7E5F4BC41519839300D820CA /* PRTwitterSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E5F4BC21519839300D820CA /* PRTwitterSettingsViewController.xib */; };
 		7EA032CF14ED8036005A9105 /* PROnOffTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA032CE14ED8036005A9105 /* PROnOffTableCell.m */; };
 		7EB6E5C214EB6B5A00ECA13E /* PRLabelTextFieldTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB6E5C114EB6B5A00ECA13E /* PRLabelTextFieldTableCell.m */; };
 		7EB6E5C914EC697800ECA13E /* icon@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB6E5C814EC697800ECA13E /* icon@x2.png */; };
@@ -64,6 +68,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E5F4BBA1519808600D820CA /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		7E5F4BBD1519834600D820CA /* PRTwitterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTwitterService.h; sourceTree = "<group>"; };
+		7E5F4BBE1519834600D820CA /* PRTwitterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTwitterService.m; sourceTree = "<group>"; };
+		7E5F4BC01519839200D820CA /* PRTwitterSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTwitterSettingsViewController.h; sourceTree = "<group>"; };
+		7E5F4BC11519839200D820CA /* PRTwitterSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTwitterSettingsViewController.m; sourceTree = "<group>"; };
+		7E5F4BC21519839300D820CA /* PRTwitterSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PRTwitterSettingsViewController.xib; sourceTree = "<group>"; };
 		7EA032CD14ED8036005A9105 /* PROnOffTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PROnOffTableCell.h; sourceTree = "<group>"; };
 		7EA032CE14ED8036005A9105 /* PROnOffTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PROnOffTableCell.m; sourceTree = "<group>"; };
 		7EB6E5C014EB6B5A00ECA13E /* PRLabelTextFieldTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRLabelTextFieldTableCell.h; sourceTree = "<group>"; };
@@ -171,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E5F4BBB1519808600D820CA /* Twitter.framework in Frameworks */,
 				CD8E4AB814EE328000959D00 /* libz.dylib in Frameworks */,
 				CD8E4AB614EE326900959D00 /* MobileCoreServices.framework in Frameworks */,
 				CD8E4AB414EE325F00959D00 /* SystemConfiguration.framework in Frameworks */,
@@ -199,6 +210,9 @@
 				CD8E4A7314EE277800959D00 /* PRSMSSettingsViewController.h */,
 				CD8E4A7414EE277800959D00 /* PRSMSSettingsViewController.m */,
 				CD8E4A7514EE277800959D00 /* PRSMSSettingsViewController.xib */,
+				7E5F4BC01519839200D820CA /* PRTwitterSettingsViewController.h */,
+				7E5F4BC11519839200D820CA /* PRTwitterSettingsViewController.m */,
+				7E5F4BC21519839300D820CA /* PRTwitterSettingsViewController.xib */,
 			);
 			name = "Service View Controllers";
 			sourceTree = "<group>";
@@ -279,6 +293,8 @@
 				7EB6E5D514ECACD000ECA13E /* PRFacebookService.m */,
 				CD8E4A7014EE23EC00959D00 /* PRSMSService.h */,
 				CD8E4A7114EE23EC00959D00 /* PRSMSService.m */,
+				7E5F4BBD1519834600D820CA /* PRTwitterService.h */,
+				7E5F4BBE1519834600D820CA /* PRTwitterService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -327,6 +343,7 @@
 		CD82992414EB14A200F594AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E5F4BBA1519808600D820CA /* Twitter.framework */,
 				CD8E4AB714EE328000959D00 /* libz.dylib */,
 				CD8E4AB514EE326900959D00 /* MobileCoreServices.framework */,
 				CD8E4AB314EE325F00959D00 /* SystemConfiguration.framework */,
@@ -473,6 +490,7 @@
 				7EB6E61D14ECBDC600ECA13E /* PRFacebookSettingsViewController.xib in Resources */,
 				7EB6E61F14ECCDF100ECA13E /* Default@2x.png in Resources */,
 				CD8E4A7714EE277900959D00 /* PRSMSSettingsViewController.xib in Resources */,
+				7E5F4BC41519839300D820CA /* PRTwitterSettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +537,8 @@
 				CD8E4AAE14EE320400959D00 /* ASIHTTPRequest.m in Sources */,
 				CD8E4AAF14EE320400959D00 /* ASIInputStream.m in Sources */,
 				CD8E4AB014EE320400959D00 /* ASINetworkQueue.m in Sources */,
+				7E5F4BBF1519834600D820CA /* PRTwitterService.m in Sources */,
+				7E5F4BC31519839300D820CA /* PRTwitterSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

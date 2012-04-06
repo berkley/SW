@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Accounts/Accounts.h>
+#import <Twitter/Twitter.h>
 
 @interface PRTwitterSettingsViewController : UIViewController
+<UIPickerViewDelegate, UIPickerViewDataSource>
+{
+    NSArray *twitterAccounts;
+    __weak IBOutlet UILabel *statusLabel;
+    __weak IBOutlet UIPickerView *accountPicker;
+    IBOutlet UIView *accountPickerView;
+}
 
 @end

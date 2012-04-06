@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E452214152E9E0000F4770F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E452213152E9E0000F4770F /* Accounts.framework */; };
 		7E5F4BBB1519808600D820CA /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5F4BBA1519808600D820CA /* Twitter.framework */; };
 		7E5F4BBF1519834600D820CA /* PRTwitterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5F4BBE1519834600D820CA /* PRTwitterService.m */; };
 		7E5F4BC31519839300D820CA /* PRTwitterSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5F4BC11519839200D820CA /* PRTwitterSettingsViewController.m */; };
@@ -68,6 +69,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E452213152E9E0000F4770F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		7E5F4BBA1519808600D820CA /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		7E5F4BBD1519834600D820CA /* PRTwitterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTwitterService.h; sourceTree = "<group>"; };
 		7E5F4BBE1519834600D820CA /* PRTwitterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTwitterService.m; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E452214152E9E0000F4770F /* Accounts.framework in Frameworks */,
 				7E5F4BBB1519808600D820CA /* Twitter.framework in Frameworks */,
 				CD8E4AB814EE328000959D00 /* libz.dylib in Frameworks */,
 				CD8E4AB614EE326900959D00 /* MobileCoreServices.framework in Frameworks */,
@@ -343,6 +346,7 @@
 		CD82992414EB14A200F594AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E452213152E9E0000F4770F /* Accounts.framework */,
 				7E5F4BBA1519808600D820CA /* Twitter.framework */,
 				CD8E4AB714EE328000959D00 /* libz.dylib */,
 				CD8E4AB514EE326900959D00 /* MobileCoreServices.framework */,

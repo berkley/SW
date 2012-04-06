@@ -43,7 +43,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -60,10 +60,8 @@
     else if(indexPath.row == 1)
         cell.textLabel.text = @"SMS";
     else if(indexPath.row == 2)
-//        cell.textLabel.text = @"SMS";
-//    else if(indexPath.row == 3)
-//        cell.textLabel.text = @"Email";
-    
+        cell.textLabel.text = @"Twitter";
+
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
@@ -73,12 +71,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    PRCreateServiceViewController *vc = [[PRCreateServiceViewController alloc] initWithStyle:UITableViewStyleGrouped];
     if(indexPath.row == 0)
     {
-//        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_AUTHORIZE_FACEBOOK 
-//                                                            object:nil];
-//        [self.navigationController popToRootViewControllerAnimated:YES];
         PRFacebookSettingsViewController *vc = [[PRFacebookSettingsViewController alloc] initWithNibName:@"PRFacebookSettingsViewController" bundle:nil];
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -87,8 +81,12 @@
         PRSMSSettingsViewController *vc = [[PRSMSSettingsViewController alloc] initWithNibName:@"PRSMSSettingsViewController" bundle:nil];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
-//    [self.navigationController pushViewController:vc animated:YES];
+    else if(indexPath.row == 2)
+    {
+        PRTwitterSettingsViewController *vc = [[PRTwitterSettingsViewController alloc] initWithNibName:@"PRTwitterSettingsViewController" 
+                                                                                                bundle:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "PRTwitterSettingsViewController.h"
 
 @implementation PRTwitterSettingsViewController
+@synthesize service;
 
 - (void)updateCharCounts
 {
@@ -83,6 +84,7 @@
         emergenyMessageTextView.text = service.emergencyMessage;
         testMessageTextView.text = service.testMessage;
         deleteButton.hidden = NO;
+        statusLabel.text = [NSString stringWithFormat:@"User: @%@", service.username];
     }
     else
     {
@@ -98,13 +100,13 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)accountSavedWithUsername:(NSString*)username
+- (void)accountSavedWithUsername:(ACAccount*)account
 {
     PRTwitterService *s = [[PRTwitterService alloc] init];
-    s.name = [NSString stringWithFormat:@"%@ - @%@", serviceNameTextField.text, username];
+    s.name = serviceNameTextField.text;
     s.testMessage = testMessageTextView.text;
     s.emergencyMessage = emergenyMessageTextView.text;
-    s.username = username;
+    s.username = account.username;
     
     if(![[PRSession instance] addService:s])
     {
@@ -137,22 +139,12 @@
          if (!granted)
          {
              // The user rejected your request
-             NSLog(@"User rejected access to his account.");
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter Failed" 
-                                                             message:@"To send alerts via Twitter, you must authorized you account.  Please try again." 
-                                                            delegate:nil 
-                                                   cancelButtonTitle:@"OK" 
-                                                   otherButtonTitles:nil];
-             [alert show];
+             [self performSelectorOnMainThread:@selector(showRejectedAccessAlert) withObject:nil waitUntilDone:NO];
          }
          else
          {
              NSLog(@"User accepted twitter access");
              twitterAccounts = [store accountsWithAccountType:twitterAccountType];
-             for(ACAccount *acct in twitterAccounts)
-             {
-                 NSLog(@"twitter account: %@", acct.username);
-             }
              
              if([twitterAccounts count] > 1)
              {
@@ -160,21 +152,43 @@
              } 
              else if([twitterAccounts count] > 0)
              {
-                 ACAccount *twitterAccount = [twitterAccounts objectAtIndex:0];
-                 statusLabel.text = [NSString stringWithFormat:@"User: @%@", twitterAccount.username];
+                  ACAccount *twitterAccount = [twitterAccounts objectAtIndex:0];
+                 [self performSelectorOnMainThread:@selector(updateAccountLabel:) withObject:twitterAccount waitUntilDone:NO];
              }
              else 
              {
-                 NSLog(@"Authorize twitter: No accounts available");
-                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Twitter Accounts" 
-                                                                 message:@"You do not have any Twitter accounts configured. Please configure your Twitter accounts in Settings on your device." 
-                                                                delegate:nil 
-                                                       cancelButtonTitle:@"OK" 
-                                                       otherButtonTitles: nil];
-                 [alert show];
+                 [self performSelectorOnMainThread:@selector(showNoAccountsAlert) withObject:nil waitUntilDone:NO];
              }
          }
      }];
+}
+             
+- (void)updateAccountLabel:(ACAccount*)account
+{
+    statusLabel.text = [NSString stringWithFormat:@"User: @%@", account.username];
+    [self accountSavedWithUsername:account];
+}
+
+- (void)showRejectedAccessAlert
+{
+    NSLog(@"User rejected access to his account.");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter Failed" 
+                                                    message:@"To send alerts via Twitter, you must authorized you account.  Please try again." 
+                                                   delegate:nil 
+                                          cancelButtonTitle:@"OK" 
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)showNoAccountsAlert
+{
+    NSLog(@"Authorize twitter: No accounts available");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Twitter Accounts" 
+                                                    message:@"You do not have any Twitter accounts configured. Please configure your Twitter accounts in Settings on your device." 
+                                                   delegate:nil 
+                                          cancelButtonTitle:@"OK" 
+                                          otherButtonTitles: nil];
+    [alert show];
 }
 
 - (void)showPicker
@@ -207,11 +221,12 @@
 - (IBAction)pickerDoneButtonTouched:(id)sender 
 {
     NSInteger row = [accountPicker selectedRowInComponent:0];
-    NSString *username = ((ACAccount*)[twitterAccounts objectAtIndex:row]).username;
+    ACAccount *account = (ACAccount*)[twitterAccounts objectAtIndex:row];
+    NSString *username = account.username;
     NSLog(@"user selected %@", username);
     statusLabel.text = [NSString stringWithFormat:@"User: @%@", username];
     [accountPickerView removeFromSuperview];
-    [self accountSavedWithUsername:username];
+    [self accountSavedWithUsername:account];
 }
 
 #pragma mark - button selectors
@@ -223,7 +238,12 @@
 
 - (IBAction)deleteButtonTouched:(id)sender 
 {
-    //TODO
+    if(self.service)
+    {
+        [[PRSession instance] removeService:self.service];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REFRESH_SERVICE_LIST object:nil];
+    }
 }
 
 - (IBAction)cancelButtonTouched:(id)sender 
@@ -278,7 +298,6 @@
     [testMessageTextView resignFirstResponder];
     [emergenyMessageTextView resignFirstResponder];
     [serviceNameTextField resignFirstResponder];
-    [phoneNumberTextField resignFirstResponder];
 }
 
 #pragma mark - UITextViewDelegate

@@ -8,6 +8,8 @@
 
 #import "PRService.h"
 #import "PRSession.h"
+#import <Accounts/Accounts.h>
+#import <Twitter/Twitter.h>
 
 @interface PRTwitterService : PRService
 {
@@ -15,6 +17,6 @@
 }
 
 @property (nonatomic, retain) NSString *username;
-
+@property (nonatomic, readonly) ACAccount *userAccount;
 
 @end

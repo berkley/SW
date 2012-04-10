@@ -24,7 +24,6 @@
     PRTwitterService *service;
     
     __weak IBOutlet UITextField *serviceNameTextField;
-    __weak IBOutlet UITextField *phoneNumberTextField;
     __weak IBOutlet UIScrollView *scrollView;
     __weak IBOutlet UITextView *emergenyMessageTextView;
     __weak IBOutlet UITextView *testMessageTextView;
@@ -34,5 +33,7 @@
     NSInteger testCharCount;
     NSInteger emergencyCharCount;
 }
+
+@property (nonatomic, retain) PRTwitterService *service;
 
 @end

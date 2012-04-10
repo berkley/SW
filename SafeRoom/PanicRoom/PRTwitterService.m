@@ -48,5 +48,33 @@
         return testMessage;
 }
 
+//- (ACAccount*)userAccount
+//{
+//    ACAccountStore *store = [[ACAccountStore alloc] init];
+//    ACAccountType *twitterAccountType = [store
+//                                         accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+//    ACAccount *account;
+//    [store requestAccessToAccountsWithType:twitterAccountType
+//                     withCompletionHandler:^(BOOL granted, NSError *error) 
+//     {
+//         if (!granted)
+//         {
+//             NSAssert(NO, @"twitter should already be authorized.");
+//         }
+//         else
+//         {
+//             NSArray *twitterAccounts = [store accountsWithAccountType:twitterAccountType];
+//             for(ACAccount *acct in twitterAccounts)
+//             {
+//                 if([acct.username isEqualToString:self.username])
+//                 {
+//                     [self performSelector:@selector(setAccount:) withObject:acct];
+//                     break;
+//                 }
+//             }
+//         }
+//     }];
+//}
+
 
 @end

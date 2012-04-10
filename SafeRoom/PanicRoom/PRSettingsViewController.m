@@ -165,6 +165,12 @@
             vc.service = (PRSMSService*)service;
             [self.navigationController pushViewController:vc animated:YES];
         }
+        else if([service isKindOfClass:[PRTwitterService class]])
+        {
+            PRTwitterSettingsViewController *vc = [[PRTwitterSettingsViewController alloc] initWithNibName:@"PRTwitterSettingsViewController" bundle:nil];
+            vc.service = (PRTwitterService*)service;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 

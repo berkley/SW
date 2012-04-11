@@ -14,9 +14,11 @@
 @interface PRTwitterService : PRService
 {
     NSString *username;
+    ACAccountStore *store;
 }
 
 @property (nonatomic, retain) NSString *username;
-@property (nonatomic, readonly) ACAccount *userAccount;
+
+- (ACAccount*)userAccount;
 
 @end

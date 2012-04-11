@@ -97,7 +97,7 @@
     {
         deleteButton.hidden = YES;
         emergenyMessageTextView.text = [PRSession instance].alertMessage;
-        testMessageTextView.text = [PRSession instance].testMessage;
+        testMessageTextView.text = @"I'm testing SafeRoom to send emergency alerts. Please disregard.";
     }
 
     [self updateCharCounts];

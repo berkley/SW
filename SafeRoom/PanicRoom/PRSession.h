@@ -36,5 +36,6 @@
 - (void)startLocationServices;
 - (void)stopLocationServices;
 + (NSString*)createMessage:(NSString*)msg withLocation:(CLLocation*)currentLocation;
++ (NSInteger)generatedMessageLength;
 
 @end

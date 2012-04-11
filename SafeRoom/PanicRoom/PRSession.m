@@ -131,9 +131,20 @@ static PRSession *instance;
 + (NSString*)createMessage:(NSString*)msg withLocation:(CLLocation*)currentLocation
 {
     NSString *mapURL = [CommonUtil getShortenedURLForURL:[CommonUtil createStaticMapURLForLocation:currentLocation]];
+    NSString *baseString = [NSString stringWithFormat:@"My location is: lat: %0.6f lon: %0.6f", 
+                            currentLocation.coordinate.latitude, currentLocation.coordinate.longitude];
+    //NOTE: if either of the above strings change length, make sure to update generatedMessageLength below!!!
+    NSLog(@"base string: %@ length: %i", baseString, [baseString length]);
+    NSLog(@"map url %@ length %i", mapURL, [mapURL length]);
     
-    msg = [NSString stringWithFormat:@"%@ - My location is: latitude: %f longitude: %f %@", msg, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude, mapURL];
+    msg = [NSString stringWithFormat:@"%@-%@ %@", msg, baseString, mapURL];
     return msg;
+}
+
++ (NSInteger)generatedMessageLength
+{
+    //the sum of the length of mapURL and baseString above.
+    return 47 + 26;
 }
 
 #pragma mark - location services

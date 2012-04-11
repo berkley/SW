@@ -13,17 +13,18 @@
 
 - (void)updateCharCounts
 {
-    NSString *testStr = [PRSession createMessage:testMessageTextView.text withLocation:[PRSession instance].locationManager.location];
-    NSString *emergStr = [PRSession createMessage:emergenyMessageTextView.text withLocation:[PRSession instance].locationManager.location];
+//    NSString *testStr = [PRSession createMessage:testMessageTextView.text withLocation:[PRSession instance].locationManager.location];
+//    NSString *emergStr = [PRSession createMessage:emergenyMessageTextView.text withLocation:[PRSession instance].locationManager.location];
+    NSInteger generatedMessageLength = [PRSession generatedMessageLength];
     
-    testCharCount = 140 - [testStr length];
+    testCharCount = 140 - (generatedMessageLength + [testMessageTextView.text length]);
     testCharCountLabel.text = [NSString stringWithFormat:@"%i", testCharCount];
     if(testCharCount < 0)
         testCharCountLabel.textColor = [UIColor redColor];
     else
         testCharCountLabel.textColor = [UIColor whiteColor];
     
-    emergencyCharCount = 140 - [emergStr length];
+    emergencyCharCount = 140 - (generatedMessageLength + [emergenyMessageTextView.text length]);
     emergencyCharCountLabel.text = [NSString stringWithFormat:@"%i", emergencyCharCount];
     if(emergencyCharCount < 0)
         emergencyCharCountLabel.textColor = [UIColor redColor];
@@ -90,7 +91,7 @@
     {
         deleteButton.hidden = YES;
         emergenyMessageTextView.text = [PRSession instance].alertMessage;
-        testMessageTextView.text = [PRSession instance].testMessage;
+        testMessageTextView.text = @"I'm testing SafeRoom for emergency alerts. Please disregard.";
     }
     [self updateCharCounts];
 }
@@ -125,7 +126,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REFRESH_SERVICE_LIST object:nil];
     }}
 
-- (void)authorizeTwitterAndShowAccountPicker:(BOOL)bShowAccountPicker
+- (void)authorizeTwitterAndShowAccountPicker:(BOOL)showAccountPicker
 {
     //  First, we need to obtain the account instance for the user's Twitter account
     ACAccountStore *store = [[ACAccountStore alloc] init];
@@ -223,7 +224,7 @@
     NSInteger row = [accountPicker selectedRowInComponent:0];
     ACAccount *account = (ACAccount*)[twitterAccounts objectAtIndex:row];
     NSString *username = account.username;
-    NSLog(@"user selected %@", username);
+    NSLog(@"user selected: %@", username);
     statusLabel.text = [NSString stringWithFormat:@"User: @%@", username];
     [accountPickerView removeFromSuperview];
     [self accountSavedWithUsername:account];
@@ -266,6 +267,7 @@
             PRService *oldService = [[PRSession instance] serviceWithName:serviceToSave.name];
             if(oldService)
                 [[PRSession instance] removeService:oldService];
+            NSLog(@"serviceToSave: %@", serviceToSave.username);
             [[PRSession instance] addService:serviceToSave];
             [self.navigationController popToRootViewControllerAnimated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REFRESH_SERVICE_LIST object:nil];

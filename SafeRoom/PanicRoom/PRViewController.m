@@ -149,6 +149,7 @@
     }
     else
     {
+        NSLog(@"trying to achieve min accuracy");
         [self performSelector:@selector(sendMessages) withObject:nil afterDelay:1];
     }
 }

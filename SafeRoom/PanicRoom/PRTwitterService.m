@@ -57,8 +57,8 @@
 //         NSLog(@"consoleMsg: %@", consoleMsg);
          [self performSelectorOnMainThread:@selector(sendConsoleMessage:) withObject:consoleMsg waitUntilDone:NO];
          
-         NSError *err;        
-         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&err];
+//         NSError *err;        
+//         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&err];
 //         NSLog(@"Twitter response: %@", dict); 
      }];
 }

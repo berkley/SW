@@ -13,19 +13,19 @@
  TODO:
  
  1.0
- - SMS service
+ x SMS service
  - Email service
  F google plus service - can't do this...http://stackoverflow.com/questions/9105949/ios-possible-to-send-or-post-message-in-google-plus
- - Allow user to delete email/sms services
+ x Allow user to delete email/sms services
  - new graphics
- - change interval to segcon
- - Add 'name' setting for sms
+ x change interval to segcon
+ x Add 'name' setting for sms
  - put limit on number of test messages
  
- - put test button on toolbar
- - put message text cells in configuration for indiv. services
- - get rid of settings section
- - for SMS add a character counter so message lenght < 160
+ x put test button on toolbar
+ x put message text cells in configuration for indiv. services
+ x get rid of settings section
+ x for SMS add a character counter so message lenght < 160
  
  */
 

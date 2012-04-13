@@ -618,10 +618,12 @@
 		CD82994314EB14A200F594AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chad Berkley (A723P8EY37)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PanicRoom/SafeRoom-Prefix.pch";
 				INFOPLIST_FILE = "PanicRoom/PanicRoom-Info.plist";
 				PRODUCT_NAME = SafeRoom;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "34FF8DA7-4691-4B42-B354-EE8D831EBDB8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

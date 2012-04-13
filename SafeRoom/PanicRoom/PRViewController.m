@@ -192,10 +192,17 @@
         distressActiveLabel.hidden = NO;
         distressCallIsActive = YES;
         numTimerFired = 0;
-        if(![PRSession instance].testMode)
-            [self updateStatusText:@"Distress Beacon Activated"];
-        else
+        if([PRSession instance].testMode)
+        {
+            distressActiveLabel.text = @"Test Mode Active";
             [self updateStatusText:@"Testing Distress Beacon"];
+        }
+        else
+        {
+            distressActiveLabel.text = @"Distress Beacon Active";
+            [self updateStatusText:@"Distress Beacon Activated"];
+        }
+            
     }
     else if(activationSlider.value == 0 && distressCallIsActive)
     {

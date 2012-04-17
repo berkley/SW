@@ -28,12 +28,16 @@
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, assign) NSInteger messageInterval;
 @property (nonatomic, assign) NSInteger locationUpdateCounter;
+@property (nonatomic, assign) BOOL isInBackground;
+@property (nonatomic, assign) BOOL distressCallIsActive;
 
 + (PRSession*)instance;
 - (BOOL)addService:(PRService*)service;
 - (void)removeService:(PRService*)service;
 - (PRService*)serviceWithName:(NSString*)name;
 - (void)startLocationServices;
+- (void)startLowResLocationServices;
+- (void)stopLowResLocationServices;
 - (void)stopLocationServices;
 + (NSString*)createMessage:(NSString*)msg withLocation:(CLLocation*)currentLocation;
 + (NSInteger)generatedMessageLength;

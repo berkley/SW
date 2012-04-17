@@ -12,6 +12,8 @@ static PRSession *instance;
 
 @implementation PRSession
 @synthesize services, locationManager, locationUpdateCounter;
+@synthesize isInBackground = _isInBackground;
+@synthesize distressCallIsActive = _distressCallIsActive;
 
 + (PRSession*)instance
 {
@@ -149,12 +151,27 @@ static PRSession *instance;
 
 #pragma mark - location services
 
+- (void)startLowResLocationServices
+{
+    locationUpdateCounter = 0;
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = LOW_RES_DISTANCE_FILTER;
+    [locationManager startUpdatingLocation];
+}
+
 - (void)startLocationServices
 {
     locationUpdateCounter = 0;
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = kCLDistanceFilterNone;
     [locationManager startUpdatingLocation];
+}
+
+- (void)stopLowResLocationServices
+{
+    [locationManager stopMonitoringSignificantLocationChanges];
 }
 
 - (void)stopLocationServices
@@ -166,6 +183,7 @@ static PRSession *instance;
     didUpdateToLocation:(CLLocation *)newLocation 
            fromLocation:(CLLocation *)oldLocation
 {
+    NSLog(@"location did update: %@", newLocation);
     locationUpdateCounter++;
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATION_CHANGED 
                                                         object:nil 

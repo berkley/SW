@@ -145,7 +145,8 @@
             
             [service sendMessage:msg];
         }
-        [[PRSession instance] stopLocationServices];
+        if(![PRSession instance].isInBackground)
+            [[PRSession instance] stopLocationServices];
     }
     else
     {
@@ -162,11 +163,17 @@
     else
         activationSlider.thumbTintColor = [UIColor whiteColor];
 
-//    NSLog(@"numTimerFired %i messageInterval %i mod: %i", numTimerFired, [PRSession instance].messageInterval, numTimerFired % [PRSession instance].messageInterval);
+    NSLog(@"numTimerFired %i messageInterval %i mod: %i", 
+          numTimerFired, 
+          [PRSession instance].messageInterval, 
+          numTimerFired % [PRSession instance].messageInterval);
+    
     if(numTimerFired % [PRSession instance].messageInterval == 0)
     {
         //turn on location servies, wait for a location, then send messages
-        [[PRSession instance] startLocationServices];
+        if(![PRSession instance].isInBackground)
+            [[PRSession instance] startLocationServices];
+        
         [self performSelector:@selector(sendMessages) withObject:nil afterDelay:1];
     }
     
@@ -180,7 +187,7 @@
 
 - (IBAction)activationSliderValueChanged:(id)sender 
 {
-    if(activationSlider.value == 1 && !distressCallIsActive)
+    if(activationSlider.value == 1 && ![PRSession instance].distressCallIsActive)
     {
         if(activeTimer)
         {
@@ -188,9 +195,13 @@
             activeTimer = nil;
         }
         slideLabel.text = @"Slide to Deactivate";
-        activeTimer = [NSTimer scheduledTimerWithTimeInterval:ACTIVE_TIME_INTERVAL target:self selector:@selector(activeTimerFired:) userInfo:nil repeats:YES];
+        activeTimer = [NSTimer scheduledTimerWithTimeInterval:ACTIVE_TIME_INTERVAL 
+                                                       target:self 
+                                                     selector:@selector(activeTimerFired:) 
+                                                     userInfo:nil 
+                                                      repeats:YES];
         distressActiveLabel.hidden = NO;
-        distressCallIsActive = YES;
+        [PRSession instance].distressCallIsActive = YES;
         numTimerFired = 0;
         if([PRSession instance].testMode)
         {
@@ -204,13 +215,13 @@
         }
             
     }
-    else if(activationSlider.value == 0 && distressCallIsActive)
+    else if(activationSlider.value == 0 && [PRSession instance].distressCallIsActive)
     {
         slideLabel.text = @"Slide to Activate";
         [activeTimer invalidate];
         activeTimer = nil;
         distressActiveLabel.hidden = YES;
-        distressCallIsActive = NO;
+        [PRSession instance].distressCallIsActive = NO;
         [self updateStatusText:@"Beacon Deactivated"];
     }
 }
@@ -218,6 +229,11 @@
 - (void)locationUpdated:(NSNotification*)notification
 {
     currentLocation = [notification.userInfo objectForKey:@"newLocation"];
+    if([PRSession instance].isInBackground)
+    {
+        numTimerFired = 0;
+        [self activeTimerFired:self];
+    }
 }
 
 @end

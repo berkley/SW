@@ -67,14 +67,27 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
+    NSLog(@"resign active");
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    NSLog(@"starting background location services");
+    if([PRSession instance].distressCallIsActive)
+    {
+        [PRSession instance].isInBackground = YES;
+        [[PRSession instance] startLowResLocationServices];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    NSLog(@"returning to foreground");
+    if([PRSession instance].distressCallIsActive)
+    {
+        [PRSession instance].isInBackground = NO;
+        [[PRSession instance] stopLocationServices];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -84,6 +97,8 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [[PRSession instance] stopLowResLocationServices];
+    [[PRSession instance] stopLocationServices];
 }
 
 - (BOOL)application:(UIApplication *)application 

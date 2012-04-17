@@ -122,6 +122,13 @@
     else if(indexPath.section == 1)
     {
         PRService *service = [[PRSession instance].services objectAtIndex:indexPath.row];
+        if([service isKindOfClass:[PRFacebookService class]])
+            cell.imageView.image = [UIImage imageNamed:@"facebook.png"];
+        else if([service isKindOfClass:[PRTwitterService class]])
+            cell.imageView.image = [UIImage imageNamed:@"twitter.png"];
+        else if([service isKindOfClass:[PRSMSService class]])
+            cell.imageView.image = [UIImage imageNamed:@"sms.png"];
+        cell.imageView.frame = CGRectMake(0, 0, 10, 10);
         cell.textLabel.text = service.name;        
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; 
     }

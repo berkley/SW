@@ -12,7 +12,7 @@
 #import "PRTwitterService.h"
 
 @interface PRTwitterSettingsViewController : UIViewController
-<UIPickerViewDelegate, UIPickerViewDataSource, UIAlertViewDelegate, UITextViewDelegate>
+<UIPickerViewDelegate, UIPickerViewDataSource, UIAlertViewDelegate, UITextViewDelegate, UITextFieldDelegate>
 {
     NSArray *twitterAccounts;
     __weak IBOutlet UILabel *statusLabel;

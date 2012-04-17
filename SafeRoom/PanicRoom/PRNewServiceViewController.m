@@ -56,11 +56,20 @@
     }
     
     if(indexPath.row == 0)
+    {
         cell.textLabel.text = @"Facebook";
+        cell.imageView.image = [UIImage imageNamed:@"facebook.png"];
+    }
     else if(indexPath.row == 1)
+    {
         cell.textLabel.text = @"SMS";
+        cell.imageView.image = [UIImage imageNamed:@"sms.png"];
+    }
     else if(indexPath.row == 2)
+    {
         cell.textLabel.text = @"Twitter";
+        cell.imageView.image = [UIImage imageNamed:@"twitter.png"];
+    }
 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     

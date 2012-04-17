@@ -34,6 +34,9 @@
 		7EB6E61F14ECCDF100ECA13E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB6E61E14ECCDF000ECA13E /* Default@2x.png */; };
 		CD1E25C01537E50700AF1335 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD1E25BF1537E50700AF1335 /* Icon.png */; };
 		CD1E25C21537E50D00AF1335 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD1E25C11537E50D00AF1335 /* Icon@2x.png */; };
+		CD4C0834153D319400DE248A /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4C0833153D319400DE248A /* facebook.png */; };
+		CD4C0837153D324400DE248A /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4C0835153D324400DE248A /* twitter.png */; };
+		CD4C0838153D324400DE248A /* sms.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4C0836153D324400DE248A /* sms.png */; };
 		CD82992614EB14A200F594AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD82992514EB14A200F594AF /* UIKit.framework */; };
 		CD82992814EB14A200F594AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD82992714EB14A200F594AF /* Foundation.framework */; };
 		CD82992A14EB14A200F594AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD82992914EB14A200F594AF /* CoreGraphics.framework */; };
@@ -118,6 +121,9 @@
 		7EB6E61E14ECCDF000ECA13E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		CD1E25BF1537E50700AF1335 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		CD1E25C11537E50D00AF1335 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+		CD4C0833153D319400DE248A /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		CD4C0835153D324400DE248A /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
+		CD4C0836153D324400DE248A /* sms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sms.png; sourceTree = "<group>"; };
 		CD82992114EB14A200F594AF /* SafeRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD82992514EB14A200F594AF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CD82992714EB14A200F594AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -283,6 +289,9 @@
 		7EB6E5D014EC6B0900ECA13E /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				CD4C0835153D324400DE248A /* twitter.png */,
+				CD4C0836153D324400DE248A /* sms.png */,
+				CD4C0833153D319400DE248A /* facebook.png */,
 				CD1E25C11537E50D00AF1335 /* Icon@2x.png */,
 				CD1E25BF1537E50700AF1335 /* Icon.png */,
 				7EB6E61E14ECCDF000ECA13E /* Default@2x.png */,
@@ -503,6 +512,9 @@
 				7E5F4BC41519839300D820CA /* PRTwitterSettingsViewController.xib in Resources */,
 				CD1E25C01537E50700AF1335 /* Icon.png in Resources */,
 				CD1E25C21537E50D00AF1335 /* Icon@2x.png in Resources */,
+				CD4C0834153D319400DE248A /* facebook.png in Resources */,
+				CD4C0837153D324400DE248A /* twitter.png in Resources */,
+				CD4C0838153D324400DE248A /* sms.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@
 #import "PRSession.h"
 
 @interface PRSMSSettingsViewController : UIViewController
-<UIAlertViewDelegate, UITextViewDelegate>
+<UIAlertViewDelegate, UITextViewDelegate, UITextFieldDelegate>
 {
     __weak IBOutlet UITextField *serviceNameTextField;
     __weak IBOutlet UITextField *phoneNumberTextField;

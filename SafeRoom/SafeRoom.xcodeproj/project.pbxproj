@@ -475,7 +475,7 @@
 		CD82991814EB14A200F594AF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = Stumpware;
 			};
 			buildConfigurationList = CD82991B14EB14A200F594AF /* Build configuration list for PBXProject "SafeRoom" */;

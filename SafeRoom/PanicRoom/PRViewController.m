@@ -87,10 +87,18 @@
     }
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:msg, @"text", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATE_STATUS_TEXT object:nil userInfo:dict];
-
+    [self setSlideLabelText];
 }
 
 #pragma mark - selectors
+
+- (void)setSlideLabelText
+{
+    if([PRSession instance].testMode)
+        slideLabel.text = @"Send Test Messages";
+    else 
+        slideLabel.text = @"Send Emergency Alerts";
+}
 
 - (IBAction)testEmergencySegConValueChanged:(id)sender 
 {
@@ -102,6 +110,8 @@
     {
         [PRSession instance].testMode = NO;
     }
+        
+    [self setSlideLabelText];
 }
 
 - (void)updateStatusText:(NSString*)text
@@ -185,6 +195,15 @@
     [self presentModalViewController:settingsNavigationController animated:YES];
 }
 
+- (IBAction)sliderTouchUpInside:(id)sender 
+{
+    if(activationSlider.value < 1.0)
+    {
+        [activationSlider setValue:0.0 animated:YES];
+    }
+}
+
+
 - (IBAction)activationSliderValueChanged:(id)sender 
 {
     if(activationSlider.value == 1 && ![PRSession instance].distressCallIsActive)
@@ -194,7 +213,7 @@
             [activeTimer invalidate];
             activeTimer = nil;
         }
-        slideLabel.text = @"Slide to Deactivate";
+        slideLabel.text = @"Deactivate";
         activeTimer = [NSTimer scheduledTimerWithTimeInterval:ACTIVE_TIME_INTERVAL 
                                                        target:self 
                                                      selector:@selector(activeTimerFired:) 
@@ -215,14 +234,15 @@
         }
             
     }
-    else if(activationSlider.value == 0 && [PRSession instance].distressCallIsActive)
+    else if(activationSlider.value != 1 && [PRSession instance].distressCallIsActive)
     {
-        slideLabel.text = @"Slide to Activate";
+        [self setSlideLabelText];
         [activeTimer invalidate];
         activeTimer = nil;
         distressActiveLabel.hidden = YES;
         [PRSession instance].distressCallIsActive = NO;
         [self updateStatusText:@"Beacon Deactivated"];
+        activationSlider.thumbTintColor = [UIColor colorWithRed:11.0/255.0 green:148.0/255.0 blue:68.0/255.0 alpha:1.0];
     }
 }
 

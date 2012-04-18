@@ -10,15 +10,19 @@
  
 1.0
  - UI Changes
-   - Better activation method/graphics
-   - New logo/startup screen/color scheme
-   X Move "add a service" to its own cell
-   - add facebook/twitter icons
- - Add Twitter service, count characters
- X Add character counting for SMS
- - Use geoloqi for mapping link instead of static google map
+   x Better activation method/graphics
+   - change "service" to something more personal
+ - allow user to browse contacts to add SMS
+ - allow user to add to their "safety net" by pushing a link to the app to their friends
+ - add personal icon to SMS service (photo from contacts list or facebook)
+ - make sms an in-app purchase
+ - add "rate this app" after running for a few minutes
+ - add "are you sure" alert for emergency beacon
+ - add alert if you don't have any services configured
  
- 1.1
+ backlog
+ - ad
+ - Use geoloqi for mapping link instead of static google map
  - Add walkie-talkie feature
 
 ************************************************************************/

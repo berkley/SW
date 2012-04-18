@@ -12,6 +12,7 @@
 #define ACTIVE_TIME_INTERVAL 1.0
 
 @interface PRViewController : UIViewController
+<UIAlertViewDelegate>
 {
     __weak IBOutlet UISlider *activationSlider;
     __weak IBOutlet UIBarButtonItem *settingsBarButtonItem;

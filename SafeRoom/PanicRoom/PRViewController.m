@@ -203,36 +203,53 @@
     }
 }
 
+- (void)activate
+{
+    if(activeTimer)
+    {
+        [activeTimer invalidate];
+        activeTimer = nil;
+    }
+    slideLabel.text = @"Deactivate";
+    activeTimer = [NSTimer scheduledTimerWithTimeInterval:ACTIVE_TIME_INTERVAL 
+                                                   target:self 
+                                                 selector:@selector(activeTimerFired:) 
+                                                 userInfo:nil 
+                                                  repeats:YES];
+    distressActiveLabel.hidden = NO;
+    [PRSession instance].distressCallIsActive = YES;
+    numTimerFired = 0;
+}
+
+- (void)setTextForActivation
+{
+    if([PRSession instance].testMode)
+    {
+        distressActiveLabel.text = @"Test Mode Active";
+        [self updateStatusText:@"Testing Distress Beacon"];
+    }
+    else
+    {
+        distressActiveLabel.text = @"Distress Beacon Active";
+        [self updateStatusText:@"Distress Beacon Activated"];
+        
+    }
+}
 
 - (IBAction)activationSliderValueChanged:(id)sender 
 {
     if(activationSlider.value == 1 && ![PRSession instance].distressCallIsActive)
     {
-        if(activeTimer)
-        {
-            [activeTimer invalidate];
-            activeTimer = nil;
-        }
-        slideLabel.text = @"Deactivate";
-        activeTimer = [NSTimer scheduledTimerWithTimeInterval:ACTIVE_TIME_INTERVAL 
-                                                       target:self 
-                                                     selector:@selector(activeTimerFired:) 
-                                                     userInfo:nil 
-                                                      repeats:YES];
-        distressActiveLabel.hidden = NO;
-        [PRSession instance].distressCallIsActive = YES;
-        numTimerFired = 0;
         if([PRSession instance].testMode)
         {
-            distressActiveLabel.text = @"Test Mode Active";
-            [self updateStatusText:@"Testing Distress Beacon"];
+            [self setTextForActivation];
+            [self activate];
         }
         else
         {
-            distressActiveLabel.text = @"Distress Beacon Active";
-            [self updateStatusText:@"Distress Beacon Activated"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Emergency Message Activation" message:@"You are about to activate your emergency message broadcast. Are you sure you want to continue?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+            [alert show];
         }
-            
     }
     else if(activationSlider.value != 1 && [PRSession instance].distressCallIsActive)
     {
@@ -253,6 +270,19 @@
     {
         numTimerFired = 0;
         [self activeTimerFired:self];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1)
+    {
+        [self setTextForActivation];
+        [self activate];
+    }
+    else 
+    {
+        [activationSlider setValue:0.0 animated:YES];
     }
 }
 

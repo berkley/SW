@@ -9,19 +9,14 @@
 /***********************************************************************
  
 1.0
- - UI Changes
-   x Better activation method/graphics
-   - change "service" to something more personal
+ - change "service" to something more personal
  - allow user to browse contacts to add SMS
  - allow user to add to their "safety net" by pushing a link to the app to their friends
  - add personal icon to SMS service (photo from contacts list or facebook)
  - make sms an in-app purchase
  - add "rate this app" after running for a few minutes
- - add "are you sure" alert for emergency beacon
- - add alert if you don't have any services configured
  
  backlog
- - ad
  - Use geoloqi for mapping link instead of static google map
  - Add walkie-talkie feature
 

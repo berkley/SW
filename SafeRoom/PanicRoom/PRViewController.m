@@ -205,6 +205,14 @@
 
 - (void)activate
 {
+    if([[PRSession instance].services count] < 1)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Services Configured" message:@"You have not configured any services to send alerts. Touch the 'Settings' button below to add services." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        [activationSlider setValue:0.0 animated:YES];
+        return;
+    }
+    
     if(activeTimer)
     {
         [activeTimer invalidate];

@@ -16,7 +16,7 @@
  - make sms an in-app purchase
  - add "rate this app" after running for a few minutes
  
- backlog
+ backlog 
  - Use geoloqi for mapping link instead of static google map
  - Add walkie-talkie feature
 

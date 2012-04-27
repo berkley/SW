@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AddressBook/AddressBook.h>
 #import "Constants.h"
 #import "PRSMSService.h"
 #import "PRSession.h"
